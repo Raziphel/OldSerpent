@@ -1,0 +1,61 @@
+token = "NTUwNDc0MTQ5MzMyNTE2ODgx.XHcrAA.ZgHJ_6yYFb9CTim_ElLTWrFwwX8"
+prefix = "."
+razisrealm_id = 689534383878701223
+patreon = "https://www.patreon.com/Raziphel"
+developer = 159516156728836097
+bot_id = 896690181455892481
+
+[database]
+    user = "postgres"
+    password = "4878"
+    database = "postgres"
+    "host" = "127.0.0.1"
+
+[channels]
+    rules = 856449403173994536
+    lounge = 807828084937850921
+    adult_lounge = 928859827004928050
+    furry_lounge = 928855284754038804
+    greetings = 858574910280171550
+    role_handler = 929353951818690660
+    shop_handler = 946730953731100682
+    leaderboard = 929093224545550336
+    bot_log = 833960569941393438
+    members_log = 833960606826364928
+    currency_log = 858576957793239050
+    interaction_log = 834245104411082762
+    message_log = 833960665403883550
+    mail_box = 860778768921526272
+
+[roles]
+    [traits]
+        red = 984416635131682836
+        blue = 984416941831770112
+        pink = 984417089932644392
+        green = 984417207767400448
+    prisoner = 858923379315048488
+
+[emotes]
+    emerald = "<:Emerald:956462565519687740>"
+    diamond = "<:Diamond:956790757371551754>"
+    ruby = "<:Ruby:956462565729370122>"
+    sapphire = "<:Sapphire:956790790288441414>"
+    amethyst = "<:Amethyst:956462565335138354>"
+    crimson = "<:CrimsonGem:956462565590990908>"
+
+
+[messages]
+    [errors]
+        command_not_found = "I'm sorry but I don't believe that is a command?"
+        missing_permissions = "I'm missing permissions to perform that command!"
+        in_dms = "Sorry sweetie, that command can only be ran in my dms!"
+        missing_arguments = "That command is missing stuff, do .help?"
+        bad_arguments = "Thats the wrong way of running that command I'm afraid."
+        missing_error = "Hmm, something went wrong and I'm not completely sure what."
+        user_error = "Sorry but only a specific person can run that command."
+        dev_error = "Only bot developers can run that command.  Weaklings can't handle it."
+        guild_check = "Sorry, this command can not be run from this discord server."
+        mod_check = "Sorry honey, only a moderator can run that command, stupid."
+        admin_check = "You and I both know you don't have permission for that."
+        owner_check = "Wow calm down there, only the Grand Council may use that command."
+        error = "Uhhhh, something happened I don't know what to tell ya."
