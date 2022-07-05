@@ -57,5 +57,4 @@ bot_id = 896690181455892481
         guild_check = "Sorry, this command can not be run from this discord server."
         mod_check = "Sorry honey, only a moderator can run that command, stupid."
         admin_check = "You and I both know you don't have permission for that."
-        owner_check = "Wow calm down there, only the Grand Council may use that command."
         error = "Uhhhh, something happened I don't know what to tell ya."

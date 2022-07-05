@@ -57,9 +57,6 @@ class Error_Handler(Cog):
         elif isinstance(error, utils.AdminStaffCheckError):
             msg = await ctx.send(embed=utils.ErrorEmbed(error_msg=self.bot.config['messages']['errors']['admin_check']))
             pass
-        elif isinstance(error, utils.OwnerStaffCheckError):
-            msg = await ctx.send(embed=utils.ErrorEmbed(error_msg=self.bot.config['messages']['errors']['owner_check']))
-            pass
         else: 
             msg = await ctx.send(embed=utils.ErrorEmbed(error_msg=self.bot.config['messages']['errors']['error']))
             pass
