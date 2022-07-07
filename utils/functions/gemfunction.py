@@ -38,7 +38,7 @@ class GemFunction(object):
             c.sapphire -= 100
 
         if c.amethyst >= 100:
-            c.phelstone += 1
+            c.crimson += 1
             c.amethyst -= 100
 
         async with cls.bot.database() as db:
@@ -54,8 +54,8 @@ class GemFunction(object):
         c = utils.Currency.get(user.id)
 
         #! Lower every gem by one to check if they can afford
-        if c.phelstone > 0:
-            c.phelstone -= 1
+        if c.crimson > 0:
+            c.crimson -= 1
             c.amethyst += 100
 
         if c.amethyst > 0:

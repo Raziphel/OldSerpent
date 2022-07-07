@@ -18,15 +18,19 @@ class Mink(commands.AutoShardedBot):
         with open(self.config_filename) as z:
             self.config = toml.load(z)
 
-        #! Adds the class into the embeds.
+        #! Adds all embeds to the the Weasel Bot.
         utils.DefualtEmbed.bot = self
         utils.SpecialEmbed.bot = self
-        utils.ErrorEmbed.bot = self
+        utils.LogEmbed.bot = self
         utils.DevEmbed.bot = self
         utils.ProfileEmbed.bot = self
+        utils.ErrorEmbed.bot = self
+        utils.MailEmbed.bot = self
+        utils.WarningEmbed.bot = self
 
-        #! Adds the class into Functions.
+        #! Load Functions
         utils.UserFunction.bot = self
+        utils.GemFunction.bot = self
 
         #! Donator / Boosters
         self.boosters = "💫 Suppoter I 💫"
@@ -55,10 +59,8 @@ class Mink(commands.AutoShardedBot):
             utils.Levels.all_levels.clear()
             utils.Currency.all_currency.clear()
             utils.Moderation.all_moderation.clear()
-            utils.Tracking.all_tracking.clear()
             utils.Settings.all_settings.clear()
-            utils.Miners.all_miners.clear()
-            utils.Slots.all_slots.clear()
+            # utils.Slots.all_slots.clear()
 
 
             #!   Collect from Database
@@ -66,10 +68,8 @@ class Mink(commands.AutoShardedBot):
                 levels = await db('SELECT * FROM levels')
                 currency = await db('SELECT * FROM currency')
                 moderation = await db('SELECT * FROM moderation')
-                tracking = await db('SELECT * FROM tracking')
                 settings = await db('SELECT * FROM settings')
-                miners = await db('SELECT * FROM miners')
-                slots = await db('SELECT * FROM slots')
+                # slots = await db('SELECT * FROM slots')
 
 
             #!   Cache all into local objects
@@ -82,17 +82,11 @@ class Mink(commands.AutoShardedBot):
             for i in moderation:
                 utils.Moderation(**i)
 
-            for i in tracking:
-                utils.Tracking(**i)
-
             for i in settings:
                 utils.Settings(**i)
 
-            for i in miners:
-                utils.Miners(**i)
-
-            for i in slots:
-                utils.Slots(**i)
+            # for i in slots:
+            #     utils.Slots(**i)
 
         except Exception as e:
             print(f'Couldn\'t connect to the database... :: {e}')

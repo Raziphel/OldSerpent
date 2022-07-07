@@ -5,11 +5,12 @@ import asyncpg
 class Levels(object):
     all_levels = {}
 
-    def __init__(self, user_id:int, level:int=0, exp:int=0, last_xp:str=dt.utcnow()):
+    def __init__(self, user_id:int, level:int=0, exp:int=0, last_xp:str=dt.utcnow(), prestige:int=0):
         self.user_id = user_id
         self.level = level
         self.exp = exp
         self.last_xp = last_xp or dt.utcnow()
+        self.prestige = prestige
 
         self.all_levels[self.user_id] = self
 
@@ -19,18 +20,18 @@ class Levels(object):
             await db('''
                 INSERT INTO levels
                 VALUES
-                ($1, $2, $3, $4)
+                ($1, $2, $3, $4, $5)
                 ''',
-                self.user_id, self.level, self.exp, self.last_xp
+                self.user_id, self.level, self.exp, self.last_xp, self.prestige
             )
         except asyncpg.exceptions.UniqueViolationError: 
             await db('''
                 UPDATE levels SET
-                level=$2, exp=$3, last_xp=$4
+                level=$2, exp=$3, last_xp=$4, prestige=$5
                 WHERE
                 user_id=$1
                 ''',
-                self.user_id, self.level, self.exp, self.last_xp
+                self.user_id, self.level, self.exp, self.last_xp, self.prestige
             )
 
     @classmethod

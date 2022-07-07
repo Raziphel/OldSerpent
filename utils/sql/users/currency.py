@@ -4,7 +4,7 @@ import asyncpg
 class Currency(object):
     all_currency = {}
 
-    def __init__(self, user_id:int, silver:int=0, gold:int=0, diamond:int=0, emerald:int=0, ruby:int=0, sapphire:int=0, amethyst:int=0, phelstone:int=0):
+    def __init__(self, user_id:int, silver:int=0, gold:int=0, diamond:int=0, emerald:int=0, ruby:int=0, sapphire:int=0, amethyst:int=0, crimson:int=0):
         self.user_id = user_id
         self.silver = silver
         self.gold = gold
@@ -13,7 +13,7 @@ class Currency(object):
         self.ruby = ruby
         self.sapphire = sapphire
         self.amethyst = amethyst
-        self.phelstone = phelstone
+        self.crimson = crimson
 
         self.all_currency[self.user_id] = self
 
@@ -25,16 +25,16 @@ class Currency(object):
                 VALUES
                 ($1, $2, $3, $4, $5, $6, $7, $8, $9)
                 ''',
-                self.user_id, self.silver, self.gold, self.diamond, self.amethyst, self.ruby, self.sapphire, self.emerald, self.phelstone
+                self.user_id, self.silver, self.gold, self.diamond, self.amethyst, self.ruby, self.sapphire, self.emerald, self.crimson
             )
         except asyncpg.exceptions.UniqueViolationError: 
             await db('''
                 UPDATE currency SET
-                silver=$2, gold=$3, diamond=$4, emerald=$5, ruby=$6, sapphire=$7, amethyst=$8, phelstone=$9
+                silver=$2, gold=$3, diamond=$4, emerald=$5, ruby=$6, sapphire=$7, amethyst=$8, crimson=$9
                 WHERE
                 user_id=$1
                 ''',
-                self.user_id, self.silver, self.gold, self.diamond, self.emerald, self.sapphire, self.ruby, self.amethyst, self.phelstone
+                self.user_id, self.silver, self.gold, self.diamond, self.emerald, self.sapphire, self.ruby, self.amethyst, self.crimson
             )
 
     @classmethod

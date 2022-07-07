@@ -52,23 +52,17 @@ class Error_Handler(Cog):
         elif isinstance(error, utils.NSFWCheckError):
             msg = await ctx.send(embed=utils.ErrorEmbed(error_type=f"NSFWCheckError", guild=ctx.author.guild))
             pass
-        elif isinstance(error, utils.NSFWStaffCheckError):
-            msg = await ctx.send(embed=utils.ErrorEmbed(error_type=f"NSFWStaffCheckError", guild=ctx.author.guild))
-            pass
         elif isinstance(error, utils.ModStaffCheckError):
             msg = await ctx.send(embed=utils.ErrorEmbed(error_type=f"ModStaffCheckError", guild=ctx.author.guild))
             pass
         elif isinstance(error, utils.AdminStaffCheckError):
             msg = await ctx.send(embed=utils.ErrorEmbed(error_type=f"AdminCheckError", guild=ctx.author.guild))
             pass
-        elif isinstance(error, utils.OnwerStaffCheckError):
-            msg = await ctx.send(embed=utils.ErrorEmbed(error_type=f"OnwerStaffCheckError", guild=ctx.author.guild))
-            pass
         else: 
             msg = await ctx.send(embed=utils.ErrorEmbed(error_type=f"MissingError", guild=ctx.author.guild))
             pass
 
-        if ctx.author.id in self.bot.config['developers'].values():
+        if ctx.author.id == self.bot.config['developer']:
             await ctx.author.send(f"Command failed - `{error!s}`;")
 
         await sleep(4)

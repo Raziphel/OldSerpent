@@ -17,31 +17,22 @@ class ProfileEmbed(Embed):
         type_ = kwargs.pop('type', None)
         user = kwargs.pop('user', Member)
         staff = kwargs.pop('staff', False)
-        guild = user.guild
         quick = kwargs.pop('quick', False)
-        sona = kwargs.pop('sona', 1)
+
+        patron = self.bot.config['patreon']
 
         # Make the embed
         super().__init__(*args, **kwargs)
 
-        #! Guild Checks
-        if guild.id == self.bot.config['guilds']['FurryRoyaleID']:
-            patron = self.bot.config['royale_patreon']
-        else:
-            patron = self.bot.config['razi_patreon']
 
         #! Define Varibles
         lvl = utils.Levels.get(user.id) 
         ss = utils.Settings.get(user.id)
         # mod = utils.Moderation.get(user.id)
-        st = utils.Staff_Track.get(user.id)
         c = utils.Currency.get(user.id)
         inte = utils.Interactions.get(user.id)
         # items = utils.Items.get(user.id)
         # rel = utils.Relations.get(user.id)
-
-        ch = utils.Sonas.get(user_id=user.id, slot=sona)
-        print(ch)
 
         #* Required EXP varibles (Cant await in embeds...)
         if lvl.level == 0:
@@ -84,14 +75,14 @@ class ProfileEmbed(Embed):
         self.color = ss.color
 
         #* Emojis
-        amethyst_e = "<:Amethyst:766123218732843019>"
-        diamond_e = "<:Diamond:766123219609976832>"
-        emerald_e = "<:Emerald:766123219731611668>"
-        phel_e = "<:PhelStone:766123219781419020>"
-        silver_e = "<:Silver:766123219761233961>"
-        gold_e = "<:GoldIngot:766123219827949596>"
-        sapphire_e = "<:Sapphire:766123220201635850>"
-        ruby_e = "<:Ruby:766123219928481852>"
+        silver_e = "<:Silver:994737895707525181>"
+        gold_e = "<:Gold:994737893014773790>"
+        emerald_e = "<:Emerald:994737891735511050>"
+        diamond_e = "<:Diamond:994737890582069278>"
+        ruby_e = "<:Ruby:994737896567357461>"
+        sapphire_e = "<:Sapphire:994737897871782031>"
+        amethyst_e = "<:Amethyst:994738216022319124> "
+        crimson_e = "<:Crimson:994737894499569746>"
 
         #* Add author
         self.set_author(name=f"{user.name}'s {type_} Profile", icon_url=user.avatar_url, url=patron)
@@ -103,13 +94,7 @@ class ProfileEmbed(Embed):
         if type_ == "Default":
             self.add_field(name='INFORMATION', value=f"❧ Level Rank: **#{rank+1}**\n❧ Level: **{lvl.level}**\n❧ Exp: **{floor(lvl.exp):,}/{requiredexp:,}**\n", inline=True)
             self.add_field(name='OVERVIEW', value=f"Work In Progress...\n", inline=True)
-            self.set_footer(text=f"| ✨ Sona | 💸 Currency | 🔮 Interactions |")
-
-        if type_ == "Staff-Track":
-            self.add_field(name='STAFF', value=f"❧ Mutes: {st.mutes}\n❧ Memes: {st.memes}\n❧ Nsfws: {st.nsfws}\n❧ Sonas: {st.mail_sonas}", inline=True)
-            self.add_field(name='TRACK', value=f"❧ Purges: {st.purges}\n❧ Messages: {st.messages}\n❧ Monthly Msgs: {st.messages_month}\n❧ Verified: {st.mail_verification}", inline=True)
-            if quick == False:
-                self.set_footer(text=f"| 🔷 Return |")
+            self.set_footer(text=f"| 💸 Currency | 🔮 Interactions |")
 
         if type_ == "Currency":
             emotes = choice([1, 2, 3])
@@ -124,7 +109,7 @@ class ProfileEmbed(Embed):
                 emote_2 = diamond_e
             self.description = f"**{emote_1} 100x = 1 {emote_2} Ect.**"
             self.add_field(name='CURRENCY', value=f"❧ {silver_e} : **{floor(c.silver):,}x**\n❧ {gold_e} : **{floor(c.gold):,}x**\n❧ {emerald_e} : **{floor(c.emerald):,}x**\n❧ {diamond_e} : **{floor(c.diamond):,}x**", inline=True)
-            self.add_field(name='SPECIAL', value=f"❧ {ruby_e} : **{floor(c.ruby):,}x**\n❧ {sapphire_e} : **{floor(c.sapphire):,}x**\n❧ {amethyst_e} : **{floor(c.amethyst):,}x**\n❧ {phel_e} : **{floor(c.phelstone):,}x**", inline=True)
+            self.add_field(name='SPECIAL', value=f"❧ {ruby_e} : **{floor(c.ruby):,}x**\n❧ {sapphire_e} : **{floor(c.sapphire):,}x**\n❧ {amethyst_e} : **{floor(c.amethyst):,}x**\n❧ {crimson_e} : **{floor(c.crimson):,}x**", inline=True)
             if quick == False:
                 self.set_footer(text=f"| 🔷 Return |")
 
@@ -144,35 +129,3 @@ class ProfileEmbed(Embed):
         #     self.add_field(name='𝙍𝙀𝙇𝘼𝙏𝙄𝙊𝙉𝙎𝙃𝙄𝙋𝙎', value=f"{mate_s}\n{bff_s}\n{owner_s}", inline=True)
         #     if quick == False:
         #         self.set_footer(text=f"| 🔷 Return |")
-
-        if type_ == "Sona":
-            if staff == True:
-                self.add_field(name='Name', value=f"{ch.name}", inline=True)
-                self.add_field(name='Gender', value=f"{ch.gender}", inline=True)
-                self.add_field(name='Age', value=f"{ch.age}", inline=True)
-                self.add_field(name='Species', value=f"{ch.species}", inline=True)
-                self.add_field(name='Weight', value=f"{ch.weight}", inline=True)
-                self.add_field(name='Height', value=f"{ch.height}", inline=True)
-                self.set_footer(text=f"| {sona}_sona |")
-                if ch.bio != None:
-                    self.add_field(name='Bio', value=ch.bio, inline=False)
-                if ch.image != None:
-                    self.set_image(url=ch.image)
-            elif ch.verified == True:
-                self.add_field(name='Name', value=f"{ch.name}", inline=True)
-                self.add_field(name='Gender', value=f"{ch.gender}", inline=True)
-                self.add_field(name='Age', value=f"{ch.age}", inline=True)
-                self.add_field(name='Species', value=f"{ch.species}", inline=True)
-                self.add_field(name='Weight', value=f"{ch.weight}", inline=True)
-                self.add_field(name='Height', value=f"{ch.height}", inline=True)
-                if ch.bio != None:
-                    self.add_field(name='Bio', value=ch.bio, inline=False)
-                if ch.image != None:
-                    self.set_image(url=ch.image)
-                if quick == False:
-                    self.set_footer(text=f"| 🔷 Return |")
-            else:
-                self.add_field(name='Nothing?', value=f"❧ You don't have a verified character!\n❧ Do `.setsona`", inline=True)
-                if quick == False:
-                    self.set_footer(text=f"| 🔷 Return |")
-

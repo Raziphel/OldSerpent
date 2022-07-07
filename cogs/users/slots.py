@@ -38,7 +38,7 @@ class Slots(Cog):
         amethyst_e = "<:Amethyst:766123218732843019>"
         diamond_e = "<:Diamond:766123219609976832>"
         emerald_e = "<:Emerald:766123219731611668>"
-        phel_e = "<:PhelStone:766123219781419020>"
+        phel_e = "<:crimson:766123219781419020>"
         silver_e = "<:Silver:766123219761233961>"
         gold_e = "<:GoldIngot:766123219827949596>"
         sapphire_e = "<:Sapphire:766123220201635850>"

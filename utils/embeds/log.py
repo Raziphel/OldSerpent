@@ -14,7 +14,6 @@ class LogEmbed(Embed):
         title = kwargs.pop('title', None)
         desc = kwargs.pop('desc', None)
         thumbnail = kwargs.pop('thumbnail', None)
-        guild = kwargs.pop('guild', None)
 
 
         #! Make the embed

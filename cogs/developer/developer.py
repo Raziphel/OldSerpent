@@ -61,7 +61,7 @@ class Developer(Cog):
             await inter.save(db)
         await ctx.send(f"Premium Interactions allowed.")
 
-    @utils.is_owner_staff()
+    @utils.is_dev()
     @command()
     async def roles(self, ctx):
         roles = 0

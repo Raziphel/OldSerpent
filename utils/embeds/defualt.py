@@ -20,11 +20,7 @@ class DefualtEmbed(Embed):
         desc = kwargs.pop('desc', None)
         guild = kwargs.pop('guild', None)
 
-        #! Guild Checks
-        if guild.id == self.bot.config['guilds']['FurryRoyaleID']:
-            patron = self.bot.config['royale_patreon']
-        else:
-            patron = self.bot.config['razi_patreon']
+        patron = self.bot.config['patreon']
 
 
         #* Make the embed

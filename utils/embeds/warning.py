@@ -13,6 +13,7 @@ class WarningEmbed(Embed):
         title = kwargs.pop('title', None)
         desc = kwargs.pop('desc', None)
         guild = kwargs.pop('guild', None)
+        patron = self.bot.config['patreon']
 
 
         #! Guild Checks

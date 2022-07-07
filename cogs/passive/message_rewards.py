@@ -19,7 +19,9 @@ class Message_Rewards(Cog):
         self.emerald_messages = []
         self.diamond_messages = []
 
-
+    @property  #! The currency logs
+    def currency_log(self):
+        return self.bot.get_channel(self.bot.config['channels']['currency_log'])
 
     @Cog.listener('on_message')
     async def reward_gen(self, message):
@@ -89,14 +91,13 @@ class Message_Rewards(Cog):
         message = await channel.fetch_message(payload.message_id)
         msg = None
 
-        log = await utils.ChannelFunction.get_log_channel(guild=guild, log="currency")
 
         #! Define Emojis
         bunny_e = "<a:Bunny:703136644366336000>"
-        diamond_e = "<:Diamond:766123219609976832>"
-        emerald_e = "<:Emerald:766123219731611668>"
-        silver_e = "<:Silver:766123219761233961>"
-        gold_e = "<:GoldIngot:766123219827949596>"
+        silver_e = self.bot.config['emotes']['silver']
+        diamond_e = self.bot.config['emotes']['diamond']
+        emerald_e =self.bot.config['emotes']['emerald']
+        gold_e = self.bot.config['emotes']['gold']
 
         #! Get the correct item
         if str(payload.emoji) == silver_e:
@@ -106,7 +107,7 @@ class Message_Rewards(Cog):
                 silver = choice([25, 50, 75])
                 c.silver += silver
                 msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{silver} {silver_e}x**", footer=f"", guild=guild))
-                try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{silver} {silver_e}x**", guild=guild))
+                try: await self.currency_log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{silver} {silver_e}x**", guild=guild))
                 except: pass
 
         elif str(payload.emoji) == gold_e:
@@ -116,7 +117,7 @@ class Message_Rewards(Cog):
                 gold = choice([25, 15, 5])
                 c.gold += gold
                 msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{gold} {gold_e}x**", footer=f"", guild=guild))
-                try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{gold} {gold_e}x**", guild=guild))
+                try: await self.currency_log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{gold} {gold_e}x**", guild=guild))
                 except: pass
 
         elif str(payload.emoji) == emerald_e:
@@ -126,7 +127,7 @@ class Message_Rewards(Cog):
                 emerald = choice([5, 10, 15])
                 c.emerald += emerald
                 msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{emerald} {emerald_e}x**", footer=f"", guild=guild))
-                try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{emerald} {emerald_e}x**", guild=guild))
+                try: await self.currency_log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{emerald} {emerald_e}x**", guild=guild))
                 except: pass
 
         elif str(payload.emoji) == diamond_e:
@@ -136,7 +137,7 @@ class Message_Rewards(Cog):
                 diamond = choice([1, 2, 3])
                 c.diamond += diamond
                 msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{diamond} {diamond_e}x**", footer=f"", guild=guild))
-                try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{diamond} {diamond_e}x**", guild=guild))
+                try: await self.currency_log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{diamond} {diamond_e}x**", guild=guild))
                 except: pass
 
         else: 

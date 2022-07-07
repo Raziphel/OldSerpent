@@ -17,6 +17,7 @@ class SpecialEmbed(Embed):
         thumbnail = kwargs.pop('thumbnail', None)
         footer = kwargs.pop('footer', None)
         guild = kwargs.pop('guild', None)
+        patron = self.bot.config['patreon']
 
 
         #! Guild Checks

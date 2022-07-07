@@ -9,7 +9,7 @@ bot_id = 896690181455892481
     user = "pterodactyl"
     password = "Pl3453Ch4n63M3!"
     database = "postgres"
-    "host" = "127.0.0.1"
+    host = "172.18.0.3"
 
 [channels]
     rules = 856449403173994536
@@ -36,12 +36,14 @@ bot_id = 896690181455892481
     prisoner = 858923379315048488
 
 [emotes]
-    emerald = "<:Emerald:956462565519687740>"
-    diamond = "<:Diamond:956790757371551754>"
-    ruby = "<:Ruby:956462565729370122>"
-    sapphire = "<:Sapphire:956790790288441414>"
-    amethyst = "<:Amethyst:956462565335138354>"
-    crimson = "<:CrimsonGem:956462565590990908>"
+    silver = "<:Silver:994737895707525181>"
+    gold = "<:Gold:994737893014773790>"
+    emerald = "<:Emerald:994737891735511050>"
+    diamond = "<:Diamond:994737890582069278>"
+    ruby = "<:Ruby:994737896567357461>"
+    sapphire = "<:Sapphire:994737897871782031>"
+    amethyst = "<:Amethyst:994738216022319124> "
+    crimson = "<:Crimson:994737894499569746>"
 
 
 [messages]

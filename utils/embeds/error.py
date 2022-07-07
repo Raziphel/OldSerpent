@@ -14,12 +14,7 @@ class ErrorEmbed(Embed):
         desc = kwargs.pop('desc', None)
         guild = kwargs.pop('guild', None)
 
-
-        #! Guild Checks
-        if guild.id == self.bot.config['guilds']['FurryRoyaleID']:
-            patron = self.bot.config['royale_patreon']
-        else:
-            patron = self.bot.config['razi_patreon']
+        patron = self.bot.config['patreon']
 
         #! Make the embed
         super().__init__(*args, **kwargs)
@@ -61,17 +56,11 @@ class ErrorEmbed(Embed):
         elif error_type == "NSFWCheckError":
             self.set_author(name=f"This command only works in NSFW channels.", url=patron)
 
-        elif error_type == "NSFWStaffCheckError":
-            self.set_author(name=f"You must be NSFW Mod to run this command.", url=patron)
-
         elif error_type == "ModStaffCheckError":
             self.set_author(name=f"You must be atleast moderator to run this command.", url=patron)
 
         elif error_type == "AdminStaffCheckError":
             self.set_author(name=f"You must be Admin to run this command.", url=patron)
-
-        elif error_type == "OnwerStaffCheckError":
-            self.set_author(name=f"Only my an owner can run this command.", url=patron)
 
         else:
             self.set_author(name=f"An unknown error has occured.", url=patron)

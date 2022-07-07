@@ -22,10 +22,10 @@ CREATE TABLE settings (
 
 CREATE TABLE currency (
     user_id bigint NOT NULL,
-    sapphire integer,
-    ruby integer,
     emerald integer,
     diamond integer,
+    ruby integer,
+    sapphire integer,
     amethyst integer,
     crimson integer,
     PRIMARY KEY (user_id)
