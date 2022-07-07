@@ -12,31 +12,37 @@ class DefualtEmbed(Embed):
     bot = None
 
     def __init__(self, *args, **kwargs):
-        #* Gets the varibles for the embed
+        #Gets the varibles for the embed
         user = kwargs.pop('user', None)
-        title = kwargs.pop('author', None)
+        author = kwargs.pop('author', None)
         thumbnail = kwargs.pop('thumbnail', None)
         image = kwargs.pop('image', None)
         desc = kwargs.pop('desc', None)
-        patron = self.bot.config['patreon']
+        guild = kwargs.pop('guild', None)
+
+        #! Guild Checks
+        if guild.id == self.bot.config['guilds']['FurryRoyaleID']:
+            patron = self.bot.config['royale_patreon']
+        else:
+            patron = self.bot.config['razi_patreon']
 
 
         #* Make the embed
         super().__init__(*args, **kwargs)
 
-        #* Add Color
+        # Add Color
         if user:
             ss = utils.Settings.get(user.id)
             self.color = ss.color
 
         #* Add author
-        if title:
-            self.set_author(name=title, url=patron)
-
+        if author:
+            self.set_author(name=author, url=patron)
+            
         #* Add thumbnail
         if thumbnail:
             self.set_thumbnail(url=thumbnail)
-
+        
         #* Add image
         if image:
             self.set_image(url=image)
@@ -44,5 +50,4 @@ class DefualtEmbed(Embed):
             self.description = f"{desc}"
 
         #* Add Footer
-        emoji = choice(["🌷", "🌹", "🍃", "🌺", "🌼", "🌹", "'🥀"])
-        self.set_footer(text=f"{emoji} {choice(utils.Tips)}")
+        self.set_footer(text=choice(utils.Tips))

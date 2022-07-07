@@ -13,7 +13,13 @@ class WarningEmbed(Embed):
         title = kwargs.pop('title', None)
         desc = kwargs.pop('desc', None)
         guild = kwargs.pop('guild', None)
-        patron = self.bot.config['patreon']
+
+
+        #! Guild Checks
+        if guild.id == self.bot.config['guilds']['FurryRoyaleID']:
+            patron = self.bot.config['royale_patreon']
+        else:
+            patron = self.bot.config['razi_patreon']
 
 
         #! Make the embed

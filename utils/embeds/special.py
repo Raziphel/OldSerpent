@@ -16,6 +16,14 @@ class SpecialEmbed(Embed):
         desc = kwargs.pop('desc', None)
         thumbnail = kwargs.pop('thumbnail', None)
         footer = kwargs.pop('footer', None)
+        guild = kwargs.pop('guild', None)
+
+
+        #! Guild Checks
+        if guild.id == self.bot.config['guilds']['FurryRoyaleID']:
+            patron = self.bot.config['royale_patreon']
+        else:
+            patron = self.bot.config['razi_patreon']
 
 
         #! Make the embed
@@ -26,7 +34,7 @@ class SpecialEmbed(Embed):
 
         #* Add title
         if title:
-            self.set_author(name=title)
+            self.set_author(name=title, url=patron)
 
         #* Add description
         if desc:

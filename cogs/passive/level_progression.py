@@ -15,19 +15,12 @@ class Level_Progression(Cog):
     def __init__(self, bot):
         self.bot = bot
         self.exp_voice_gen_loop.start()
-        self.restart = True
-
-
-    @property  #! The currency logs
-    def currency_log(self):
-        return self.bot.get_channel(self.bot.config['channels']['currency_log']) #?Currency log channel
-
 
     @Cog.listener('on_message')
     async def Level_Progression(self, message:Message):
         '''Determine Level progression settings!'''
 
-        #! BETTER NOT BE A DM
+        # BETTER NOT BE A DM
         if message.guild == None:
             return
         if message.author.bot:
@@ -44,46 +37,46 @@ class Level_Progression(Cog):
         '''Level Progression'''
         lvl = utils.Levels.get(message.author.id)
         c = utils.Currency.get(message.author.id)
-        track = utils.Tracking.get(message.author.id)
-        track.messages += 1
         if lvl.last_xp == None:
             lvl.last_xp = dt.utcnow()
-        if (lvl.last_xp + timedelta(seconds=20)) <= dt.utcnow(): # Check Time
+        if (lvl.last_xp + timedelta(seconds=30)) <= dt.utcnow(): # Check Time
 
             #! Define varibles
-            exp = 5
+            exp = 1
             unique_words = len(list(unique_everseen(message.content.split(), str.lower)))
             requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
 
             #! Unique Word Nerfer
-            if unique_words > 15:
-                unique_words = 15
+            if unique_words > 10:
+                unique_words = 10
 
-            rng = choice([0.75, 1.0, 1.25, 1.50, 2.0])
-            exp += (lvl.level/6) + (unique_words*rng) + 2
-            reward = 4*rng
-            c.emerald += reward 
+            rng = choice([0.5, 0.75, 1.0, 1.25, 1.50])
+            exp += lvl.level*rng
+            c.silver += unique_words*rng
+
+            #! Command Usage Secret Increase!?
+            if message.content.startswith(self.bot.config['prefix']):
+                exp += lvl.level
 
             if lvl.exp >= requiredexp:
                 await utils.UserFunction.level_up(user=message.author, channel=message.channel)
+
+            #! Check for needed update?
+            if c.silver >= 100:
+                await utils.GemFunction.update_gems(user=message.author)
 
             #! Save it to database
             lvl.exp += exp
             lvl.last_xp = dt.utcnow()
         async with self.bot.database() as db:
             await lvl.save(db)
-            await track.save(db)
-
-
-
-
 
 
 
     def cog_unload(self):
         self.exp_voice_gen.cancel()
 
-    @loop(minutes=10)
+    @loop(minutes=15)
     async def exp_voice_gen_loop(self):
         #? Check if bot is connected!
         if self.bot.connected == False:
@@ -92,6 +85,7 @@ class Level_Progression(Cog):
         for guild in self.bot.guilds:
             for vc in guild.voice_channels:
                 for member in vc.members:
+
                     # Checks
                     checks = [
                         member.voice.deaf, 
@@ -102,36 +96,29 @@ class Level_Progression(Cog):
                         member.bot,
                     ]
                     if any(checks):
-                        continue
+                        return
                     if len(vc.members) < 2:
-                        continue
+                        return
 
-                    #? Update their user
+                    # Update their user
+                    ss = utils.Settings.get(member.id)
                     lvl = utils.Levels.get(member.id)
                     c = utils.Currency.get(member.id)
-                    track = utils.Tracking.get(member.id)
-                    ss = utils.Settings.get(member.id)
-                    exp = 25 + (len(vc.members)*2.75) + (lvl.level/3)
-                    emerald = 15 + round(len(vc.members)*5.25)
-                    lvl.exp += round(exp)
-                    c.emerald += emerald
-                    track.vc_mins += 10
+                    exp = len(vc.members)*(lvl.level/2)
+                    silver = 5 + round(len(vc.members)/2)
+                    lvl.exp += exp
+                    c.silver += silver
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
                     if lvl.exp >= requiredexp:
                         await utils.UserFunction.level_up(user=member, channel=None)
 
-
                     async with self.bot.database() as db:
                         await lvl.save(db)
                         await c.save(db)
-                        await track.save(db)
 
                     if ss.vc_msgs == True:
-                        await member.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{emerald:,} {self.bot.config['emotes']['emerald']}!  From being in VC!**"))
-
-                    await self.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{emerald:,} {self.bot.config['emotes']['emerald']}!  From being in VC!**"))
-
+                        await member.send(embed=utils.SpecialEmbed(title=f"VC Earnings!", desc=f"You earned **{exp:,} EXP!**\nAnd **{coins:,} Coins!**"))
 
     @exp_voice_gen_loop.before_loop
     async def before_exp_voice_gen_loop(self):

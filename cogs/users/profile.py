@@ -35,22 +35,38 @@ class Profile(Cog):
 
         await msg.clear_reactions()
         #! adds the reactions
-        # await msg.add_reaction("✨")
+        await msg.add_reaction("✨")
         await msg.add_reaction("💸")
-        await msg.add_reaction("⛏")
+        # await msg.add_reaction("📕")
         # await msg.add_reaction("❤️")
         # await msg.add_reaction("🏹")
-        # await msg.add_reaction("🔮")
+        await msg.add_reaction("🔮")
+        if ctx.author.id in self.bot.developers:
+            await msg.add_reaction("🍃")
 
         # Watches for the reactions
-        check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["💸", "⛏"]
+        check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🏹", "💸", "🔮", "✨", "❤️", "📕", "🍃"]
         r, _ = await self.bot.wait_for('reaction_add', check=check)
+        if r.emoji == "✨":
+            await msg.edit(embed=utils.ProfileEmbed(type="Sona", user=user, sona=1))
+            pass
         if r.emoji == "💸":
+            await utils.GemFunction.update_gems(user=user)
             await msg.edit(embed=utils.ProfileEmbed(type="Currency", user=user))
             pass
-        if r.emoji == "⛏":
-            await msg.edit(embed=utils.ProfileEmbed(type="Miners", user=user))
+        if ctx.author.id in self.bot.developers:      
+            if r.emoji == "🍃":
+                await msg.edit(embed=utils.ProfileEmbed(type="Staff-Track", user=user))
+                pass
+        # if r.emoji == "📕":
+        #     await msg.edit(embed=utils.FactionEmbed(type="Default", user=user))
+        #     pass
+        if r.emoji == "🔮":
+            await msg.edit(embed=utils.ProfileEmbed(type="Interactions", user=user))
             pass
+        # if r.emoji == "❤️":
+        #     await msg.edit(embed=utils.ProfileEmbed(type="Relationships", user=user))
+        #     pass
         await msg.clear_reactions()
         await msg.add_reaction("🔷")
         check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🔷"]
@@ -61,6 +77,17 @@ class Profile(Cog):
 
 
 
+    @cooldown(1, 30, BucketType.user)
+    @command(aliases=['Sona', 'fursona', 'Fursona'])
+    async def sona(self, ctx, user:Member=None):
+        '''Quick Post Sona'''
+        if not user:
+            user = ctx.author
+        await utils.GemFunction.update_gems(user=user)
+        m = await ctx.send(embed=utils.ProfileEmbed(type="Sona", user=user, quick=True), delete_after=15)
+
+
+
 
     @cooldown(1, 30, BucketType.user)
     @command(aliases=['c', 'C', 'Gems', 'ingots', 'gems', 'Ingots'])
@@ -68,7 +95,18 @@ class Profile(Cog):
         '''Quick Check Gems'''
         if not user:
             user = ctx.author
+        await utils.GemFunction.update_gems(user=user)
         m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True), delete_after=15)
+
+
+    @cooldown(1, 30, BucketType.user)
+    @command(aliases=['I', 'i', 'interactions', 'Interactions'])
+    async def interaction(self, ctx, user:Member=None):
+        '''Quick Check interactions'''
+        if not user:
+            user = ctx.author
+        m = await ctx.send(embed=utils.ProfileEmbed(type="Interactions", user=user, quick=True), delete_after=15)
+
 
 
 

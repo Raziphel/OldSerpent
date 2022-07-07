@@ -28,7 +28,7 @@ class MailEmbed(Embed):
         self.set_footer(text=footer)
 
         # Set embed setup
-        self.set_author(name=author.display_name, icon_url=author.avatar.url)
+        self.set_author(name=author.display_name, icon_url=author.avatar_url)
 
         # Set description
         self.description = message

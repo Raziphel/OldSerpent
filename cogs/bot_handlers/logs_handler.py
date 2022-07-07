@@ -14,7 +14,6 @@ class Logging(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
     @property  #! The Server logs
     def bot_log(self):
         return self.bot.get_channel(self.bot.config['channels']['bot_log']) 
@@ -48,15 +47,14 @@ class Logging(Cog):
         await self.members_log.send(embed=utils.LogEmbed(type=f"positive", title=f"New member joined", desc=f"Username: {member.name}\nStatus: {member.status}", thumbnail=member.avatar.url))
 
 
-
-    #! Bot Logs
+    #! Logs
     @Cog.listener()
     async def on_ready(self):
         print('Logged in as')
         print(self.bot.user.name)
         print(self.bot.user.id)
         print('__________________')
-        await self.bot_log.send(embed=utils.LogEmbed(type="positive", title=f"Maiden Online!", desc=f"Ping: {math.floor(self.bot.latency*1000)}"))
+        await self.bot_log.send(embed=utils.LogEmbed(type="positive", title=f"Lilac's Online!", desc=f"Ping: {math.floor(self.bot.latency*1000)}"))
 
     @Cog.listener()
     async def on_guild_join(self, guild):
@@ -81,7 +79,7 @@ class Logging(Cog):
     async def on_member_remove(self, member):
         try:
             if member.bot: return
-            await self.members_log.send(embed=utils.LogEmbed(type="negative", title=f"{member.name} has left the realm.", thumbnail=member.avatar.url))
+            await self.members_log.send(embed=utils.LogEmbed(type="negative", title=f"{member.name} has left the realm.", thumbnail=member.avatar_url))
         except: pass #? Fail Silently
 
     @Cog.listener()
@@ -103,7 +101,7 @@ class Logging(Cog):
             image = message.attachments[0].url 
         else: image = None
         try:
-            await self.message_log.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar.url, image=image))
+            await self.message_log.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar_url, image=image))
         except: pass #? Fail Silently
 
     @Cog.listener()
@@ -111,7 +109,7 @@ class Logging(Cog):
         if before.author.bot: return
         if before.content == after.content: return
         try:
-            await self.message_log.send(embed=utils.LogEmbed(type="change", title=f"Message Edited", desc=f"**Author:** {before.author.mention}\n**Channel:** <#{before.channel.id}>\n**Before:**\n{before.content}\n\n**after:**\n{after.content}", thumbnail=before.author.avatar.url))
+            await self.message_log.send(embed=utils.LogEmbed(type="change", title=f"Message Edited", desc=f"**Author:** {before.author.mention}\n**Channel:** <#{before.channel.id}>\n**Before:**\n{before.content}\n\n**after:**\n{after.content}", thumbnail=before.author.avatar_url))
         except: pass #? Fail Silently
 
     @Cog.listener()

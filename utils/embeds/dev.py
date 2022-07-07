@@ -12,12 +12,18 @@ class DevEmbed(Embed):
         #* Gets the varibles for the embed
         title = kwargs.pop('title', None)
         desc = kwargs.pop('desc', None)
-        patron = self.bot.config['patreon']
+        guild = kwargs.pop('guild', None)
+
+        #! Guild Checks
+        if guild.id == self.bot.config['guilds']['FurryRoyaleID']:
+            patron = self.bot.config['royale_patreon']
+        else:
+            patron = self.bot.config['razi_patreon']
         #! Make the embed
         super().__init__(*args, **kwargs)
 
         #* Add Color
-        self.color = 0x8f00f8 
+        self.color = 0x1d89e3 #? Blue
 
         #* Add title
         if title:
@@ -28,4 +34,4 @@ class DevEmbed(Embed):
             self.description = f"{desc}"
 
         #* Add footer
-        self.set_footer(text=f"🌷 Developer Embed")
+        self.set_footer(text=f"🌹 Developer Command")
