@@ -40,7 +40,7 @@ class ProfileEmbed(Embed):
         elif lvl.level < 5:
             requiredexp = lvl.level*25
         else:
-            requiredexp = round(lvl.level**3.35)
+            requiredexp = round(lvl.level**2.25)
 
         #* get user's rank
         sorted_level_rank = utils.Levels.sort_levels()

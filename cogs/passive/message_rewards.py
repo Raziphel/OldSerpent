@@ -95,9 +95,9 @@ class Message_Rewards(Cog):
         #! Define Emojis
         bunny_e = "<a:Bunny:703136644366336000>"
         silver_e = self.bot.config['emotes']['silver']
-        diamond_e = self.bot.config['emotes']['diamond']
-        emerald_e =self.bot.config['emotes']['emerald']
         gold_e = self.bot.config['emotes']['gold']
+        emerald_e =self.bot.config['emotes']['emerald']
+        diamond_e = self.bot.config['emotes']['diamond']
 
         #! Get the correct item
         if str(payload.emoji) == silver_e:

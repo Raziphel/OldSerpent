@@ -61,6 +61,7 @@ class Mink(commands.AutoShardedBot):
             utils.Moderation.all_moderation.clear()
             utils.Settings.all_settings.clear()
             # utils.Slots.all_slots.clear()
+            utils.Tracking.all_tracking.clear()
 
 
             #!   Collect from Database
@@ -70,6 +71,7 @@ class Mink(commands.AutoShardedBot):
                 moderation = await db('SELECT * FROM moderation')
                 settings = await db('SELECT * FROM settings')
                 # slots = await db('SELECT * FROM slots')
+                tracking = await db('SELECT * FROM tracking')
 
 
             #!   Cache all into local objects
@@ -87,6 +89,9 @@ class Mink(commands.AutoShardedBot):
 
             # for i in slots:
             #     utils.Slots(**i)
+
+            for i in tracking:
+                utils.Tracking(**i)
 
         except Exception as e:
             print(f'Couldn\'t connect to the database... :: {e}')

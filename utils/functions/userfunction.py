@@ -80,9 +80,7 @@ class UserFunction(object):
             await lvl.save(db)
 
         if channel == None:
-            channel = user
-            vc = f"**Leveled From being in vc!**"
-            msg = await channel.send(content=vc, embed=utils.SpecialEmbed(title=f"🎉{user.name} Is Level {lvl.level:,}!", desc=f"You were rewarded: **{round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}**", footer=f"Leveled up in: {user.guild}", guild=user.guild))
+            return
         else:
             msg = await channel.send(embed=utils.SpecialEmbed(title=f"🎉{user.name} Is Level {lvl.level:,}!", desc=f"You were rewarded: **{round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}**", footer=" ", guild=user.guild))
 
