@@ -120,25 +120,29 @@ class Level_Progression(Cog):
                     track = utils.Tracking.get(member.id)
                     ss = utils.Settings.get(member.id)
                     exp = 25 + (len(vc.members)*2.75) + (lvl.level/3)
-                    emerald = 15 + round(len(vc.members)*5.25)
+                    gold = 15 + round(len(vc.members)*5.25)
                     lvl.exp += round(exp)
-                    c.emerald += emerald
+                    c.gold += gold
                     track.vc_mins += 10
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
                     if lvl.exp >= requiredexp:
                         await utils.UserFunction.level_up(user=member, channel=None)
 
+                    #! Check for needed update?
+                    if c.gold >= 100:
+                        await utils.GemFunction.update_gems(user=message.author)
 
                     async with self.bot.database() as db:
                         await lvl.save(db)
                         await c.save(db)
                         await track.save(db)
 
-                    if ss.vc_msgs == True:
-                        await member.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{emerald:,} {self.bot.config['emotes']['emerald']}!  From being in VC!**"))
 
-                    await self.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{emerald:,} {self.bot.config['emotes']['emerald']}!  From being in VC!**"))
+                    if ss.vc_msgs == True:
+                        await member.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{gold:,} {self.bot.config['emotes']['gold']}!  From being in VC!**"))
+
+                    await self.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{gold:,} {self.bot.config['emotes']['gold']}!  From being in VC!**"))
 
 
     @exp_voice_gen_loop.before_loop

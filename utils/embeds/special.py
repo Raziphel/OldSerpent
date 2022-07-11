@@ -20,13 +20,6 @@ class SpecialEmbed(Embed):
         patron = self.bot.config['patreon']
 
 
-        #! Guild Checks
-        if guild.id == self.bot.config['guilds']['FurryRoyaleID']:
-            patron = self.bot.config['royale_patreon']
-        else:
-            patron = self.bot.config['razi_patreon']
-
-
         #! Make the embed
         super().__init__(*args, **kwargs)
 

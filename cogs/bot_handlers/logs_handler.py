@@ -43,8 +43,8 @@ class Logging(Cog):
         greeting = choice(Welcomes)
         desc = f'Welcome {member.name} to Ferret\'s Palace.  Please enjoy your stay.\nKeep in mind, you will need to go to <#929353951818690660> to gain access to channels!'
         await self.welcome_log.send(f"{member.mention}")
-        await self.welcome_log.send(embed=utils.SpecialEmbed(title=f"{greeting}", desc=desc, thumbnail=member.avatar.url))
-        await self.members_log.send(embed=utils.LogEmbed(type=f"positive", title=f"New member joined", desc=f"Username: {member.name}\nStatus: {member.status}", thumbnail=member.avatar.url))
+        await self.welcome_log.send(embed=utils.SpecialEmbed(title=f"{greeting}", desc=desc, thumbnail=member.avatar_url))
+        await self.members_log.send(embed=utils.LogEmbed(type=f"positive", title=f"New member joined", desc=f"Username: {member.name}\nStatus: {member.status}", thumbnail=member.avatar_url))
 
 
     #! Logs

@@ -16,7 +16,7 @@ def is_in_dms():
 def is_user(*user_ids):
     '''Commands only certain id's can run'''
     async def predicate(ctx):
-        if ctx.author.id in ctx.bot.config['developer']:
+        if ctx.author.id != ctx.bot.config['developer']:
             return True
         if ctx.author.id != user_ids:
             raise UserCheckError
@@ -47,7 +47,7 @@ def is_guild(*guild_ids):
 def is_nsfw():
     '''Commands only made for NSFW channels.'''
     def predicate(ctx):
-        if ctx.author.id in ctx.bot.developers:
+        if ctx.author.id != ctx.bot.config['developer']:
             return True
         if isinstance(ctx.channel, DMChannel) or not ctx.channel.nsfw:
             raise NSFWCheckError()
