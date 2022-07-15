@@ -76,7 +76,8 @@ class Mines(Cog):
                 amount = choice([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60])
                 m.last_reward_type = type_
                 m.last_reward_amount = amount
-                msg = await channel.send(embed=utils.SpecialEmbed(color=0xdc143c, title=f'You managed to do some mining!!', desc=f'You have recieved: {m.last_reward_type} {m.last_reward_amount}x'))
+                m.last_user = member.id
+                msg = await channel.send(embed=utils.SpecialEmbed(color=0xff7f50, title=f'You managed to do some mining!!', desc=f'{member.mention} has recieved: {m.last_reward_type} {m.last_reward_amount}x'))
                 m.last_msg = msg.id
 
                 if type_ == "<:Silver:994737895707525181>":
@@ -92,6 +93,7 @@ class Mines(Cog):
                     await m.save(db)
                     await c.save(db)
                 await utils.GemFunction.update_gems(user=member)
+                self.last_reward = dt.now()
 
 
         # Check to see total reactions on the message

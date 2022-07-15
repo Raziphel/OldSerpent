@@ -57,7 +57,7 @@ CREATE TABLE mines (
     channel_id bigint NOT NULL,
     last_msg bigint,
     last_user bigint,
-    last_reward_type varchar(25),
+    last_reward_type varchar(50),
     last_reward_amount integer,
     PRIMARY KEY (channel_id)
 );
@@ -66,9 +66,9 @@ CREATE TABLE mines (
 
 CREATE TABLE abilities (
     user_id bigint NOT NULL,
-    ability1 varchar(25),
+    ability1 varchar(50),
     cooldown1 timestamp,
-    ability2 varchar(25),
+    ability2 varchar(),
     cooldown2 timestamp,
     ability3 varchar(25),
     cooldown3 timestamp,
