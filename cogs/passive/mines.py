@@ -16,6 +16,7 @@ class Mines(Cog):
         self.bot = bot
         self.last_reward = dt(year=2000, month=1, day=1)
         self.mines_loop.start()
+        self.claimed = True
 
     @tasks.loop(minutes=1)
     async def mines_loop(self):
@@ -27,10 +28,17 @@ class Mines(Cog):
         msg = await ch.fetch_message(m.last_msg)
 
         if dt.utcnow() - timedelta(minutes=5) < self.last_reward:
-            await msg.edit(embed=utils.SpecialEmbed(color=0xdc143c, title=f'Reward has already been claimed!', desc=f'Last Miner: <@{m.last_user}>\nRecieved: {m.last_reward_type} {m.last_reward_amount}x'))
+            await msg.edit(embed=utils.SpecialEmbed(color=0xff7f50, title=f'Reward has already been claimed!', desc=f'Last Miner: <@{m.last_user}>\nRecieved: {m.last_reward_type} {m.last_reward_amount}x'))
         else:
-            await msg.edit(embed=utils.SpecialEmbed(color=0xdc143c, title=f'Click the ⛏ to mine for gems!', desc=f'Last Miner: <@{m.last_user}>\nRecieved: {m.last_reward_type} {m.last_reward_amount}x'))
-            await msg.add_reaction("⛏")
+            if self.claimed == True:
+                await msg.edit(embed=utils.SpecialEmbed(title=f'Previous Reward!', desc=f'Miner: <@{m.last_user}>\nRecieved: {m.last_reward_type} {m.last_reward_amount}x'))
+                msg = await ch.send(embed=utils.SpecialEmbed(color=0x006400, title=f'Click the ⛏ to mine for gems!', desc=f'Last Miner: <@{m.last_user}>\nRecieved: {m.last_reward_type} {m.last_reward_amount}x'))
+                await msg.add_reaction("⛏")
+                m.last_msg = msg.id
+                async with self.bot.database() as db:
+                    await m.save(db)
+                self.claimed = False
+
 
 
 
@@ -72,13 +80,15 @@ class Mines(Cog):
         if emoji == "⛏":
             if dt.utcnow() - timedelta(minutes=5) > self.last_reward:
                 await msg.clear_reactions()
-                type_ = choice(['<:Silver:994737895707525181>', '<:Gold:994737893014773790>', '<:Emerald:994737891735511050>', '<:Diamond:994737890582069278>'])
+                type_ = choice(['<:Silver:994737895707525181>', '<:Gold:994737893014773790>', '<:Silver:994737895707525181>', '<:Gold:994737893014773790>', '<:Emerald:994737891735511050>', '<:Diamond:994737890582069278>'])
+
                 amount = choice([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60])
+
                 m.last_reward_type = type_
                 m.last_reward_amount = amount
                 m.last_user = member.id
-                msg = await channel.send(embed=utils.SpecialEmbed(color=0xff7f50, title=f'You managed to do some mining!!', desc=f'{member.mention} has recieved: {m.last_reward_type} {m.last_reward_amount}x'))
-                m.last_msg = msg.id
+                msg = await channel.fetch_message(m.last_msg)
+                await msg.edit(embed=utils.SpecialEmbed(color=0x006400, title=f'You managed to do some mining!!', desc=f'{member.mention} has recieved: {m.last_reward_type} {m.last_reward_amount}x'))
 
                 if type_ == "<:Silver:994737895707525181>":
                     c.silver += amount
@@ -94,6 +104,7 @@ class Mines(Cog):
                     await c.save(db)
                 await utils.GemFunction.update_gems(user=member)
                 self.last_reward = dt.now()
+                self.claimed = True
 
 
         # Check to see total reactions on the message

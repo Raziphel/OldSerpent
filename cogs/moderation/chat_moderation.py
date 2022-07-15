@@ -99,8 +99,10 @@ class Chat_Moderation(Cog):
         if message.channel.id != self.bot.config['channels']['lounge']:
             return
         #! Staff bypass
-        if [i for i in message.author.roles if i.id == self.bot.config['roles']['council']]:
-            return
+        try:
+            if [i for i in message.author.roles if i.id == self.bot.config['roles']['council']]:
+                return
+        except: return
         #? Check for links
         if message.content.strip().lower() != self.valid_uri.match(message.content.split(" ")[0].split("\n")[0]): return
         #? Check for attachments
