@@ -45,26 +45,3 @@ class Currency(object):
             return cls(user_id)
         return user
 
-    @classmethod
-    def sort_emeralds(cls):
-        '''sorts the user's by balance. getting ranks!'''
-        sorted_emeralds = sorted(cls.all_currency.values(), key=lambda u: u.emerald, reverse=True)
-        return sorted_emeralds
-
-    @classmethod
-    def sort_diamonds(cls):
-        '''sorts the user's by balance. getting ranks!'''
-        sorted_diamonds = sorted(cls.all_currency.values(), key=lambda u: u.diamond, reverse=True)
-        return sorted_diamonds
-
-    @classmethod
-    def sort_ruby(cls):
-        '''sorts the user's by balance. getting ranks!'''
-        sorted_rubys = sorted(cls.all_currency.values(), key=lambda u: u.ruby, reverse=True)
-        return sorted_rubys
-
-    @classmethod
-    def sort_sapphire(cls):
-        '''sorts the user's by balance. getting ranks!'''
-        sorted_sapphires = sorted(cls.all_currency.values(), key=lambda u: u.sapphire, reverse=True)
-        return sorted_sapphires

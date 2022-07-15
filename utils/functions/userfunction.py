@@ -31,14 +31,14 @@ class UserFunction(object):
         c = utils.Currency.get(user.id)
 
         #* Emojis
-        amethyst_e = "<:Amethyst:766123218732843019>"
-        diamond_e = "<:Diamond:766123219609976832>"
-        emerald_e = "<:Emerald:766123219731611668>"
-        phel_e = "<:crimson:766123219781419020>"
-        silver_e = "<:Silver:766123219761233961>"
-        gold_e = "<:GoldIngot:766123219827949596>"
-        sapphire_e = "<:Sapphire:766123220201635850>"
-        ruby_e = "<:Ruby:766123219928481852>"
+        silver_e = "<:Silver:994737895707525181>"
+        gold_e = "<:Gold:994737893014773790>"
+        emerald_e = "<:Emerald:994737891735511050>"
+        diamond_e = "<:Diamond:994737890582069278>"
+        ruby_e = "<:Ruby:994737896567357461>"
+        sapphire_e = "<:Sapphire:994737897871782031>"
+        amethyst_e = "<:Amethyst:994738216022319124> "
+        crimson_e = "<:Crimson:994737894499569746>"
 
         RNG = choice([1.25, 1.30, 1.35, 1, 1, 1])
 
@@ -82,11 +82,12 @@ class UserFunction(object):
         if channel == None:
             return
         else:
-            msg = await channel.send(embed=utils.SpecialEmbed(title=f"🎉{user.name} Is Level {lvl.level:,}!", desc=f"You were rewarded: **{round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}**", footer=" ", guild=user.guild))
+            msg = await channel.send(embed=utils.SpecialEmbed(title=f"🎉{user.name} Is Level {lvl.level:,}!", desc=f"You were rewarded: **{round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}**", footer=" "))
 
-        await self.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} ~~~ {round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}**", guild=user.guild))
+        try: await cls.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} ~~~ {round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}**"))
+        except: pass
 
-        await sleep(4)
+        await sleep(2)
         await msg.delete()
 
         return
@@ -104,6 +105,27 @@ class UserFunction(object):
         else:
             requiredexp = round(level**2.25)
         return requiredexp
+
+
+
+    @classmethod
+    async def verify_user(cls, user, type):
+        '''Litterally verify someone'''
+        guild = cls.bot.get_guild(cls.bot.config['razisrealm_id'])
+
+        if type == "guild":
+            verified = utils.DiscordGet(guild.roles, name=".")
+            await user.add_roles(verified, reason="Verification")
+            general = cls.bot.get_channel(cls.bot.config['channels']['lounge'])
+            await general.send(embed=utils.SpecialEmbed(description=f"Please welcome the new scum, {user.mention}!", thumbnail=user.avatar_url))
+            return
+
+        elif type == "alliance":
+            verified = utils.DiscordGet(guild.roles, name="Alliance Member")
+            await user.add_roles(verified, reason="Verification")
+            general = cls.bot.get_channel(cls.bot.config['channels']['kingussy'])
+            await general.send(embed=utils.SpecialEmbed(description=f"New alliance member joined!\nWelcome {user.mention}!", thumbnail=user.avatar_url))
+            return
 
 
 

@@ -19,7 +19,7 @@ class Error_Handler(Cog):
 
         if isinstance(error, CommandOnCooldown):
             countdown_time = error.retry_after
-            if ctx.author.id in self.bot.developers:
+            if ctx.author.id == self.bot.config['developer']:
                 await ctx.send("`Bypassing Cooldown!\n*Thanks Dev Dad!*`")
                 await ctx.reinvoke()
                 return

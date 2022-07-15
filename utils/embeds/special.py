@@ -17,6 +17,7 @@ class SpecialEmbed(Embed):
         thumbnail = kwargs.pop('thumbnail', None)
         footer = kwargs.pop('footer', None)
         guild = kwargs.pop('guild', None)
+        color = kwargs.pop('color', None)
         patron = self.bot.config['patreon']
 
 
@@ -24,7 +25,9 @@ class SpecialEmbed(Embed):
         super().__init__(*args, **kwargs)
 
         #* Add Color
-        self.color = randint(1, 0xffffff) #? Random color
+        if color == None:
+            self.color = randint(1, 0xffffff) #? Random color
+        else: self.color = color
 
         #* Add title
         if title:

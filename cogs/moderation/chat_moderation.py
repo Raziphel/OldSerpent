@@ -92,26 +92,26 @@ class Chat_Moderation(Cog):
                 return
 
 
-    # @Cog.listener('on_message')
-    # async def image_handler_listener(self, message):
-    #     '''Looks for attachments on messages sent in general'''
-    #     # Check for general
-    #     if message.channel.id != self.bot.config['channels']['general']:
-    #         return
-    #     # Staff bypass
-    #     if [i for i in message.author.roles if i.id == self.bot.config['roles']['staff']]:
-    #         return
-    #     # Check for links
-    #     if message.content.strip().lower() != self.valid_uri.match(message.content.split(" ")[0].split("\n")[0]): return
-    #     # Check for attachments
-    #     if message.attachments == None:
-    #         return
-    #     # Check counter
-    #     if dt.utcnow() - timedelta(minutes=3) < self.last_posted:
-    #         await message.delete()
-    #         m = await message.channel.send(embed=utils.WarningEmbed(user=message.author, title="Images are only allowed in general every 3 minutes."))
-    #     else:
-    #         self.last_posted = message.created_at
+    @Cog.listener('on_message')
+    async def image_handler_listener(self, message):
+        '''Looks for attachments on messages sent in general'''
+        #? Check for general
+        if message.channel.id != self.bot.config['channels']['lounge']:
+            return
+        #! Staff bypass
+        if [i for i in message.author.roles if i.id == self.bot.config['roles']['council']]:
+            return
+        #? Check for links
+        if message.content.strip().lower() != self.valid_uri.match(message.content.split(" ")[0].split("\n")[0]): return
+        #? Check for attachments
+        if message.attachments == None:
+            return
+        #? Check counter
+        if dt.utcnow() - timedelta(minutes=3) < self.last_posted:
+            await message.delete()
+            m = await message.channel.send(embed=utils.WarningEmbed(user=message.author, title="Images are only allowed in general every 3 minutes."))
+        else:
+            self.last_posted = message.created_at
 
 
 

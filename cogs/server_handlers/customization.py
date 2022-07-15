@@ -33,7 +33,7 @@ class Customization(Cog): #! Gonna be honest if theres a bunch of servers needin
 
         embed2=Embed(title=f"**[- Gain Adult Access -]**", description=f"✅ **Identify as an __adult!__ ( Gives NSFW Access)** ✅\n\n🌼 **Identify as an __adult!__ ( No NSFW Access)** 🌼\n\n❌ **Identify as __underage__.  (Its not worth lying.)** ❌", color=0x8f00f8)
 
-        embed3=Embed(title=f"**[- Channel Category Access -]**", description=f"✨ **Access to General related channels.** ✨\n\n🐾 **Access to Furry related channels.** 🐾\n\n🏹 **Access to the Kingussy Alliance channels.** 🏹", color=0x8f00f8)
+        embed3=Embed(title=f"**[- Nasty Loser Access -]**", description=f"🐾 **Access to Furry related channels.** 🐾", color=0x8f00f8)
 
         embed4=Embed(title=f"**[- Personal Bot Setting -]**", description=f"🎤 **Get messages about VC earnings** 🎤\n\n🔰 **Disable being able to Prestige** 🔰\n\n🎉 **Get level messages from being in VC** 🎉", color=0x8f00f8)
 
@@ -149,21 +149,12 @@ class Customization(Cog): #! Gonna be honest if theres a bunch of servers needin
             role = utils.DiscordGet(guild.roles, name="Child 🍼")
 
 
-        elif emoji == "✨":
-            role = utils.DiscordGet(guild.roles, name=".")
-
         elif emoji == "🐾":
             if mod.adult == True:
                 role = utils.DiscordGet(guild.roles, name="*")
             else:
                 role = utils.DiscordGet(guild.roles, name="-")
 
-        elif emoji == "🌷":
-            if mod.child == False and mod.adult == True:
-                role = utils.DiscordGet(guild.roles, name="'")
-
-        elif emoji == "🏹":
-            role = utils.DiscordGet(guild.roles, name="|")
 
 
         elif emoji == "🎤":

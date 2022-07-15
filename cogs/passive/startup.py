@@ -20,7 +20,6 @@ class Startup(Cog):
         self.leaderboard_update_loop.start()
 
 
-
     @tasks.loop(minutes=120)
     async def botpres_loop(self):
         '''updates the bot's presence!'''
@@ -88,13 +87,13 @@ class Startup(Cog):
 
         # Add in level rankings
         sorted_rank = utils.Levels.sort_levels()
-        ranks = sorted_rank[:10]
+        ranks = sorted_rank[:20]
         users = []
         for i in sorted_rank:
             user = self.bot.get_user(i.user_id)
             if user != None:
                 users.append(user)
-            else: ranks = sorted_rank[:10]
+            else: ranks = sorted_rank[:20]
         # users = [self.bot.get_user(i.user_id) for i in ranks]
         text = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
@@ -104,99 +103,29 @@ class Startup(Cog):
         await msg.edit(content=f"**If you're on this list your gay. Not Butts.**", embed=embed)
 
 
-        #! Emerald Leaderboard
-        msg = await channel.fetch_message(962302899931734046)
+        # #! Currency Leaderboard
+        # msg = await channel.fetch_message(962302909280837652)
 
-        # Set up the embed
-        embed = Embed(color=0x8f00f8)
-        embed.set_author(name="The Emerald Leaderboard")
-        embed.set_footer(text="Got some of that green stuff.")
+        # # Set up the embed
+        # embed = Embed(color=0x8f00f8)
+        # embed.set_author(name="The Diamond Leaderboard")
+        # embed.set_footer(text="The shiny stuff!?")
 
-        sorted_rank = utils.Currency.sort_emeralds()
-        ranks = sorted_rank[:10]
-        users = []
-        for i in ranks:
-            user = self.bot.get_user(i.user_id)
-            if user != None:
-                users.append(user)
-        text = []
-        for index, (user, rank) in enumerate(zip(users, ranks)):
-            text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.emerald):,} Emeralds")
-        embed.add_field(name='Emerald Rank', value='\n'.join(text), inline=True)
-
-
-        await msg.edit(content="**Not that green stuff.**", embed=embed)
+        # sorted_rank = utils.Currency.sort_currency()
+        # ranks = sorted_rank[:20]
+        # users = []
+        # for i in ranks:
+        #     user = self.bot.get_user(i.user_id)
+        #     if user != None:
+        #         users.append(user)
+        # text = []
+        # for index, (user, rank) in enumerate(zip(users, ranks)):
+        #     text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.diamond):,} Crimson")
+        # embed.add_field(name='Gems Rank', value='\n'.join(text), inline=True)
 
 
-        #! Diamond Leaderboard
-        msg = await channel.fetch_message(962302909280837652)
+        # await msg.edit(embed=embed)
 
-        # Set up the embed
-        embed = Embed(color=0x8f00f8)
-        embed.set_author(name="The Diamond Leaderboard")
-        embed.set_footer(text="The shiny stuff!?")
-
-        sorted_rank = utils.Currency.sort_diamonds()
-        ranks = sorted_rank[:10]
-        users = []
-        for i in ranks:
-            user = self.bot.get_user(i.user_id)
-            if user != None:
-                users.append(user)
-        text = []
-        for index, (user, rank) in enumerate(zip(users, ranks)):
-            text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.diamond):,} Diamonds")
-        embed.add_field(name='Diamond Rank', value='\n'.join(text), inline=True)
-
-
-        await msg.edit(content="**Better to get in minecraft.**", embed=embed)
-
-        #! Ruby Leaderboard
-        msg = await channel.fetch_message(962302921658216449)
-
-        # Set up the embed
-        embed = Embed(color=0x8f00f8)
-        embed.set_author(name="The Ruby Leaderboard")
-        embed.set_footer(text="That bloody Gem!?")
-
-        sorted_rank = utils.Currency.sort_ruby()
-        ranks = sorted_rank[:10]
-        users = []
-        for i in ranks:
-            user = self.bot.get_user(i.user_id)
-            if user != None:
-                users.append(user)
-        text = []
-        for index, (user, rank) in enumerate(zip(users, ranks)):
-            text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.ruby):,} Rubys")
-        embed.add_field(name='Ruby Rank', value='\n'.join(text), inline=True)
-
-
-        await msg.edit(content="**Was almost in minecraft actually!**", embed=embed)
-
-
-        #! Sapphire Leaderboard
-        msg = await channel.fetch_message(962302936577355776)
-
-        # Set up the embed
-        embed = Embed(color=0x8f00f8)
-        embed.set_author(name="The Sapphire Leaderboard")
-        embed.set_footer(text="That Gem of Tears!")
-
-        sorted_rank = utils.Currency.sort_sapphire()
-        ranks = sorted_rank[:10]
-        users = []
-        for i in ranks:
-            user = self.bot.get_user(i.user_id)
-            if user != None:
-                users.append(user)
-        text = []
-        for index, (user, rank) in enumerate(zip(users, ranks)):
-            text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.sapphire):,} Sapphires")
-        embed.add_field(name='Sapphire Rank', value='\n'.join(text), inline=True)
-
-
-        await msg.edit(content="**Blue and pretty. c;**", embed=embed)
 
     @leaderboard_update_loop.before_loop
     async def before_leaderboard_update_loop(self):

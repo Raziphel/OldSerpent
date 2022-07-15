@@ -51,16 +51,18 @@ CREATE TABLE tracking (
     PRIMARY KEY (user_id)
 );
 
-CREATE TABLE miners (
-    user_id bigint NOT NULL,
-    emerald integer DEFAULT 0,
-    diamond integer DEFAULT 0,
-    ruby integer DEFAULT 0,
-    sapphire integer DEFAULT 0,
-    amethyst integer DEFAULT 0,
-    crimson integer DEFAULT 0,
-    PRIMARY KEY (user_id)
+
+
+CREATE TABLE mines (
+    channel_id bigint NOT NULL,
+    last_msg bigint,
+    last_user bigint,
+    last_reward_type varchar(25),
+    last_reward_amount integer,
+    PRIMARY KEY (channel_id)
 );
+
+
 
 CREATE TABLE abilities (
     user_id bigint NOT NULL,

@@ -35,14 +35,14 @@ class Slots(Cog):
         msg = None
 
         #* Emojis
-        amethyst_e = "<:Amethyst:766123218732843019>"
-        diamond_e = "<:Diamond:766123219609976832>"
-        emerald_e = "<:Emerald:766123219731611668>"
-        phel_e = "<:crimson:766123219781419020>"
-        silver_e = "<:Silver:766123219761233961>"
-        gold_e = "<:GoldIngot:766123219827949596>"
-        sapphire_e = "<:Sapphire:766123220201635850>"
-        ruby_e = "<:Ruby:766123219928481852>"
+        silver_e = "<:Silver:994737895707525181>"
+        gold_e = "<:Gold:994737893014773790>"
+        emerald_e = "<:Emerald:994737891735511050>"
+        diamond_e = "<:Diamond:994737890582069278>"
+        ruby_e = "<:Ruby:994737896567357461>"
+        sapphire_e = "<:Sapphire:994737897871782031>"
+        amethyst_e = "<:Amethyst:994738216022319124> "
+        crimson_e = "<:Crimson:994737894499569746>"
 
         if amount >= 5 and amount <= 100:
             pass 
@@ -51,11 +51,11 @@ class Slots(Cog):
             return
 
 
-        msg = await ctx.send(embed=utils.SpecialEmbed(title=f"[🌜] Slot Machine 🐍 [🌛]", desc=f"**Rewards:** [{gold_e} = {diamond_e}] [{diamond_e} = {ruby_e}]\n🍀 1.25x Reward!\n✨ 1.50x Reward!\n🍒 2.0x Reward!\n🎀 2.5x Reward!\n🦄 3.0x Reward!\n\n__**Please pick the currency!**__", guild=ctx.guild, footer=" "))
+        msg = await ctx.send(embed=utils.SpecialEmbed(title=f"[🌜] Slot Machine 🐍 [🌛]", desc=f"**Rewards:** [{gold_e} = {diamond_e}] [{ruby_e} = {sapphire_e}]\n🍀 1.25x Reward!\n✨ 1.50x Reward!\n🍒 2.0x Reward!\n🎀 2.5x Reward!\n🦄 3.0x Reward!\n\n__**Please pick the currency!**__", guild=ctx.guild, footer=" "))
 
         #! adds the reactions
         await msg.add_reaction(gold_e)
-        await msg.add_reaction(diamond_e)
+        await msg.add_reaction(ruby_e)
 
         try:
             #! Watches for the reactions
@@ -68,11 +68,11 @@ class Slots(Cog):
                 reward_emoji = diamond_e
                 if c.gold < amount:
                     raise TooPoor
-            if str(r.emoji) == diamond_e:
-                currency = 'diamond'
-                emoji = diamond_e
-                reward_emoji = ruby_e
-                if c.diamond < amount:
+            if str(r.emoji) == ruby_e:
+                currency = 'ruby'
+                emoji = ruby_e
+                reward_emoji = sapphire_e
+                if c.ruby < amount:
                     raise TooPoor
 
             await msg.clear_reactions()

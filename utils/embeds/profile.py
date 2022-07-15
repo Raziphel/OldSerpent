@@ -107,7 +107,7 @@ class ProfileEmbed(Embed):
             elif emotes == 3:
                 emote_1 = emerald_e
                 emote_2 = diamond_e
-            self.description = f"**{emote_1} 100x = 1 {emote_2} Ect.**"
+            self.description = f"**{emote_1} 100x = {emote_2} 1x Ect.**"
             self.add_field(name='CURRENCY', value=f"❧ {silver_e} : **{floor(c.silver):,}x**\n❧ {gold_e} : **{floor(c.gold):,}x**\n❧ {emerald_e} : **{floor(c.emerald):,}x**\n❧ {diamond_e} : **{floor(c.diamond):,}x**", inline=True)
             self.add_field(name='SPECIAL', value=f"❧ {ruby_e} : **{floor(c.ruby):,}x**\n❧ {sapphire_e} : **{floor(c.sapphire):,}x**\n❧ {amethyst_e} : **{floor(c.amethyst):,}x**\n❧ {crimson_e} : **{floor(c.crimson):,}x**", inline=True)
             if quick == False:

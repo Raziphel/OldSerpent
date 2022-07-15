@@ -43,22 +43,22 @@ class Message_Rewards(Cog):
 
         #! Give them some rewards!
         try:
-            chance = randint(1, 70000)
+            chance = randint(1, 85000)
             if chance <= 5:
                 message = choice(messages)
-                await message.add_reaction("<:Diamond:766123219609976832>")
+                await message.add_reaction(self.bot.config['emotes']['diamond'])
                 self.diamond_messages.append(message.id)
             elif chance <= 150:
                 message = choice(messages)
-                await message.add_reaction("<:Emerald:766123219731611668>")
+                await message.add_reaction(self.bot.config['emotes']['emerald'])
                 self.emerald_messages.append(message.id)
             elif chance <= 500:
                 message = choice(messages)
-                await message.add_reaction("<:GoldIngot:766123219827949596>")
+                await message.add_reaction(self.bot.config['emotes']['gold'])
                 self.gold_messages.append(message.id)
             elif chance <= 1000:
                 message = choice(messages)
-                await message.add_reaction("<:Silver:766123219761233961>")
+                await message.add_reaction(self.bot.config['emotes']['silver'])
                 self.silver_messages.append(message.id)
         except Exception as e:
             print(f'A reward failed to spawn :: {e}')

@@ -45,7 +45,7 @@ class Mink(commands.AutoShardedBot):
 
 
     def run(self):
-        """Runs the bot as it would normally"""
+        
         self.startup_method = self.loop.create_task(self.startup())
         super().run(self.config['token'])
 
@@ -62,6 +62,7 @@ class Mink(commands.AutoShardedBot):
             utils.Settings.all_settings.clear()
             # utils.Slots.all_slots.clear()
             utils.Tracking.all_tracking.clear()
+            utils.Mines.all_mines.clear()
 
 
             #!   Collect from Database
@@ -72,6 +73,7 @@ class Mink(commands.AutoShardedBot):
                 settings = await db('SELECT * FROM settings')
                 # slots = await db('SELECT * FROM slots')
                 tracking = await db('SELECT * FROM tracking')
+                mines = await db('SELECT * FROM mines')
 
 
             #!   Cache all into local objects
@@ -92,6 +94,9 @@ class Mink(commands.AutoShardedBot):
 
             for i in tracking:
                 utils.Tracking(**i)
+
+            for i in mines:
+                utils.Mines(**i)
 
         except Exception as e:
             print(f'Couldn\'t connect to the database... :: {e}')

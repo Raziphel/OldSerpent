@@ -119,7 +119,7 @@ class Level_Progression(Cog):
                     c = utils.Currency.get(member.id)
                     track = utils.Tracking.get(member.id)
                     ss = utils.Settings.get(member.id)
-                    exp = 25 + (len(vc.members)*2.75) + (lvl.level/3)
+                    exp = 10 + (len(vc.members)*2.75) + (lvl.level/3)
                     gold = 15 + round(len(vc.members)*5.25)
                     lvl.exp += round(exp)
                     c.gold += gold
@@ -131,7 +131,7 @@ class Level_Progression(Cog):
 
                     #! Check for needed update?
                     if c.gold >= 100:
-                        await utils.GemFunction.update_gems(user=message.author)
+                        await utils.GemFunction.update_gems(user=member)
 
                     async with self.bot.database() as db:
                         await lvl.save(db)
@@ -140,9 +140,9 @@ class Level_Progression(Cog):
 
 
                     if ss.vc_msgs == True:
-                        await member.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{gold:,} {self.bot.config['emotes']['gold']}!  From being in VC!**"))
+                        await member.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{gold:,} {self.bot.config['emotes']['gold']} From being in VC!**"))
 
-                    await self.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{gold:,} {self.bot.config['emotes']['gold']}!  From being in VC!**"))
+                    await self.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{gold:,} {self.bot.config['emotes']['gold']} From being in VC!**"))
 
 
     @exp_voice_gen_loop.before_loop
