@@ -36,6 +36,8 @@ class Message_Rewards(Cog):
         #? Check if bot is connected!
         if self.bot.connected == False:
             return
+        if message.channel.history == None:
+            return
 
         #! Define some variables
         user = message.author

@@ -1,29 +1,30 @@
 
 #* Discord
-from discord.ext.commands import command, Cog, BucketType, cooldown, group, RoleConverter
+from discord.ext.commands import command, Cog, group, RoleConverter
 from discord import Member, Message, User, TextChannel, Role, RawReactionActionEvent, Embed
-import utils
 #* Additions
 from asyncio import iscoroutine, gather, sleep
 from traceback import format_exc
+
+from random import choice, randint
 from math import floor
-from random import randint
-from datetime import datetime as dt, timedelta
 
 import utils
 
-class shop_handler(Cog):
+class Shop_Handler(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @property  #! The members logs
-    def members_log(self):
-        return self.bot.get_channel(self.bot.config['channels']['members_log']) 
+
+    @property  #! The currency logs
+    def currency_log(self):
+        return self.bot.get_channel(self.bot.config['channels']['currency_log'])
 
 
     @Cog.listener('on_ready')
     async def shop_msg(self):
-        ch = self.bot.get_channel(self.bot.config['channels']['shop_handler'])
+        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        ch = guild.get_channel(self.bot.config['channels']['shop_handler']) #? Rules Channel
 
         msg1 = await ch.fetch_message(959009617155878982) #? Welcome messages
         msg2 = await ch.fetch_message(959009625812901898)
@@ -33,6 +34,8 @@ class shop_handler(Cog):
         msg6 = await ch.fetch_message(959018957623406653)
 
         #* Get the gem emojis
+        silver = self.bot.config['emotes']['silver']
+        gold = self.bot.config['emotes']['gold']
         emerald = self.bot.config['emotes']['emerald']
         diamond = self.bot.config['emotes']['diamond']
         ruby = self.bot.config['emotes']['ruby']
@@ -40,31 +43,19 @@ class shop_handler(Cog):
         amethyst = self.bot.config['emotes']['amethyst']
         crimson = self.bot.config['emotes']['crimson']
 
-        embed1=Embed(title=f"**[- The Maiden's Shop -]**", description=f"**Welcome to your one stop place for all your purchasables in The Cult!\nYou will find anything that has price tag attached right here!\nAbsolutely No Refunds!**", color=0x1d89e3)
+        embed1=Embed(title=f"**[- The Ferret's Shop -]**", description=f"**By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.**", color=0x1d89e3)
 
-        embed2=Embed(title=f"**[- Gem miners -]**", description=f"**Miners will generate you gems every hour; Be warned expensive gems generate at a much slower rate.**", color=0x1d89e3)
-        embed2.add_field(name=f"❧ Emerald Miner", value=f"*Generates 2 Emeralds every 8 hours.*\n**10,000x {emerald}**", inline=True)
-        embed2.add_field(name=f"❧ Diamond Miner", value=f"*Generates 0.5 Diamond every 8 hours.*\n**1,000x {emerald}**", inline=True)
-        embed2.add_field(name=f"❧ Ruby Miner", value=f"*Generates 0.25 Ruby every 8 hours.*\n**1,000x {diamond}**", inline=True)
-        embed2.add_field(name=f"❧ Sapphire Miner", value=f"*Generates 0.1 Sapphire every 8 hours.*\n**1,000x {ruby}**", inline=True)
-        embed2.add_field(name=f"❧ Amethyst Miner", value=f"*Generates 0.05 Amethyst every 8 hours.*\n**1,000x {sapphire}**", inline=True)
-        embed2.add_field(name=f"❧ Crimson Miner", value=f"*Generates 0.01 Crimson every 8 hours.*\n**1,000x {amethyst}**", inline=True)
+        embed2=Embed(title=f"**[- Exclusives -]**", description=f"**Items that are purposely made very expensive, due to there value!**", color=0x1d89e3)
+        embed2.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n**{crimson} 1x**", inline=True)
+        embed2.add_field(name=f"⭐ ❧ Discord Nitro Classic", value=f"*Get the 5$ Discord Nitro Classic.*\n**{amethyst} 50x**", inline=True)
 
         embed3=Embed(title=f"**[- Roles & Perms -]**", description=f"**This is a list of discord related items for sale.**", color=0x1d89e3)
-        embed3.add_field(name=f"❧ Image Key", value=f"*Allows you to post images and embed links in most channels.*\n**2,000x {diamond}**", inline=True)
 
         embed4=Embed(title=f"**[- Abilities -]**", description=f"**Use special abilites on a set cooldown!  (Keep them forever)**", color=0x1d89e3)
 
         embed5=Embed(title=f"**[- Trait Roles -]**", description=f"**Get temporary roles to enjoy for up to 8 hours. (May not always be 8 hours.)**", color=0x1d89e3)
-        embed5.add_field(name="🍎 ❧ Fire Touch", value="**Red Role** - *Make people's messages around you randomly catch fire, for your reward!*\n**1,000x {emerald}**", inline=True)
-        embed5.add_field(name="🌊 ❧ Tsunami", value="**Blue Role** - *Flood a channel out of no where, for everyones reward!*\n**1,000x {emerald}**", inline=True)
-        embed5.add_field(name="🍑 ❧ Pink-19", value="**Pink Role** - *Infect other people with the role, curing yourself.*\n**1,000x {diamond}**", inline=True)
-        embed5.add_field(name="🍁 ❧ Leaf Roulette", value="**Green Role** - *Get as many leafs as possible!*\n**1,000x {emerald}**", inline=True)
-
 
         embed6=Embed(title=f"**[- Coming Soon -]**", description=f"**Coming Soon!**", color=0x1d89e3)
-
-
 
 
         await msg1.edit(content=f" ", embed=embed1)
@@ -78,32 +69,28 @@ class shop_handler(Cog):
 
 
 
+
+
+
     @Cog.listener('on_raw_reaction_add')
-    async def shop(self, payload:RawReactionActionEvent):
+    async def shop_buy(self, payload:RawReactionActionEvent):
             '''Buys item's from the shop.'''
 
-            if self.bot.connected == False:
-                return
-
-            # See if I need to deal with it
+            #! See if I need to deal with it
             if not payload.channel_id == self.bot.config['channels']['shop_handler']:
                 return
             if self.bot.get_user(payload.user_id).bot:
                 return
 
-            # See what the emoji is
+            #! See what the emoji is
             if payload.emoji.is_unicode_emoji():
                 emoji = payload.emoji.name 
             else:
-                emoji = payload.emoji
-
-            guild = self.bot.get_guild(payload.guild_id)
-            member = guild.get_member(payload.user_id)
-            c = utils.Currency.get(member.id)
-            m = utils.Miners.get(member.id)
-
+                emoji = payload.emoji.id
 
             #* Get the gem emojis
+            silver = self.bot.config['emotes']['silver']
+            gold = self.bot.config['emotes']['gold']
             emerald = self.bot.config['emotes']['emerald']
             diamond = self.bot.config['emotes']['diamond']
             ruby = self.bot.config['emotes']['ruby']
@@ -111,93 +98,35 @@ class shop_handler(Cog):
             amethyst = self.bot.config['emotes']['amethyst']
             crimson = self.bot.config['emotes']['crimson']
 
+            guild = self.bot.get_guild(payload.guild_id)
+            user = guild.get_member(payload.user_id)
+            c = utils.Currency.get(user.id)
+            bought = False
+            item = {"name": "BROKEN OH NO", "ruby": -1, "sapphire": -1, "amethyst": -1, "crimson": -1}
 
-            if str(emoji) == emerald:
-                if c.emerald <= 10000:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You do not have the required gems to purchase that!"))
-                    return
-                elif m.emerald > 9:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You already have 10 miners of that type."))
-                    return
-                c.emerald -= 10000
-                m.emerald += 1
-                await member.send(embed=utils.DefualtEmbed(title=f"You purchased a Emerald Miner!"))
+            #? Get the correct item
+            if emoji == "✨":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase Discord Nitro!\nCost: {crimson} 1x", footer=" "))
+                item['crimson'] = 1
+                item['name'] = "Discord Nitro"
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats!!!  Omg!  Razi will give you your reward within 24 hours!", footer=" "))
+                    bought = True
+                    c.crimson -= item['crimson']
+                    razi = guild.get_member(self.bot.config['developer'])
+                    await razi.send(embed=utils.LogEmbed(type="special", title="Discord Nitro Purchase", desc=f"{user} purchased Discord Nitro!!!!", footer=" "))
 
-            elif str(emoji) == diamond:
-                if c.emerald <= 1000:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You do not have the required gems to purchase that!"))
-                    return
-                elif m.diamond > 8:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You already have 9 miners of that type."))
-                    return
-                c.emerald -= 1000
-                m.diamond += 1
-                await member.send(embed=utils.DefualtEmbed(title=f"You purchased a Diamond Miner!"))
-
-            elif str(emoji) == ruby:
-                if c.diamond <= 1000:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You do not have the required gems to purchase that!"))
-                    return
-                elif m.ruby > 7:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You already have 8 miners of that type."))
-                    return
-                c.diamond -= 10000
-                m.ruby += 1
-                await member.send(embed=utils.DefualtEmbed(title=f"You purchased a Ruby Miner!"))
-
-            elif str(emoji) == sapphire:
-                if c.ruby <= 1000:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You do not have the required gems to purchase that!"))
-                    return
-                elif m.sapphire > 6:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You already have 7 miners of that type."))
-                    return
-                c.ruby -= 1000
-                m.sapphire += 1
-                await member.send(embed=utils.DefualtEmbed(title=f"You purchased a Sapphire Miner!"))
-
-            elif str(emoji) == amethyst:
-                if c.sapphire <= 1000:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You do not have the required gems to purchase that!"))
-                    return
-                elif m.amethyst > 5:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You already have 6 miners of that type."))
-                    return
-                c.sapphire -= 1000
-                m.amethyst += 1
-                await member.send(embed=utils.DefualtEmbed(title=f"You purchased a Amethyst Miner!"))
-
-            elif str(emoji) == crimson:
-                if c.amethyst <= 1000:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You do not have the required gems to purchase that!"))
-                    return
-                elif m.crimson > 4:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You already have 5 miners of that type."))
-                    return
-                c.amethyst -= 1000
-                m.crimson += 1
-                await member.send(embed=utils.DefualtEmbed(title=f"You purchased a Crimson Miner!"))
-
-            elif emoji == "🔑":
-                if c.diamond <= 2000:
-                    await member.send(embed=utils.DefualtEmbed(title=f"You do not have the required gems to purchase that!"))
-                    return
-                else:
-                    c.diamond -= 2000
-                    role = utils.DiscordGet(guild.roles, name="Images 🔑")
-                    await member.add_roles(role, reason="Item Bought!")
-                    await member.send(f"You bought an Images Key!")
-                    await self.members_log.send(embed=utils.LogEmbed(type="positive", title=f"Item Purchase", desc=f"{member} purchased Gen Images Key!"))
-
-
-
-            # Save the shit
+            #! Save to databse
             async with self.bot.database() as db:
                 await c.save(db)
-                await m.save(db)
 
 
-            # Check to see total reactions on the message
+            if bought == True:
+                await self.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"{user} bought {item['name']}!"))
+            else: 
+                await self.currency_log.send(embed=utils.LogEmbed(type="negative", title=f"{user} failed purchase!", desc=f"{user} tried to purchase: {item['name']}"))
+
+            #! Check to see total reactions on the message
             channel_id = payload.channel_id
             channel = self.bot.get_channel(channel_id)
             async for message in channel.history():
@@ -215,9 +144,45 @@ class shop_handler(Cog):
 
 
 
+    async def purchasing(self, msg, payload, item):
+        '''The system for buying in the shop.'''
+
+        guild = self.bot.get_guild(payload.guild_id)
+        user = guild.get_member(payload.user_id)
+        c = utils.Currency.get(user.id)
+
+        await msg.add_reaction("✔")
+        await msg.add_reaction("❌")
+        try:
+            check = lambda x, y: y.id == user.id and x.message.id == msg.id and x.emoji in ["✔", "❌"]
+            r, _ = await self.bot.wait_for('reaction_add', check=check)
+            if r.emoji == "✔":
+                if c.ruby < item["ruby"]:
+                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Ruby for: `{item['name']}`!\nYou need " + str(floor(item["ruby"] - c.ruby)) + " more Ruby!", footer=" "))
+                    return False
+                elif c.sapphire < item["sapphire"]:
+                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Sapphire for: `{item['name']}`!\nYou need " + str(floor(item["sapphire"] - c.sapphire)) + " more Sapphire!", footer=" "))
+                    return False
+                elif c.amethyst < item["amethyst"]:
+                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Amethyst for: `{item['name']}`!\nYou need " + str(floor(item["amethyst"] - c.amethyst)) + " more Amethyst!", footer=" "))
+                    return False
+                elif c.crimson < item["crimson"]:
+                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Crimson for: `{item['name']}`!\nYou need " + str(floor(item["crimson"] - c.crimson)) + " more Crimson!", footer=" "))
+                    return False
+                else: return True
+
+            if r.emoji == "❌":
+                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"Purchase was canceled!", footer=" "))
+                    return False
+
+
+        except TimeoutError:
+            await msg.edit('Sorry, but you took too long to respond.  Transaction Canceled.', embed=None)
+            return False
+
 
 
 
 def setup(bot):
-    x = shop_handler(bot)
+    x = Shop_Handler(bot)
     bot.add_cog(x)

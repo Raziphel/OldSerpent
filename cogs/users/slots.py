@@ -51,7 +51,7 @@ class Slots(Cog):
             return
 
 
-        msg = await ctx.send(embed=utils.SpecialEmbed(title=f"[🌜] Slot Machine 🐍 [🌛]", desc=f"**Rewards:** [{gold_e} = {diamond_e}] [{ruby_e} = {sapphire_e}]\n🍀 1.25x Reward!\n✨ 1.50x Reward!\n🍒 2.0x Reward!\n🎀 2.5x Reward!\n🦄 3.0x Reward!\n\n__**Please pick the currency!**__", guild=ctx.guild, footer=" "))
+        msg = await ctx.send(embed=utils.SpecialEmbed(title=f"[🌜] Slot Machine 🐍 [🌛]", desc=f"**Rewards:** [{gold_e} = {diamond_e}] [{ruby_e} = {sapphire_e}]\n🍀 1.25x Reward!\n✨ Common Reward!\n🍒 Uncommon Reward!\n🎀 Rare Reward!\n🦄 Epic Reward!\n\n__**Please pick the currency!**__", guild=ctx.guild, footer=" "))
 
         #! adds the reactions
         await msg.add_reaction(gold_e)
@@ -59,8 +59,10 @@ class Slots(Cog):
 
         try:
             #! Watches for the reactions
-            check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and str(x.emoji) in [silver_e, gold_e, emerald_e, diamond_e]
+            check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and str(x.emoji) in [gold_e, ruby_e]
             r, _ = await self.bot.wait_for('reaction_add', check=check)
+
+            await utils.GemFunction.pay_exchange(user=ctx.author)
 
             if str(r.emoji) == gold_e:
                 currency = 'gold'
@@ -76,7 +78,6 @@ class Slots(Cog):
                     raise TooPoor
 
             await msg.clear_reactions()
-            await utils.GemFunction.pay_exchange(user=ctx.author)
 
         except TooPoor:
             await ctx.send(f'{ctx.author.mention} Payment denied. You would go in debt stupid!!!')
@@ -127,9 +128,9 @@ class Slots(Cog):
 
         if reward_amount > 0:
             if currency == 'gold':
-                c.emerald += reward_amount
-            elif currency == 'diamond':
-                c.ruby += reward_amount
+                c.diamond += reward_amount
+            elif currency == 'ruby':
+                c.sapphire += reward_amount
             reward = f"You recieved {reward_amount}x {reward_emoji}!"
 
 

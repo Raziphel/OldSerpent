@@ -60,7 +60,7 @@ class GemFunction(object):
 
         if c.amethyst > 0:
             c.amethyst -= 1
-            c.sappire += 100
+            c.sapphire += 100
 
         if c.sapphire > 0:
             c.sapphire -= 1

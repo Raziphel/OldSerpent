@@ -7,6 +7,6 @@ Welcomes = ([
     "You got the 69th welcome message!!!",
     "Wow you lookin' like a rat!",
     "Put that thing away, theres like, children here.",
-    "Fuck you leave.",
+    "Oh hey!",
     "Wow we've been expecting you!",
 ])

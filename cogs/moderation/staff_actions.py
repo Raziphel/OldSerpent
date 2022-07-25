@@ -16,6 +16,11 @@ class Staff_Actions(Cog):
         self.bot = bot
 
 
+    @property  #! The message logs
+    def message_log(self):
+        return self.bot.get_channel(self.bot.config['channels']['message_log']) 
+
+
     @utils.is_mod_staff()
     @command(aliases=['prune'])
     async def purge(self, ctx, user:Optional[User], amount:int=10):
@@ -33,8 +38,7 @@ class Staff_Actions(Cog):
         #! Report and log the purging!
         removed = await ctx.channel.purge(limit=amount, check=check)
         await ctx.send(embed=utils.SpecialEmbed(title=f"Deleted {len(removed)} messages!", guild=ctx.guild))
-        log = await utils.ChannelFunction.get_log_channel(guild=ctx.guild, log="message")
-        await log.send(embed=utils.LogEmbed(type="negative", title=f"Channel messages Purged", desc=f"<@{ctx.author.id}> purged {amount} messages from <#{ctx.channel.id}>!"))
+        await self.message_log.send(embed=utils.LogEmbed(type="negative", title=f"Channel messages Purged", desc=f"<@{ctx.author.id}> purged {amount} messages from <#{ctx.channel.id}>!"))
 
 
     @utils.is_mod_staff()

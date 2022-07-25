@@ -16,7 +16,7 @@ class Mines(Cog):
         self.bot = bot
         self.last_reward = dt(year=2000, month=1, day=1)
         self.mines_loop.start()
-        self.claimed = True
+        self.claimed = False
 
     @tasks.loop(minutes=1)
     async def mines_loop(self):
@@ -32,12 +32,15 @@ class Mines(Cog):
         else:
             if self.claimed == True:
                 await msg.edit(embed=utils.SpecialEmbed(title=f'Previous Reward!', desc=f'Miner: <@{m.last_user}>\nRecieved: {m.last_reward_type} {m.last_reward_amount}x'))
-                msg = await ch.send(embed=utils.SpecialEmbed(color=0x006400, title=f'Click the ⛏ to mine for gems!', desc=f'Last Miner: <@{m.last_user}>\nRecieved: {m.last_reward_type} {m.last_reward_amount}x'))
+                msg = await ch.send(embed=utils.SpecialEmbed(color=0x006400, title=f'Click the ⛏ to mine for gems!', footer=" "))
                 await msg.add_reaction("⛏")
                 m.last_msg = msg.id
                 async with self.bot.database() as db:
                     await m.save(db)
                 self.claimed = False
+            elif self.claimed == False:
+                await msg.edit(embed=utils.SpecialEmbed(color=0x006400, title=f'Click the ⛏ to mine for gems!', footer=" "))
+                await msg.add_reaction("⛏")
 
 
 

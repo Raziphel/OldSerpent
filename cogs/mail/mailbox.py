@@ -132,8 +132,6 @@ class Mail_Box(Cog):
                 await reason_message.delete()
             except Exception: 
                 reason = '<No reason given>'
-            try: await author.send(f"Your verification has been rejected, for reason `{reason}`. Please try again later.")
-            except Exception: pass
             embed.set_footer(text='Verification declined  on ' + dt.utcnow().strftime('%a %d %B %H:%M'))
             #! Archive it!
             await self.archive.send(f'Denied by <@{payload.user_id}>. For reason: {reason}', embed=embed)
