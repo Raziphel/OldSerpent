@@ -64,7 +64,10 @@ class Mail_Box(Cog):
                 await self.deal_with_verification(message, emoji, embed, payload, guild)
         elif 'Kingussy' == embed.footer.text:
                 await self.deal_with_kingussy(message, emoji, embed, payload, guild)
-
+        elif 'Furry' == embed.footer.text:
+                await self.deal_with_furry(message, emoji, embed, payload, guild)
+        elif 'Adult' == embed.footer.text:
+                await self.deal_with_adult(message, emoji, embed, payload, guild)
 
 
     async def deal_with_verification(self, message:Message, emoji:PartialEmoji, embed:Embed, payload:RawReactionActionEvent, guild:Guild):
@@ -142,6 +145,82 @@ class Mail_Box(Cog):
 
 
 
+
+    async def deal_with_furry(self, message:Message, emoji:PartialEmoji, embed:Embed, payload:RawReactionActionEvent, guild:Guild):
+        '''Deals with furrys'''
+        author_id = await self.embed_author_id(embed)
+        author = guild.get_member(author_id)
+        if author == None: #? if they left the server.
+            await message.delete()
+            return
+
+        if emoji.name == '✅':
+            #! Archive it!
+            embed.colour = 0x008800
+            await author.send(f"**You have been verified!  Welcome to Ferret's Palace Furrys!**")
+            embed.set_footer(text='Verification archived on ' + dt.utcnow().strftime('%a %d %B %H:%M'))
+            await self.archive.send(f'Archived by <@{payload.user_id}>.', embed=embed)
+            await message.delete()
+            #! Verifys the user
+            await utils.UserFunction.verify_user(user=author, type="furry")
+
+        elif emoji.name == '🔴':
+            check = lambda m: m.channel == message.channel and payload.user_id == m.author.id
+            z = await message.channel.send("Why are you declining this verification?")
+            try: 
+                reason_message = await self.bot.wait_for('message', check=check, timeout=60.0)
+                reason = reason_message.content
+                await reason_message.delete()
+            except Exception: 
+                reason = '<No reason given>'
+            embed.set_footer(text='Verification declined  on ' + dt.utcnow().strftime('%a %d %B %H:%M'))
+            #! Archive it!
+            await self.archive.send(f'Denied by <@{payload.user_id}>. For reason: {reason}', embed=embed)
+            await message.delete()  
+            await self.message_embed_author(embed, f"Your verification was declined. For reason: `{reason}`", embed=embed)
+            await z.delete()
+            #! kick the user
+
+
+
+
+    async def deal_with_adult(self, message:Message, emoji:PartialEmoji, embed:Embed, payload:RawReactionActionEvent, guild:Guild):
+        '''Deals with adults'''
+        author_id = await self.embed_author_id(embed)
+        author = guild.get_member(author_id)
+        if author == None: #? if they left the server.
+            await message.delete()
+            return
+
+        if emoji.name == '✅':
+            #! Archive it!
+            embed.colour = 0x008800
+            await author.send(f"**You have been verified as an adult!**")
+            embed.set_footer(text='Verification archived on ' + dt.utcnow().strftime('%a %d %B %H:%M'))
+            await self.archive.send(f'Archived by <@{payload.user_id}>.', embed=embed)
+            await message.delete()
+            #! Verifys the user
+            await utils.UserFunction.verify_user(user=author, type="adult")
+
+        elif emoji.name == '🔴':
+            check = lambda m: m.channel == message.channel and payload.user_id == m.author.id
+            z = await message.channel.send("Why are you declining this verification?")
+            try: 
+                reason_message = await self.bot.wait_for('message', check=check, timeout=60.0)
+                reason = reason_message.content
+                await reason_message.delete()
+            except Exception: 
+                reason = '<No reason given>'
+            embed.set_footer(text='Verification declined  on ' + dt.utcnow().strftime('%a %d %B %H:%M'))
+            #! Archive it!
+            await self.archive.send(f'Denied by <@{payload.user_id}>. For reason: {reason}', embed=embed)
+            await message.delete()  
+            await self.message_embed_author(embed, f"Your verification was declined. For reason: `{reason}`", embed=embed)
+            await z.delete()
+            #! kick the user
+            await utils.UserFunction.verify_user(user=author, type="notadult")
+            mod = utils.Moderation.get(member.id)
+            mod.child = True
 
 
 

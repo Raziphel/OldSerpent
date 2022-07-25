@@ -17,7 +17,9 @@ class rules_handler(Cog):
         self.bot = bot
 
 
-
+    @property  #! The members logs
+    def members_log(self):
+        return self.bot.get_channel(self.bot.config['channels']['members_log']) 
 
 
     @Cog.listener('on_ready')
@@ -62,12 +64,17 @@ class rules_handler(Cog):
         ch = guild.get_channel(self.bot.config['channels']['verify']) #? Rules Channel
 
         msg = await ch.fetch_message(997347478020038716) #? msg
+        msg2 = await ch.fetch_message(1000955458456145942) #? msg
 
         embed1=Embed(title=f"**[- Welcome to the Server! -]**", 
-        description=f"**This server does require verification, make sure the bot can message you and click the reactions you are wanting access to!**\n\n🎀 `General Server Verification`\n🏹 `Grepolis Alliance Verification`", color=0x1d89e3)
+        description=f"**To gain access to a section of the server, all of them require some type of verification!\n(These are usually not hard)**\n\n*General server area is for normal people that would want to have absolutely normal conversation.*\n🎀 `General Server Verification`\n\n*Grepolis Alliance is for people who play Grepolis and are apart of this server's alliance. (Requires a password)*\n🏹 `Grepolis Alliance Verification`\n\n*If you are a degenerate and would like to par-take in your disgusting weird conversations.*\n🐾 `Furry Verification`", color=0x1d89e3)
 
+
+        embed2=Embed(title=f"**[-Age Verification -]**", 
+        description=f"**To gain access to any sections NSFW channels, you will need to prove your an adult.**\n*This will give you access to every sections NSFW.  (No ID required, but questions...)*\n🔥 `Adult Verification`\n\n*Marked as Adult but no NSFW access.*\n💦`Kinda Adult Verification`", color=0x1d89e3)
 
         await msg.edit(content=f" ", embed=embed1)
+        await msg2.edit(content=f" ", embed=embed2)
 
 
 
@@ -99,6 +106,17 @@ class rules_handler(Cog):
             await self.bot.get_cog('Verification').verification(author=member, guild=guild)
         elif emoji == "🏹":
             await self.bot.get_cog('Verification').verify_kingussy(author=member, guild=guild)
+        elif emoji == "🐾":
+            await self.bot.get_cog('Verification').verify_furry(author=member, guild=guild)
+        elif emoji == "🔥":
+            await self.bot.get_cog('Verification').verify_adult(author=member, guild=guild)
+        elif emoji == "💦":
+            mod = utils.Moderation.get(member.id)
+            if mod.child == False:
+                await utils.UserFunction.verify_user(user=member, type="kindaadult")
+                await self.members_log.send(embed=utils.LogEmbed(type=f"special", title=f"Kinda Adult Verify", desc=f"Username: {member.name}", thumbnail=member.avatar_url))
+
+
 
         # Check to see total reactions on the message
         message = await channel.fetch_message(payload.message_id)
