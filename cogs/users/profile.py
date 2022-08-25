@@ -20,70 +20,7 @@ class Profile(Cog):
         if not user:
             user = ctx.author
 
-        #! Quest 1 Complete
-        # await self.bot.get_cog('Quests').get_quest(user=user, quest_no=1, completed=True)
-
-        await self.base_profile(ctx=ctx, user=user, msg=None)
-
-
-
-    async def base_profile(self, ctx, user, msg):
-        if msg == None:
-            msg = await ctx.send(embed=utils.ProfileEmbed(type="Default", user=user))
-        else:
-            await msg.edit(embed=utils.ProfileEmbed(type="Default", user=user))
-
-        await msg.clear_reactions()
-        #! adds the reactions
-        await msg.add_reaction("💸")
-        # await msg.add_reaction("📕")
-        # await msg.add_reaction("❤️")
-        # await msg.add_reaction("🏹")
-        await msg.add_reaction("🔮")
-
-        # Watches for the reactions
-        check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🏹", "💸", "🔮", "✨", "❤️", "📕", "🍃"]
-        r, _ = await self.bot.wait_for('reaction_add', check=check)
-        if r.emoji == "💸":
-            await utils.GemFunction.update_gems(user=user)
-            await msg.edit(embed=utils.ProfileEmbed(type="Currency", user=user))
-            pass
-        # if r.emoji == "📕":
-        #     await msg.edit(embed=utils.FactionEmbed(type="Default", user=user))
-        #     pass
-        if r.emoji == "🔮":
-            await msg.edit(embed=utils.ProfileEmbed(type="Interactions", user=user))
-            pass
-        # if r.emoji == "❤️":
-        #     await msg.edit(embed=utils.ProfileEmbed(type="Relationships", user=user))
-        #     pass
-        await msg.clear_reactions()
-        await msg.add_reaction("🔷")
-        check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🔷"]
-        r, _ = await self.bot.wait_for('reaction_add', check=check)
-        if r.emoji == "🔷":
-            await self.base_profile(ctx=ctx, user=user, msg=msg)
-            return
-
-
-
-    @cooldown(1, 30, BucketType.user)
-    @command(aliases=['c', 'C', 'Gems', 'ingots', 'gems', 'Ingots'])
-    async def currency(self, ctx, user:Member=None):
-        '''Quick Check Gems'''
-        if not user:
-            user = ctx.author
-        await utils.GemFunction.update_gems(user=user)
-        m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True), delete_after=15)
-
-
-    @cooldown(1, 30, BucketType.user)
-    @command(aliases=['I', 'i', 'interactions', 'Interactions'])
-    async def interaction(self, ctx, user:Member=None):
-        '''Quick Check interactions'''
-        if not user:
-            user = ctx.author
-        m = await ctx.send(embed=utils.ProfileEmbed(type="Interactions", user=user, quick=True), delete_after=15)
+        await ctx.send(embed=utils.ProfileEmbed(user=user))
 
 
 

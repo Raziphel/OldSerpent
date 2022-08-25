@@ -3,11 +3,11 @@ from glob import glob
 
 from discord import Intents
 
-from mink import Mink
+from ferret import Ferret
 
 
 intents = Intents.all()
-bot = Mink(
+bot = Ferret(
     command_prefix=[".", "!"],
     config_filename="config/config.toml",
     intents=intents

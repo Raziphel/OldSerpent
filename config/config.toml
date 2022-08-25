@@ -9,7 +9,7 @@ bot_id = 896690181455892481
     user = "pterodactyl"
     password = "Pl3453Ch4n63M3!"
     database = "postgres"
-    host = "172.18.0.3"
+    host = "172.18.0.2"
 
 [channels]
     rules = 856449403173994536
@@ -32,31 +32,20 @@ bot_id = 896690181455892481
     kingussy = 991403616030167050
 
 [roles]
-    prisoner = 858923379315048488
     council = 891793700932431942
+    member = 895051158870179891
+    adult_member = 984406189758623754
+    furry = 877449848876572742
+    adult_furry = 1011432613736628324
+    ussy = 991403220507316274
+    adult_ussy = 1011464124930215938
+    nsfw_adult = 702766584715804704
+    adult = 957197444158988298
+    child = 702766587194769469
+    scp = 957217968478109746
+    t1supporter = 690037883821883421
 
 [emotes]
-    silver = "<:Silver:994737895707525181>"
-    gold = "<:Gold:994737893014773790>"
-    emerald = "<:Emerald:994737891735511050>"
-    diamond = "<:Diamond:994737890582069278>"
-    ruby = "<:Ruby:994737896567357461>"
-    sapphire = "<:Sapphire:994737897871782031>"
-    amethyst = "<:Amethyst:994738216022319124> "
-    crimson = "<:Crimson:994737894499569746>"
-
-
-[messages]
-    [errors]
-        command_not_found = "I'm sorry but I don't believe that is a command?"
-        missing_permissions = "I'm missing permissions to perform that command!"
-        in_dms = "Sorry sweetie, that command can only be ran in my dms!"
-        missing_arguments = "That command is missing stuff, do .help?"
-        bad_arguments = "Thats the wrong way of running that command I'm afraid."
-        missing_error = "Hmm, something went wrong and I'm not completely sure what."
-        user_error = "Sorry but only a specific person can run that command."
-        dev_error = "Only bot developers can run that command.  Weaklings can't handle it."
-        guild_check = "Sorry, this command can not be run from this discord server."
-        mod_check = "Sorry honey, only a moderator can run that command, stupid."
-        admin_check = "You and I both know you don't have permission for that."
-        error = "Uhhhh, something happened I don't know what to tell ya."
+    goldcoin = "<:GoldCoin:1011145571240779817>"
+    goodcoin = "<:GoodCoin:1011145572658446366>"
+    evilcoin = "<:EvilCoin:1011145570112512051>"

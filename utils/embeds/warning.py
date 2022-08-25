@@ -33,4 +33,4 @@ class WarningEmbed(Embed):
             self.description = desc
 
         #* Add footer
-        self.set_footer(text=f"🚫 Warning / Moderation")
+        self.set_footer(text=f"🚫 Moderation")

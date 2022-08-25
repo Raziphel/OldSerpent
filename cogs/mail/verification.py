@@ -90,7 +90,7 @@ class Verification(Cog):
 
             msg = f"How they were invited: **{table_data.get('invited')}**\nReason For Joining: **{table_data.get('reason')}**\nAge: **{str(table_data.get('age'))}**"
 
-            msg = await self.mailbox.send(embed=utils.MailEmbed(footer=f"Verification", message=msg, color=ss.color, author=author, image=author.avatar_url))
+            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Razi's Realm Application", footer=f"Verification", message=msg, color=ss.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
 
@@ -149,26 +149,9 @@ class Verification(Cog):
             username = await get_input(f"Whats your username in Grepolis?")
             table_data['username'] = username.content
 
-
-            color = await get_input("What's your favourite colour? (Say a color name or a hex code)")
-            colour_value = utils.Colors.get(color.content.lower()) 
-            if colour_value == None:
-                try:
-                    colour_value = int(color.content.strip('#'), 16)
-                except ValueError:
-                    pass
-            ss = utils.Settings.get(author.id)
-            ss.color = colour_value
-            async with self.bot.database() as db:
-                await ss.save(db)
-
-            if color is None:
-                color = 0x0
-                await author.send('Invalid color specified, setting to default.')
-
             msg = f"Password: **{table_data.get('password')}**\nGrepolis Username: **{table_data.get('username')}**"
 
-            msg = await self.mailbox.send(embed=utils.MailEmbed(footer=f"Kingussy", message=msg, color=ss.color, author=author, image=author.avatar_url))
+            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Kingussy Application", footer=f"Kingussy", message=msg, color=ss.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
 
@@ -236,26 +219,9 @@ class Verification(Cog):
             drama = await get_input(f"Are you a fan of drama?")
             table_data['drama'] = drama.content
 
-
-            color = await get_input("What's your favourite colour? (Say a color name or a hex code)")
-            colour_value = utils.Colors.get(color.content.lower()) 
-            if colour_value == None:
-                try:
-                    colour_value = int(color.content.strip('#'), 16)
-                except ValueError:
-                    pass
-            ss = utils.Settings.get(author.id)
-            ss.color = colour_value
-            async with self.bot.database() as db:
-                await ss.save(db)
-
-            if color is None:
-                color = 0x0
-                await author.send('Invalid color specified, setting to default.')
-
             msg = f"A furry?: **{table_data.get('furry')}**\nSona?: **{table_data.get('sona')}**\nReason?: **{table_data.get('reason')}**\nDrama?: **{table_data.get('drama')}**"
 
-            msg = await self.mailbox.send(embed=utils.MailEmbed(footer=f"Furry", message=msg, color=ss.color, author=author, image=author.avatar_url))
+            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Furry Application", footer=f"Furry", message=msg, color=ss.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
 
@@ -276,7 +242,7 @@ class Verification(Cog):
 
 
 
-    async def verify_adult(self, author:Member, guild:guild):
+    async def verify_adult(self, author:Member, guild:guild, kinda:bool=False):
         '''Sends a kingussy verification application!'''
 
         # Set some stuff up
@@ -308,13 +274,16 @@ class Verification(Cog):
             return message
 
         try:
-            proof = await get_input(f"If you had to prove you were an adult how would you do it?")
+            proof = await get_input(f"We try our hardest to make sure no children are allowed access to NSFW areas!  So please if you are 100% adult and understand you will be permenantly IP banned if you are cought lying about age.  (Please say 'I agree')  or do 'cancel'.")
             table_data['proof'] = proof.content
 
             msg = f"Proof: **{table_data.get('proof')}**"
 
             ss = utils.Settings.get(author.id)
-            msg = await self.mailbox.send(embed=utils.MailEmbed(footer=f"Adult", message=msg, color=ss.color, author=author, image=author.avatar_url))
+            footer = "Adult"
+            if kinda == True:
+                footer == "KindaAdult"
+            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=ss.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
 

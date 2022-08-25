@@ -5,6 +5,8 @@ from discord import Member, Message, User, Game, Embed
 #*Additions
 from asyncio import sleep, wait, iscoroutine
 from time import monotonic
+from datetime import datetime as dt, timedelta
+
 
 import utils
 
@@ -23,7 +25,7 @@ class Developer(Cog):
             await msg.edit(embed=utils.DevEmbed(title=f"Restarting in {5-num}.", guild=ctx.guild))
         await ctx.message.delete()
         await msg.delete()
-        await self.bot.logout()
+        await self.bot.close()
 
 
     @command()
@@ -38,6 +40,14 @@ class Developer(Cog):
         servers = len(self.bot.guilds)
         await message.edit(embed=utils.DevEmbed(desc=f"Ping:`{int(ping)}ms`\nUsers: `{users}`\nServers: `{servers}`", guild=ctx.guild))
 
+    @utils.is_dev()
+    @command()
+    async def boostrewards(self, ctx):
+        '''Give nitros rewards now'''
+        t = utils.Timers.get(self.bot.config['razisrealm_id'])
+        t.last_nitro_reward = (dt.now()-timedelta(days=50))
+        async with self.bot.database() as db:
+            await t.save(db)
 
     @utils.is_dev()
     @command(hidden=True)
@@ -53,74 +63,22 @@ class Developer(Cog):
         await ctx.send('```py\n' + str(ans) + '```')
 
 
-    @command(hidden=True)
-    async def premium(self, ctx):
-        inter = utils.Interactions.get(ctx.author.id)
-        inter.premium = True
-        async with self.bot.database() as db:
-            await inter.save(db)
-        await ctx.send(f"Premium Interactions allowed.")
-
-    @utils.is_dev()
-    @command()
-    async def roles(self, ctx):
-        roles = 0
-        for role in ctx.guild.roles:
-            roles += 1
-        await ctx.send(f'**There are {roles} roles on the server!**')
 
 
     @utils.is_dev()
     @command(hidden=True)
-    async def setlvl(self, ctx, level:int):
-        lvl = utils.Levels.get(ctx.author.id)
-        lvl.level = level
-        async with self.bot.database() as db:
-            await lvl.save(db)
-
-
-
-
-    @utils.is_dev()
-    @command(hidden=True)
-    async def setruby(self, ctx, amount:int):
-        c = utils.Currency.get(ctx.author.id)
-        c.ruby = amount
-        async with self.bot.database() as db:
-            await c.save(db)
-
-
-    @utils.is_dev()
-    @command(hidden=True)
-    async def resetlevels(self, ctx):
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id'])
+    async def adults(self, ctx):
+        '''Runs code through Python'''
+        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
+        adult2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult'])
         for user in guild.members:
-            for role in user.roles:
-                lvl = utils.Levels.get(user.id)
-                if role.name == "Pawn [1~5]":
-                    lvl.level = 5
-                elif role.name == "Knight [6~15]":
-                    lvl.level = 15
-                elif role.name == "Knight Rook [16~25]":
-                    lvl.level = 25
-                elif role.name == "Bishop [26~40]":
-                    lvl.level = 40
-                elif role.name == "Queen [41~60]":
-                    lvl.level = 60
-                elif role.name == "King [61~80]":
-                    lvl.level = 80
-                elif role.name == "Challenger [51-90]":
-                    lvl.level = 90
-                elif role.name == "Master [91-99]":
-                    lvl.level = 99
-                elif role.name == "Grand Master [100]":
-                    lvl.level = 100
-                else: pass
-            async with self.bot.database() as db:
-                await lvl.save(db)
-            print(f'{user.name} level set to {lvl.level}')
-        await ctx.send('Level Reset Complete.')
-
+            if (adult in user.roles) or (adult2 in user.roles):
+                mod = utils.Moderation(user.id)
+                mod.adult = True
+                mod.child = False
+                async with self.bot.database() as db:
+                        await mod.save(db)
 
 def setup(bot):
     x = Developer(bot)

@@ -14,6 +14,7 @@ class MailEmbed(Embed):
         #Gets the varibles for the embed
         message = kwargs.pop('message', None)
         color = kwargs.pop('color', None)
+        title = kwargs.pop('title', None)
         footer = kwargs.pop('footer', None)
         author = kwargs.pop('author', Member)
         image = kwargs.pop('image', None)
@@ -28,7 +29,7 @@ class MailEmbed(Embed):
         self.set_footer(text=footer)
 
         # Set embed setup
-        self.set_author(name=author.display_name, icon_url=author.avatar_url)
+        self.set_author(name=title, icon_url=author.avatar.url)
 
         # Set description
         self.description = message

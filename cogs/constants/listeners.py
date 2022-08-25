@@ -11,7 +11,7 @@ from asyncio import sleep
 
 import utils
 
-class Level_Progression(Cog):
+class Listeners(Cog):
     def __init__(self, bot):
         self.bot = bot
         self.exp_voice_gen_loop.start()
@@ -40,6 +40,7 @@ class Level_Progression(Cog):
 
 
 
+
     async def level_progression(self, message:Message):
         '''Level Progression'''
         lvl = utils.Levels.get(message.author.id)
@@ -48,10 +49,10 @@ class Level_Progression(Cog):
         track.messages += 1
         if lvl.last_xp == None:
             lvl.last_xp = dt.utcnow()
-        if (lvl.last_xp + timedelta(seconds=20)) <= dt.utcnow(): # Check Time
+        if (lvl.last_xp + timedelta(seconds=30)) <= dt.utcnow(): # Check Time
 
             #! Define varibles
-            exp = 5
+            exp = 2
             unique_words = len(list(unique_everseen(message.content.split(), str.lower)))
             requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
 
@@ -60,20 +61,17 @@ class Level_Progression(Cog):
                 unique_words = 15
 
             rng = choice([0.75, 1.0, 1.25, 1.50, 2.0])
-            exp += (lvl.level/6) + (unique_words*rng) + 2
-            reward = 4*rng
-            c.silver += reward 
+            exp += (lvl.level/6) + (unique_words*rng)
+            reward = (unique_words/8)*rng
+            c.gold_coins += reward 
 
             #! Command Usage Secret Increase!?
             if message.content.startswith(self.bot.config['prefix']):
                 exp += lvl.level
 
+            #! Level Up
             if lvl.exp >= requiredexp:
                 await utils.UserFunction.level_up(user=message.author, channel=message.channel)
-
-            #! Check for needed update?
-            if c.silver >= 100:
-                await utils.GemFunction.update_gems(user=message.author)
 
             #! Save it to database
             lvl.exp += exp
@@ -81,6 +79,7 @@ class Level_Progression(Cog):
         async with self.bot.database() as db:
             await lvl.save(db)
             await track.save(db)
+            await c.save(db)
 
 
 
@@ -122,16 +121,12 @@ class Level_Progression(Cog):
                     exp = 10 + (len(vc.members)*2.75) + (lvl.level/3)
                     gold = 15 + round(len(vc.members)*5.25)
                     lvl.exp += round(exp)
-                    c.gold += gold
+                    c.gold_coins += gold
                     track.vc_mins += 10
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
                     if lvl.exp >= requiredexp:
                         await utils.UserFunction.level_up(user=member, channel=None)
-
-                    #! Check for needed update?
-                    if c.gold >= 100:
-                        await utils.GemFunction.update_gems(user=member)
 
                     async with self.bot.database() as db:
                         await lvl.save(db)
@@ -152,5 +147,5 @@ class Level_Progression(Cog):
 
 
 def setup(bot):
-    x = Level_Progression(bot)
+    x = Listeners(bot)
     bot.add_cog(x)

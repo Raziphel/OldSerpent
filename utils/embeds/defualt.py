@@ -46,4 +46,4 @@ class DefualtEmbed(Embed):
             self.description = f"{desc}"
 
         #* Add Footer
-        self.set_footer(text=choice(utils.Tips))
+        self.set_footer(text="🍀 " + choice(utils.Tips))

@@ -14,6 +14,7 @@ class LogEmbed(Embed):
         title = kwargs.pop('title', None)
         desc = kwargs.pop('desc', None)
         thumbnail = kwargs.pop('thumbnail', None)
+        footer = kwargs.pop('footer', None)
 
 
         #! Make the embed
@@ -41,7 +42,10 @@ class LogEmbed(Embed):
             self.description = f"{desc}"
 
         #* Add footer
-        self.set_footer(text=f"🔧 Log Created") #! Put the date and time here, when your not being a bitch...
+        if footer:
+            self.set_footer(text=footer)
+        else:
+            self.set_footer(text=f"🔧 Log Created") #! Put the date and time here, when your not being a bitch...
 
         #* Add Thumbnail
         if thumbnail:

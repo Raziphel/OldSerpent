@@ -43,8 +43,8 @@ class Logging(Cog):
         greeting = choice(Welcomes)
         desc = f'__**Welcome {member.name} to Ferret\'s Palace.**__\nKeep in mind, you will need to go to <#997346872622596136> to gain access to channels!\n*Enjoy your stay~*'
         await self.welcome_log.send(f"{member.mention}")
-        await self.welcome_log.send(embed=utils.SpecialEmbed(title=f"{greeting}", desc=desc, thumbnail=member.avatar_url))
-        await self.members_log.send(embed=utils.LogEmbed(type=f"positive", title=f"New member joined", desc=f"Username: {member.name}\nStatus: {member.status}", thumbnail=member.avatar_url))
+        await self.welcome_log.send(embed=utils.SpecialEmbed(title=f"{greeting}", desc=desc, thumbnail=member.avatar.url))
+        await self.members_log.send(embed=utils.LogEmbed(type=f"positive", title=f"New member joined", desc=f"Username: {member.name}\nStatus: {member.status}", thumbnail=member.avatar.url))
 
 
     #! Logs
@@ -54,7 +54,7 @@ class Logging(Cog):
         print(self.bot.user.name)
         print(self.bot.user.id)
         print('__________________')
-        await self.bot_log.send(embed=utils.LogEmbed(type="positive", title=f"Mink! is Online!", desc=f"Ping: {math.floor(self.bot.latency*1000)}"))
+        await self.bot_log.send(embed=utils.LogEmbed(type="positive", title=f"Herby is Online!", desc=f"Ping: {math.floor(self.bot.latency*1000)}"))
 
     @Cog.listener()
     async def on_guild_join(self, guild):
@@ -79,7 +79,7 @@ class Logging(Cog):
     async def on_member_remove(self, member):
         try:
             if member.bot: return
-            await self.members_log.send(embed=utils.LogEmbed(type="negative", title=f"{member.name} has left the realm.", thumbnail=member.avatar_url))
+            await self.members_log.send(embed=utils.LogEmbed(type="negative", title=f"{member.name} has left the realm.", thumbnail=member.avatar.url))
         except: pass #? Fail Silently
 
     @Cog.listener()
@@ -101,7 +101,7 @@ class Logging(Cog):
             image = message.attachments[0].url 
         else: image = None
         try:
-            await self.message_log.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar_url, image=image))
+            await self.message_log.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar.url, image=image))
         except: pass #? Fail Silently
 
     @Cog.listener()
@@ -109,7 +109,7 @@ class Logging(Cog):
         if before.author.bot: return
         if before.content == after.content: return
         try:
-            await self.message_log.send(embed=utils.LogEmbed(type="change", title=f"Message Edited", desc=f"**Author:** {before.author.mention}\n**Channel:** <#{before.channel.id}>\n**Before:**\n{before.content}\n\n**after:**\n{after.content}", thumbnail=before.author.avatar_url))
+            await self.message_log.send(embed=utils.LogEmbed(type="change", title=f"Message Edited", desc=f"**Author:** {before.author.mention}\n**Channel:** <#{before.channel.id}>\n**Before:**\n{before.content}\n\n**after:**\n{after.content}", thumbnail=before.author.avatar.url))
         except: pass #? Fail Silently
 
     @Cog.listener()

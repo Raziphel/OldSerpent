@@ -114,38 +114,38 @@ class UserFunction(object):
         guild = cls.bot.get_guild(cls.bot.config['razisrealm_id'])
 
         if type == "guild":
-            verified = utils.DiscordGet(guild.roles, name="Member")
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['member'])
             await user.add_roles(verified, reason="Verification")
             general = cls.bot.get_channel(cls.bot.config['channels']['lounge'])
-            await general.send(embed=utils.SpecialEmbed(description=f"Please welcome the new scum, {user.mention}!", thumbnail=user.avatar_url))
+            await general.send(embed=utils.SpecialEmbed(description=f"Please welcome the new scum, {user.mention}!", thumbnail=user.avatar.url))
             return
 
         elif type == "alliance":
-            verified = utils.DiscordGet(guild.roles, name="Alliance Member")
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['ussy'])
             await user.add_roles(verified, reason="Verification")
             general = cls.bot.get_channel(cls.bot.config['channels']['kingussy'])
-            await general.send(embed=utils.SpecialEmbed(description=f"New alliance member joined!\nWelcome {user.mention}!", thumbnail=user.avatar_url))
+            await general.send(embed=utils.SpecialEmbed(description=f"New alliance member joined!\nWelcome {user.mention}!", thumbnail=user.avatar.url))
             return
 
         elif type == "furry":
-            verified = utils.DiscordGet(guild.roles, name="furry-")
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['furry'])
             await user.add_roles(verified, reason="Verification")
             general = cls.bot.get_channel(cls.bot.config['channels']['furry_lounge'])
-            await general.send(embed=utils.SpecialEmbed(description=f"A new furry has joined!\nWelcome {user.mention}!", thumbnail=user.avatar_url))
+            await general.send(embed=utils.SpecialEmbed(description=f"A new furry has joined!\nWelcome {user.mention}!", thumbnail=user.avatar.url))
             return
 
         elif type == "adult":
-            verified = utils.DiscordGet(guild.roles, name="Adult 🚬")
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['nsfw_adult'])
             await user.add_roles(verified, reason="Verification")
             return
 
         elif type == "kindaadult":
-            verified = utils.DiscordGet(guild.roles, name="Adult 🍺")
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['adult'])
             await user.add_roles(verified, reason="Verification")
             return
 
         elif type == "notadult":
-            verified = utils.DiscordGet(guild.roles, name="Child 🍼")
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['child'])
             await user.add_roles(verified, reason="Verification")
             return
 

@@ -43,4 +43,4 @@ class SpecialEmbed(Embed):
         if footer:
             self.set_footer(text=footer)
         else:
-            self.set_footer(text=choice(utils.Tips))
+            self.set_footer(text="🍀 " + choice(utils.Tips))

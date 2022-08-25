@@ -1,9 +1,19 @@
-- Azulphel Bot Plans and Outline -
 
-To-Do List:
-[✅] - Come up with a bot name.
-[❌] - Plan out something for the bot to have as a hook.
-[❌] - Set up the Database.
+- = Discord Bot To-Do List = -
+
+[✅] Name & Theme
+
+
+
+
+
+
+
+
+
+- = Discord Server To-Do List = -
+
+[✅] Name & Theme
 
 
 

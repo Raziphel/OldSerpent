@@ -4,16 +4,11 @@ import asyncpg
 class Currency(object):
     all_currency = {}
 
-    def __init__(self, user_id:int, silver:int=0, gold:int=0, emerald:int=0, diamond:int=0, ruby:int=0, sapphire:int=0, amethyst:int=0, crimson:int=0):
+    def __init__(self, user_id:int, gold_coins:int=0, good_coins:int=0, evil_coins:int=0):
         self.user_id = user_id
-        self.silver = silver
-        self.gold = gold
-        self.emerald = emerald
-        self.diamond = diamond
-        self.ruby = ruby
-        self.sapphire = sapphire
-        self.amethyst = amethyst
-        self.crimson = crimson
+        self.gold_coins = gold_coins
+        self.good_coins = good_coins
+        self.evil_coins = evil_coins
 
         self.all_currency[self.user_id] = self
 
@@ -23,18 +18,18 @@ class Currency(object):
             await db('''
                 INSERT INTO currency
                 VALUES
-                ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+                ($1, $2, $3, $4)
                 ''',
-                self.user_id, self.silver, self.gold, self.emerald, self.diamond, self.ruby, self.sapphire, self.amethyst, self.crimson
+                self.user_id, self.gold_coins, self.good_coins, self.evil_coins
             )
         except asyncpg.exceptions.UniqueViolationError: 
             await db('''
                 UPDATE currency SET
-                silver=$2, gold=$3, emerald=$4, diamond=$5, ruby=$6, sapphire=$7, amethyst=$8, crimson=$9
+                gold_coins=$2, good_coins=$3, evil_coins=$4
                 WHERE
                 user_id=$1
                 ''',
-                self.user_id, self.silver, self.gold, self.emerald, self.diamond, self.ruby, self.sapphire, self.amethyst, self.crimson
+                self.user_id, self.gold_coins, self.good_coins, self.evil_coins
             )
 
     @classmethod
@@ -45,3 +40,13 @@ class Currency(object):
             return cls(user_id)
         return user
 
+
+    @classmethod 
+    def get_total_gold(cls):
+        '''
+        Gets all the user's collected amount of gold 
+        '''
+        total = 0
+        for i in cls.all_currency.values():
+            total += i.gold_coins
+        return total
