@@ -1,5 +1,9 @@
 
 
+###########################################################################
+#########################     USER INFORMATION    #########################
+###########################################################################
+
 
 CREATE TABLE levels (
     user_id bigint NOT NULL,
@@ -11,7 +15,6 @@ CREATE TABLE levels (
 );
 
 
-
 CREATE TABLE settings (
     user_id bigint NOT NULL,
     vc_msgs integer,
@@ -19,17 +22,6 @@ CREATE TABLE settings (
     color integer,
     PRIMARY KEY (user_id)
 );
-
-
-
-CREATE TABLE currency (
-    user_id bigint NOT NULL,
-    gold_coin integer,
-    good_coin integer,
-    evil_coin integer,
-    PRIMARY KEY (user_id)
-);
-
 
 
 CREATE TABLE moderation (
@@ -41,7 +33,6 @@ CREATE TABLE moderation (
 );
 
 
-
 CREATE TABLE tracking (
     user_id bigint NOT NULL,
     messages integer DEFAULT 0,
@@ -50,6 +41,42 @@ CREATE TABLE tracking (
     PRIMARY KEY (user_id)
 );
 
+
+CREATE TABLE tempmute_timeout (
+    user_id bigint NOT NULL,
+    unmute_time TIMESTAMP,
+    PRIMARY KEY (user_id)
+);
+
+
+###########################################################################
+######################     USER RESOURCES / VALUE    ########################
+###########################################################################
+
+
+CREATE TABLE currency (
+    user_id bigint NOT NULL,
+    coins integer,
+    taxed integer,
+    spent integer,
+    paid integer,
+    PRIMARY KEY (user_id)
+);
+
+
+CREATE TABLE resources (
+    user_id bigint NOT NULL,
+    coins integer,
+    taxed integer,
+    spent integer,
+    paid integer,
+    PRIMARY KEY (user_id)
+);
+
+
+###########################################################################
+#########################     SERVERS / GUILD    ##########################
+###########################################################################
 
 
 CREATE TABLE mines (
@@ -60,15 +87,6 @@ CREATE TABLE mines (
     last_reward_amount integer,
     PRIMARY KEY (channel_id)
 );
-
-
-
-CREATE TABLE tempmute_timeout (
-    user_id bigint NOT NULL,
-    unmute_time TIMESTAMP,
-    PRIMARY KEY (user_id)
-);
-
 
 
 CREATE TABLE timers (

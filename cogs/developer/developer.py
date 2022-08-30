@@ -80,6 +80,28 @@ class Developer(Cog):
                 async with self.bot.database() as db:
                         await mod.save(db)
 
+
+
+    @utils.is_dev()
+    @command()
+    async def payday(self, ctx):
+        '''Gives everyone some coins as a payday!'''
+        guild = self.bot.get_guild(self.bot.config['razisrealm_id'])
+
+        for user in guild.members:
+            c = utils.Currency.get(user.id)
+            lvl = utils.Levels.get(user.id)
+            goodcoins = (lvl.level*5)
+            c.good_coins += goodcoins
+            print('giving a padyday!')
+
+            async with self.bot.database() as db:
+                await c.save(db)
+
+
+
+
+
 def setup(bot):
     x = Developer(bot)
     bot.add_cog(x)

@@ -1,12 +1,13 @@
 Welcomes = ([
     "Ooo look who decided to show up.", 
-    "Welcome to Hell", "Omg, I konw this guy.", 
+    "Welcome to Hell", 
+    "Omg, I know this guy.", 
     "Look what the cat dragged in.", 
     "Aye yo welcome.", 
     "You lookin' clapped",
     "You got the 69th welcome message!!!",
     "Wow you lookin' like a rat!",
-    "Put that thing away, theres like, children here.",
+    "Bruh this guy seems lame!",
     "Oh hey!",
-    "Wow we've been expecting you!",
+    "We've been expecting you!",
 ])

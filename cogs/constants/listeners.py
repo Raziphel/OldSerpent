@@ -119,7 +119,7 @@ class Listeners(Cog):
                     track = utils.Tracking.get(member.id)
                     ss = utils.Settings.get(member.id)
                     exp = 10 + (len(vc.members)*2.75) + (lvl.level/3)
-                    gold = 15 + round(len(vc.members)*5.25)
+                    gold = 5 + round(len(vc.members)*5.25)
                     lvl.exp += round(exp)
                     c.gold_coins += gold
                     track.vc_mins += 10
@@ -135,9 +135,9 @@ class Listeners(Cog):
 
 
                     if ss.vc_msgs == True:
-                        await member.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{gold:,} {self.bot.config['emotes']['gold']} From being in VC!**"))
+                        await member.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{gold:,} {self.bot.config['emotes']['goldcoin']} From being in VC!**"))
 
-                    await self.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{gold:,} {self.bot.config['emotes']['gold']} From being in VC!**"))
+                    await self.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"VC Earnings!", desc=f"{member.mention} earned **{round(exp):,} EXP!**\n**{gold:,} {self.bot.config['emotes']['goldcoin']} From being in VC!**"))
 
 
     @exp_voice_gen_loop.before_loop

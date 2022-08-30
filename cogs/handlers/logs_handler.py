@@ -34,6 +34,10 @@ class Logging(Cog):
     def welcome_log(self):
         return self.bot.get_channel(self.bot.config['channels']['greetings'])
 
+    @property  #! The adult logs
+    def adult_log(self):
+        return self.bot.get_channel(self.bot.config['channels']['adult_log'])
+
 
 
     #! Welcome channel 
@@ -97,20 +101,22 @@ class Logging(Cog):
     @Cog.listener()
     async def on_message_delete(self, message):
         if message.author.bot: return
+        image = None
         if message.attachments: 
             image = message.attachments[0].url 
-        else: image = None
-        try:
-            await self.message_log.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar.url, image=image))
-        except: pass #? Fail Silently
+        if message.channel.is_nsfw():
+            channel = self.adult_log
+        else: channel = self.message_log
+        await channel.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar.url, image=image))
 
     @Cog.listener()
     async def on_message_edit(self, before, after):
         if before.author.bot: return
         if before.content == after.content: return
-        try:
-            await self.message_log.send(embed=utils.LogEmbed(type="change", title=f"Message Edited", desc=f"**Author:** {before.author.mention}\n**Channel:** <#{before.channel.id}>\n**Before:**\n{before.content}\n\n**after:**\n{after.content}", thumbnail=before.author.avatar.url))
-        except: pass #? Fail Silently
+        if before.channel.is_nsfw():
+            channel = self.adult_log
+        else: channel = self.message_log
+        await channel.send(embed=utils.LogEmbed(type="change", title=f"Message Edited", desc=f"**Author:** {before.author.mention}\n**Channel:** <#{before.channel.id}>\n**Before:**\n{before.content}\n\n**after:**\n{after.content}", thumbnail=before.author.avatar.url))
 
     @Cog.listener()
     async def on_guild_channel_pins_update(self, channel, last_pin):
@@ -118,6 +124,28 @@ class Logging(Cog):
             await self.message_log.send(embed=utils.LogEmbed(type="positive", title=f"Message Pinned", desc=f"A pinned in: <#{channel.id}>\n{last_pin} was made/modify!"))
         except: pass #? Fail Silently
 
+    @Cog.listener()
+    async def on_member_update(self, before, after):
+        if before.premium_since is None and after.premium_since is not None:
+            c = utils.Currency(before.author.id)
+            try:
+                await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**+500 {goldcoin}**\n**+5 {goodcoin}**\n**+5 {evilcoin}**", footer=f"You can expect this reward every 30 days!"))
+            except: pass
+            c.gold_coins += 500
+            c.good_coins += 25
+            c.evil_coins += 1
+            for user in guild.members:
+                if nitro in user.roles:
+                    c = utils.Currency(user.id)
+                    try:
+                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward becuase someone nitro boosted!\n\n**+500 {goldcoin}**\n**+5 {goodcoin}**\n**+5 {evilcoin}**", footer=f"You can expect this reward every time someone boosts!"))
+                    except: pass
+                    c.gold_coins += 100
+                    c.good_coins += 10
+                    c.evil_coins += 0
+                    async with self.bot.database() as db:
+                        await c.save(db)
+                    print('Handed out Boost rewards')
 
 
 

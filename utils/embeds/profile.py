@@ -57,7 +57,7 @@ class ProfileEmbed(Embed):
         t2supporter = utils.DiscordGet(guild.roles, id=704876369741480006)
         t3supporter = utils.DiscordGet(guild.roles, id=869140987392450620)
         t4supporter = utils.DiscordGet(guild.roles, id=1012179424940142613)
-        support = None
+        support = "❌ Nota'Supporter"
         adult = None
         if t1supporter in user.roles:
             support = f"<:nitro:1012165382901092462> Tier I Supporter"
@@ -81,8 +81,8 @@ class ProfileEmbed(Embed):
         #* Add author
         self.set_author(name=f"{user.name}'s Profile", icon_url=user.avatar.url, url=patron)
         self.add_field(name='📚 INFORMATION', value=f"**{adult}\n{support}**\n", inline=True)
-        self.add_field(name='📊 LEVELING', value=f"❧ Level Rank: **#{rank+1}**\n❧ Level: **{lvl.level}**\n❧ Exp: **{floor(lvl.exp):,}/{requiredexp:,}**\n", inline=True)
-        self.add_field(name='🥇 RECORDS', value=f"❧ Messages: **{tr.messages:,}**\n❧ VC Hours: **{floor(tr.vc_mins/60):,} ({floor((tr.vc_mins/60)/24):,} Days)**", inline=True)
-        self.add_field(name='💲 CURRENCY', value=f"❧ {goldcoin} : **{floor(c.gold_coins):,}x**\n❧ {goodcoin} : **{floor(c.good_coins):,}x**\n❧ {evilcoin} : **{floor(c.evil_coins):,}x**", inline=True)
+        self.add_field(name='📊 LEVELING', value=f"🔶 Level Rank: **#{rank+1}**\n🔷 Level: **{lvl.level}**\n♦ Exp: **{floor(lvl.exp):,}/{requiredexp:,}**\n", inline=True)
+        self.add_field(name='🥇 RECORDS', value=f"✉ Messages: **{tr.messages:,}**\n🎤 VC Hours: **{floor(tr.vc_mins/60):,} ({floor((tr.vc_mins/60)/24):,} Days)**", inline=True)
+        self.add_field(name='💸 CURRENCY', value=f"{goldcoin} : **{floor(c.gold_coins):,}x**\n{goodcoin} : **{floor(c.good_coins):,}x**\n{evilcoin} : **{floor(c.evil_coins):,}x**", inline=True)
         self.add_field(name='-', value=f"**Work In Progress**", inline=True)
         self.set_footer(text=f"Joined Ferret's Palace: {joined_at}")

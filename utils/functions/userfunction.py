@@ -31,47 +31,23 @@ class UserFunction(object):
         c = utils.Currency.get(user.id)
 
         #* Emojis
-        silver_e = "<:Silver:994737895707525181>"
-        gold_e = "<:Gold:994737893014773790>"
-        emerald_e = "<:Emerald:994737891735511050>"
-        diamond_e = "<:Diamond:994737890582069278>"
-        ruby_e = "<:Ruby:994737896567357461>"
-        sapphire_e = "<:Sapphire:994737897871782031>"
-        amethyst_e = "<:Amethyst:994738216022319124> "
-        crimson_e = "<:Crimson:994737894499569746>"
+        goldcoin = "<:GoldCoin:1011145571240779817>"
+        goodcoin = "<:GoodCoin:1011145572658446366>"
+        evilcoin = "<:EvilCoin:1011145570112512051>"
 
         RNG = choice([1.25, 1.30, 1.35, 1, 1, 1])
 
         #! Yes, this is some crazy varible maddness!  It could be better...
         lvl.level += 1
-        if lvl.level <= 20: #! Levels 20: Diamond & Emerald.
-            amount_1 = (lvl.level*2.0) * RNG
-            amount_2 = lvl.level * RNG
-            c.diamond += amount_1
-            c.emerald += amount_2
-            emoji_1 = diamond_e
-            emoji_2 = emerald_e
-        elif lvl.level <= 40: #! Levels 40: Ruby and Diamond.
-            amount_1 = (lvl.level*1.5) * RNG
-            amount_2 = (lvl.level*1.1) * RNG
-            c.ruby += amount_1
-            c.diamond += amount_2
-            emoji_1 = ruby_e
-            emoji_2 = diamond_e
-        elif lvl.level <= 60: #! Levels 60: Sapphire and Ruby.
-            amount_1 = (lvl.level*1.0) * RNG
-            amount_2 = (lvl.level*1.2) * RNG
-            c.sapphire += amount_1
-            c.ruby += amount_2
-            emoji_1 = sapphire_e
-            emoji_2 = ruby_e
-        elif lvl.level <= 80: #! Levels 80: Amethyst and Sapphire.
-            amount_1 = (lvl.level*0.1) * RNG
-            amount_2 = (lvl.level*1.3) * RNG
-            c.amethyst += amount_1
-            c.sapphire += amount_2
-            emoji_1 = amethyst_e
-            emoji_2 = sapphire_e
+        amount_1 = (lvl.level*3) * RNG
+        amount_2 = (lvl.level*2) * RNG
+        amount_3 = floor(lvl.level/2) * RNG
+        c.gold_coins += amount_1
+        c.good_coins += amount_2
+        c.evil_coins += amount_3
+        emoji_1 = goldcoin
+        emoji_2 = goodcoin
+        emoji_3 = evilcoin
 
         lvl.exp = 0
 
@@ -82,9 +58,9 @@ class UserFunction(object):
         if channel == None:
             return
         else:
-            msg = await channel.send(embed=utils.SpecialEmbed(title=f"🎉{user.name} Is Level {lvl.level:,}!", desc=f"You were rewarded: **{round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}**", footer=" "))
+            msg = await channel.send(embed=utils.SpecialEmbed(title=f"🎉{user.name} Is Level {lvl.level:,}!", desc=f"You were rewarded: **{round(amount_1):,}x {emoji_1}\n {round(amount_2):,}x {emoji_2}\n {round(amount_3):,}x {emoji_3}**", footer=" "))
 
-        try: await cls.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} ~~~ {round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}**"))
+        try: await cls.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} ~~~ {round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}\n {round(amount_3):,}x {emoji_3}**"))
         except: pass
 
         await sleep(2)

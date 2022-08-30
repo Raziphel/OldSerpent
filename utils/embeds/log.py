@@ -15,6 +15,7 @@ class LogEmbed(Embed):
         desc = kwargs.pop('desc', None)
         thumbnail = kwargs.pop('thumbnail', None)
         footer = kwargs.pop('footer', None)
+        image = kwargs.pop('image', None)
 
 
         #! Make the embed
@@ -50,3 +51,6 @@ class LogEmbed(Embed):
         #* Add Thumbnail
         if thumbnail:
             self.set_thumbnail(url=thumbnail)
+
+        if image != None:
+            self.set_image(url=image)

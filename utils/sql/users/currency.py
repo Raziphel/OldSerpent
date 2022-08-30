@@ -41,6 +41,27 @@ class Currency(object):
         return user
 
 
+    @classmethod
+    def sort_gold_coins(cls):
+        '''sorts the user's by balance. getting ranks!'''
+        sorted_coins = sorted(cls.all_currency.values(), key=lambda u: u.gold_coins, reverse=True)
+        return sorted_coins
+
+
+    @classmethod
+    def sort_good_coins(cls):
+        '''sorts the user's by balance. getting ranks!'''
+        sorted_coins = sorted(cls.all_currency.values(), key=lambda u: u.good_coins, reverse=True)
+        return sorted_coins
+
+
+    @classmethod
+    def sort_evil_coins(cls):
+        '''sorts the user's by balance. getting ranks!'''
+        sorted_coins = sorted(cls.all_currency.values(), key=lambda u: u.evil_coins, reverse=True)
+        return sorted_coins
+
+
     @classmethod 
     def get_total_gold(cls):
         '''
@@ -49,4 +70,26 @@ class Currency(object):
         total = 0
         for i in cls.all_currency.values():
             total += i.gold_coins
+        return total
+
+
+    @classmethod 
+    def get_total_good(cls):
+        '''
+        Gets all the user's collected amount of good 
+        '''
+        total = 0
+        for i in cls.all_currency.values():
+            total += i.good_coins
+        return total
+
+
+    @classmethod 
+    def get_total_evil(cls):
+        '''
+        Gets all the user's collected amount of evil
+        '''
+        total = 0
+        for i in cls.all_currency.values():
+            total += i.evil_coins
         return total
