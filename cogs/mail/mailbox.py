@@ -159,7 +159,7 @@ class Mail_Box(Cog):
         if emoji.name == '✅':
             #! Archive it!
             embed.colour = 0x008800
-            await author.send(f"**You have been verified!  Welcome to Ferret's Palace Furrys!**")
+            await author.send(f"**You have been verified!  Welcome to Razi's Realm Furrys!**")
             embed.set_footer(text='Verification archived on ' + dt.utcnow().strftime('%a %d %B %H:%M'))
             await self.archive.send(f'Archived by <@{payload.user_id}>.', embed=embed)
             await message.delete()

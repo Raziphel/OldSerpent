@@ -45,7 +45,7 @@ class Logging(Cog):
     async def on_member_join(self, member):
         if self.welcome_log == None: return #! Fail silently
         greeting = choice(Welcomes)
-        desc = f'__**Welcome {member.name} to Ferret\'s Palace.**__\nKeep in mind, you will need to go to <#997346872622596136> to gain access to channels!\n*Enjoy your stay~*'
+        desc = f'__**Welcome {member.name} to Razi\'s Realm.**__\nKeep in mind, you will need to go to <#997346872622596136> to gain access to channels!\n*Enjoy your stay~*'
         await self.welcome_log.send(f"{member.mention}")
         await self.welcome_log.send(embed=utils.SpecialEmbed(title=f"{greeting}", desc=desc, thumbnail=member.avatar.url))
         await self.members_log.send(embed=utils.LogEmbed(type=f"positive", title=f"New member joined", desc=f"Username: {member.name}\nStatus: {member.status}", thumbnail=member.avatar.url))

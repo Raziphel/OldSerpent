@@ -37,7 +37,7 @@ class Shop_Handler(Cog):
         goodcoin = "<:GoodCoin:1011145572658446366>"
         evilcoin = "<:EvilCoin:1011145570112512051>"
 
-        embed1=Embed(title=f"**[- The Ferret's Shop -]**", description=f"**By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.**\n\n**Exclusive Items:**\n*Items that are purposely made very expensive, due to there value!*", color=0x47F5DB)
+        embed1=Embed(title=f"**[- The Realm's Shop -]**", description=f"**By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.**\n\n**Exclusive Items:**\n*Items that are purposely made very expensive, due to there value!*", color=0x47F5DB)
         embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n**{evilcoin} 1,000x**", inline=True)
         embed1.add_field(name=f"⭐ ❧ Discord Nitro Basic", value=f"*Get the 5$ Discord Nitro Basic.*\n**{evilcoin} 500x**", inline=True)
 

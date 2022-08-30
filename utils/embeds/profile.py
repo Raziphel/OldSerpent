@@ -85,4 +85,4 @@ class ProfileEmbed(Embed):
         self.add_field(name='🥇 RECORDS', value=f"✉ Messages: **{tr.messages:,}**\n🎤 VC Hours: **{floor(tr.vc_mins/60):,} ({floor((tr.vc_mins/60)/24):,} Days)**", inline=True)
         self.add_field(name='💸 CURRENCY', value=f"{goldcoin} : **{floor(c.gold_coins):,}x**\n{goodcoin} : **{floor(c.good_coins):,}x**\n{evilcoin} : **{floor(c.evil_coins):,}x**", inline=True)
         self.add_field(name='-', value=f"**Work In Progress**", inline=True)
-        self.set_footer(text=f"Joined Ferret's Palace: {joined_at}")
+        self.set_footer(text=f"Joined Razi's Realm: {joined_at}")
