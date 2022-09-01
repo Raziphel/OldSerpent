@@ -98,7 +98,7 @@ class Reward_Handler(Cog):
                 self.gold_messages.remove(message.id)
                 await message.clear_reactions()
                 gold_coins = choice([25, 15, 5])
-                c.gold_coins += gold_coins
+                c.coins += gold_coins
                 msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{gold_coins} {gold_e}x**", footer=f"", guild=guild))
                 try: await self.currency_log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{gold_coins} {gold_e}x**", guild=guild))
                 except: pass

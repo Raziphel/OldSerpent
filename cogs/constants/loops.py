@@ -210,7 +210,7 @@ class Loops(Cog):
                     try:
                         await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**+500 {goldcoin}**\n**+5 {goodcoin}**\n**+5 {evilcoin}**", footer=f"You can expect this reward every 30 days!"))
                     except: pass
-                    c.gold_coins += 500
+                    c.coins += 500
                     c.good_coins += 50
                     c.evil_coins += 1
                     async with self.bot.database() as db:

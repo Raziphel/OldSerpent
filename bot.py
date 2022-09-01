@@ -3,11 +3,11 @@ from glob import glob
 
 from discord import Intents
 
-from ferret import Ferret
+from zelaphel import Zelaphel
 
 
 intents = Intents.all()
-bot = Ferret(
+bot = Zelaphel(
     command_prefix=[".", "!"],
     config_filename="config/config.toml",
     intents=intents

@@ -2,15 +2,14 @@ from utils.database import DatabaseConnection
 from datetime import datetime as dt, timedelta
 import asyncpg
 
-class Levels(object):
+class Main_Level(object):
     all_levels = {}
 
-    def __init__(self, user_id:int, level:int=0, exp:int=0, last_xp:str=dt.utcnow(), prestige:int=0):
+    def __init__(self, user_id:int, level:int=0, exp:int=0, last_xp:str=dt.utcnow()):
         self.user_id = user_id
         self.level = level
         self.exp = exp
         self.last_xp = last_xp or dt.utcnow()
-        self.prestige = prestige
 
         self.all_levels[self.user_id] = self
 
@@ -18,20 +17,20 @@ class Levels(object):
         '''Saves all of the connected user varibles'''
         try:
             await db('''
-                INSERT INTO levels
+                INSERT INTO main_level
                 VALUES
                 ($1, $2, $3, $4, $5)
                 ''',
-                self.user_id, self.level, self.exp, self.last_xp, self.prestige
+                self.user_id, self.level, self.exp, self.last_xp
             )
         except asyncpg.exceptions.UniqueViolationError: 
             await db('''
-                UPDATE levels SET
-                level=$2, exp=$3, last_xp=$4, prestige=$5
+                UPDATE main_level SET
+                level=$2, exp=$3, last_xp=$4
                 WHERE
                 user_id=$1
                 ''',
-                self.user_id, self.level, self.exp, self.last_xp, self.prestige
+                self.user_id, self.level, self.exp, self.last_xp
             )
 
     @classmethod

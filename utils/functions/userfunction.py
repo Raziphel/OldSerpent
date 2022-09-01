@@ -42,7 +42,7 @@ class UserFunction(object):
         amount_1 = (lvl.level*3) * RNG
         amount_2 = (lvl.level*2) * RNG
         amount_3 = floor(lvl.level/2) * RNG
-        c.gold_coins += amount_1
+        c.coins += amount_1
         c.good_coins += amount_2
         c.evil_coins += amount_3
         emoji_1 = goldcoin

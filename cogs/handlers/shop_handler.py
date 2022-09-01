@@ -122,7 +122,7 @@ class Shop_Handler(Cog):
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Library pass!", footer=" "))
                     bought = True
-                    c.gold_coins -= item['gold_coins']
+                    c.coins -= item['gold_coins']
                     library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['library_pass'])
                     await user.add_roles(adult_library_pass, reason="Given a Library Pass role.")
 
@@ -133,7 +133,7 @@ class Shop_Handler(Cog):
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Image pass!", footer=" "))
                     bought = True
-                    c.gold_coins -= item['gold_coins']
+                    c.coins -= item['gold_coins']
                     library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['image_pass'])
                     await user.add_roles(adult_library_pass, reason="Given a Image Pass role.")
 
@@ -178,8 +178,8 @@ class Shop_Handler(Cog):
             check = lambda x, y: y.id == user.id and x.message.id == msg.id and x.emoji in ["✔", "❌"]
             r, _ = await self.bot.wait_for('reaction_add', check=check)
             if r.emoji == "✔":
-                if c.gold_coins < item["gold_coins"]:
-                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Gold Coins for: `{item['name']}`!\nYou need " + str(floor(item["gold_coins"] - c.gold_coins)) + " more Gold Coins!", footer=" "))
+                if c.coins < item["gold_coins"]:
+                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Gold Coins for: `{item['name']}`!\nYou need " + str(floor(item["gold_coins"] - c.coins)) + " more Gold Coins!", footer=" "))
                     return False
                 elif c.good_coins < item["good_coins"]:
                     await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Good Coins for: `{item['name']}`!\nYou need " + str(floor(item["good_coins"] - c.good_coins)) + " more Good Coins!", footer=" "))

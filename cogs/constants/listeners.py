@@ -63,7 +63,7 @@ class Listeners(Cog):
             rng = choice([0.75, 1.0, 1.25, 1.50, 2.0])
             exp += (lvl.level/6) + (unique_words*rng)
             reward = (unique_words/8)*rng
-            c.gold_coins += reward 
+            c.coins += reward 
 
             #! Command Usage Secret Increase!?
             if message.content.startswith(self.bot.config['prefix']):
@@ -121,7 +121,7 @@ class Listeners(Cog):
                     exp = 10 + (len(vc.members)*2.75) + (lvl.level/3)
                     gold = 5 + round(len(vc.members)*5.25)
                     lvl.exp += round(exp)
-                    c.gold_coins += gold
+                    c.coins += gold
                     track.vc_mins += 10
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)

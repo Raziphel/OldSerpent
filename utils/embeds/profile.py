@@ -83,6 +83,6 @@ class ProfileEmbed(Embed):
         self.add_field(name='📚 INFORMATION', value=f"**{adult}\n{support}**\n", inline=True)
         self.add_field(name='📊 LEVELING', value=f"🔶 Level Rank: **#{rank+1}**\n🔷 Level: **{lvl.level}**\n♦ Exp: **{floor(lvl.exp):,}/{requiredexp:,}**\n", inline=True)
         self.add_field(name='🥇 RECORDS', value=f"✉ Messages: **{tr.messages:,}**\n🎤 VC Hours: **{floor(tr.vc_mins/60):,} ({floor((tr.vc_mins/60)/24):,} Days)**", inline=True)
-        self.add_field(name='💸 CURRENCY', value=f"{goldcoin} : **{floor(c.gold_coins):,}x**\n{goodcoin} : **{floor(c.good_coins):,}x**\n{evilcoin} : **{floor(c.evil_coins):,}x**", inline=True)
+        self.add_field(name='💸 CURRENCY', value=f"{goldcoin} : **{floor(c.coins):,}x**\n{goodcoin} : **{floor(c.good_coins):,}x**\n{evilcoin} : **{floor(c.evil_coins):,}x**", inline=True)
         self.add_field(name='-', value=f"**Work In Progress**", inline=True)
         self.set_footer(text=f"Joined Razi's Realm: {joined_at}")

@@ -90,7 +90,7 @@ class Mines_Handler(Cog):
                 msg = await channel.fetch_message(m.last_msg)
                 await msg.edit(embed=utils.SpecialEmbed(color=0x006400, title=f'You managed to do some mining!!', desc=f'{member.mention} has recieved: <:GoldCoin:1011145571240779817> {m.last_reward_amount}x'))
 
-                c.gold_coins += amount
+                c.coins += amount
 
                 async with self.bot.database() as db:
                     await m.save(db)
