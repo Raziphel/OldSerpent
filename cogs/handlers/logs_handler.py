@@ -58,7 +58,7 @@ class Logging(Cog):
         print(self.bot.user.name)
         print(self.bot.user.id)
         print('__________________')
-        await self.bot_log.send(embed=utils.LogEmbed(type="positive", title=f"Herby is Online!", desc=f"Ping: {math.floor(self.bot.latency*1000)}"))
+        await self.bot_log.send(embed=utils.LogEmbed(type="positive", title=f"Zelaphel is Online!", desc=f"Ping: {math.floor(self.bot.latency*1000)}"))
 
     @Cog.listener()
     async def on_guild_join(self, guild):

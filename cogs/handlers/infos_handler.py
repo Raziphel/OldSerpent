@@ -42,7 +42,7 @@ class rules_handler(Cog):
         embed3=Embed(title=f"**[- The Punishment System -]**", 
         description=f"**By absolutely no means do the Council have to be \"Fair\", in any situation or decision. They are put there for a reason and we usually run everything past one another.**\n\nFor most situations a Council member will give a single warning and after that you are completely fair game; from that council member or any other for whatever punishment that believe you deserve.  Lying about your age, breaking Discord TOS sending spam, hate, phishing links or scamming in anyway is awlays going to be a insta-ban with no warning.  *It will not be tolerated at all.*", color=0xB6F547)
 
-        embed4=Embed(title=f"**[- Herby!  Razi's Pet -]**", 
+        embed4=Embed(title=f"**[- Zelaphel -]**", 
         description=f"*The Bot generating this text your reading right now, is soley coded and maintained by Council 01.*\n\nI, The Mink does practically everything for this server!  It is quite important you have your settings set up where you can recieve dms from me.  It would also be very foolish to block me; if ya plan on using this server atleast.", color=0x89F547)
 
         embed5=Embed(title=f"**[- Logging -]**", 
