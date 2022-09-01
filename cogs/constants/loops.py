@@ -195,6 +195,11 @@ class Loops(Cog):
     async def one_hour_loop(self):
         """The loop that handles updating things every 60 minutes."""
 
+        #? Check if bot is connected!
+        if self.bot.connected == False:
+            return
+
+
         guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1supporter'])
         goldcoin = "<:GoldCoin:1011145571240779817>"

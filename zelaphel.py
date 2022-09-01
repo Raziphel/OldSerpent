@@ -70,7 +70,6 @@ class Zelaphel(commands.AutoShardedBot):
 
             #? Admin
             utils.Timers.all_timers.clear()
-            utils.Mines.all_mines.clear()
 
 
             #!   Collect from Database
