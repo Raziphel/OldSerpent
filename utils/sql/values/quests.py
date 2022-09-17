@@ -4,7 +4,7 @@ import asyncpg
 class Quests(object):
     all_quests = {}
 
-    def __init__(self, user_id:int, main_quest:str, side_quest:str):
+    def __init__(self, user_id:int, main_quest:str="Choose Start", side_quest:str="Go Fishing"):
         self.user_id = user_id
         self.main_quest = main_quest
         self.side_quest = side_quest

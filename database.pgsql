@@ -168,3 +168,15 @@ CREATE TABLE timers (
     PRIMARY KEY (guild_id)
 );
 
+
+
+
+
+
+
+
+
+
+SCP GITHUB KEY:
+
+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

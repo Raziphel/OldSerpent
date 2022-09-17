@@ -11,11 +11,9 @@ class Error_Handler(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
     @Cog.listener()
     async def on_command_error(self, ctx, error):
         '''Globally handles errors around the bot'''
-
 
         if isinstance(error, CommandOnCooldown):
             countdown_time = error.retry_after
