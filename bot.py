@@ -3,11 +3,11 @@ from glob import glob
 
 from discord import Intents
 
-from zelaphel import Zelaphel
+from serpent import Serpent
 
 
 intents = Intents.all()
-bot = Zelaphel(
+bot = Serpent(
     command_prefix=[".", "!"],
     config_filename="config/config.toml",
     intents=intents

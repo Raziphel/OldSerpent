@@ -44,10 +44,9 @@ class Logging(Cog):
     @Cog.listener()
     async def on_member_join(self, member):
         if self.welcome_log == None: return #! Fail silently
-        greeting = choice(Welcomes)
-        desc = f'__**Welcome {member.name} to Razi\'s Realm.**__\nKeep in mind, you will need to go to <#997346872622596136> to gain access to channels!\n*Enjoy your stay~*'
+        desc = f'__**Welcome {member.name} to Razi\'s Anomalies**__\nPlease read the rules channel, Its practically a wiki of information!\n*Enjoy your stay~*'
         await self.welcome_log.send(f"{member.mention}")
-        await self.welcome_log.send(embed=utils.SpecialEmbed(title=f"{greeting}", desc=desc, thumbnail=member.avatar.url))
+        await self.welcome_log.send(embed=utils.SpecialEmbed(title=f"Welcome new D-Class Personel", desc=desc, thumbnail=member.avatar.url))
         await self.members_log.send(embed=utils.LogEmbed(type=f"positive", title=f"New member joined", desc=f"Username: {member.name}\nStatus: {member.status}", thumbnail=member.avatar.url))
 
 
@@ -58,7 +57,7 @@ class Logging(Cog):
         print(self.bot.user.name)
         print(self.bot.user.id)
         print('__________________')
-        await self.bot_log.send(embed=utils.LogEmbed(type="positive", title=f"Zelaphel is Online!", desc=f"Ping: {math.floor(self.bot.latency*1000)}"))
+        await self.bot_log.send(embed=utils.LogEmbed(type="positive", title=f"Serpent is Online!", desc=f"Ping: {math.floor(self.bot.latency*1000)}"))
 
     @Cog.listener()
     async def on_guild_join(self, guild):

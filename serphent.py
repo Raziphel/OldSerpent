@@ -7,18 +7,18 @@ import utils
 from utils.database import DatabaseConnection
 
 
-#! ------------------------- Zelaphel Main Class
-class Zelaphel(commands.AutoShardedBot):
+#! ------------------------- Serpent Main Class
+class serpent(commands.AutoShardedBot):
     def __init__(self, config_filename:str, *args, logger:logging.Logger=None, **kwargs):
         super().__init__(*args, fetch_offline_members=True, guild_subscriptions=True, **kwargs)
 
-        self.logger = logger or logging.getLogger("Zelaphel")
+        self.logger = logger or logging.getLogger("Serpent")
         self.config_filename = config_filename
         self.config = None
         with open(self.config_filename) as z:
             self.config = toml.load(z)
 
-        #! Adds all embeds to the Zelaphel Bot.
+        #! Adds all embeds to the Serpent Bot.
         utils.DefualtEmbed.bot = self
         utils.SpecialEmbed.bot = self
         utils.LogEmbed.bot = self
