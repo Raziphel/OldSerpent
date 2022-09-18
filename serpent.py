@@ -8,7 +8,7 @@ from utils.database import DatabaseConnection
 
 
 #! ------------------------- Serpent Main Class
-class serpent(commands.AutoShardedBot):
+class Serpent(commands.AutoShardedBot):
     def __init__(self, config_filename:str, *args, logger:logging.Logger=None, **kwargs):
         super().__init__(*args, fetch_offline_members=True, guild_subscriptions=True, **kwargs)
 
