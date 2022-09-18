@@ -5,7 +5,6 @@ from discord.utils import get
 #* Additions
 import math
 from random import randint, choice
-from config.lists.welcomes import Welcomes
 
 import utils
 

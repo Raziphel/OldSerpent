@@ -89,7 +89,7 @@ class Reward_Handler(Cog):
 
         #! Define Emojis
         gold_e = self.bot.config['emotes']['goldcoin']
-        good_e =self.bot.config['emotes']['goodcoin']
+        good_e = self.bot.config['emotes']['goodcoin']
         evil_e = self.bot.config['emotes']['evilcoin']
 
         #! Get the correct item
