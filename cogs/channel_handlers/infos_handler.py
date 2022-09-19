@@ -75,7 +75,7 @@ class rules_handler(Cog):
         description=f"**Constant zones are outside of the Serpent's Game!**\nThese channels you can never lose access to, even if you die in the Serpent's Game!\n\n🎀 `05 Lounge`\nThis is a private area for friends of the 05 Council.  (05 council will give you this role)", color=0x47D0F5)
 
         embed3=Embed(title=f"**[- Zone Movement -]**", 
-        description=f"**These are all zones that you move between within the __Serpent's Game__!**\n🐍 `Wander's Library`\n**The Serpent's Hand Spawn Location!**\nThey can see all the bots logs! (Message edits, Deleted messages, ect...)\n", color=0x4799F5)
+        description=f"**These are all zones that you move between within the __Serpent's Game__!**\n\n🐍 `Wander's Library`\n**The Serpent's Hand Spawn Location!**\nThey can see all the bots logs! (Message edits, Deleted messages, ect...)\n*Only accessable \n\n💣 `Chaos Insurgency`", color=0x4799F5)
 
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
