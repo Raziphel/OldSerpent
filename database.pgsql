@@ -32,7 +32,7 @@ CREATE TABLE tracking (
 
 
 #############################################################################
-###################   LEVELS / USER RESOURCES / VALUE    ####################
+##################### LEVELS / USER RESOURCES / VALUE  ######################
 #############################################################################
 
 
@@ -48,7 +48,7 @@ CREATE TABLE leveling (
 CREATE TABLE character (
     user_id bigint NOT NULL,
     key_card integer DEFAULT 0,
-    role integer DEFAULT 0,
+    role_id integer DEFAULT 0,
     scp integer DEFAULT 0,
     PRIMARY KEY (user_id)
 );
@@ -60,31 +60,36 @@ CREATE TABLE currency (
     coins integer DEFAULT 500,
     taxed integer DEFAULT 0,
     spent integer DEFAULT 0,
-    paid integer DEFAULT 0,
+    earned integer DEFAULT 0,
     PRIMARY KEY (user_id)
 );
 
 
 
 ###########################################################################
-#########################     SERVERS / GUILD    ##########################
+#########################     SERVERS / SPECIAL    ########################
 ###########################################################################
 
 
 CREATE TABLE timers (
     guild_id bigint NOT NULL,
     last_nitro_reward TIMESTAMP,
+    last_daily TIMESTAMP,
+    last_weekly TIMESTAMP,
+    last_monthly TIMESTAMP,
     PRIMARY KEY (guild_id)
 );
 
 
-CREATE TABLE channel (
-    channel_id bigint NOT NULL,
-    1_scp integer DEFAULT 0,
-    2_scp integer DEFAULT 0,
-    3_scp integer DEFAULT 0,
-    last_nitro_reward TIMESTAMP,
-    PRIMARY KEY (channel_id)
+CREATE TABLE scps (
+    scp_id bigint NOT NULL,
+    zone_id bigint NOT NULL,
+    last_action TIMESTAMP,
+    last_move TIMESTAMP,
+    var_1 integer DEFAULT 0,
+    var_2 boolean DEFAULT false,
+    var_3 TIMESTAMP,
+    PRIMARY KEY (scp_id)
 );
 
 
