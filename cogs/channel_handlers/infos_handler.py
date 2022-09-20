@@ -68,14 +68,14 @@ class rules_handler(Cog):
         msg2 = await ch.fetch_message(1011068510320992325) #? msg
         msg3 = await ch.fetch_message(1011068526028660787) #? msg
 
-        embed1=Embed(title=f"**[- Age Verification -]**", 
-        description=f"**To gain access to the adult channels, which are not NSFW focused.**\n\n*(You will have to be accepted by the council via verification)*\n🔥 `Adult Verification`\nThis will give you access to any **Text & Voice** channels marked as Adult.\n\n💦 `Kinda Adult Verification`\nMarked as Adult but **No Adult Text** channel access!\nYou will have **Adult Voice** channel access.\n\n🎈 `Underage`\nPlease if your underage, get this role!  **Its so Moderators can protect you!**", color=0xD047F5)
+        embed1=Embed(title=f"**[- Redacted Areas -]**", 
+        description=f"📯 __Site-01__\nAs the **05 Council's & Alpha-1's** spawn location, Site-01 has access to the <#1021645303805390928> which has *very powerful abilites*!  Only accessible from **Wilderness**.\n\n🐍 __Wander's Library__\nAs the **Serpent's Hand** spawn location, The Wander's Library has access to all server logs documenting everything. Only accessible with **A Key**.\n\n💣 __Chaotic Bases__\nAs the **Chaos Insurgency's** spawn location, Chaotic bases has access to the <#1021664074469212220> which has tons of illegal items.  Only accessible from **Wilderness**.", color=0xD047F5)
 
         embed2=Embed(title=f"**[- Constant Access -]**", 
         description=f"**Constant zones are outside of the Serpent's Game!**\nThese channels you can never lose access to, even if you die in the Serpent's Game!\n\n🎀 `05 Lounge`\nThis is a private area for friends of the 05 Council.  (05 council will give you this role)", color=0x47D0F5)
 
         embed3=Embed(title=f"**[- Zone Movement -]**", 
-        description=f"**These are all zones that you move between within the __Serpent's Game__!**\n\n🐍 `Wander's Library`\n**The Serpent's Hand Spawn Location!**\nThey can see all the bots logs! (Message edits, Deleted messages, ect...)\n\n**Only accessable by Serpent's Hand or the team with 🔑 Serpent's Key.**\n\n💣 `Chaos Insurgency`", color=0x4799F5)
+        description=f"**These are all zones that you move between within the __Serpent's Game__!**\n\n📯 `Site-01`\n*The 05 Council's Only Location!*\n\n``````\n**Only accessable by Serpent's Hand or the team with 🔑 Serpent's Key.**\n\n💣 `Chaos Insurgency Base`\n*The Chaos Insurgency's Spawn.*\n\n**Accessible only by Chaos Insurgency!**\n\n `Chaos Insurgency Base`\n*The Chaos Insurgency's Spawn.*\n\n**Accessible only by Chaos Insurgency!**", color=0x4799F5)
 
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
