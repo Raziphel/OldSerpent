@@ -69,7 +69,7 @@ class rules_handler(Cog):
         msg3 = await ch.fetch_message(1011068526028660787) #? msg
 
         embed1=Embed(title=f"**[- Redacted Areas -]**", 
-        description=f"📯 __Site-01__\n- Spawn location for **05 Council**\n- Spawn location for **The Red Hand**\n- Access to the very powerful <#1021645303805390928>\n+ Only Accessible from **The Wilderness**\n\n🐍 __Wander's Library__\n\n- Spawn location for **The Serpent's Hand**\n- Access to all **Server's Logs**\n+ Only Accessible with a **Serpent's Ring**\n\n\n💣 __Chaotic Bases__\n- Spawn location for **Chaos Insurgency**\n- Access to <#1021664074469212220> with illegal items for sale.\n+ Only Accessible from **The Wilderness**", color=0xD047F5)
+        description=f"📯 __Site-01__\n- Spawn location for **05 Council**\n- Spawn location for **The Red Hand**\n- Access to the very powerful <#1021645303805390928>\n> Only Accessible from **The Wilderness**\n\n🐍 __Wander's Library__\n- Spawn location for **The Serpent's Hand**\n- Access to all **Server's Logs**\n> Only Accessible with a **Serpent's Ring**\n\n💣 __Chaotic Bases__\n- Spawn location for **Chaos Insurgency**\n- Access to <#1021664074469212220> with illegal items for sale.\n> Only Accessible from **The Wilderness**", color=0xD55735)
 
         embed2=Embed(title=f"**[- Constant Access -]**", 
         description=f"**Constant zones are outside of the Serpent's Game!**\nThese channels you can never lose access to, even if you die in the Serpent's Game!\n\n🎀 `05 Lounge`\nThis is a private area for friends of the 05 Council.  (05 council will give you this role)", color=0x47D0F5)
