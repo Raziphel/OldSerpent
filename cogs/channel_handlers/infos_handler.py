@@ -25,7 +25,7 @@ class rules_handler(Cog):
     @Cog.listener('on_ready')
     async def rules_msg(self):
         guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['info']['server']) #? Rules Channel
+        ch = guild.get_channel(self.bot.config['channels']['server']) #? Rules Channel
 
         rules1 = await ch.fetch_message(956470547426996244) #? 
         rules2 = await ch.fetch_message(956470556415361024) #? 
@@ -62,7 +62,7 @@ class rules_handler(Cog):
     @Cog.listener('on_ready')
     async def verify_msg(self):
         guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['info']['zones']) #? Rules Channel
+        ch = guild.get_channel(self.bot.config['channels']['zones']) #? Rules Channel
 
         msg1 = await ch.fetch_message(1011068499495497748) #? msg
         msg2 = await ch.fetch_message(1011068510320992325) #? msg
@@ -92,7 +92,7 @@ class rules_handler(Cog):
     @Cog.listener('on_ready')
     async def verify_msg(self):
         guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['info']['rules']) #? Rules Channel
+        ch = guild.get_channel(self.bot.config['channels']['rules']) #? Rules Channel
 
         table = await ch.fetch_message(1021285665373163530) #? msg
         msg1 = await ch.fetch_message(1021285478210748428) #? msg
