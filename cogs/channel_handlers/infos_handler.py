@@ -102,7 +102,7 @@ class rules_handler(Cog):
         description=f"Welcome to the Serpent's Game, this channel catalogs any and all the information relating to this server and my game!\n\n[1. Intro](https://discord.com/channels/689534383878701223/1020959150890565703/1021285617054789633)", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Intro -]**", 
-        description=f"For starters the point of the game is only entertainment, if you do not want to partake in the game you can simply be the Civilian / Dead player role excluding you from the game.", color=0x0000FF)
+        description=f"For starters the point of the game is only entertainment, if you do not want to par-take in the game you can simply be the Civilian / Dead player role excluding you from the game.\n\nFor those who wish to partake in The Serpent's Game however, any channel not assigned to a cetegory will be the primary channels you'll be using when playing!", color=0x0000FF)
 
         embed3=Embed(title=f"**[-  -]**", 
         description=f"", color=0xFFFFFF)
