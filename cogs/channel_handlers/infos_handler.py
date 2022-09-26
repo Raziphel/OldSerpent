@@ -25,7 +25,7 @@ class rules_handler(Cog):
     @Cog.listener('on_ready')
     async def rules_msg(self):
         guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['rules']) #? Rules Channel
+        ch = guild.get_channel(self.bot.config['channels']['info']['server']) #? Rules Channel
 
         rules1 = await ch.fetch_message(956470547426996244) #? 
         rules2 = await ch.fetch_message(956470556415361024) #? 
@@ -62,7 +62,7 @@ class rules_handler(Cog):
     @Cog.listener('on_ready')
     async def verify_msg(self):
         guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['verify']) #? Rules Channel
+        ch = guild.get_channel(self.bot.config['channels']['info']['zones']) #? Rules Channel
 
         msg1 = await ch.fetch_message(1011068499495497748) #? msg
         msg2 = await ch.fetch_message(1011068510320992325) #? msg
@@ -80,6 +80,59 @@ class rules_handler(Cog):
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
         await msg3.edit(content=f" ", embed=embed3)
+
+
+
+
+
+
+
+
+
+    @Cog.listener('on_ready')
+    async def verify_msg(self):
+        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        ch = guild.get_channel(self.bot.config['channels']['info']['rules']) #? Rules Channel
+
+        table = await ch.fetch_message(1021285665373163530) #? msg
+        msg1 = await ch.fetch_message(1021285478210748428) #? msg
+        msg2 = await ch.fetch_message(1021285487815700500) #? msg
+
+        embed1=Embed(title=f"**[- Table of Contents -]**", 
+        description=f"Welcome to the Serpent's Game, this channel catalogs any and all the information relating to this server and my game!\n\n[1. Intro](https://discord.com/channels/689534383878701223/1020959150890565703/1021285617054789633)", color=0xFF0000)
+
+        embed2=Embed(title=f"**[- Intro -]**", 
+        description=f"For starters the point of the game is only entertainment, if you do not want to partake in the game you can simply be the Civilian / Dead player role excluding you from the game.", color=0x0000FF)
+
+        embed3=Embed(title=f"**[-  -]**", 
+        description=f"", color=0xFFFFFF)
+
+        await table.edit(content=f" ", embed=embed1)
+        await msg1.edit(content=f" ", embed=embed2)
+        await msg2.edit(content=f" ", embed=embed3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
