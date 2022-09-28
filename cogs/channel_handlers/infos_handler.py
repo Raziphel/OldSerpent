@@ -69,7 +69,7 @@ class rules_handler(Cog):
         msg3 = await ch.fetch_message(1011068526028660787) #? msg
 
         embed1=Embed(title=f"**[- Redacted Areas -]**", 
-        description=f"📯 **__Site-01__**\n> Spawn location for **05 Council**\n> Spawn location for **The Red Hand**\n> Access to the very powerful <#1021645303805390928>\n`Only accessible from Civilian Area`\n\n🐍 **__Wander's Library__**\n> Spawn location for **The Serpent's Hand**\n> Access to all the **Server's & Bot's Logs**\n> Access to the <#1021172170178711563> which gives important information going on in the game.\n`Only accessible from Out-Skirts with a Serpent's Ring`\n\n💣 **__Chaotic Bases__**\n> Spawn location for **Chaos Insurgency**\n> Access to the <#1021664074469212220> with illegal items for sale.\n`Only accessible from The out-skirts`", color=0xFF0000)
+        description=f"📯 **__Site-01__**\n> Spawn location for **05 Council**\n> Spawn location for **The Red Hand**\n> Access to the very powerful <#1021645303805390928>\n`Only accessible from Civilian Area`\n\n🐍 **__Wander's Library__**\n> Spawn location for **The Serpent's Hand**\n> Access to all the **Server's & Bot's Logs**\n> Access to the <#1021172170178711563> which gives important information going on in the game\n`Only accessible from Out-Skirts with a Serpent's Ring`\n\n💣 **__Chaotic Bases__**\n> Spawn location for **Chaos Insurgency**\n> Access to the <#1021664074469212220> with illegal items for sale.\n`Only accessible from The out-skirts`", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Outside Areas -]**", 
         description=f"\n🎭 **__Civilian Areas__**\n> Spawn location for **Civilian**\n> A safe area for all roles\n`Only accessible from Redacted Areas and in any Entrance Zone`\n\n🌲 **__Out-Skirts__**\n> A total anarchy zone\n`Only accessible from Wander's Library, Chaos Base and any Site Entrance`", color=0x0000FF)
@@ -99,13 +99,13 @@ class rules_handler(Cog):
         msg2 = await ch.fetch_message(1021285487815700500) #? msg
 
         embed1=Embed(title=f"**[- Table of Contents -]**", 
-        description=f"Welcome to the Serpent's Game, this channel catalogs any and all the information relating to this server and my game!\n\n[1. Intro](https://discord.com/channels/689534383878701223/1020959150890565703/1021285617054789633)", color=0xFF0000)
+        description=f"Welcome to the Serpent's Game, this channel catalogs any and all the information relating to the entire Serpent's Garden.\n\n[1. Intro](https://discord.com/channels/689534383878701223/1020959150890565703/1021285478210748428)", color=0xFF0000)
 
-        embed2=Embed(title=f"**[- Intro -]**", 
-        description=f"For starters the point of the game is only entertainment, if you do not want to par-take in the game you can simply be the Civilian / Dead player role excluding you from the game.\n\nFor those who wish to partake in The Serpent's Game however, any channel not assigned to a cetegory will be the primary channels you'll be using when playing!", color=0x0000FF)
+        embed2=Embed(title=f"**[- 1. Intro (NEW) -]**", 
+        description=f"**Welcome to the Serpent's game!**\n\nFor starters the goal in development is to keep the game as simplistic as possible and be more a fun different Discord expierence.\nThere is currently no win conditions in the game at this time, this is planned to be changed some day.\n\n Reading throught this Handbook will be the 1 spot \"wikipedia\" for the entire game and how most things function!\nLook for the flairs in the titles such as (New or Changed) to find updates.", color=0x0000FF)
 
-        embed3=Embed(title=f"**[-  -]**", 
-        description=f"", color=0xFFFFFF)
+        embed3=Embed(title=f"**[- 2. The Roles (NEW) -]**", 
+        description=f"**Here is a list of all the current roles; along with information about each and how they play!**\n\n**__The 05 Council__**\nThe 05 Council", color=0xFFFFFF)
 
         await table.edit(content=f" ", embed=embed1)
         await msg1.edit(content=f" ", embed=embed2)
