@@ -94,22 +94,27 @@ class rules_handler(Cog):
         guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
         ch = guild.get_channel(self.bot.config['channels']['rules']) #? Rules Channel
 
-        table = await ch.fetch_message(1021285665373163530) #? msg
-        msg1 = await ch.fetch_message(1021285478210748428) #? msg
-        msg2 = await ch.fetch_message(1021285487815700500) #? msg
+        table = await ch.fetch_message(1021285665373163530) #? msg intro
+        msg1 = await ch.fetch_message(1021285478210748428) #? msg 1
+        msg2 = await ch.fetch_message(1021285487815700500) #? msg 2
+        msg3 = await ch.fetch_message(1021285495268982794) #? msg 3
 
         embed1=Embed(title=f"**[- Table of Contents -]**", 
-        description=f"Welcome to the Serpent's Game, this channel catalogs any and all the information relating to the entire Serpent's Garden.\n\n[1. Intro](https://discord.com/channels/689534383878701223/1020959150890565703/1021285478210748428)\n[2. The Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285487815700500)", color=0xFF0000)
+        description=f"Welcome to the Serpent's Game, this channel catalogs any and all the information relating to the entire Serpent's Garden.\n\n[1. Intro](https://discord.com/channels/689534383878701223/1020959150890565703/1021285478210748428)\n[2. The Faction Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285487815700500)\n[3. The Foundation Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285495268982794)", color=0xFF0000)
 
         embed2=Embed(title=f"**[- 1. Intro (NEW) -]**", 
         description=f"**Welcome to the Serpent's game!**\n\nFor starters the goal in development is to keep the game as simplistic as possible and be more a fun different Discord expierence.\nThere is currently no win conditions in the game at this time, this is planned to be changed some day.\n\n Reading throught this Handbook will be the 1 spot \"wikipedia\" for the entire game and how most things function!\nLook for the flairs in the titles such as (New or Changed) to find updates.", color=0x0000FF)
 
-        embed3=Embed(title=f"**[- 2. The Roles (NEW) -]**", 
-        description=f"**Here is a list of all the current roles; along with information about each and how they play!**\n\n<:foundation:1024847941665562634> **__The 05 Council__**\nThe 05 Council, known for being the Head leaders of the Foundation, play as staff role for the server, that players can not obtain unless accepted via application.  This is the only class that has Omni-Presense being able to see every zone and area, but not being able to partipate in the game beyone using the Red Hand or things located in Site-01.\n\n<:KETER:1020576689245392937> **__SCPs__**\nThese are the driving forces of everything.  In The Serpent's Game some of these are not played by players.  But the ones that are played by players will be the most deadly!  Sadly dying in this role, only re-contains the SCP.\n\n<:RedRightHand:1020893683853303828> **__Red Right Hand__**\nAka. Alpha-01 is known as being the Elite guard under the 05 Council and it carries over in the Serpent's game!  The Red right hand are to do orders given by the 05 Council, being the 05 Council's main way of participating in the game.\n\n🐍 **__Serpent's Hand__**\nSupporting force for the SCPs and an enemy to The Foundation!  Has access to the Wander's Library giving them the information advatage with access to the server logs. (Also viewable by 05, ofcourse.)  I, The Serpent could be considered the leader of this faction and give the orders.\n\n", color=0x00FF00)
+        embed3=Embed(title=f"**[- 2. The Faction Roles (NEW) -]**", 
+        description=f"**Here is a list of all the current roles outside of the Foundation; along with information about each and how they play!**\n\n<:foundation:1024847941665562634> **__The 05 Council__**\nThe 05 Council, known for being the Head leaders of the Foundation, play as staff role for the server, that players can not obtain unless accepted via application.  This is the only class that has Omni-Presense being able to see every zone and area, but not being able to partipate in the game beyone using the Red Hand or things located in Site-01.\n\n<:KETER:1020576689245392937> **__SCPs__**\nThese are the driving forces of everything.  In The Serpent's Game some of these are not played by players.  But the ones that are played by players will be the most deadly!  Sadly dying in this role, only re-contains the SCP.\n\n🐍 **__Serpent's Hand__**\nSupporting force for the SCPs and an enemy to The Foundation!  Has access to the Wander's Library giving them the information advatage with access to the server logs. (Also viewable by 05, ofcourse.)  I, The Serpent could be considered the leader of this faction and give the orders.\n\n💣 **__The Chaos Insurgency__**\nAnother enemy to the Foundation, but not for the SCP's sake!  This spliter faction from the foundation now seeks out its anomalies for there purposes.  Constantly wanting to recruit anyone whos been involved with the foundation; for use as forces against the founation!", color=0x00FF00)
+
+        embed4=Embed(title=f"**[- 3. The Foundation Roles (NEW) -]**", 
+        description=f"**Here is a list of all the current foundation roles; along with information about each and how they play!**\n\n<:RedRightHand:1020893683853303828> **__Red Right Hand__**\nAka. Alpha-01 is known as being the Elite guard under the 05 Council and it carries over in the Serpent's game!  The Red right hand are to do orders given by the 05 Council, being the 05 Council's main way of participating in the game.\n\n🥽 **__Mobile Task Force__**\nThe special task froce sent between facilities to take control of any situations that get out of control.  Primarily ordered by Facility managers to handle specific situations; however 05 Council could use them if situations arised to the location.\n\n🔑 **__Facility Managers__**\nAs the managers of the facility you have the highest card access of Level 4.", color=0x00FFF0)
 
         await table.edit(content=f" ", embed=embed1)
         await msg1.edit(content=f" ", embed=embed2)
         await msg2.edit(content=f" ", embed=embed3)
+        await msg3.edit(content=f" ", embed=embed4)
 
 
 
