@@ -43,10 +43,9 @@ class Logging(Cog):
     @Cog.listener()
     async def on_member_join(self, member):
         if self.welcome_log == None: return #! Fail silently
-        desc = f'__**Welcome {member.name} to Razi\'s Anomalies**__\nPlease read the rules channel, Its practically a wiki of information!\n*Enjoy your stay~*'
+        desc = f'__**Welcome {member.name} to The Serpent\'s Garden**__\nPlease read the rules and handbook channels, Its practically a wiki of information!\n*Enjoy your stay~*'
         await self.welcome_log.send(f"{member.mention}")
         await self.welcome_log.send(embed=utils.SpecialEmbed(title=f"Welcome new D-Class Personel", desc=desc, thumbnail=member.avatar.url))
-        await self.members_log.send(embed=utils.LogEmbed(type=f"positive", title=f"New member joined", desc=f"Username: {member.name}\nStatus: {member.status}", thumbnail=member.avatar.url))
 
 
     #! Logs

@@ -105,7 +105,7 @@ class rules_handler(Cog):
         description=f"**Welcome to the Serpent's game!**\n\nFor starters the goal in development is to keep the game as simplistic as possible and be more a fun different Discord expierence.\nThere is currently no win conditions in the game at this time, this is planned to be changed some day.\n\n Reading throught this Handbook will be the 1 spot \"wikipedia\" for the entire game and how most things function!\nLook for the flairs in the titles such as (New or Changed) to find updates.", color=0x0000FF)
 
         embed3=Embed(title=f"**[- 2. The Roles (NEW) -]**", 
-        description=f"**Here is a list of all the current roles; along with information about each and how they play!**\n\n**__The 05 Council__**\nThe 05 Council", color=0xFFFFFF)
+        description=f"**Here is a list of all the current roles; along with information about each and how they play!**\n\n**__The 05 Council__**\nThe 05 Council is the staff role that you can not obtain unless accepted via application.  This is the only class that has Omni-Presense being able to see every zone and area, but not being able to partipate in the game beyone using the Red Hand or things located in Site-01.\n\n**__Red Right Hand__**\nThe Red Right Hand ", color=0xFFFFFF)
 
         await table.edit(content=f" ", embed=embed1)
         await msg1.edit(content=f" ", embed=embed2)
