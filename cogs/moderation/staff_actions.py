@@ -18,7 +18,7 @@ class Staff_Actions(Cog):
 
     @property  #! The message logs
     def message_log(self):
-        return self.bot.get_channel(self.bot.config['channels']['message_log']) 
+        return self.bot.get_channel(self.bot.config['message_log']) 
 
 
     @utils.is_mod_staff()

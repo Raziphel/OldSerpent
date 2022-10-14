@@ -13,7 +13,7 @@ class UserFunction(object):
 
     @property  #! The currency logs
     def currency_log(cls):
-        return cls.bot.get_channel(cls.bot.config['channels']['currency_log'])
+        return cls.bot.get_channel(cls.bot.config['currency_log'])
 
 
     # For level ups!
@@ -31,7 +31,7 @@ class UserFunction(object):
         c = utils.Currency.get(user.id)
 
         #* Emojis
-        goldcoin = "<:GoldCoin:1011145571240779817>"
+        goldcoin = "<:Coin:1026302157521174649>"
         goodcoin = "<:GoodCoin:1011145572658446366>"
         evilcoin = "<:EvilCoin:1011145570112512051>"
 
@@ -92,21 +92,21 @@ class UserFunction(object):
         if type == "guild":
             verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['member'])
             await user.add_roles(verified, reason="Verification")
-            general = cls.bot.get_channel(cls.bot.config['channels']['lounge'])
+            general = cls.bot.get_channel(cls.bot.config['lounge'])
             await general.send(embed=utils.SpecialEmbed(description=f"Please welcome the new scum, {user.mention}!", thumbnail=user.avatar.url))
             return
 
         elif type == "alliance":
             verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['ussy'])
             await user.add_roles(verified, reason="Verification")
-            general = cls.bot.get_channel(cls.bot.config['channels']['kingussy'])
+            general = cls.bot.get_channel(cls.bot.config['kingussy'])
             await general.send(embed=utils.SpecialEmbed(description=f"New alliance member joined!\nWelcome {user.mention}!", thumbnail=user.avatar.url))
             return
 
         elif type == "furry":
             verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['furry'])
             await user.add_roles(verified, reason="Verification")
-            general = cls.bot.get_channel(cls.bot.config['channels']['furry_lounge'])
+            general = cls.bot.get_channel(cls.bot.config['furry_lounge'])
             await general.send(embed=utils.SpecialEmbed(description=f"A new furry has joined!\nWelcome {user.mention}!", thumbnail=user.avatar.url))
             return
 

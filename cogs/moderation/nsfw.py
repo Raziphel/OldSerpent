@@ -12,7 +12,7 @@ class Nsfw(Cog):
 
     @property  #! The members logs
     def members_log(self):
-        return self.bot.get_channel(self.bot.config['channels']['members_log']) 
+        return self.bot.get_channel(self.bot.config['members_log']) 
 
 
 

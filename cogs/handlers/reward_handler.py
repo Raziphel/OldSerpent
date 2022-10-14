@@ -21,7 +21,7 @@ class Reward_Handler(Cog):
 
     @property  #! The currency logs
     def currency_log(self):
-        return self.bot.get_channel(self.bot.config['channels']['currency_log'])
+        return self.bot.get_channel(self.bot.config['currency_log'])
 
     @Cog.listener('on_message')
     async def reward_gen(self, message):

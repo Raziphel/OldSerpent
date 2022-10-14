@@ -19,19 +19,10 @@ from utils.embeds.warning import WarningEmbed
 from utils.sql.userinfo.moderation import Moderation
 from utils.sql.userinfo.settings import Settings
 from utils.sql.userinfo.tracking import Tracking
+from utils.sql.userinfo.interactions import Interactions
 
 #? Values
-from utils.sql.values.main_level import Main_Level
-from utils.sql.values.stats import Stats
 from utils.sql.values.currency import Currency
-from utils.sql.values.quests import Quests
-from utils.sql.values.skill_level import Skill_Level
-
-#? items
-from utils.sql.items.fish import Fish
-from utils.sql.items.ores import Ores
-from utils.sql.items.plants import Plants
-from utils.sql.items.wood import Wood
 
 #? admin
 from utils.sql.admin.timers import Timers

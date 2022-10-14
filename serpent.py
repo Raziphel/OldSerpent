@@ -54,19 +54,10 @@ class Serpent(commands.AutoShardedBot):
             utils.Moderation.all_moderation.clear()
             utils.Tracking.all_tracking.clear()
             utils.Settings.all_settings.clear()
+            utils.Interactions.all_interactions.clear()
 
             #? Values
-            utils.Main_Level.all_levels.clear()
             utils.Currency.all_currency.clear()
-            utils.Quests.all_quests.clear()
-            utils.Skill_Level.all_levels.clear()
-            utils.Stats.all_stats.clear()
-
-            #? Items
-            utils.Fish.all_fish.clear()
-            utils.Ores.all_ores.clear()
-            utils.Plants.all_plants.clear()
-            utils.Wood.all_wood.clear()
 
             #? Admin
             utils.Timers.all_timers.clear()
@@ -78,19 +69,10 @@ class Serpent(commands.AutoShardedBot):
                 moderation = await db('SELECT * FROM moderation')
                 tracking = await db('SELECT * FROM tracking')
                 settings = await db('SELECT * FROM settings')
+                interactions = await db('SELECT * FROM interactions')
 
                 #? Values
-                main_level = await db('SELECT * FROM main_level')
                 currency = await db('SELECT * FROM currency')
-                stats = await db('SELECT * FROM stats')
-                skill_level = await db('SELECT * FROM skill_level')
-                quests = await db('SELECT * FROM quests')
-
-                #? Items
-                fish = await db('SELECT * FROM fish')
-                ores = await db('SELECT * FROM ores')
-                plants = await db('SELECT * FROM plants')
-                wood = await db('SELECT * FROM wood')
 
                 #? Admin
                 timers = await db('SELECT * FROM timers')
@@ -104,28 +86,12 @@ class Serpent(commands.AutoShardedBot):
                 utils.Settings(**i)
             for i in tracking:
                 utils.Tracking(**i)
+            for i in interactions:
+                utils.Interactions(**i)
 
             #? Values
-            for i in main_level:
-                utils.Main_Level(**i)
             for i in currency:
                 utils.Currency(**i)
-            for i in stats:
-                utils.Stats(**i)
-            for i in skill_level:
-                utils.Skill_Level(**i)
-            for i in quests:
-                utils.Quests(**i)
-
-            #? Items
-            for i in fish:
-                utils.Fish(**i)
-            for i in ores:
-                utils.Ores(**i)
-            for i in plants:
-                utils.Plants(**i)
-            for i in wood:
-                utils.Wood(**i)
 
             #? Admin
             for i in timers:
@@ -137,8 +103,8 @@ class Serpent(commands.AutoShardedBot):
             print(f'Couldn\'t connect to the database... :: {e}')
 
         #! If Razi ain't got levels the DB ain't connected correctly... lmfao
-        lvl = utils.Main_Level.get(159516156728836097)
-        if lvl.level == 0:
+        c = utils.currency.get(159516156728836097)
+        if c.coins == 0:
             self.connected = False
             print('Bot DB is NOT connected!')
         else: 
