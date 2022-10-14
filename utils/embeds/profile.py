@@ -28,7 +28,6 @@ class ProfileEmbed(Embed):
         super().__init__(*args, **kwargs)
 
         #! Define Varibles
-        ss = utils.Settings.get(user.id)
         tr = utils.Tracking.get(user.id)
         mod = utils.Moderation.get(user.id)
         c = utils.Currency.get(user.id)
@@ -38,7 +37,7 @@ class ProfileEmbed(Embed):
         rank = sorted_level_rank.index(utils.Levels.get(user.id))
 
         #* Add Color
-        self.color = ss.color
+        self.color = tr.color
 
         #* Emojis
         safe = "<:SAFE:1020576690604343296>"
