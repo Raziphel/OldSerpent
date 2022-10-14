@@ -38,7 +38,7 @@ class Currency_Gen(Cog):
         c = utils.Currency.get(message.author.id)
         if c.last_coin == None:
             c.last_coin = dt.utcnow()
-        if (c.last_coin + timedelta(seconds=60)) <= dt.utcnow(): # Check Time
+        if (c.last_coin + timedelta(seconds=30)) <= dt.utcnow(): # Check Time
 
             #! Define varibles
             unique_words = len(list(unique_everseen(message.content.split(), str.lower)))
