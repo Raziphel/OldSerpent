@@ -154,7 +154,7 @@ class Developer(Cog):
                 mod.child = False
                 async with self.bot.database() as db:
                     await mod.save(db)
-                print(f'fixed {user.name}'s adult roles!')
+                print(f'fixed {user.name}\'s adult roles!')
 
 
 
