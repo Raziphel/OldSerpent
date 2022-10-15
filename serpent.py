@@ -51,12 +51,16 @@ class Serpent(commands.AutoShardedBot):
             #! Clear cache
             utils.Moderation.all_moderation.clear()
             utils.Currency.all_currency.clear()
+            utils.Sonas.all_sonas.clear()
+            utils.Nsfw_sonas.all_nsfw_sonas.clear()
 
 
             #!   Collect from Database
             async with self.database() as db:
                 moderation = await db('SELECT * FROM moderation')
                 currency = await db('SELECT * FROM currency')
+                sonas = await db('SELECT * FROM sonas')
+                nsfw_sonas = await db('SELECT * FROM nsfw_sonas')
 
             #!   Cache all into local objects
             for i in moderation:
@@ -64,6 +68,12 @@ class Serpent(commands.AutoShardedBot):
 
             for i in currency:
                 utils.Currency(**i)
+
+            for i in sonas:
+                utils.Sonas(**i)
+
+            for i in nsfw_sonas:
+                utils.Nsfw_sonas(**i)
 
         except Exception as e:
             print(f'Couldn\'t connect to the database... :: {e}')

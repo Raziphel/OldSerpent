@@ -16,41 +16,6 @@ class SonaCancelled(BaseException):
 
 
 
-def get_only_numbers(data: str):
-    try:
-        numbers_list = findall(r'\d+', data)
-        numbers = ''.join(numbers_list)
-
-        return int(numbers)
-    except ValueError:
-        return None
-
-
-
-
-
-def get_total_inches(message):
-    if '.' in message.content:
-        return None
-    if "'" in message.content or '’' in message.content:
-        apostrophe = "'" if "'" in message.content else '’'
-        try:
-            feet, inches = message.content.split(apostrophe)
-            feet, inches = int(feet), get_only_numbers(inches)
-            if not inches and inches != 0:
-                return None
-            return (feet * 12) + inches
-        except ValueError:
-            return None
-    # Continue with regular integer parsing for inches
-    try:
-        return int(message.content)
-    except ValueError:
-        return get_only_numbers(message.content)
-
-
-
-
 def validate_image(message):
     if message.attachments:
         try:
@@ -77,9 +42,11 @@ class Sonas(Cog):
 
     @property  #! The Server logs
     def bot_log(self):
-        return self.bot.get_channel(self.bot.config['logs']['bot']) 
-    
+        return self.bot.get_channel(self.bot.config['channels']['bot']) 
 
+    @property 
+    def mail_box(self):
+        return self.bot.get_channel(self.bot.config['channels']['mail_box'])
 
 
 
@@ -103,12 +70,12 @@ class Sonas(Cog):
             'bio': None,
             'image': None,
             'species': None,
-            'height': None,
-            'weight': None,
+            'color': None,
+            'likes': None,
             'nsfw': None,
         }
 
-        async def get_input(prompt: str, timeout: float = 120.0, max_length: Optional[int] = 50):
+        async def get_input(prompt: str, timeout: float = 120.0, max_length: Optional[int] = 25):
             '''Gets users responses and checks them'''
             await author.send(embed=utils.SpecialEmbed(desc=prompt, footer=" ", guild=guild))
 
@@ -131,27 +98,17 @@ class Sonas(Cog):
             return message
 
         try:
-            sona_type = await get_input(f"Welcome to sona creation!\n\n**Lets start by determining which sona slot you are wanting to setup/re-setup!** (Only donators have 5 slots!)")
-            if sona_type.content == "1":
-                sona = utils.Sonas.get(author.id, 1)
-            elif sona_type.content == "2":
-                sona = utils.Sonas.get(author.id, 2) 
+            sona_nsfw = await get_input(f"**Welcome to sona creation!**\n\nIs this a NSFW sona? (Yes or No are valid responses.)")
+            if sona_nsfw.content.lower() == "yes":
+                nsfw = True
+            elif sona_nsfw.content.lower() == "no":
+                nsfw = False
             else:
                 await author.send(f"That wasn't a correct response.")
 
-            table_data['type'] = sona_type.content.lower()
+            table_data['nsfw'] = nsfw
 
-            sona_nsfw = await get_input(f"Is this a NSFW sona? (Yes or No are valid responses.)")
-            if sona_type.content.lower() == "yes":
-                sona_nsfw = True
-            elif sona_type.content.lower() == "no":
-                sona_nsfw = False
-            else:
-                await author.send(f"That wasn't a correct response.")
-
-            table_data['nsfw'] = sona_nsfw
-
-            role = guild.get_role(self.bot.config['nsfw_adult'])
+            role = guild.get_role(self.bot.config['roles']['nsfw_adult'])
             member = guild.get_member(ctx.author.id)
             if table_data['nsfw'] == 'yes' and role not in member.roles:
                     await author.send('**Sorry, but you need to be 18+ in order to submit a NSFW fursona.**')
@@ -187,19 +144,22 @@ class Sonas(Cog):
                 await ctx.author.send('Underage NSFW fursonas are NOT allowed.  Unsuprisingly. Star over.')
                 return
 
-            #! Get the sona's height
-            height = await get_input("What is your sona's height in inches?")
-            table_data['height'] = get_total_inches(height)
-            while height is None:
-                response = await get_input("Sorry, but you've specified an invalid height. What is your sona's height in inches?")
-                table_data['height'] = get_only_numbers(response.content)
+            #! Get the sona's color
+            color = await get_input("What is your sona's favorite color? (Can be a color code or name of color.  Have over 200 color names)")
+            if color.content.lower() != "none":
+                color = utils.Colors.get(color.content.lower()) 
+            else:
+                try:
+                    color = int(color.content.strip('#'), 16)
+                except ValueError:
+                    color = await get_message("**I don't know that color and I most colors...**")
+            table_data['color'] = color
 
-            #! Get the sona's weight
-            weight = await get_input("Whats your sona's weight in pounds?")       
-            table_data['weight'] = weight.content
-            while weight is None:
-                response = await get_input("Sorry, but isn't a number?  what is your sona's weight in pounds?")
-                table_data['weight'] = get_only_numbers(response.content)
+            #! Get the sona's likes
+            likes = await get_input("List some things your sona likes!")       
+            table_data['likes'] = likes.content
+            if likes.content.lower() == 'none':
+                table_data['likes'] = "Nothing..."
 
             #! Get the sona's bio
             bio = await get_input("What is your fursona's bio, if you have one (otherwise say `none`)? You have 20 minutes to write this before it times out automatically.", timeout=1200.0, max_length=1024)
@@ -223,6 +183,11 @@ class Sonas(Cog):
                     table_data['image'] = image_url
 
 
+            if table_data['nsfw'] == True:
+                sona = utils.Nsfw_sonas.get(author.id)
+            else: 
+                sona = utils.Sonas.get(author.id)
+
             sona.name = table_data.get('name')
             sona.gender = table_data.get('gender')
             sona.sexuality = table_data.get('sexuality')
@@ -230,29 +195,17 @@ class Sonas(Cog):
             sona.species = table_data.get('species')
             sona.bio = table_data.get('bio')
             sona.image = table_data.get('image')
-            sona.height = table_data.get('height')
-            sona.weight = table_data.get('weight')
-            sona.nsfw = table_data.get('nsfw')
+            sona.color = int(table_data.get('color'))
+            sona.likes = table_data.get('likes')
             sona.verified = False
             async with self.bot.database() as db:
                 await sona.save(db)
 
 
-            if table_data['type'] == 'sfw':
-                mail = await utils.ChannelFunction.get_log_channel(guild=guild, log="sfw_mail")
-            elif table_data['type'] == 'nsfw':
-                mail = await utils.ChannelFunction.get_log_channel(guild=guild, log="nsfw_mail")
-            elif table_data['type'] == 'premium':
-                mail = await utils.ChannelFunction.get_log_channel(guild=guild, log="nsfw_mail")
-            else: 
-                return author.send(f"You didn't enter a correct type... Now u gotta do this again... tiss tiss.")
-
-
             embed = utils.ProfileEmbed(user=ctx.author, type="Sona", staff=True, sona="sfw")
-            msg = await mail.send(f"{author.mention}'s Sona:", embed=embed)
+            msg = await self.mail_box.send(f"{author.mention}'s Sona:", embed=embed)
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
-            await msg.add_reaction('💜')
 
             embed2=Embed(description="**Your sona has been sent and must be first accepted by staff!**")
             await author.send(embed=embed2)
@@ -268,7 +221,7 @@ class Sonas(Cog):
         
         except Exception as e:
             await author.send(f'An Error Occured: `{e}` Don\'t worry dev was notified!')
-            await self.bot_log.send(embed=utils.LogEmbed(type="positive", title=f"Sona Creation Error", desc=f"Error: `{e}`"))
+            await self.bot_log.send(embed=utils.LogEmbed(type="negative", title=f"Sona Creation Error", desc=f"Error: `{e}`"))
 
 
 

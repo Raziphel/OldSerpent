@@ -28,9 +28,10 @@ class ProfileEmbed(Embed):
         super().__init__(*args, **kwargs)
 
         #! Define Varibles
-        tr = utils.Tracking.get(user.id)
         mod = utils.Moderation.get(user.id)
         c = utils.Currency.get(user.id)
+        ch = utils.Sonas.get(user.id)
+        ch = utils.Nsfw_sonas.get(user.id)
 
         #* get user's rank
         sorted_level_rank = utils.Levels.sort_levels()

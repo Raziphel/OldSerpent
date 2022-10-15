@@ -17,10 +17,10 @@ class EmptySonas():
         self.likes = "No likes given"
 
 
-class Sonas(object):
+class Nsfw_sonas(object):
     
     
-    all_sonas = {}
+    all_nsfw_sonas = {}
     empty = EmptySonas()
 
     def __init__(self, user_id:int, verified:bool, name:str, age:int, gender:str, sexuality:str, bio:str, image:str, species:str, color:str, likes:str):
@@ -36,7 +36,7 @@ class Sonas(object):
         self.color = color
         self.likes = likes
 
-        self.all_sonas[self.user_id] = self
+        self.all_nsfw_sonas[self.user_id] = self
 
 
     async def save(self, db:DatabaseConnection):
@@ -45,7 +45,7 @@ class Sonas(object):
         '''
         try:
             await db('''
-                INSERT INTO sonas
+                INSERT INTO nsfw_sonas
                 (user_id, verified, name, age, gender, sexuality, bio, image, species, color, likes)
                 VALUES
                 ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
@@ -54,7 +54,7 @@ class Sonas(object):
             )
         except Exception:
             await db('''
-                UPDATE sonas SET
+                UPDATE nsfw_sonas SET
                 verified=$2, name=$3, age=$4, gender=$5, sexuality=$6, bio=$7, image=$8, species=$9, color=$10, likes=$11
                 WHERE
                 user_id=$1
@@ -65,7 +65,7 @@ class Sonas(object):
     @classmethod
     def get(cls, user_id:int):
         '''Gets a user's connected varibles and sets defaults if there is none'''
-        sona = cls.all_sonas.get(user_id)
+        sona = cls.all_nsfw_sonas.get(user_id)
         if sona == None:
             return cls(
                 user_id = user_id,
@@ -87,7 +87,7 @@ class Sonas(object):
         '''Removes a user from cache via their ID, fails silently if not present'''
 
         try:
-            del cls.all_sonas[user_id]
+            del cls.all_nsfw_sonas[user_id]
         except KeyError:
             pass
 

@@ -76,12 +76,27 @@ CREATE TABLE sonas (
     bio VARCHAR(1000),
     image VARCHAR(1000),
     species VARCHAR(25),
-    height VARCHAR(25),
-    weight VARCHAR(25),
-    archive_id BIGINT,
-    fursona_id BIGINT,
+    color integer,
+    likes VARCHAR(25),
     PRIMARY KEY (user_id)
 );
+
+CREATE TABLE nsfw_sonas (
+    user_id BIGINT NOT NULL,
+    slot INT NOT NULL,
+    verified BOOLEAN DEFAULT false,
+    name VARCHAR(25),
+    age INT,
+    gender VARCHAR(25),
+    sexuality VARCHAR(25),
+    bio VARCHAR(1000),
+    image VARCHAR(1000),
+    species VARCHAR(25),
+    color integer,
+    likes VARCHAR(25),
+    PRIMARY KEY (user_id)
+);
+
 
 
 

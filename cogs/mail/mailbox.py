@@ -26,6 +26,7 @@ class Mail_Box(Cog):
         return self.bot.get_channel(self.bot.config['channels']['sfw_sonas'])
 
 
+
     async def message_embed_author(self, embed_to_get_author_from:Embed, *args, **kwargs):
         '''Gets the author attribute of an embed and the rest of the args go to Messagable.send'''
         try:

@@ -39,6 +39,7 @@ class Loops(Cog):
         guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
 
         #! get the varible roles!
+        child = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['child'])
         adult_furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_furry'])
         furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['furry'])
         scp = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scp'])
@@ -47,38 +48,47 @@ class Loops(Cog):
         adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult'])
         # library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
         # adult_library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_library_pass'])
+        light_zone = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['light_zone'])
+        adult_light_zone = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_light_zone'])
+
         for user in guild.members:
-            try:
+            try: #! Fixing adults roles
                 mod = utils.Moderation.get(user.id)
                 #? Set child & Adults in DB
                 if child in user.roles: 
-                    mod.child = True
+                    if mod.child == False:
+                        mod.child = True
+                        mod.adult = False
                 if adult in user.roles: 
-                    mod.adult = True
-                if nsfw_adult in user.roles: 
-                    mod.adult = True
+                    if mod.adult == False:
+                        mod.adult = True
+                        mod.child = False
+                if nsfw_adult in user.roles:
+                    if mod.adult == False:
+                        mod.adult = True
+                        mod.child = False
                 async with self.bot.database() as db:
                     await mod.save(db)
+
                 #! Fix adult roles
                 if nsfw_adult in user.roles:
                     #? Fixing Furry's NSFW
                     if furry in user.roles:
                         await user.add_roles(adult_furry, reason="Fixing Adult & Furry role.")
                         await user.remove_roles(furry, reason="Fixing Adult & Furry role.")
-                    #? Fixing Member's NSFW
-                    if member in user.roles:
-                        await user.add_roles(adult_member, reason="Fixing Adult & Member role.")
-                        await user.remove_roles(member, reason="Fixing Adult & Member role.")
                     #? Fixing scp's NSFW
                     if scp in user.roles:
                         await user.add_roles(adult_scp, reason="Fixing Adult & scp role.")
                         await user.remove_roles(scp, reason="Fixing Adult & scp role.")
+                    #? Fixing Light Zones's NSFW
+                    if light_zone in user.roles:
+                        await user.add_roles(adult_light_zone, reason="Fixing Adult & light zone role.")
+                        await user.remove_roles(light_zone, reason="Fixing Adult & light zone role.")
                     # #? Fixing library Pass's NSFW
                     # if library_pass in user.roles:
                     #     await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
                     #     await user.remove_roles(library_pass, reason="Fixing Adult & Library Pass role.")
-            except: pass
-
+            except Exception as e: print(f'Error fixing roles :: {e}')
 
         # #* Levels Leaderboard
         # channel = self.bot.get_channel(self.bot.config['channels']['leaderboard'])

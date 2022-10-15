@@ -44,8 +44,8 @@ class Currency_Gen(Cog):
             unique_words = len(list(unique_everseen(message.content.split(), str.lower)))
 
             #! Unique Word Checker
-            if unique_words > 4:
-                c.coins += 1
+            if unique_words > 3:
+                c.coins += 3
                 c.last_coin = dt.utcnow()
 
             async with self.bot.database() as db:
@@ -85,7 +85,6 @@ class Currency_Gen(Cog):
                     c.coin += coins
 
                     async with self.bot.database() as db:
-                        await lvl.save(db)
                         await c.save(db)
 
 

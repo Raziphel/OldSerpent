@@ -169,7 +169,7 @@ class Developer(Cog):
         for user in guild.members:
             try:
                 c = utils.Currency.get(user.id)
-                c.coins += 1000
+                c.coins -= 1000
                 print(f'{user.name} got payed!')
             except Exception as e:
                 print(e) 
