@@ -149,7 +149,7 @@ class Developer(Cog):
         adult2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult'])
         for user in guild.members:
             if (adult in user.roles) or (adult2 in user.roles):
-                mod = utils.Moderation(user.id)
+                mod = utils.Moderation.get(user.id)
                 mod.adult = True
                 mod.child = False
                 async with self.bot.database() as db:
