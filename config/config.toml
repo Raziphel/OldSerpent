@@ -9,7 +9,7 @@ bot_id = 896690181455892481
     user = "serpent"
     password = "D*VSA4(*FCAz089"
     database = "postgres"
-    host = "172.18.0.1"
+    host = "172.18.0.2"
 
 
 [channels]

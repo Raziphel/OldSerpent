@@ -127,7 +127,7 @@ CREATE TABLE timers (
 
 CREATE TABLE scps (
     scp_id bigint NOT NULL,
-    threat_level int DEFAULT 0,
+    threat_level int,
     location_id bigint NOT NULL,
     last_action TIMESTAMP,
     last_move TIMESTAMP,

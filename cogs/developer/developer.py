@@ -154,17 +154,8 @@ class Developer(Cog):
                 mod.child = False
                 async with self.bot.database() as db:
                         await mod.save(db)
+        print('fix adult roles!')
 
-
-
-    @utils.is_dev()
-    @command(hidden=True)
-    async def memes(self, ctx):
-        '''Runs code through Python'''
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
-        memes = utils.DiscordGet(guild.roles, id=1028797229596680232)
-        for user in guild.members:
-            await user.add_roles(memes)
 
 
 
@@ -182,8 +173,8 @@ class Developer(Cog):
             except Exception as e:
                 print(e) 
 
-        async with self.bot.database() as db:
-            await c.save(db)
+            async with self.bot.database() as db:
+                await c.save(db)
 
 
 

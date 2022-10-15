@@ -4,12 +4,14 @@ import asyncpg
 class Currency(object):
     all_currency = {}
 
-    def __init__(self, user_id:int, coins:int=0, coins_earned:int=0, last_coin:int=0, xp:int=0):
+    def __init__(self, user_id:int, coins:int=0, coins_earned:int=0, last_coin:str=None, xp:int=0, xp_earned:int=0, last_xp:str=None):
         self.user_id = user_id
         self.coins = coins
         self.coins_earned = coins_earned
         self.last_coin = last_coin
         self.xp = xp
+        self.xp_earned = xp_earned
+        self.last_xp = last_xp
 
         self.all_currency[self.user_id] = self
 
@@ -19,18 +21,18 @@ class Currency(object):
             await db('''
                 INSERT INTO currency
                 VALUES
-                ($1, $2, $3, $4, $5)
+                ($1, $2, $3, $4, $5, $6, $7)
                 ''',
-                self.user_id, self.coins, self.coins_earned, self.last_coin, self.xp
+                self.user_id, self.coins, self.coins_earned, self.last_coin, self.xp, self.xp_earned, self.last_xp
             )
         except asyncpg.exceptions.UniqueViolationError: 
             await db('''
                 UPDATE currency SET
-                coins=$2, coins_earned=$3, last_coin=$4, xp=$5
+                coins=$2, coins_earned=$3, last_coin=$4, xp=$5, xp_earned=$6, last_xp=$7
                 WHERE
                 user_id=$1
                 ''',
-                self.user_id, self.coins, self.coins_earned, self.last_coin, self.xp
+                self.user_id, self.coins, self.coins_earned, self.last_coin, self.xp, self.xp_earned, self.last_xp
             )
 
     @classmethod

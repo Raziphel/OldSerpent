@@ -15,16 +15,13 @@ from utils.embeds.warning import WarningEmbed
 
 #* --------------------- SQL
 
-#? Userinfo
-from utils.sql.userinfo.moderation import Moderation
-from utils.sql.userinfo.settings import Settings
-from utils.sql.userinfo.tracking import Tracking
-from utils.sql.userinfo.interactions import Interactions
+#? Users
+from utils.sql.users.moderation import Moderation
+from utils.sql.users.tracking import Tracking
+from utils.sql.users.interactions import Interactions
+from utils.sql.users.currency import Currency
 
-#? Values
-from utils.sql.values.currency import Currency
-
-#? admin
+#? Admin
 from utils.sql.admin.timers import Timers
 
 #* --------------------- Functions
