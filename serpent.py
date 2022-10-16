@@ -53,6 +53,8 @@ class Serpent(commands.AutoShardedBot):
             utils.Currency.all_currency.clear()
             utils.Sonas.all_sonas.clear()
             utils.Nsfw_sonas.all_nsfw_sonas.clear()
+            utils.Timers.all_timers.clear()
+            utils.Interactions.all_interactions.clear()
 
 
             #!   Collect from Database
@@ -61,6 +63,8 @@ class Serpent(commands.AutoShardedBot):
                 currency = await db('SELECT * FROM currency')
                 sonas = await db('SELECT * FROM sonas')
                 nsfw_sonas = await db('SELECT * FROM nsfw_sonas')
+                timers = await db('SELECT * FROM timers')
+                interactions = await db('SELECT * FROM interactions')
 
             #!   Cache all into local objects
             for i in moderation:
@@ -74,6 +78,12 @@ class Serpent(commands.AutoShardedBot):
 
             for i in nsfw_sonas:
                 utils.Nsfw_sonas(**i)
+
+            for i in timers:
+                utils.Timers(**i)
+
+            for i in interactions:
+                utils.Interactions(**i)
 
         except Exception as e:
             print(f'Couldn\'t connect to the database... :: {e}')

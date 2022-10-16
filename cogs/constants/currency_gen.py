@@ -8,6 +8,7 @@ from datetime import datetime as dt, timedelta
 from more_itertools import unique_everseen
 from re import search
 from asyncio import sleep
+from re import compile
 
 import utils
 
@@ -15,6 +16,7 @@ class Currency_Gen(Cog):
     def __init__(self, bot):
         self.bot = bot
         self.exp_voice_gen_loop.start()
+        self.valid_uri = compile(r"(\b(https?|ftp|file)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]")
 
     @Cog.listener('on_message')
     async def on_message(self, message:Message):
@@ -29,11 +31,19 @@ class Currency_Gen(Cog):
         if self.bot.connected == False:
             return
 
-        await self.coin_gen(message=message)
+
+        #? Check for links
+        if message.attachments != None: 
+            await self.coin_gen(message=message, image=True)
+        elif message.content.strip().lower() != self.valid_uri.match(message.content.split(" ")[0].split("\n")[0]):
+            await self.coin_gen(message=message)
+        else:
+            await self.coin_gen(message=message, image=True)
 
 
 
-    async def coin_gen(self, message:Message):
+
+    async def coin_gen(self, message:Message, image:bool=False):
         '''Level Progression'''
         c = utils.Currency.get(message.author.id)
         if c.last_coin == None:
@@ -45,11 +55,16 @@ class Currency_Gen(Cog):
 
             #! Unique Word Checker
             if unique_words > 3:
+                c.coins += 5
+            elif image == True:
                 c.coins += 3
-                c.last_coin = dt.utcnow()
+            c.last_coin = dt.utcnow()
 
             async with self.bot.database() as db:
                 await c.save(db)
+
+
+
 
 
 
@@ -81,7 +96,7 @@ class Currency_Gen(Cog):
                         return
 
                     c = utils.Currency.get(member.id)
-                    coins = 3 + round(len(vc.members)/2)
+                    coins = 4 + round(len(vc.members)/2)
                     c.coin += coins
 
                     async with self.bot.database() as db:

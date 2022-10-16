@@ -24,7 +24,7 @@ class Loops(Cog):
         """The loop that handles updating things every minute."""
 
         #* Setting the bot status.
-        playing = choice(["30% Complete"])
+        playing = choice(["40% Complete"])
         await self.bot.change_presence(activity=Game(name=playing)) 
 
         #* Setting the Channel Stats.
@@ -196,31 +196,29 @@ class Loops(Cog):
     async def one_hour_loop(self):
         """The loop that handles updating things every 60 minutes."""
 
-        # #? Check if bot is connected!
-        # if self.bot.connected == False:
-        #     return
+        #? Check if bot is connected!
+        if self.bot.connected == False:
+            return
 
 
-        # guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
-        # nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1supporter'])
-        # coin = "<:Coin:1026302157521174649>"
+        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1supporter'])
+        coin = "<:Coin:1026302157521174649>"
 
-        # t = utils.Timers.get(self.bot.config['razisrealm_id'])
-        # if (t.last_nitro_reward + timedelta(days=30)) <= dt.utcnow():
-        #     t.last_nitro_reward = dt.now()
-        #     for user in guild.members:
-        #         if nitro in user.roles:
-        #             c = utils.Currency(user.id)
-        #             try:
-        #                 await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**+500 {goldcoin}**\n**+5 {goodcoin}**\n**+5 {evilcoin}**", footer=f"You can expect this reward every 30 days!"))
-        #             except: pass
-        #             c.coins += 500
-        #             c.good_coins += 50
-        #             c.evil_coins += 1
-        #             async with self.bot.database() as db:
-        #                 await t.save(db)
-        #                 await c.save(db)
-        #             print('Handed out Boost rewards')
+        t = utils.Timers.get(self.bot.config['razisrealm_id'])
+        if (t.last_nitro_reward + timedelta(days=30)) <= dt.utcnow():
+            t.last_nitro_reward = dt.now()
+            for user in guild.members:
+                if nitro in user.roles:
+                    c = utils.Currency(user.id)
+                    try:
+                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 500x**", footer=f"You can expect this reward every 30 days!"))
+                    except: pass
+                    c.coins += 500
+                    async with self.bot.database() as db:
+                        await t.save(db)
+                        await c.save(db)
+                    print('Handed out Boost rewards')
 
 
 
