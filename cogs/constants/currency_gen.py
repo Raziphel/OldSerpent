@@ -31,6 +31,11 @@ class Currency_Gen(Cog):
         if self.bot.connected == False:
             return
 
+        tr = utils.Tracking.get(message.author.id)
+        tr.messages += 1
+        async with self.bot.database() as db:
+                await tr.save(db)
+
 
         #? Check for links
         if message.attachments != None: 
@@ -80,6 +85,11 @@ class Currency_Gen(Cog):
         for guild in self.bot.guilds:
             for vc in guild.voice_channels:
                 for member in vc.members:
+
+                    tr = utils.Tracking.get(member.id)
+                    tr.vc_mins += 1
+                    async with self.bot.database() as db:
+                        await tr.save(db)
 
                     #! Checks
                     checks = [

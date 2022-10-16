@@ -202,7 +202,10 @@ class Sonas(Cog):
                 await sona.save(db)
 
 
-            embed = utils.ProfileEmbed(user=ctx.author, type="Sona", staff=True, sona="sfw")
+            if table_data['nsfw'] == True:
+                embed = utils.ProfileEmbed(user=ctx.author, type="Nsfw_Sona", staff=True)
+            else:
+                embed = utils.ProfileEmbed(user=ctx.author, type="Sfw_Sona", staff=True)
             msg = await self.mail_box.send(f"{author.mention}'s Sona:", embed=embed)
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
@@ -222,6 +225,7 @@ class Sonas(Cog):
         except Exception as e:
             await author.send(f'An Error Occured: `{e}` Don\'t worry dev was notified!')
             await self.bot_log.send(embed=utils.LogEmbed(type="negative", title=f"Sona Creation Error", desc=f"Error: `{e}`"))
+            raise e
 
 
 

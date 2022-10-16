@@ -36,6 +36,10 @@ class Staff_Actions(Cog):
             return
 
         #! Report and log the purging!
+        st = utils.Staff_Track.get(ctx.author.id)
+        st.purges += 1
+        async with self.bot.database() as db:
+            await st.save(db)
         removed = await ctx.channel.purge(limit=amount, check=check)
         await ctx.send(embed=utils.SpecialEmbed(title=f"Deleted {len(removed)} messages!", guild=ctx.guild))
         await self.message_log.send(embed=utils.LogEmbed(type="negative", title=f"Channel messages Purged", desc=f"<@{ctx.author.id}> purged {amount} messages from <#{ctx.channel.id}>!"))

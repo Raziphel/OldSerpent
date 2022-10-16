@@ -55,6 +55,8 @@ class Serpent(commands.AutoShardedBot):
             utils.Nsfw_sonas.all_nsfw_sonas.clear()
             utils.Timers.all_timers.clear()
             utils.Interactions.all_interactions.clear()
+            utils.Tracking.all_tracking.clear()
+            utils.Staff_Track.all_staff_track.clear()
 
 
             #!   Collect from Database
@@ -65,6 +67,8 @@ class Serpent(commands.AutoShardedBot):
                 nsfw_sonas = await db('SELECT * FROM nsfw_sonas')
                 timers = await db('SELECT * FROM timers')
                 interactions = await db('SELECT * FROM interactions')
+                tracking = await db('SELECT * FROM tracking')
+                staff_track = await db('SELECT * FROM staff_track')
 
             #!   Cache all into local objects
             for i in moderation:
@@ -84,6 +88,12 @@ class Serpent(commands.AutoShardedBot):
 
             for i in interactions:
                 utils.Interactions(**i)
+
+            for i in tracking:
+                utils.Tracking(**i)
+
+            for i in staff_track:
+                utils.Staff_Track(**i)
 
         except Exception as e:
             print(f'Couldn\'t connect to the database... :: {e}')

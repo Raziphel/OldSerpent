@@ -35,35 +35,33 @@ class Profile(Cog):
 
         await msg.clear_reactions()
         #! adds the reactions
-        await msg.add_reaction("✨")
-        await msg.add_reaction("💸")
-        # await msg.add_reaction("📕")
-        # await msg.add_reaction("❤️")
-        # await msg.add_reaction("🏹")
-        await msg.add_reaction("🔮")
-        if ctx.author.id in self.bot.developers:
-            await msg.add_reaction("🍃")
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            await msg.add_reaction("✨")
+        if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
+            await msg.add_reaction("🔞")
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            await msg.add_reaction("🔮")
+        for role in user.roles:
+            if role.id == self.bot.config['roles']['council']:
+                await msg.add_reaction("🍃")
 
         # Watches for the reactions
         check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🏹", "💸", "🔮", "✨", "❤️", "📕", "🍃"]
         r, _ = await self.bot.wait_for('reaction_add', check=check)
-        if r.emoji == "✨":
-            await msg.edit(embed=utils.ProfileEmbed(type="Sona", user=user, sona=1))
-            pass
-        if r.emoji == "💸":
-            await utils.GemFunction.update_gems(user=user)
-            await msg.edit(embed=utils.ProfileEmbed(type="Currency", user=user))
-            pass
-        if ctx.author.id in self.bot.developers:      
-            if r.emoji == "🍃":
-                await msg.edit(embed=utils.ProfileEmbed(type="Staff-Track", user=user))
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            if r.emoji == "✨":
+                await msg.edit(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user))
                 pass
+        if r.emoji == "🍃":
+            await msg.edit(embed=utils.ProfileEmbed(type="Staff-Track", user=user))
+            pass
         # if r.emoji == "📕":
         #     await msg.edit(embed=utils.FactionEmbed(type="Default", user=user))
         #     pass
-        if r.emoji == "🔮":
-            await msg.edit(embed=utils.ProfileEmbed(type="Interactions", user=user))
-            pass
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            if r.emoji == "🔮":
+                await msg.edit(embed=utils.ProfileEmbed(type="Interactions", user=user))
+                pass
         # if r.emoji == "❤️":
         #     await msg.edit(embed=utils.ProfileEmbed(type="Relationships", user=user))
         #     pass
@@ -83,9 +81,15 @@ class Profile(Cog):
         '''Quick Post Sona'''
         if not user:
             user = ctx.author
-        m = await ctx.send(embed=utils.ProfileEmbed(type="Sona", user=user, quick=True), delete_after=15)
+        m = await ctx.send(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
 
-
+    @cooldown(1, 30, BucketType.user)
+    @command(aliases=['NSona', 'nfursona', 'nFursona'])
+    async def nsona(self, ctx, user:Member=None):
+        '''Quick Post Sona'''
+        if not user:
+            user = ctx.author
+        m = await ctx.send(embed=utils.ProfileEmbed(type="Nsfw_Sona", user=user, quick=True))
 
 
     @cooldown(1, 30, BucketType.user)
@@ -94,7 +98,7 @@ class Profile(Cog):
         '''Quick Check Gems'''
         if not user:
             user = ctx.author
-        m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True), delete_after=15)
+        m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True))
 
 
     @cooldown(1, 30, BucketType.user)
@@ -103,7 +107,7 @@ class Profile(Cog):
         '''Quick Check interactions'''
         if not user:
             user = ctx.author
-        m = await ctx.send(embed=utils.ProfileEmbed(type="Interactions", user=user, quick=True), delete_after=15)
+        m = await ctx.send(embed=utils.ProfileEmbed(type="Interactions", user=user, quick=True))
 
 
 

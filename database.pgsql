@@ -1,7 +1,7 @@
 
 
 ###########################################################################
-#####################  DISCORD USER INFORMATION    ########################
+#####################  ADMINISTRATIVE INFORMATION    ######################
 ###########################################################################
 
 
@@ -19,6 +19,21 @@ CREATE TABLE tracking (
     vc_mins integer DEFAULT 0,
     last_image timestamp,
     color integer,
+    PRIMARY KEY (user_id)
+);
+
+
+
+CREATE TABLE staff_track (
+    user_id bigint NOT NULL,
+    mutes INT,
+    memes INT,
+    nsfws INT,
+    purges INT,
+    messages INT,
+    messages_month INT,
+    mail_verifications INT,
+    mail_sonas INT,
     PRIMARY KEY (user_id)
 );
 

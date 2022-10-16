@@ -75,7 +75,9 @@ class Mail_Box(Cog):
         elif 'KindaAdult' == embed.footer.text:
                 await self.deal_with_adult(message, emoji, embed, payload, guild, kinda=True)
         elif 'sfw_sona' in embed.footer.text:
-            await self.deal_with_sona(message, emoji, embed, payload, guild)
+            await self.deal_with_sona(message, emoji, embed, payload, guild, sona_type="Sfw_Sona")
+        elif 'nsfw_sona' in embed.footer.text:
+            await self.deal_with_sona(message, emoji, embed, payload, guild, sona_type="Nsfw_Sona")
 
 
 
@@ -199,7 +201,7 @@ class Mail_Box(Cog):
 
 
 
-    async def deal_with_sona(self, message:Message, emoji:PartialEmoji, embed:Embed, payload:RawReactionActionEvent, guild:Guild):
+    async def deal_with_sona(self, message:Message, emoji:PartialEmoji, embed:Embed, payload:RawReactionActionEvent, guild:Guild, sona_type:str):
         '''Deals with the accept/deny stage of a character'''
         author_id = await self.embed_author_id(embed)
         author = guild.get_member(author_id)
@@ -208,11 +210,10 @@ class Mail_Box(Cog):
             return
 
         if emoji.name == '✅':
-            await self.sfw_sonas.send(f"The sona of {author.mention} was **approved** by <@{payload.user_id}>")
-            await self.sfw_sonas.send(embed=utils.ProfileEmbed(type="Sona", sona='sfw', staff=True, user=author))
+            await self.archive.send(f"The sona of {author.mention} was **approved** by <@{payload.user_id}>")
+            await self.archive.send(embed=utils.ProfileEmbed(type=sona_type, staff=True, user=author))
             await author.send("**Your sona was approved!**")
-            sonas = await utils.ChannelFunction.get_log_channel(guild=guild, log="sonas")
-            await sonas.send(f"{author.mention}'s sona was accepted!", embed=utils.ProfileEmbed(type="Sona", sona='sfw', staff=True, user=author))
+            await self.sfw_sonas.send(f"{author.mention}'s sona was accepted!", embed=utils.ProfileEmbed(type=sona_type, staff=True, user=author))
             ch = utils.Sonas.get(author.id)
             ch.verified = True
             async with self.bot.database() as db:
@@ -221,7 +222,6 @@ class Mail_Box(Cog):
 
         elif emoji.name == '🔴':
             ch = utils.Sonas.get(author.id)
-            await utils.Sonas.delete(user_id=author.id)
             check = lambda m: m.channel == message.channel and payload.user_id == m.author.id
             z = await message.channel.send("Why are you declining that sona?")
             try: 
@@ -233,29 +233,12 @@ class Mail_Box(Cog):
 
             try: await author.send(f"**Your sona has been rejected, for: `{reason}`. Please try again.**")
             except Exception: pass
-            await self.sfw_sonas.send(f"The sona of {author.mention} was **declined** by <@{payload.user_id}> for reason: `{reason}`", )
-            await self.sfw_sonas.send(embed=utils.ProfileEmbed(type="Sona", sona='sfw', staff=True, user=author))
+            await self.archive.send(f"The sona of {author.mention} was **declined** by <@{payload.user_id}> for reason: `{reason}`", )
+            await self.archive.send(embed=utils.ProfileEmbed(type=sona_type, staff=True, user=author))
             await z.delete()
             await message.delete()
-
-        elif emoji.name == '💜':
-            ch = utils.Sonas.get(author.id)
             await utils.Sonas.delete(user_id=author.id)
-            check = lambda m: m.channel == message.channel and payload.user_id == m.author.id
-            z = await message.channel.send("Why are you declining that sona?")
-            try: 
-                reason_message = await self.bot.wait_for('message', check=check, timeout=60.0)
-                reason = reason_message.content
-                await reason_message.delete()
-            except Exception: 
-                reason = '<No reason given>'
 
-            try: await author.send(f"**Your sona has been rejected, for: `{reason}`. Please try again.**")
-            except Exception: pass
-            await self.sfw_sonas.send(f"The sona of {author.mention} was **declined** by <@{payload.user_id}> for reason: `{reason}`", )
-            await self.sfw_sonas.send(embed=utils.ProfileEmbed(type="Sona", sona='sfw', staff=True, user=author))
-            await z.delete()
-            await message.delete()
 
 
 

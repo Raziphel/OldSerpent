@@ -18,15 +18,12 @@ class Error_Handler(Cog):
         if isinstance(error, CommandOnCooldown):
             countdown_time = error.retry_after
             guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
-            supporter1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1supporter'])
-            supporter2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2supporter'])
-            supporter3 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3supporter'])
-            supporter4 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t4supporter'])
-            supporters = [supporter1, supporter2, supporter3, supporter4]
-            if ctx.author.id == self.bot.config['developer'] or supporters in ctx.author.roles:
-                await ctx.send("*Bypassing Cooldowns. Thanks for supporting!*")
-                await ctx.reinvoke()
-                return
+
+            for role in ctx.author.roles:
+                if role.id in self.bot.config['supporters'].values():
+                    await ctx.send("*Bypassing Cooldowns. Thanks for supporting!*")
+                    await ctx.reinvoke()
+                    return
             if countdown_time <= 60:
                 msg = await ctx.send(embed=utils.ErrorEmbed(error_msg=f"Command Cooldown", desc=f"Please try again in {countdown_time:.2f} seconds!", guild=ctx.author.guild))
             else:

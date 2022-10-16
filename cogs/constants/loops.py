@@ -202,7 +202,7 @@ class Loops(Cog):
 
 
         guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
-        nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1supporter'])
+        nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
         coin = "<:Coin:1026302157521174649>"
 
         t = utils.Timers.get(self.bot.config['razisrealm_id'])
@@ -214,7 +214,8 @@ class Loops(Cog):
                     try:
                         await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 500x**", footer=f"You can expect this reward every 30 days!"))
                     except: pass
-                    c.coins += 500
+                    c.coins += 1000
+                    c.xp += 10
                     async with self.bot.database() as db:
                         await t.save(db)
                         await c.save(db)

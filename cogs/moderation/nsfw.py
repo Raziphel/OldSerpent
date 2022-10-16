@@ -21,6 +21,10 @@ class Nsfw(Cog):
     async def notnsfw(self, ctx, user:Member):
         '''Removes nsfw access from a user!'''
         await self.notnsfw_user(guild=guild, user=user)
+        st = utils.Staff_Track.get(ctx.author.id)
+        st.purges += 1
+        async with self.bot.database() as db:
+            await st.save(db)
         await ctx.send(embed=utils.WarningEmbed(title=f"{user.mention}, has been NSFW restricted!", guild=ctx.guild))
 
     async def notnsfw_user(self, guild, user:Member):
@@ -45,6 +49,10 @@ class Nsfw(Cog):
     async def nsfw(self, ctx, user:Member):
         '''Add nsfw access from a user!'''
         await self.nsfw_user(user=user, guild=ctx.guild)
+        st = utils.Staff_Track.get(ctx.author.id)
+        st.purges += 1
+        async with self.bot.database() as db:
+            await st.save(db)
         await ctx.send(embed=utils.WarningEmbed(title=f"{user.mention}, has been allowed NSFW!  Happy Birthday, probably.", guild=guild))
 
     async def nsfw_user(self, user:Member, guild):
