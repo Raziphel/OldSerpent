@@ -41,6 +41,7 @@ class ProfileEmbed(Embed):
         self.color = tr.color
 
         #* Emojis
+        coin = self.bot.config['emotes']['coin']
         safe = "<:SAFE:1020576690604343296>"
         euclid = "<:EUCLID:1020576687693496352>"
         keter = "<:KETER:1020576689245392937>"
