@@ -23,6 +23,11 @@ class Loops(Cog):
     async def one_min_loop(self):
         """The loop that handles updating things every minute."""
 
+        #! Databse check
+        if self.bot.connected == False:
+            await self.bot.change_presence(activity=Game(name="Databse is Down!!!")) 
+            return
+
         #* Setting the bot status.
         playing = choice(["40% Complete"])
         await self.bot.change_presence(activity=Game(name=playing)) 
@@ -212,7 +217,7 @@ class Loops(Cog):
                 if nitro in user.roles:
                     c = utils.Currency(user.id)
                     try:
-                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 500x**", footer=f"You can expect this reward every 30 days!"))
+                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 1000x**", footer=f"You can expect this reward every 30 days!"))
                     except: pass
                     c.coins += 1000
                     c.xp += 10

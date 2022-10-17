@@ -79,6 +79,10 @@ class Profile(Cog):
     @command(aliases=['Sona', 'fursona', 'Fursona'])
     async def sona(self, ctx, user:Member=None):
         '''Quick Post Sona'''
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
+            await ctx.message.delete()
+            return
         if not user:
             user = ctx.author
         m = await ctx.send(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
@@ -86,7 +90,11 @@ class Profile(Cog):
     @cooldown(1, 30, BucketType.user)
     @command(aliases=['NSona', 'nfursona', 'nFursona'])
     async def nsona(self, ctx, user:Member=None):
-        '''Quick Post Sona'''
+        '''Quick Post Nsfw Sona'''
+        if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
+            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
+            await ctx.message.delete()
+            return
         if not user:
             user = ctx.author
         m = await ctx.send(embed=utils.ProfileEmbed(type="Nsfw_Sona", user=user, quick=True))
@@ -105,6 +113,10 @@ class Profile(Cog):
     @command(aliases=['I', 'i', 'interactions', 'Interactions'])
     async def interaction(self, ctx, user:Member=None):
         '''Quick Check interactions'''
+        if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
+            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
+            await ctx.message.delete()
+            return
         if not user:
             user = ctx.author
         m = await ctx.send(embed=utils.ProfileEmbed(type="Interactions", user=user, quick=True))

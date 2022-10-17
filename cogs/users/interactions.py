@@ -19,6 +19,11 @@ class Interactions(Cog):
     async def pat(self, ctx, user:Member):
         '''gives a pat!'''
 
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
+            await ctx.message.delete()
+            return
+
         giver_int = utils.Interactions.get(ctx.author.id)
         receiver_int = utils.Interactions.get(user.id)
         author = ctx.author
@@ -47,6 +52,11 @@ class Interactions(Cog):
     @command(aliases=['Hug', 'hugs', 'Hugs'])
     async def hug(self, ctx, user: Member):
         '''gives a hug!'''
+
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
+            await ctx.message.delete()
+            return
 
         giver_int = utils.Interactions.get(ctx.author.id)
         receiver_int = utils.Interactions.get(user.id)
@@ -77,10 +87,11 @@ class Interactions(Cog):
     @command(aliases=['Kiss', 'kisses', 'Kisses', 'kissy', 'Kissy', 'smooch'])
     async def kiss(self, ctx, user: Member):
         '''gives a kiss!'''
-        giver_int = utils.Interactions.get(ctx.author.id)
-        receiver_int = utils.Interactions.get(user.id)
-        adult = False
-        author = ctx.author
+
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
+            await ctx.message.delete()
+            return
 
         if ctx.author.id == user.id:
             msg = await ctx.send(f"Kissing yourself? In public?", delete_after=15)
@@ -89,6 +100,11 @@ class Interactions(Cog):
         if ctx.channel.is_nsfw() == False:
             msg = await ctx.send(f"Sorry that command can only be run in NSFW channels.", delete_after=15)
             return
+
+        giver_int = utils.Interactions.get(ctx.author.id)
+        receiver_int = utils.Interactions.get(user.id)
+        adult = False
+        author = ctx.author
 
         msg = choice([
             f"*{author.mention} gently presses their lips against {user.mention} for a soft kiss*",
@@ -110,10 +126,11 @@ class Interactions(Cog):
     @command(aliases=['Lick', 'licks', 'Licks', 'lix', 'Lix'])
     async def lick(self, ctx, user: Member):
         '''gives a lick!'''
-        giver_int = utils.Interactions.get(ctx.author.id)
-        receiver_int = utils.Interactions.get(user.id)
-        adult = False
-        author = ctx.author
+
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
+            await ctx.message.delete()
+            return
 
         if ctx.author.id == user.id:
             msg = await ctx.send(f"Thats weird... :c", delete_after=15)
@@ -122,6 +139,11 @@ class Interactions(Cog):
         if ctx.channel.is_nsfw() == False:
             msg = await ctx.send(f"Sorry that command can only be run in NSFW channels.", delete_after=15)
             return
+
+        giver_int = utils.Interactions.get(ctx.author.id)
+        receiver_int = utils.Interactions.get(user.id)
+        adult = False
+        author = ctx.author
 
         msg = choice([
             f"*Oh my, {author.mention} drags their tongue against {user.mention}'s cheek.*",
@@ -142,15 +164,21 @@ class Interactions(Cog):
     @command(aliases=['Boop', 'boops'])
     async def boop(self, ctx, user: Member):
         '''gives a boop!'''
-        giver_int = utils.Interactions.get(ctx.author.id)
-        receiver_int = utils.Interactions.get(user.id)
-        author = ctx.author
+
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
+            await ctx.message.delete()
+            return
 
         for role in user.roles:
             if role.id in self.bot.config['supporters'].values():
                 if ctx.author.id == user.id:
                     msg = await ctx.send(f"{author.mention} boops him self???", delete_after=15)
                     return
+
+                giver_int = utils.Interactions.get(ctx.author.id)
+                receiver_int = utils.Interactions.get(user.id)
+                author = ctx.author
 
                 msg = choice([
                     f"*{author.mention} presses their finger against {user.mention}'s nose. Boop!*",
@@ -176,15 +204,21 @@ class Interactions(Cog):
     @command(aliases=['Bite', 'bites'])
     async def bite(self, ctx, user: Member):
         '''gives a bite!'''
-        giver_int = utils.Interactions.get(ctx.author.id)
-        receiver_int = utils.Interactions.get(user.id)
-        author = ctx.author
+
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
+            await ctx.message.delete()
+            return
 
         for role in user.roles:
             if role.id in self.bot.config['supporters'].values():
                 if ctx.author.id == user.id:
                     msg = await ctx.send(f"{author.mention} tried biting himself make fun of the sub.", delete_after=15)
                     return
+
+                giver_int = utils.Interactions.get(ctx.author.id)
+                receiver_int = utils.Interactions.get(user.id)
+                author = ctx.author
 
                 msg = choice([
                     f"*{author.mention} wants to annoy {user.mention}, and decides to do so by gently nibbling on their arm.*",
@@ -209,15 +243,22 @@ class Interactions(Cog):
     @command(aliases=['Stab', 'stabs', 'kill'])
     async def stab(self, ctx, user: Member):
         '''gives a stab!'''
-        giver_int = utils.Interactions.get(ctx.author.id)
-        receiver_int = utils.Interactions.get(user.id)
-        author = ctx.author
+
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
+            await ctx.message.delete()
+            return
 
         for role in user.roles:
             if role.id in self.bot.config['supporters'].values():
                 if ctx.author.id == user.id:
                     msg = await ctx.send(f"I can't enourage self harm.", delete_after=15)
                     return
+
+
+                giver_int = utils.Interactions.get(ctx.author.id)
+                receiver_int = utils.Interactions.get(user.id)
+                author = ctx.author
 
                 msg = choice([
                     f"*{author.mention} is tired of {user.mention}'s shit, and decides to stab them in the side. How to get away with murder, huh?*",
