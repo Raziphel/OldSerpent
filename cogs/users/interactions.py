@@ -19,7 +19,7 @@ class Interactions(Cog):
     async def pat(self, ctx, user:Member):
         '''gives a pat!'''
 
-        if ctx.channel.id in self.bot.config['fur-channels'].values():
+        if ctx.channel.id not in self.bot.config['fur-channels'].values():
             await ctx.send("You can't post that nasty-ness here.", delete_after=10)
             await ctx.message.delete()
             return
@@ -53,7 +53,7 @@ class Interactions(Cog):
     async def hug(self, ctx, user: Member):
         '''gives a hug!'''
 
-        if ctx.channel.id in self.bot.config['fur-channels'].values():
+        if ctx.channel.id not in self.bot.config['fur-channels'].values():
             await ctx.send("You can't post that nasty-ness here.", delete_after=10)
             await ctx.message.delete()
             return
@@ -88,7 +88,7 @@ class Interactions(Cog):
     async def kiss(self, ctx, user: Member):
         '''gives a kiss!'''
 
-        if ctx.channel.id in self.bot.config['fur-channels'].values():
+        if ctx.channel.id not in self.bot.config['fur-channels'].values():
             await ctx.send("You can't post that nasty-ness here.", delete_after=10)
             await ctx.message.delete()
             return
@@ -127,7 +127,7 @@ class Interactions(Cog):
     async def lick(self, ctx, user: Member):
         '''gives a lick!'''
 
-        if ctx.channel.id in self.bot.config['fur-channels'].values():
+        if ctx.channel.id not in self.bot.config['fur-channels'].values():
             await ctx.send("You can't post that nasty-ness here.", delete_after=10)
             await ctx.message.delete()
             return
@@ -165,7 +165,7 @@ class Interactions(Cog):
     async def boop(self, ctx, user: Member):
         '''gives a boop!'''
 
-        if ctx.channel.id in self.bot.config['fur-channels'].values():
+        if ctx.channel.id not in self.bot.config['fur-channels'].values():
             await ctx.send("You can't post that nasty-ness here.", delete_after=10)
             await ctx.message.delete()
             return
@@ -205,7 +205,7 @@ class Interactions(Cog):
     async def bite(self, ctx, user: Member):
         '''gives a bite!'''
 
-        if ctx.channel.id in self.bot.config['fur-channels'].values():
+        if ctx.channel.id not in self.bot.config['fur-channels'].values():
             await ctx.send("You can't post that nasty-ness here.", delete_after=10)
             await ctx.message.delete()
             return
@@ -244,7 +244,7 @@ class Interactions(Cog):
     async def stab(self, ctx, user: Member):
         '''gives a stab!'''
 
-        if ctx.channel.id in self.bot.config['fur-channels'].values():
+        if ctx.channel.id not in self.bot.config['fur-channels'].values():
             await ctx.send("You can't post that nasty-ness here.", delete_after=10)
             await ctx.message.delete()
             return
