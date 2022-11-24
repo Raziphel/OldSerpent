@@ -32,7 +32,6 @@ CREATE TABLE staff_track (
     purges INT,
     messages INT,
     messages_month INT,
-    mail_verifications INT,
     mail_sonas INT,
     PRIMARY KEY (user_id)
 );

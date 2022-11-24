@@ -107,7 +107,7 @@ class Currency_Gen(Cog):
 
                     c = utils.Currency.get(member.id)
                     coins = 4 + round(len(vc.members)/2)
-                    c.coin += coins
+                    c.coins += coins
 
                     async with self.bot.database() as db:
                         await c.save(db)
