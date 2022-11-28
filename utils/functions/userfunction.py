@@ -15,6 +15,10 @@ class UserFunction(object):
     def currency_log(cls):
         return cls.bot.get_channel(cls.bot.config['currency_log'])
 
+    @property  #! The currency logs
+    def level_log(cls):
+        return cls.bot.get_channel(1046684571728625674)
+
 
     # For level ups!
     @classmethod
@@ -31,26 +35,16 @@ class UserFunction(object):
         c = utils.Currency.get(user.id)
 
         #* Emojis
-        goldcoin = "<:Coin:1026302157521174649>"
-        goodcoin = "<:GoodCoin:1011145572658446366>"
-        evilcoin = "<:EvilCoin:1011145570112512051>"
+        coin = "<:Coin:1026302157521174649>"
 
-        RNG = choice([1.25, 1.30, 1.35, 1, 1, 1])
+        RNG = choice([1.25, 1.30, 1.35, 1, 0.75, 0.85, 0.9])
 
         #! Yes, this is some crazy varible maddness!  It could be better...
         lvl.level += 1
-        amount_1 = (lvl.level*3) * RNG
-        amount_2 = (lvl.level*2) * RNG
-        amount_3 = floor(lvl.level/2) * RNG
-        c.coins += amount_1
-        c.good_coins += amount_2
-        c.evil_coins += amount_3
-        emoji_1 = goldcoin
-        emoji_2 = goodcoin
-        emoji_3 = evilcoin
-
+        amount = (lvl.level*100) * RNG
+        c.coins += amount
+        emoji = coin
         lvl.exp = 0
-
         async with cls.bot.database() as db:
             await c.save(db)
             await lvl.save(db)
@@ -60,10 +54,10 @@ class UserFunction(object):
         else:
             msg = await channel.send(embed=utils.SpecialEmbed(title=f"🎉{user.name} Is Level {lvl.level:,}!", desc=f"You were rewarded: **{round(amount_1):,}x {emoji_1}\n {round(amount_2):,}x {emoji_2}\n {round(amount_3):,}x {emoji_3}**", footer=" "))
 
-        try: await cls.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} ~~~ {round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}\n {round(amount_3):,}x {emoji_3}**"))
+        try: await cls.level_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} ~~~ {round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}\n {round(amount_3):,}x {emoji_3}**"))
         except: pass
 
-        await sleep(2)
+        await sleep(6)
         await msg.delete()
 
         return
@@ -83,51 +77,6 @@ class UserFunction(object):
         return requiredexp
 
 
-
-    @classmethod
-    async def verify_user(cls, user, type):
-        '''Litterally verify someone'''
-        guild = cls.bot.get_guild(cls.bot.config['razisrealm_id'])
-
-        if type == "guild":
-            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['member'])
-            await user.add_roles(verified, reason="Verification")
-            general = cls.bot.get_channel(cls.bot.config['lounge'])
-            await general.send(embed=utils.SpecialEmbed(description=f"Please welcome the new scum, {user.mention}!", thumbnail=user.avatar.url))
-            return
-
-        elif type == "alliance":
-            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['ussy'])
-            await user.add_roles(verified, reason="Verification")
-            general = cls.bot.get_channel(cls.bot.config['kingussy'])
-            await general.send(embed=utils.SpecialEmbed(description=f"New alliance member joined!\nWelcome {user.mention}!", thumbnail=user.avatar.url))
-            return
-
-        elif type == "furry":
-            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['furry'])
-            await user.add_roles(verified, reason="Verification")
-            general = cls.bot.get_channel(cls.bot.config['furry_lounge'])
-            await general.send(embed=utils.SpecialEmbed(description=f"A new furry has joined!\nWelcome {user.mention}!", thumbnail=user.avatar.url))
-            return
-
-        elif type == "adult":
-            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['nsfw_adult'])
-            await user.add_roles(verified, reason="Verification")
-            return
-
-        elif type == "kindaadult":
-            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['adult'])
-            await user.add_roles(verified, reason="Verification")
-            return
-
-        elif type == "notadult":
-            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['child'])
-            await user.add_roles(verified, reason="Verification")
-            return
-
-
-
-
     @classmethod
     async def check_level(cls, user:Member):
         """Checks the highest level role that the given user is able to receive"""
@@ -137,15 +86,15 @@ class UserFunction(object):
         lvl = utils.Levels.get(user.id)
 
         level_roles = {
-            100: "Grand Master [100]",
-            91: "Master [91-99]",
-            81: "Challenger [81-90]",
-            61: "King [61~80]",
-            41: "Queen [41~60]",
-            26: "Bishop [26~40]",
-            16: "Rook [16~25]",
-            6: "Knight [6~15]",
-            0: "Pawn [1~5]",
+            100: "Serpent's Hand",
+            91: "Chaos Insurgency",
+            81: "Mobile Task Force",
+            61: "Facility Managers",
+            41: "Containment Engineers",
+            26: "Facility Guards",
+            16: "Scientists",
+            6: "D-Class",
+            0: "Civilian",
         }
 
         # Get roles from the user we'd need to delete

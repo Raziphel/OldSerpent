@@ -19,10 +19,10 @@ class Currency_Gen(Cog):
         self.valid_uri = compile(r"(\b(https?|ftp|file)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]")
 
     @Cog.listener('on_message')
-    async def on_message(self, message:Message):
+    async def Level_Progression(self, message:Message):
         '''Determine Level progression settings!'''
 
-        #? BETTER NOT BE A DM
+        # BETTER NOT BE A DM
         if message.guild == None:
             return
         if message.author.bot:
@@ -31,45 +31,43 @@ class Currency_Gen(Cog):
         if self.bot.connected == False:
             return
 
-        tr = utils.Tracking.get(message.author.id)
-        tr.messages += 1
-        async with self.bot.database() as db:
-                await tr.save(db)
-
-
-        #? Check for links
-        if message.attachments != None: 
-            await self.coin_gen(message=message, image=True)
-        elif message.content.strip().lower() != self.valid_uri.match(message.content.split(" ")[0].split("\n")[0]):
-            await self.coin_gen(message=message)
-        else:
-            await self.coin_gen(message=message, image=True)
+        await self.level_progression(message=message)
 
 
 
-
-    async def coin_gen(self, message:Message, image:bool=False):
+    async def level_progression(self, message:Message):
         '''Level Progression'''
+        lvl = utils.Levels.get(message.author.id)
         c = utils.Currency.get(message.author.id)
-        if c.last_coin == None:
-            c.last_coin = dt.utcnow()
-        if (c.last_coin + timedelta(seconds=30)) <= dt.utcnow(): # Check Time
+        if lvl.last_xp == None:
+            lvl.last_xp = dt.utcnow()
+        if (lvl.last_xp + timedelta(seconds=30)) <= dt.utcnow(): # Check Time
 
             #! Define varibles
+            exp = 1
             unique_words = len(list(unique_everseen(message.content.split(), str.lower)))
+            requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
 
-            #! Unique Word Checker
-            if unique_words > 3:
-                c.coins += 5
-            elif image == True:
-                c.coins += 3
-            c.last_coin = dt.utcnow()
+            #! Unique Word Nerfer
+            if unique_words > 10:
+                unique_words = 10
 
-            async with self.bot.database() as db:
-                await c.save(db)
+            rng = choice([0.5, 0.75, 1.0, 1.25, 1.50])
+            exp += lvl.level*rng
+            c.coin += unique_words*rng
 
+            #! Command Usage Secret Increase!?
+            if message.content.startswith(self.bot.config['prefix']):
+                exp += lvl.level
 
+            if lvl.exp >= requiredexp:
+                await utils.UserFunction.level_up(user=message.author, channel=message.channel)
 
+            #! Save it to database
+            lvl.exp += exp
+            lvl.last_xp = dt.utcnow()
+        async with self.bot.database() as db:
+            await lvl.save(db)
 
 
 
@@ -106,11 +104,14 @@ class Currency_Gen(Cog):
                         return
 
                     c = utils.Currency.get(member.id)
+                    lvl = utils.Levels.get(member.id)
+                    lvl.exp = len(vc.members)*(lvl.level/2)
                     coins = 4 + round(len(vc.members)/2)
                     c.coins += coins
 
                     async with self.bot.database() as db:
                         await c.save(db)
+                        await lvl.save(db)
 
 
 

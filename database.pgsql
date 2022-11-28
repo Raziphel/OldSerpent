@@ -23,7 +23,6 @@ CREATE TABLE tracking (
 );
 
 
-
 CREATE TABLE staff_track (
     user_id bigint NOT NULL,
     mutes INT,
@@ -41,14 +40,11 @@ CREATE TABLE staff_track (
 ##################### LEVELS / USER RESOURCES / VALUE  ######################
 #############################################################################
 
-
-CREATE TABLE character (
+CREATE TABLE levels (
     user_id bigint NOT NULL,
-    role_id integer DEFAULT 0,
-    location_id integer DEFAULT 0,
-    scp integer DEFAULT 0,
-    last_action TIMESTAMP,
-    last_move TIMESTAMP,
+    level integer NOT NULL DEFAULT 0,
+    exp integer NOT NULL DEFAULT 0,
+    last_xp timestamp,
     PRIMARY KEY (user_id)
 );
 
@@ -64,19 +60,6 @@ CREATE TABLE currency (
     last_xp TIMESTAMP,
     PRIMARY KEY (user_id)
 );
-
-
-CREATE TABLE inventory (
-    user_id bigint NOT NULL,
-    key_level integer DEFAULT 0,
-    slot1 VARCHAR(50),
-    slot2 VARCHAR(50),
-    slot3 VARCHAR(50),
-    slot4 VARCHAR(50),
-    slot5 VARCHAR(50),
-    PRIMARY KEY (user_id)
-);
-
 
 
 CREATE TABLE sonas (
@@ -189,3 +172,6 @@ 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
 
 SERPENT GUTHUB KEY:
 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
+
+SERPENTS GARDEN DISCORD BOT #1 KEY:
+NzY0NzY5NDgxNDEwMjE1OTY3.GF6dLc.ojUUNd9gAQSPzgyd0Dn7wL159EIaJr7eHo4KCc

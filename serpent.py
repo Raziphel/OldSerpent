@@ -36,6 +36,8 @@ class Serpent(commands.AutoShardedBot):
         self.startup_method = None
         self.connected = False
 
+        #! Supporters
+        self.donators = ["🔥 Supporter II 🔥", "🔱 Supporter  III🔱"]
 
 
     def run(self):
