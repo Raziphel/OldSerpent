@@ -23,7 +23,7 @@ class Listeners(Cog):
         '''
 
         # Check for general
-        if message.channel.id in [1047026469068623902, 1047024954614480957]: #? Scp suggestions
+        if message.channel.id not in [1047026469068623902, 1047024954614480957]: #? Scp suggestions
             return
         else:
             await message.add_reaction("<:UpVote:1041606985080119377>")
