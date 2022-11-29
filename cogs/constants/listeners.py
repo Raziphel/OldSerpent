@@ -16,6 +16,19 @@ class Listeners(Cog):
         self.bot = bot
 
 
+    @Cog.listener('on_message')
+    async def vote_channels(self, message):
+        '''
+        Adds votes reactions!
+        '''
+
+        # Check for general
+        if message.channel.id != 1047024954614480957: #? Scp suggestions
+            return
+        else:
+            await message.add_reaction("<:UpVote:1041606985080119377>")
+            await message.add_reaction("<:DownVote:1041606970492342282>")
+
 
 
 

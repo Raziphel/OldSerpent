@@ -137,18 +137,6 @@ CREATE TABLE timers (
 );
 
 
-CREATE TABLE scps (
-    scp_id bigint NOT NULL,
-    threat_level int,
-    location_id bigint NOT NULL,
-    last_action TIMESTAMP,
-    last_move TIMESTAMP,
-    contained boolean True,
-    var_1 integer DEFAULT 0,
-    var_2 boolean DEFAULT False,
-    var_3 TIMESTAMP,
-    PRIMARY KEY (scp_id)
-);
 
 
 CREATE TABLE channels (
