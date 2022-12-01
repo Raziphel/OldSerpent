@@ -100,7 +100,7 @@ class Loops(Cog):
         msg = await channel.fetch_message(1012924362128621608)
 
         #* Set up the embed
-        embed = Embed(color=0x8f00f8)
+        embed = Embed(color=randint(1, 0xffffff))
         embed.set_author(name="Welcome to the Server's Leaderboard")
         embed.set_footer(text="if you ain't on here ya trash, sorry.")
 
@@ -126,8 +126,8 @@ class Loops(Cog):
         msg = await channel.fetch_message(1012924373474213999)
 
         # Set up the embed
-        embed = Embed(color=0x8f00f8)
-        embed.set_author(name="The Gold Leaderboard")
+        embed = Embed(color=randint(1, 0xffffff))
+        embed.set_author(name="The Coin Leaderboard")
         embed.set_footer(text="***Those with the most coins!**")
 
         sorted_rank = utils.Currency.sort_coins()
