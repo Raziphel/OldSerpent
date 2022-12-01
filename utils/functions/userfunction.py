@@ -49,9 +49,7 @@ class UserFunction(object):
             await c.save(db)
             await lvl.save(db)
 
-        if channel == None:
-            return
-        else:
+        if channel:
             msg = await channel.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} \n{round(amount):,}x {emoji}"))
 
         try: await cls.level_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} \n{round(amount):,}x {emoji}"))
