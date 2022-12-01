@@ -37,6 +37,14 @@ class ProfileEmbed(Embed):
         elif type_ == 'Nsfw_Sona':
             ch = utils.Nsfw_sonas.get(user.id)
 
+        #! Required xp
+        if lvl.level == 0:
+            requiredexp = 10
+        elif lvl.level < 5:
+            requiredexp = level*25
+        else:
+            requiredexp = round(level**2.25)
+
         #* Add Color
         self.color = tr.color
 
@@ -84,8 +92,8 @@ class ProfileEmbed(Embed):
 
         #* Add author
         if type_ == "Default":
-            self.add_field(name='📚 INFORMATION', value=f"**{adult}\n{support}**\n📈 Level: **{lvl.level:,}**", inline=True)
-            self.add_field(name='💸 CURRENCY', value=f"{coin} : **{floor(c.coins):,}x**\n***XP*** : **{floor(c.xp):,}x**", inline=True)
+            self.add_field(name='📚 INFORMATION', value=f"**{adult}\n{support}**", inline=True)
+            self.add_field(name='💸 VALUES', value=f"📈 Level: **{lvl.level:,}**\n***XP:*** **{lvl.exp:,}/{requiredexp:,}**\n{coin} : **{floor(c.coins):,}x**", inline=True)
             self.add_field(name='🥇 RECORDS', value=f"✉ Messages: **{tr.messages:,}**\n🎤 VC Hours: **{floor(tr.vc_mins/60):,} ({floor((tr.vc_mins/60)/24):,} Days)**", inline=True)
             self.add_field(name='-', value=f"**Work In Progress**", inline=True)
             self.set_footer(text=f"Joined Razi's Realm: {joined_at}")
