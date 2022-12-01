@@ -112,7 +112,7 @@ class Loops(Cog):
             user = self.bot.get_user(i.user_id)
             if user != None:
                 users.append(user)
-            else: ranks = sorted_rank[:10]
+            else: ranks = sorted_rank[:200]
         # users = [self.bot.get_user(i.user_id) for i in ranks]
         text = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
@@ -131,7 +131,7 @@ class Loops(Cog):
         embed.set_footer(text="***Those with the most coins!**")
 
         sorted_rank = utils.Currency.sort_coins()
-        ranks = sorted_rank[:10]
+        ranks = sorted_rank[:20]
         users = []
         for i in ranks:
             user = self.bot.get_user(i.user_id)
