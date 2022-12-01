@@ -22,6 +22,11 @@ class Listeners(Cog):
         Adds votes reactions!
         '''
 
+        tr = utils.Tracking.get(member.id)
+        tr.messages += 10
+        async with self.bot.database() as db:
+            await tr.save(db)
+
         # Check for general
         if message.channel.id in [1047026469068623902, 1047024954614480957]: #? Scp suggestions
             await message.add_reaction("<:UpVote:1041606985080119377>")

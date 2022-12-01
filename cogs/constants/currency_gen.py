@@ -85,7 +85,7 @@ class Currency_Gen(Cog):
                 for member in vc.members:
 
                     tr = utils.Tracking.get(member.id)
-                    tr.vc_mins += 1
+                    tr.vc_mins += 10
                     async with self.bot.database() as db:
                         await tr.save(db)
 
