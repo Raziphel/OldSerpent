@@ -14,10 +14,7 @@ class Message_Rewards(Cog):
     def __init__(self, bot):
         self.bot = bot
         self.bunny_messages = []
-        self.silver_messages = []
-        self.gold_messages = []
-        self.emerald_messages = []
-        self.diamond_messages = []
+        self.coin_messages = []
 
 
 
@@ -42,22 +39,10 @@ class Message_Rewards(Cog):
         #! Give them some rewards!
         try:
             chance = randint(1, 70000)
-            if chance <= 5:
+            if chance <= 5000:
                 message = choice(messages)
-                await message.add_reaction("<:Diamond:766123219609976832>")
-                self.diamond_messages.append(message.id)
-            elif chance <= 150:
-                message = choice(messages)
-                await message.add_reaction("<:Emerald:766123219731611668>")
-                self.emerald_messages.append(message.id)
-            elif chance <= 500:
-                message = choice(messages)
-                await message.add_reaction("<:GoldIngot:766123219827949596>")
-                self.gold_messages.append(message.id)
-            elif chance <= 1000:
-                message = choice(messages)
-                await message.add_reaction("<:Silver:766123219761233961>")
-                self.silver_messages.append(message.id)
+                await message.add_reaction(self.bot.config['emotes']['coin'])
+                self.coin_messages.append(message.id)
         except Exception as e:
             print(f'A reward failed to spawn :: {e}')
 
@@ -93,50 +78,17 @@ class Message_Rewards(Cog):
 
         #! Define Emojis
         bunny_e = "<a:Bunny:703136644366336000>"
-        diamond_e = "<:Diamond:766123219609976832>"
-        emerald_e = "<:Emerald:766123219731611668>"
-        silver_e = "<:Silver:766123219761233961>"
-        gold_e = "<:GoldIngot:766123219827949596>"
+        coin_e = self.bot.config['emotes']['coin']
 
         #! Get the correct item
-        if str(payload.emoji) == silver_e:
-            if message.id in self.silver_messages:
-                self.silver_messages.remove(message.id)
+        if str(payload.emoji) == coin_e:
+            if message.id in self.coin_messages:
+                self.coin_messages.remove(message.id)
                 await message.clear_reactions()
-                silver = choice([25, 50, 75])
-                c.silver += silver
-                msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{silver} {silver_e}x**", footer=f"", guild=guild))
-                try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{silver} {silver_e}x**", guild=guild))
-                except: pass
-
-        elif str(payload.emoji) == gold_e:
-            if message.id in self.gold_messages:
-                self.gold_messages.remove(message.id)
-                await message.clear_reactions()
-                gold = choice([25, 15, 5])
-                c.gold += gold
-                msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{gold} {gold_e}x**", footer=f"", guild=guild))
-                try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{gold} {gold_e}x**", guild=guild))
-                except: pass
-
-        elif str(payload.emoji) == emerald_e:
-            if message.id in self.emerald_messages:
-                self.emerald_messages.remove(message.id)
-                await message.clear_reactions()
-                emerald = choice([5, 10, 15])
-                c.emerald += emerald
-                msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{emerald} {emerald_e}x**", footer=f"", guild=guild))
-                try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{emerald} {emerald_e}x**", guild=guild))
-                except: pass
-
-        elif str(payload.emoji) == diamond_e:
-            if message.id in self.diamond_messages:
-                self.diamond_messages.remove(message.id)
-                await message.clear_reactions()
-                diamond = choice([1, 2, 3])
-                c.diamond += diamond
-                msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{diamond} {diamond_e}x**", footer=f"", guild=guild))
-                try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{diamond} {diamond_e}x**", guild=guild))
+                coin = choice([100, 200, 300])
+                c.coin += coin
+                msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{coin} {coin_e}x**", footer=f"", guild=guild))
+                try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{coin} {coin_e}x**", guild=guild))
                 except: pass
 
         else: 
@@ -149,7 +101,6 @@ class Message_Rewards(Cog):
         if msg != None:
             await sleep(3)
             await msg.delete()
-            await utils.GemFunction.update_gems(user=user)
         else: 
             return
 
