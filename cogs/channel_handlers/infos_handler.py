@@ -32,11 +32,11 @@ class rules_handler(Cog):
         embed1=Embed(title=f"**[- The Server's Rules -]**", 
         description=f"**These are rules for the entire Discord Server.**\n\n**1.)** Respect Everyone, not a single person doesn't deserve respect, especially the 05 Council.\n\n**2.)** Harrassment, Bully, Attacking of any kind or form of any member on this server isnt allowed. Period.\n\n**3.)** Drama, most people here have already gone through highschool, don't bring it back.\n\n**4.)** This server only allows the use of English.  We can not moderate other languages.\n\n**5.)** Common Sense, Don't be annoying or do anything that would make a 05 Council have to punish. (Should be easy.)\n\n**6.)** Discord TOS, obviously don't do anything discord already doesn't allow, could count as previous rule.\n\n**7.)** Respect The Serpent.", color=0xF54747)
 
-        embed2=Embed(title=f"**[- The Serpent's Game -]**", 
-        description=f"**This is a list of useful information for the Serpent's Game.**\n\n**1.)** To move between areas you must use <#1021288155040714782>!\n\n**2.)** Interactions with The Serpent, doing tasks, sending messages and being in VC will all give you xp and coins!\n\n**3.)** Getting a better role requires higher levels.\n\n**4.)** The 05 Council must use Alpha-1 to participate in my game.\n\n**5.)** When you die in my game you are made a D-Class for a few hours, making Light Contain. the most general place.  Leaving open your role slot.\n\n**6.)** The Serpent's Hand can veiw the Serpent's server's logs...\n\n**7.)** For in depth information go to <#1020959150890565703>", color=0x47F599)
+        embed2=Embed(title=f"**[- The Serpent's Handbook -]**", 
+        description=f"**This Discord server is suprisingly complicated but it doesn't have to be.**\nThis Handbook channel could be considered a Wikipidia for anything your looking for!  Me sure to check it out, it even has a fucking Table of Contents...", color=0x47F599)
 
         embed3=Embed(title=f"**[- The 05 Council -]**", 
-        description=f"The 05 Council is the Discord Server's form of Staff.  They are the only Role on the server that are **Omni-Present**. (meaning they do not have to travel between zones)\n\n**The 05 are also not allowed to interact with The Serpent like regular users.**\n\nThe \"Red Right Hand\" Alpha-1 use The Serpent normally, being the 05's only way for presence in the Serpent's Game.\n\nThe 05 Council's corresponding number is in order of rank.", color=0xF5AE47)
+        description=f"The 05 Council are the formal Administrators of the server!  Where as the The Red Right Hand is a form of moderators for the server!  The 05 council is never open to applications, but the Red RIght hand always is!  You can find out how to apply for staff in The Handbook.", color=0xF5AE47)
 
         embed4=Embed(title=f"**[- Moderation System -]**", 
         description=f"**By absolutely no means do the 05 Council (Staff) have to be \"Fair\", in any situation or decision. They are put there for a reason and we usually run everything past one another.**\n\nFor most situations a Council member will give a single warning and after that you are completely fair game; from that council member or any other for whatever punishment they believe you deserve.  Lying about your age, breaking Discord TOS, sending spam, hate, phishing links or scamming in anyway, is awlays going to be a ban with no warning.  *It won't be tolerated at all.*", color=0xB6F547)
@@ -67,17 +67,17 @@ class rules_handler(Cog):
         
         coin = self.bot.config['emotes']['coin']
 
-        embed1=Embed(title=f"**[- Permenant Roles -]**", 
-        description=f"**These roles cannot and will not be taken away you from the Serpent's Game**\n\n🚬 `Adult`\nThis will give you access to any NSFW marked channels in any category on the server.  Your other roles automatically update to adult versions.\n\n🍺 `Adult?`\nThis will give you access to VC channels that only Adults can join.\nYou will not have access to the NSFW text channels.\n\n🍼 `Child`\nThis will let the mark you as a child.\nIt is encouraged to get and not lie.\n\n🐾 `Furry`\nThis role is for those degenerates!\n\n💣 `Serpent's Laboratory`\nIf you enjoy the SCP Laboratory servers be sure to get this role!\n\n🏹 `Kingussy`\nThis is for certian specific people.  You must be invited and have a password.", color=0xFF0000)
+        embed1=Embed(title=f"**[- Level Roles -]**", 
+        description=f"**Level 100 ->** @Serpent's Hand\n**Level 91 ->** @Chaos Insurgency\n**Level 81 ->** @Mobile Task Force\n**Level 61 ->** @Facility Managers\n**Level 41 ->** @Containment Engineers\n**Level 26 ->** @Facility Guards\n**Level 16 ->** @Scientists\n**Level 6 ->** @D-Class\n**Level 0 ->** @Civilian", color=0xFF0000)
 
-        embed2=Embed(title=f"**[- Groups of Intrest Roles -]**", 
-        description=f"**These roles you must pay for to change and you are only able to change if a D-Class.** (These are the more valuable roles that suck to lose)\n\n<:KETER:1020576689245392937> **__SCPs__**\nWait for your chance to breach containment.  Get coins and xp from killing other roles.\n**[ {coin} : 500,000x ]\n[ *XP* : 10,000x ]**\n\n\n🐍 **__Serpent's Hand__**\nBreak in to the facility and help the scps.  Get coins and xp from stealing SCPs and helping scps.\n**[ {coin} : 300,000x ]\n[ *XP* : 7,500x ]**\n\n\n💣 **__The Chaos Insurgency__**\nSteal Scps and kill foundation staff during breaches.  Get coins and xp from killing other roles and stealing Scps.\n**[ {coin} : 250,000x ]\n[ *XP* : 7,500x ]**\n\n\n<:RedRightHand:1020893683853303828> **__Red Right Hand__**\nFollow all the 05's commands.  Get coins and xp directly from the 05.\n**[ {coin} : 200,000x ]\n[ *XP* : 5,000x ]**\n", color=0x0000FF)
+        embed2=Embed(title=f"**[- Coming Soon -]**", 
+        description=f"", color=0x0000FF)
 
-        embed3=Embed(title=f"**[- Foundation Roles -]**", 
-        description=f"**These roles you must pay for to change and you are only able to change if a D-Class.** (If you died, you become a D-Class)\n\n", color=0xFFFFFF)
+        embed3=Embed(title=f"**[- Coming Soon -]**", 
+        description=f"", color=0xFFFFFF)
 
-        embed4=Embed(title=f"**[- Zone Changes -]**", 
-        description=f"**These roles are considered locations, you must lose your current role to go to another one.** (05 Council can see every Channel.)\n\n", color=0xFF00FF)
+        embed4=Embed(title=f"**[- Pickable Roles -]**", 
+        description=f"**These roles cannot and will not be taken away you from the Serpent's Game**\n\n🚬 `Adult`\nThis will give you access to any NSFW marked channels in any category on the server.  Your other roles automatically update to adult versions.\n\n🍺 `Adult?`\nThis will give you access to VC channels that only Adults can join.\nYou will not have access to the NSFW text channels.\n\n🍼 `Child`\nThis will let the mark you as a child.\nIt is encouraged to get and not lie.\n\n🐾 `Furry`\nThis role is for those degenerates\n\n🏹 `Kingussy`\nThis is for certian specific people.  You must be invited and have a password.", color=0xFF00FF)
 
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
