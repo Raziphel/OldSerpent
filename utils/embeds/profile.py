@@ -93,7 +93,7 @@ class ProfileEmbed(Embed):
         #* Add author
         if type_ == "Default":
             self.add_field(name='📚 INFORMATION', value=f"**{adult}\n{support}**", inline=True)
-            self.add_field(name='💸 VALUES', value=f"📈 Level: **{lvl.level:,}**\n***XP:*** **{lvl.exp:,}/{requiredexp:,}**\n{coin} : **{floor(c.coins):,}x**", inline=True)
+            self.add_field(name='💸 VALUES', value=f"📈 Level: **{lvl.level:,}**\n***XP:*** {floor(lvl.exp):,}/**{requiredexp:,}**\n{coin} : **{floor(c.coins):,}x**", inline=True)
             self.add_field(name='🥇 RECORDS', value=f"✉ Messages: **{tr.messages:,}**\n🎤 VC Hours: **{floor(tr.vc_mins/60):,} ({floor((tr.vc_mins/60)/24):,} Days)**", inline=True)
             self.add_field(name='-', value=f"**Work In Progress**", inline=True)
             self.set_footer(text=f"Joined Razi's Realm: {joined_at}")
