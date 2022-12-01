@@ -212,6 +212,39 @@ class Developer(Cog):
         await ctx.send('Level Reset Complete.')
 
 
+    @utils.is_dev()
+    @command(hidden=True)
+    async def resetcoins(self, ctx):
+        guild = self.bot.get_guild(self.bot.config['razisrealm_id'])
+        for user in guild.members:
+            for role in user.roles:
+                c = utils.Currency.get(user.id)
+                if role.name == "Civilian":
+                    c.coins = 1000
+                elif role.name == "D-Class":
+                    c.coins = 3000
+                elif role.name == "Scientists":
+                    c.coins = 8000
+                elif role.name == "Facility Guards":
+                    c.coins = 15000
+                elif role.name == "Containment Engineers":
+                    c.coins = 25000
+                elif role.name == "Facility Managers":
+                    c.coins = 50000
+                elif role.name == "Mobile Task Force":
+                    c.coins = 60000
+                elif role.name == "Chaos Insurgency":
+                    c.coins = 100000
+                elif role.name == "Serpent's Hand":
+                    c.coins = 500000
+                else: pass
+            async with self.bot.database() as db:
+                await lvl.save(db)
+            print(f'{user.name} coins set to {c.coins}')
+        await ctx.send('Coin Reset Complete.')
+
+
+
 
 
 
