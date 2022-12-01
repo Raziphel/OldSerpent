@@ -54,7 +54,7 @@ class Currency_Gen(Cog):
 
             rng = choice([0.5, 0.75, 1.0, 1.25, 1.50])
             exp += lvl.level*rng
-            c.coin += unique_words*rng
+            c.coins += unique_words*rng
 
             #! Command Usage Secret Increase!?
             if message.content.startswith(self.bot.config['prefix']):
