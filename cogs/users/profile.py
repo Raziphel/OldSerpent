@@ -39,8 +39,6 @@ class Profile(Cog):
             await msg.add_reaction("✨")
         if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
             await msg.add_reaction("🔞")
-        if ctx.channel.id in self.bot.config['fur-channels'].values():
-            await msg.add_reaction("🔮")
         for role in user.roles:
             if role.id == self.bot.config['roles']['council']:
                 await msg.add_reaction("🍃")
@@ -58,10 +56,6 @@ class Profile(Cog):
         # if r.emoji == "📕":
         #     await msg.edit(embed=utils.FactionEmbed(type="Default", user=user))
         #     pass
-        if ctx.channel.id in self.bot.config['fur-channels'].values():
-            if r.emoji == "🔮":
-                await msg.edit(embed=utils.ProfileEmbed(type="Interactions", user=user))
-                pass
         # if r.emoji == "❤️":
         #     await msg.edit(embed=utils.ProfileEmbed(type="Relationships", user=user))
         #     pass

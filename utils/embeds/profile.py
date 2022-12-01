@@ -74,15 +74,6 @@ class ProfileEmbed(Embed):
             else: adult = "🔶 Child"
 
 
-        #* Add Interactions
-        for role in user.roles:
-            if role.id in self.bot.config['supporters'].values():
-                interact_gived = f"❧ Pats: **{inte.pats_given:,}**\n❧ Hugs: **{inte.hugs_given:,}**\n❧ Kisses: **{inte.kisses_given:,}**\n❧ Licks: **{inte.licks_given:,}**\n\n💤 **Nota'Supporter**"
-                interact_received = f"❧ Pats: **{inte.pats_received:,}**\n❧ Hugs: **{inte.hugs_received:,}**\n❧ Kisses: **{inte.kisses_received:,}**\n❧ Licks: **{inte.licks_received:,}**"
-            else:
-                interact_gived = f"❧ Pats: **{inte.pats_given:,}**\n❧ Hugs: **{inte.hugs_given:,}**\n❧ Kisses: **{inte.kisses_given:,}**\n❧ Licks: **{inte.licks_given:,}**\n❧ Boops: **{inte.boops_given}**\n❧ Bites: **{inte.bites_given}**\n❧ Stabs: **{inte.stabs_given}**\n❧ Flirts: **{inte.flirts_given}**"
-                interact_received = f"❧ Pats: **{inte.pats_received:,}**\n❧ Hugs: **{inte.hugs_received:,}**\n❧ Kisses: **{inte.kisses_received:,}**\n❧ Licks: **{inte.licks_received:,}**\n❧ Boops: **{inte.boops_received}**\n❧ Bites: **{inte.bites_received}**\n❧ Stabs: **{inte.stabs_received}**\n❧ Flirts: **{inte.flirts_received}**"
-
 
         #* Add author
         self.set_author(name=f"{user.name}'s {type_} Profile", icon_url=user.avatar.url, url=patron)
@@ -102,12 +93,6 @@ class ProfileEmbed(Embed):
         if type_ == "Staff-Track":
             self.add_field(name='STAFF', value=f"❧ Mutes: {st.mutes}\n❧ Memes: {st.memes}\n❧ Nsfws: {st.nsfws}\n❧ Sonas: {st.mail_sonas}", inline=True)
             self.add_field(name='TRACK', value=f"❧ Purges: {st.purges}\n❧ Messages: {st.messages}\n❧ Monthly Msgs: {st.messages_month}\n❧ Verified: {st.mail_verification}", inline=True)
-            if quick == False:
-                self.set_footer(text=f"| 🔷 Main Profile |")
-
-        if type_ == "Interactions":
-            self.add_field(name='Given', value=interact_gived, inline=True)
-            self.add_field(name='Received', value=interact_received, inline=True)
             if quick == False:
                 self.set_footer(text=f"| 🔷 Main Profile |")
 

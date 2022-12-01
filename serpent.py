@@ -56,7 +56,6 @@ class Serpent(commands.AutoShardedBot):
             utils.Sonas.all_sonas.clear()
             utils.Nsfw_sonas.all_nsfw_sonas.clear()
             utils.Timers.all_timers.clear()
-            utils.Interactions.all_interactions.clear()
             utils.Tracking.all_tracking.clear()
             utils.Staff_Track.all_staff_track.clear()
 
@@ -68,7 +67,6 @@ class Serpent(commands.AutoShardedBot):
                 sonas = await db('SELECT * FROM sonas')
                 nsfw_sonas = await db('SELECT * FROM nsfw_sonas')
                 timers = await db('SELECT * FROM timers')
-                interactions = await db('SELECT * FROM interactions')
                 tracking = await db('SELECT * FROM tracking')
                 staff_track = await db('SELECT * FROM staff_track')
 
@@ -87,9 +85,6 @@ class Serpent(commands.AutoShardedBot):
 
             for i in timers:
                 utils.Timers(**i)
-
-            for i in interactions:
-                utils.Interactions(**i)
 
             for i in tracking:
                 utils.Tracking(**i)

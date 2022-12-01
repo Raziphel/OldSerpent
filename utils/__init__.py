@@ -17,7 +17,6 @@ from utils.embeds.warning import WarningEmbed
 
 #? Users
 from utils.sql.users.moderation import Moderation
-from utils.sql.users.interactions import Interactions
 from utils.sql.users.currency import Currency
 from utils.sql.users.sonas import Sonas
 from utils.sql.users.nsfw_sonas import Nsfw_sonas
