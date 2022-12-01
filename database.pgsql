@@ -17,7 +17,7 @@ CREATE TABLE tracking (
     user_id bigint NOT NULL,
     messages integer DEFAULT 0,
     vc_mins integer DEFAULT 0,
-    last_image timestamp,
+    last_bump timestamp,
     color integer,
     PRIMARY KEY (user_id)
 );

@@ -34,7 +34,7 @@ class Loops(Cog):
 
         #* Setting the Channel Stats.
         members_channel = self.bot.get_channel(856451508865466368)
-        coins_channel = self.bot.get_channel(1030001764537217084)
+        coins_channel = self.bot.get_channel(1047682198523875399)
         members = len(set(self.bot.get_all_members()))
         total_coins = utils.Currency.get_total_coins()
         await members_channel.edit(name=f"Members: {members:,}")
