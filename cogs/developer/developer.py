@@ -239,7 +239,7 @@ class Developer(Cog):
                     c.coins = 500000
                 else: pass
             async with self.bot.database() as db:
-                await lvl.save(db)
+                await c.save(db)
             print(f'{user.name} coins set to {c.coins}')
         await ctx.send('Coin Reset Complete.')
 
