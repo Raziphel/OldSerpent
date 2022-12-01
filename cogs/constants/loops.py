@@ -128,7 +128,7 @@ class Loops(Cog):
         # Set up the embed
         embed = Embed(color=randint(1, 0xffffff))
         embed.set_author(name="The Coin Leaderboard")
-        embed.set_footer(text="***Those with the most coins!**")
+        embed.set_footer(text="Those with the most coins!")
 
         sorted_rank = utils.Currency.sort_coins()
         ranks = sorted_rank[:20]
@@ -174,7 +174,7 @@ class Loops(Cog):
                 if nitro in user.roles:
                     c = utils.Currency(user.id)
                     try:
-                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 1000x**", footer=f"You can expect this reward every 30 days!"))
+                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 5000x**", footer=f"You can expect this reward every 30 days!"))
                     except: pass
                     c.coins += 5000
                     c.xp += 1000
