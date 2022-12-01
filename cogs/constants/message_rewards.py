@@ -74,7 +74,6 @@ class Message_Rewards(Cog):
         message = await channel.fetch_message(payload.message_id)
         msg = None
 
-        log = await utils.ChannelFunction.get_log_channel(guild=guild, log="currency")
 
         #! Define Emojis
         bunny_e = "<a:Bunny:703136644366336000>"
@@ -88,8 +87,8 @@ class Message_Rewards(Cog):
                 coin = choice([100, 200, 300])
                 c.coin += coin
                 msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{coin} {coin_e}x**", footer=f"", guild=guild))
-                try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{coin} {coin_e}x**", guild=guild))
-                except: pass
+                #try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{coin} {coin_e}x**", guild=guild))
+                #except: pass
 
         else: 
             return
