@@ -27,8 +27,8 @@ class ProfileEmbed(Embed):
 
         #! Define Varibles
         mod = utils.Moderation.get(user.id)
+        lvl = utils.Levels.get(user.id)
         c = utils.Currency.get(user.id)
-        inte = utils.Interactions.get(user.id)
         tr = utils.Tracking.get(user.id)
         st = utils.Staff_Track.get(user.id)
 
@@ -84,7 +84,7 @@ class ProfileEmbed(Embed):
 
         #* Add author
         if type_ == "Default":
-            self.add_field(name='📚 INFORMATION', value=f"**{adult}\n{support}**\n", inline=True)
+            self.add_field(name='📚 INFORMATION', value=f"**{adult}\n{support}**\n📈 Level: **{lvl.level:,}**", inline=True)
             self.add_field(name='💸 CURRENCY', value=f"{coin} : **{floor(c.coins):,}x**\n***XP*** : **{floor(c.xp):,}x**", inline=True)
             self.add_field(name='🥇 RECORDS', value=f"✉ Messages: **{tr.messages:,}**\n🎤 VC Hours: **{floor(tr.vc_mins/60):,} ({floor((tr.vc_mins/60)/24):,} Days)**", inline=True)
             self.add_field(name='-', value=f"**Work In Progress**", inline=True)

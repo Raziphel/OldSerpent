@@ -52,6 +52,7 @@ class Serpent(commands.AutoShardedBot):
         try:   #? Try this to prevent reseting the database on accident!
             #! Clear cache
             utils.Moderation.all_moderation.clear()
+            utils.Levels.all_levels.clear()
             utils.Currency.all_currency.clear()
             utils.Sonas.all_sonas.clear()
             utils.Nsfw_sonas.all_nsfw_sonas.clear()
@@ -63,6 +64,7 @@ class Serpent(commands.AutoShardedBot):
             #!   Collect from Database
             async with self.database() as db:
                 moderation = await db('SELECT * FROM moderation')
+                levels = await db('SELECT * FROM levels')
                 currency = await db('SELECT * FROM currency')
                 sonas = await db('SELECT * FROM sonas')
                 nsfw_sonas = await db('SELECT * FROM nsfw_sonas')
@@ -73,6 +75,9 @@ class Serpent(commands.AutoShardedBot):
             #!   Cache all into local objects
             for i in moderation:
                 utils.Moderation(**i)
+
+            for i in levels:
+                utils.Levels(**i)
 
             for i in currency:
                 utils.Currency(**i)
@@ -92,13 +97,15 @@ class Serpent(commands.AutoShardedBot):
             for i in staff_track:
                 utils.Staff_Track(**i)
 
+
+
         except Exception as e:
             print(f'Couldn\'t connect to the database... :: {e}')
 
 
         #! If Razi ain't got coins the DB ain't connected correctly... lmfao
-        c = utils.Currency.get(159516156728836097)
-        if c.coins == 0:
+        lvl = utils.Levels.get(159516156728836097)
+        if lvl.level == 0:
             self.connected = False
             print('Bot database is NOT connected!')
         else: 

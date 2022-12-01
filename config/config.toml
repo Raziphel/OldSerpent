@@ -6,8 +6,8 @@ developer = 159516156728836097
 bot_id = 896690181455892481
 
 [database]
-    user = "root"
-    password = "j9yr83&EqkCqknv5J6Qq"
+    user = "postgres"
+    password = "kidad7quhgyhmfdq3yw6ukas"
     database = "postgres"
     host = "172.18.0.1"
 

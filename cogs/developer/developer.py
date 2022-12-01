@@ -180,6 +180,41 @@ class Developer(Cog):
 
 
 
+    @utils.is_dev()
+    @command(hidden=True)
+    async def resetlevels(self, ctx):
+        guild = self.bot.get_guild(self.bot.config['razisrealm_id'])
+        for user in guild.members:
+            for role in user.roles:
+                lvl = utils.Levels.get(user.id)
+                if role.name == "Civilian":
+                    lvl.level = 3
+                elif role.name == "D-Class":
+                    lvl.level = 15
+                elif role.name == "Scientists":
+                    lvl.level = 25
+                elif role.name == "Facility Guards":
+                    lvl.level = 40
+                elif role.name == "Containment Engineers":
+                    lvl.level = 60
+                elif role.name == "Facility Managers":
+                    lvl.level = 80
+                elif role.name == "Mobile Task Force":
+                    lvl.level = 90
+                elif role.name == "Chaos Insurgency":
+                    lvl.level = 99
+                elif role.name == "Serpent's Hand":
+                    lvl.level = 100
+                else: pass
+            async with self.bot.database() as db:
+                await lvl.save(db)
+            print(f'{user.name} level set to {lvl.level}')
+        await ctx.send('Level Reset Complete.')
+
+
+
+
+
 def setup(bot):
     x = Developer(bot)
     bot.add_cog(x)
