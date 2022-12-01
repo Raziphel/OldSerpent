@@ -95,96 +95,53 @@ class Loops(Cog):
                     #     await user.remove_roles(library_pass, reason="Fixing Adult & Library Pass role.")
             except Exception as e: print(f'Error fixing roles :: {e}')
 
-        # #* Levels Leaderboard
-        # channel = self.bot.get_channel(self.bot.config['channels']['leaderboard'])
-        # msg = await channel.fetch_message(1012924362128621608)
+        #* Levels Leaderboard
+        channel = self.bot.get_channel(self.bot.config['channels']['leaderboard'])
+        msg = await channel.fetch_message(1012924362128621608)
 
-        # #* Set up the embed
-        # embed = Embed(color=0x8f00f8)
-        # embed.set_author(name="Welcome to the Server's Leaderboard")
-        # embed.set_footer(text="if you ain't on here ya trash, sorry.")
+        #* Set up the embed
+        embed = Embed(color=0x8f00f8)
+        embed.set_author(name="Welcome to the Server's Leaderboard")
+        embed.set_footer(text="if you ain't on here ya trash, sorry.")
 
-        # #* Add in level rankings
-        # sorted_rank = utils.Levels.sort_levels()
-        # ranks = sorted_rank[:20]
-        # users = []
-        # for i in sorted_rank:
-        #     user = self.bot.get_user(i.user_id)
-        #     if user != None:
-        #         users.append(user)
-        #     else: ranks = sorted_rank[:10]
-        # # users = [self.bot.get_user(i.user_id) for i in ranks]
-        # text = []
-        # for index, (user, rank) in enumerate(zip(users, ranks)):
-        #     text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
-        # embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
+        #* Add in level rankings
+        sorted_rank = utils.Levels.sort_levels()
+        ranks = sorted_rank[:20]
+        users = []
+        for i in sorted_rank:
+            user = self.bot.get_user(i.user_id)
+            if user != None:
+                users.append(user)
+            else: ranks = sorted_rank[:10]
+        # users = [self.bot.get_user(i.user_id) for i in ranks]
+        text = []
+        for index, (user, rank) in enumerate(zip(users, ranks)):
+            text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
+        embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
 
-        # await msg.edit(content=f"**If you're on this list your gay. Not Butts.**", embed=embed)
+        await msg.edit(content=f"**Those with the Highest Levels!**", embed=embed)
 
 
-        # #! Gold Leaderboard
-        # msg = await channel.fetch_message(1012924373474213999)
+        #! Coin Leaderboard
+        msg = await channel.fetch_message(1012924373474213999)
 
-        # # Set up the embed
-        # embed = Embed(color=0x8f00f8)
-        # embed.set_author(name="The Gold Leaderboard")
-        # embed.set_footer(text="The shiny stuff!?")
+        # Set up the embed
+        embed = Embed(color=0x8f00f8)
+        embed.set_author(name="The Gold Leaderboard")
+        embed.set_footer(text="***Those with the most coins!**")
 
-        # sorted_rank = utils.Currency.sort_gold_coins()
-        # ranks = sorted_rank[:10]
-        # users = []
-        # for i in ranks:
-        #     user = self.bot.get_user(i.user_id)
-        #     if user != None:
-        #         users.append(user)
-        # text = []
-        # for index, (user, rank) in enumerate(zip(users, ranks)):
-        #     text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.gold_coins):,} Gold Coins")
-        # embed.add_field(name='Gold Coin Rank', value='\n'.join(text), inline=True)
-        # await msg.edit(content=" ", embed=embed)
-
-        # #! Good Leaderboard
-        # msg = await channel.fetch_message(1012924390490513539)
-
-        # # Set up the embed
-        # embed = Embed(color=0x8f00f8)
-        # embed.set_author(name="The Good Leaderboard")
-        # embed.set_footer(text="The Holy Stuff!?")
-
-        # sorted_rank = utils.Currency.sort_good_coins()
-        # ranks = sorted_rank[:10]
-        # users = []
-        # for i in ranks:
-        #     user = self.bot.get_user(i.user_id)
-        #     if user != None:
-        #         users.append(user)
-        # text = []
-        # for index, (user, rank) in enumerate(zip(users, ranks)):
-        #     text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.good_coins):,} Good Coins")
-        # embed.add_field(name='Good Coin Rank', value='\n'.join(text), inline=True)
-        # await msg.edit(content=" ", embed=embed)
-
-        # #! Evil Leaderboard
-        # msg = await channel.fetch_message(1012924398124150894)
-
-        # # Set up the embed
-        # embed = Embed(color=0x8f00f8)
-        # embed.set_author(name="The Evil Coin Leaderboard")
-        # embed.set_footer(text="You shouldn't have these.")
-
-        # sorted_rank = utils.Currency.sort_evil_coins()
-        # ranks = sorted_rank[:10]
-        # users = []
-        # for i in ranks:
-        #     user = self.bot.get_user(i.user_id)
-        #     if user != None:
-        #         users.append(user)
-        # text = []
-        # for index, (user, rank) in enumerate(zip(users, ranks)):
-        #     text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.evil_coins):,} Evil Coins")
-        # embed.add_field(name='Evil Coin Rank', value='\n'.join(text), inline=True)
-        # await msg.edit(content=" ", embed=embed)
-
+        sorted_rank = utils.Currency.sort_coins()
+        ranks = sorted_rank[:10]
+        users = []
+        for i in ranks:
+            user = self.bot.get_user(i.user_id)
+            if user != None:
+                users.append(user)
+        text = []
+        for index, (user, rank) in enumerate(zip(users, ranks)):
+            text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} Gold Coins")
+        embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
+        await msg.edit(content=" ", embed=embed)
 
 
     @one_min_loop.before_loop
@@ -219,8 +176,8 @@ class Loops(Cog):
                     try:
                         await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 1000x**", footer=f"You can expect this reward every 30 days!"))
                     except: pass
-                    c.coins += 1000
-                    c.xp += 10
+                    c.coins += 5000
+                    c.xp += 1000
                     async with self.bot.database() as db:
                         await t.save(db)
                         await c.save(db)
