@@ -96,32 +96,6 @@ CREATE TABLE nsfw_sonas (
 
 
 
-
-CREATE TABLE interactions (
-    user_id BIGINT NOT NULL,
-    premium BOOLEAN DEFAULT false,
-    upvotes_given INT,
-    upvotes_received INT,
-    pats_given INT,
-    pats_received INT,
-    hugs_given INT,
-    hugs_received INT,
-    kisses_given INT,
-    kisses_received INT,
-    licks_given INT,
-    licks_received INT,
-    boops_given INT,
-    boops_received INT,
-    bites_given INT,
-    bites_received INT,
-    stabs_given INT,
-    stabs_received INT,
-    flirts_given INT,
-    flirts_received INT,
-    PRIMARY KEY (user_id)
-);
-
-
 ###########################################################################
 #########################     SERVERS / SPECIAL    ########################
 ###########################################################################
@@ -135,20 +109,6 @@ CREATE TABLE timers (
     last_monthly TIMESTAMP,
     PRIMARY KEY (guild_id)
 );
-
-
-
-
-CREATE TABLE channels (
-    channel_id bigint NOT NULL,
-    zone_desc VARCHAR(50),
-    lights boolean DEFAULT True,
-    doors INT DEFAULT 1,
-    last_event TIMESTAMP,
-    PRIMARY KEY (channel_id)
-)
-
-
 
 
 

@@ -15,7 +15,7 @@ class UserFunction(object):
     def currency_log(cls):
         return cls.bot.get_channel(cls.bot.config['currency_log'])
 
-    @property  #! The currency logs
+    @property  #! The level logs
     def level_log(cls):
         return cls.bot.get_channel(1046684571728625674)
 
@@ -41,7 +41,7 @@ class UserFunction(object):
 
         #! Yes, this is some crazy varible maddness!  It could be better...
         lvl.level += 1
-        amount = (lvl.level*100) * RNG
+        amount = (lvl.level*60) * RNG
         c.coins += amount
         emoji = coin
         lvl.exp = 0
@@ -52,9 +52,9 @@ class UserFunction(object):
         if channel == None:
             return
         else:
-            msg = await channel.send(embed=utils.SpecialEmbed(title=f"🎉{user.name} Is Level {lvl.level:,}!", desc=f"You were rewarded: **{round(amount_1):,}x {emoji_1}\n {round(amount_2):,}x {emoji_2}\n {round(amount_3):,}x {emoji_3}**", footer=" "))
+            msg = await channel.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} \n{round(amount):,}x {emoji}"))
 
-        try: await cls.level_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} ~~~ {round(amount_1):,}x {emoji_1} {round(amount_2):,}x {emoji_2}\n {round(amount_3):,}x {emoji_3}**"))
+        try: await cls.level_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} \n{round(amount):,}x {emoji}"))
         except: pass
 
         await sleep(6)

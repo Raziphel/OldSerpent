@@ -109,6 +109,10 @@ class Currency_Gen(Cog):
                     coins = 4 + round(len(vc.members)/2)
                     c.coins += coins
 
+                    requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
+                    if lvl.exp >= requiredexp:
+                        await utils.UserFunction.level_up(user=message.author, channel=message.channel)
+
                     async with self.bot.database() as db:
                         await c.save(db)
                         await lvl.save(db)

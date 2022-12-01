@@ -6,10 +6,10 @@ developer = 159516156728836097
 bot_id = 896690181455892481
 
 [database]
-    user = "serpent"
-    password = "D*VSA4(*FCAz089"
+    user = "root"
+    password = "j9yr83&EqkCqknv5J6Qq"
     database = "postgres"
-    host = "172.18.0.2"
+    host = "172.18.0.1"
 
 
 [channels]
