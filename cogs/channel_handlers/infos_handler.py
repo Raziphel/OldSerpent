@@ -68,7 +68,7 @@ class rules_handler(Cog):
         coin = self.bot.config['emotes']['coin']
 
         embed1=Embed(title=f"**[- Level Roles -]**", 
-        description=f"**Level 100 ->** `Serpent's Hand`\n**Level 91 ->** `Chaos Insurgency`\n**Level 81 ->** `Mobile Task Force`\n**Level 61 ->** `Facility Manager`\n**Level 41 ->** `Containment Engineers`\n**Level 26 ->** `Facility Guards`\n**Level 16 ->** `Scientists`\n**Level 6 ->** `D-Class`\n**Level 0 ->** `Civilian`", color=0xFF0000)
+        description=f"This is the levels you recieve each role at! Any other roles are probably staff or a donator role!\n\n**Level 100 ->** `Serpent's Hand`\n**Level 91 ->** `Chaos Insurgency`\n**Level 81 ->** `Mobile Task Force`\n**Level 61 ->** `Facility Manager`\n**Level 41 ->** `Containment Engineers`\n**Level 26 ->** `Facility Guards`\n**Level 16 ->** `Scientists`\n**Level 6 ->** `D-Class`\n**Level 0 ->** `Civilian`", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Coming Soon -]**", 
         description=f"", color=0x0000FF)
