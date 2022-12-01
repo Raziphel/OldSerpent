@@ -22,7 +22,7 @@ class Listeners(Cog):
         Adds votes reactions!
         '''
 
-        tr = utils.Tracking.get(member.id)
+        tr = utils.Tracking.get(message.author.id)
         tr.messages += 10
         async with self.bot.database() as db:
             await tr.save(db)
