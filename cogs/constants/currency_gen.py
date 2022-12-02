@@ -68,6 +68,7 @@ class Currency_Gen(Cog):
             lvl.last_xp = dt.utcnow()
         async with self.bot.database() as db:
             await lvl.save(db)
+            await c.save(db)
 
 
 
