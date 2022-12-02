@@ -39,7 +39,7 @@ class Message_Rewards(Cog):
         #! Give them some rewards!
         try:
             chance = randint(1, 70000)
-            if chance <= 5000:
+            if chance <= 2000:
                 message = choice(messages)
                 await message.add_reaction(self.bot.config['emotes']['coin'])
                 self.coin_messages.append(message.id)
@@ -87,8 +87,6 @@ class Message_Rewards(Cog):
                 coin = choice([100, 200, 300])
                 c.coins += coin
                 msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{coin} {coin_e}x**", footer=f""))
-                #try: await log.send(embed=utils.LogEmbed(type="special", title=f"{user} found a reward!", desc=f"{user} found **{coin} {coin_e}x**", guild=guild))
-                #except: pass
 
         else: 
             return
