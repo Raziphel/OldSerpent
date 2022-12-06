@@ -21,7 +21,7 @@ class Profile(Cog):
                 ApplicationCommandOption(
                     name="user",
                     description="The user you want to get the profile of.",
-                    type=user,
+                    type=ApplicationCommandOptionType.user,
                     required=False,
                 ),
             ],
