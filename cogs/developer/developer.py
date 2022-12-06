@@ -51,7 +51,7 @@ class Developer(Cog):
 
 
 
-    @utils.is_owner()
+    @utils.is_dev()
     @command(hidden=True)
     async def ev(self, ctx, *, content:str):
         '''
