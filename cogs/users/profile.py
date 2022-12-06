@@ -1,6 +1,6 @@
 #* Discord
-from discord.ext.commands import command, Cog, BucketType, cooldown, group
-from discord import Member, Message, User, Game, User
+from discord.ext.commands import command, Cog, BucketType, cooldown, group, ApplicationCommandMeta
+from discord import Member, Message, User, Game, User, ApplicationCommandOption, ApplicationCommandOptionType
 #* Additions
 from datetime import datetime as dt, timedelta
 from asyncio import sleep
@@ -14,7 +14,19 @@ class Profile(Cog):
 
 
     @cooldown(1, 60, BucketType.channel)
-    @command(aliases=['p', 'P', 'Profile'])
+    @command(
+        aliases=['p', 'P', 'Profile'],
+        application_command_meta=ApplicationCommandMeta(
+            options=[
+                ApplicationCommandOption(
+                    name="user",
+                    description="The user you want to get the profile of.",
+                    type=user,
+                    required=False,
+                ),
+            ],
+        ),
+    )
     async def profile(self, ctx, user:Member=None):
         '''Shows a user's profile'''
         if not user:
