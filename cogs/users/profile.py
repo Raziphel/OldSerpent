@@ -15,7 +15,7 @@ class Profile(Cog):
 
     @cooldown(1, 60, BucketType.channel)
     @command(
-        aliases=['p', 'P', 'Profile'],
+        # aliases=['p', 'P', 'Profile'],
         application_command_meta=ApplicationCommandMeta(
             options=[
                 ApplicationCommandOption(
