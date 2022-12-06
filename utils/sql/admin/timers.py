@@ -7,7 +7,7 @@ from datetime import datetime as dt, timedelta
 class Timers(object):
     all_timers = {}
 
-    def __init__(self, guild_id:int, last_nitro_reward:str, last_daily:str, last_weekly:str, last_monthly:str):
+    def __init__(self, guild_id:int, last_nitro_reward:str=dt.now(), last_daily:str=dt.now(), last_weekly:str=dt.now(), last_monthly:str=dt.now()):
         self.guild_id = guild_id
         self.last_nitro_reward = last_nitro_reward
         self.last_daily = last_daily
