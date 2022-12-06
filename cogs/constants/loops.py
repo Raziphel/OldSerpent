@@ -47,8 +47,6 @@ class Loops(Cog):
         child = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['child'])
         adult_furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_furry'])
         furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['furry'])
-        scp = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scp'])
-        adult_scp = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_scp'])
         nsfw_adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
         adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult'])
         # library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
@@ -81,14 +79,6 @@ class Loops(Cog):
                     if furry in user.roles:
                         await user.add_roles(adult_furry, reason="Fixing Adult & Furry role.")
                         await user.remove_roles(furry, reason="Fixing Adult & Furry role.")
-                    #? Fixing scp's NSFW
-                    if scp in user.roles:
-                        await user.add_roles(adult_scp, reason="Fixing Adult & scp role.")
-                        await user.remove_roles(scp, reason="Fixing Adult & scp role.")
-                    #? Fixing Light Zones's NSFW
-                    if light_zone in user.roles:
-                        await user.add_roles(adult_light_zone, reason="Fixing Adult & light zone role.")
-                        await user.remove_roles(light_zone, reason="Fixing Adult & light zone role.")
                     # #? Fixing library Pass's NSFW
                     # if library_pass in user.roles:
                     #     await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
