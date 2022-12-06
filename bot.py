@@ -8,7 +8,7 @@ from serpent import Serpent
 
 intents = Intents.all()
 bot = Serpent(
-    command_prefix=["."],
+    command_prefix=["/"],
     config_filename="config/config.toml",
     intents=intents
 )
