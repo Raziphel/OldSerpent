@@ -51,12 +51,12 @@ class Profile(Cog):
             await msg.add_reaction("✨")
         if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
             await msg.add_reaction("🔞")
-        for role in user.roles:
-            if role.id == self.bot.config['roles']['council']:
-                await msg.add_reaction("🍃")
+        # for role in user.roles:
+        #     if role.id == self.bot.config['roles']['council']:
+        #         await msg.add_reaction("🍃")
 
         # Watches for the reactions
-        check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🏹", "💸", "🔮", "✨", "❤️", "📕", "🍃"]
+        check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["✨", "🍃"]
         r, _ = await self.bot.wait_for('reaction_add', check=check)
         if ctx.channel.id in self.bot.config['fur-channels'].values():
             if r.emoji == "✨":
@@ -65,12 +65,6 @@ class Profile(Cog):
         if r.emoji == "🍃":
             await msg.edit(embed=utils.ProfileEmbed(type="Staff-Track", user=user))
             pass
-        # if r.emoji == "📕":
-        #     await msg.edit(embed=utils.FactionEmbed(type="Default", user=user))
-        #     pass
-        # if r.emoji == "❤️":
-        #     await msg.edit(embed=utils.ProfileEmbed(type="Relationships", user=user))
-        #     pass
         await msg.clear_reactions()
         await msg.add_reaction("🔷")
         check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🔷"]
@@ -113,21 +107,6 @@ class Profile(Cog):
         if not user:
             user = ctx.author
         m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True))
-
-
-    @cooldown(1, 30, BucketType.user)
-    @command(aliases=['I', 'i', 'interactions', 'Interactions'])
-    async def interaction(self, ctx, user:Member=None):
-        '''Quick Check interactions'''
-        if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
-            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
-            await ctx.message.delete()
-            return
-        if not user:
-            user = ctx.author
-        m = await ctx.send(embed=utils.ProfileEmbed(type="Interactions", user=user, quick=True))
-
-
 
 
 
