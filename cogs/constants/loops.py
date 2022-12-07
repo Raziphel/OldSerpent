@@ -17,6 +17,8 @@ class Loops(Cog):
         self.bot = bot
         self.one_min_loop.start()
         self.one_hour_loop.start()
+        self.last_members = 0
+        self.last_coins = 0
 
 
     @tasks.loop(minutes=1)
@@ -37,8 +39,12 @@ class Loops(Cog):
         coins_channel = self.bot.get_channel(1047682198523875399)
         members = len(set(self.bot.get_all_members()))
         total_coins = utils.Currency.get_total_coins()
-        await members_channel.edit(name=f"Members: {members:,}")
-        await coins_channel.edit(name=f"Coins: {math.floor(total_coins):,}")
+        if self.last_members != members:
+            await members_channel.edit(name=f"Members: {members:,}")
+            self.last_members = members
+        if self.last_coins != total_coins:
+            await coins_channel.edit(name=f"Coins: {math.floor(total_coins):,}")
+            self.last_coins = total_coins
 
         #! Fixing Adult roles.
         guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
