@@ -104,9 +104,11 @@ class rules_handler(Cog):
         msg4 = await ch.fetch_message(1021285508359401492) #? msg 4
         msg5 = await ch.fetch_message(1021285519067455508) #? msg 5
         msg6 = await ch.fetch_message(1021285528487862377) #? msg 6
+        msg7 = await ch.fetch_message(1021285538826821653) #? msg 7
+        msg01 = await ch.fetch_message(1021285538826821653) #? msg 1
 
         embed1=Embed(title=f"**[- Table of Contents -]**", 
-        description=f"Welcome to the Serpent's Game, this channel catalogs any and all the information relating to the entire Serpent's Garden.\n\n[1. Intro](https://discord.com/channels/689534383878701223/1020959150890565703/1021285478210748428)\n[2. Staff Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285487815700500)\n[3. The Foundation Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285495268982794)\n[4. The Level Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285508359401492)\n[5. Seperated Areas](https://discord.com/channels/689534383878701223/1020959150890565703/1021285519067455508)\n[6. The Wander's Library](https://discord.com/channels/689534383878701223/1020959150890565703/1021285528487862377)", color=0xFF0000)
+        description=f"Welcome to the Serpent's Game, this channel catalogs any and all the information relating to the entire Serpent's Garden.\n\n[1. Intro](https://discord.com/channels/689534383878701223/1020959150890565703/1021285478210748428)\n[2. Staff Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285487815700500)\n[3. The Foundation Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285495268982794)\n[4. The Level Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285508359401492)\n[5. Seperated Areas](https://discord.com/channels/689534383878701223/1020959150890565703/1021285519067455508)\n[6. The Wander's Library](https://discord.com/channels/689534383878701223/1020959150890565703/1021285528487862377)\n[7. Coming Soon](https://discord.com/channels/689534383878701223/1020959150890565703/1021285538826821653)\n[1. Serpent's Game Servers](https://discord.com/channels/689534383878701223/1020959150890565703/1021285528487862377)\n[7. Coming Soon](https://discord.com/channels/689534383878701223/1020959150890565703/1021285550596046908)\n", color=0xFF0000)
 
         embed2=Embed(title=f"**[- 1. Intro (NEW) -]**", 
         description=f"**Welcome to the Serpent's game!**\n\nFor starters the goal in development is to keep the game as simplistic as possible and be more a fun different Discord expierence.\nThere is currently no win conditions in the game at this time, this is planned to be changed some day.\n\n Reading throught this Handbook will be the 1 spot \"wikipedia\" for the entire game and how most things function!\nLook for the flairs in the titles such as (New or Changed) to find updates.", color=0x0000FF)
@@ -126,6 +128,12 @@ class rules_handler(Cog):
         embed7=Embed(title=f"**[- 6. The Wander's Library (NEW) -]**", 
         description=f"", color=0x00FFF0)
 
+        embed8=Embed(title=f"**[- 7. Coming Soon -]**", 
+        description=f"", color=0x00FFF0)
+
+        embed01=Embed(title=f"**[- 1. Serpent's Game Servers -]**", 
+        description=f"", color=0x00FFF0)
+
         await table.edit(content=f" ", embed=embed1)
         await msg1.edit(content=f" ", embed=embed2)
         await msg2.edit(content=f" ", embed=embed3)
@@ -133,6 +141,8 @@ class rules_handler(Cog):
         await msg4.edit(content=f" ", embed=embed5)
         await msg5.edit(content=f" ", embed=embed6)
         await msg6.edit(content=f" ", embed=embed7)
+        await msg7.edit(content=f" ", embed=embed8)
+        await msg01.edit(content=f" ", embed=embed01)
 
 
 
