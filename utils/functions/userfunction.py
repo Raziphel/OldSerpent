@@ -11,13 +11,9 @@ from math import floor
 class UserFunction(object):
     bot = None
 
-    @property  #! The currency logs
-    def currency_log(cls):
-        return cls.bot.get_channel(cls.bot.config['currency_log'])
-
     @property  #! The level logs
     def level_log(cls):
-        return cls.bot.get_channel(1046684571728625674)
+        return cls.bot.get_channel(self.bot.config['channels']['levels'])
 
 
     # For level ups!

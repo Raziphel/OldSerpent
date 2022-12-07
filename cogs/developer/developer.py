@@ -86,7 +86,26 @@ class Developer(Cog):
                 print(f'fixed {user.name}\'s adult roles!')
 
 
+    @utils.is_dev()
+    @command(hidden=True)
+    async def setcoins(self, ctx, user:Member, amount:int):
+        if not user:
+            user = ctx.author
+        c = utils.Currency.get(user.id)
+        c.coins = amount
+        async with self.bot.database() as db:
+            await c.save(db)
 
+
+    @utils.is_dev()
+    @command(hidden=True)
+    async def setlevel(self, ctx, user:Member, amount:int):
+        if not user:
+            user = ctx.author
+        lvl = utils.Levels.get(user.id)
+        lvl.level = amount
+        async with self.bot.database() as db:
+            await c.save(db)
 
 
     @utils.is_dev()
