@@ -51,8 +51,7 @@ class UserFunction(object):
         if channel:
             msg = await channel.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,}**\n{round(amount):,}x {coin}"))
 
-        try: await cls.level_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,}**\n{round(amount):,}x {coin}"))
-        except: pass
+        await cls.level_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,}**\n{round(amount):,}x {coin}"))
 
         await sleep(6)
         await msg.delete()
