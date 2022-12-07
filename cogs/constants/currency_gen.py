@@ -53,7 +53,7 @@ class Currency_Gen(Cog):
                 unique_words = 10
 
             rng = choice([0.5, 0.75, 1.0, 1.25, 1.50])
-            exp += lvl.level*rng
+            exp += (lvl.level/2)*rng
             c.coins += unique_words*rng
 
             #! Command Usage Secret Increase!?
@@ -64,7 +64,7 @@ class Currency_Gen(Cog):
                 await utils.UserFunction.level_up(user=message.author, channel=message.channel)
 
             #! Save it to database
-            lvl.exp += exp+1
+            lvl.exp += exp+3
             lvl.last_xp = dt.utcnow()
         async with self.bot.database() as db:
             await lvl.save(db)
