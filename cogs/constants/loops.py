@@ -29,7 +29,7 @@ class Loops(Cog):
             return
 
         #* Setting the bot status.
-        playing = choice(["75% Complete"])
+        playing = choice(["40% Complete"])
         await self.bot.change_presence(activity=Game(name=playing)) 
 
         #* Setting the Channel Stats.
@@ -40,9 +40,8 @@ class Loops(Cog):
         await members_channel.edit(name=f"Members: {members:,}")
         await coins_channel.edit(name=f"Coins: {math.floor(total_coins):,}")
 
-
-
         #! Fixing Adult roles.
+        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
 
         #! get the varible roles!
         child = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['child'])
