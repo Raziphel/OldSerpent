@@ -11,6 +11,11 @@ from math import floor
 class UserFunction(object):
     bot = None
 
+    @property  #! The level logs
+    def level_log(cls):
+        return cls.bot.get_channel(cls.bot.config['channels']['levels'])
+
+
     # For level ups!
     @classmethod
     async def level_up(cls, user:Member, channel:TextChannel=None):
@@ -42,8 +47,7 @@ class UserFunction(object):
         if channel:
             msg = await channel.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,}**\n{round(amount):,}x {coin}"))
 
-        level_log = cls.bot.get_channel(self.bot.config['channels']['levels'])
-        await level_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,}**\n{round(amount):,}x {coin}"))
+        await cls.level_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,}**\n{round(amount):,}x {coin}"))
 
         await sleep(6)
         await msg.delete()
