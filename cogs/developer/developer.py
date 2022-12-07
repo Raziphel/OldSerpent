@@ -105,7 +105,7 @@ class Developer(Cog):
         lvl = utils.Levels.get(user.id)
         lvl.level = amount
         async with self.bot.database() as db:
-            await c.save(db)
+            await lvl.save(db)
 
 
     @utils.is_dev()
