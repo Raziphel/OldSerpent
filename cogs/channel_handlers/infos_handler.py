@@ -102,6 +102,8 @@ class rules_handler(Cog):
         msg2 = await ch.fetch_message(1021285487815700500) #? msg 2
         msg3 = await ch.fetch_message(1021285495268982794) #? msg 3
         msg4 = await ch.fetch_message(1021285508359401492) #? msg 4
+        msg4 = await ch.fetch_message(1021285519067455508) #? msg 5
+        msg4 = await ch.fetch_message(1021285528487862377) #? msg 6
 
         embed1=Embed(title=f"**[- Table of Contents -]**", 
         description=f"Welcome to the Serpent's Game, this channel catalogs any and all the information relating to the entire Serpent's Garden.\n\n[1. Intro](https://discord.com/channels/689534383878701223/1020959150890565703/1021285478210748428)\n[2. Staff Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285487815700500)\n[3. The Foundation Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285495268982794)\n[4. The Level Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285508359401492)\n[5. Seperated Areas](https://discord.com/channels/689534383878701223/1020959150890565703/1021285519067455508)\n[6. The Wander's Library](https://discord.com/channels/689534383878701223/1020959150890565703/1021285528487862377)", color=0xFF0000)
@@ -129,6 +131,8 @@ class rules_handler(Cog):
         await msg2.edit(content=f" ", embed=embed3)
         await msg3.edit(content=f" ", embed=embed4)
         await msg4.edit(content=f" ", embed=embed5)
+        await msg5.edit(content=f" ", embed=embed6)
+        await msg6.edit(content=f" ", embed=embed7)
 
 
 
