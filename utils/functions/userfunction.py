@@ -43,16 +43,15 @@ class UserFunction(object):
         lvl.level += 1
         amount = (lvl.level*60) * RNG
         c.coins += amount
-        emoji = coin
         lvl.exp = 0
         async with cls.bot.database() as db:
             await c.save(db)
             await lvl.save(db)
 
         if channel:
-            msg = await channel.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} \n{round(amount):,}x {emoji}"))
+            msg = await channel.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,}**\n{round(amount):,}x {coin}"))
 
-        try: await cls.level_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,} \n{round(amount):,}x {emoji}"))
+        try: await cls.level_log.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} level up!", desc=f"Now level: **{lvl.level:,}**\n{round(amount):,}x {coin}"))
         except: pass
 
         await sleep(6)

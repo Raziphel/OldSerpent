@@ -64,7 +64,7 @@ class Currency_Gen(Cog):
                 await utils.UserFunction.level_up(user=message.author, channel=message.channel)
 
             #! Save it to database
-            lvl.exp += exp
+            lvl.exp += exp+1
             lvl.last_xp = dt.utcnow()
         async with self.bot.database() as db:
             await lvl.save(db)
