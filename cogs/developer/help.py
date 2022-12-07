@@ -59,7 +59,7 @@ class Help(Cog):
 
         # Make an embed
         help_embed = Embed()
-        help_embed.set_author(name=self.bot.user, icon_url=self.bot.user.avatar_url)
+        help_embed.set_author(name=self.bot.user, icon_url=self.bot.user.avatar.url)
         help_embed.colour = randint(1, 0xffffff)
 
         # Add commands to it
