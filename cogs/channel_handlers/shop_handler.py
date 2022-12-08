@@ -17,8 +17,8 @@ class Shop_Handler(Cog):
 
 
     @property  #! The currency logs
-    def currency_log(self):
-        return self.bot.get_channel(self.bot.config['currency_log'])
+    def server_log(self):
+        return self.bot.get_channel(self.bot.config['channels']['server'])
 
 
     @Cog.listener('on_ready')
@@ -128,9 +128,9 @@ class Shop_Handler(Cog):
 
 
             if bought == True:
-                await self.currency_log.send(embed=utils.LogEmbed(type="positive", title=f"{user} bought {item['name']}!"))
+                await self.server_log.send(embed=utils.LogEmbed(type="positive", title=f"{user} bought {item['name']}!"))
             else: 
-                await self.currency_log.send(embed=utils.LogEmbed(type="negative", title=f"{user} failed purchase!", desc=f"{user} tried to purchase: {item['name']}"))
+                await self.server_log.send(embed=utils.LogEmbed(type="negative", title=f"{user} failed purchase!", desc=f"{user} tried to purchase: {item['name']}"))
 
             #! Check to see total reactions on the message
             channel_id = payload.channel_id
