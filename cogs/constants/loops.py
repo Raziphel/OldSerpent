@@ -102,7 +102,7 @@ class Loops(Cog):
 
         #* Add in level rankings
         sorted_rank = utils.Levels.sort_levels()
-        ranks = sorted_rank[:20]
+        ranks = sorted_rank[:15]
         users = []
         for i in sorted_rank:
             user = self.bot.get_user(i.user_id)
@@ -127,7 +127,7 @@ class Loops(Cog):
         embed.set_footer(text="Those with the most coins!")
 
         sorted_rank = utils.Currency.sort_coins()
-        ranks = sorted_rank[:20]
+        ranks = sorted_rank[:15]
         users = []
         for i in ranks:
             user = self.bot.get_user(i.user_id)
