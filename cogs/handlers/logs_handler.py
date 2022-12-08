@@ -54,9 +54,9 @@ class Logging(Cog):
         if math.floor(self.bot.latency*1000) <= 100: #? Secret bullshit bro.
             await self.bot_log.send(embed=utils.LogEmbed(type="positive", title=f"Serpent is Online!", desc=f"Perfect Restart."))
         elif math.floor(self.bot.latency*1000) <= 420:
-            await self.bot_log.send(embed=utils.LogEmbed(type="change", title=f"Serpent is Online!", desc=f"Normal Restart."))
+            await self.bot_log.send(embed=utils.LogEmbed(type="change", title=f"Serpent is Online!", desc=f"Weird Restart."))
         elif math.floor(self.bot.latency*1000) > 200:
-            await self.bot_log.send(embed=utils.LogEmbed(type="negative", title=f"Serpent is Online!", desc=f"Weird Restart."))
+            await self.bot_log.send(embed=utils.LogEmbed(type="change", title=f"Serpent is Online!", desc=f"Discord Connection Refresh"))
 
 
     @Cog.listener()
