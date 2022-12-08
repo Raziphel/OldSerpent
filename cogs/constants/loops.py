@@ -31,7 +31,7 @@ class Loops(Cog):
             return
 
         #* Setting the bot status.
-        playing = choice(["40% Complete"])
+        playing = choice(["75% Complete"])
         await self.bot.change_presence(activity=Game(name=playing)) 
 
         #* Setting the Channel Stats.
