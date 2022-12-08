@@ -93,9 +93,8 @@ class Loops(Cog):
                     #? Fixing SCPS for donators
                     if [thaumiel, safe, euclid, keter] in user.roles:
                         await user.add_roles(scps, reason="Fixing SCP role.")
-                    if [thaumiel, safe, euclid, keter] not in user.roles:
-                        if scps in user.roles:
-                            await user.remove_roles(scps, reason="Fixing SCP role.")
+                    elif scps in user.roles:
+                        await user.remove_roles(scps, reason="Fixing SCP role.")
                     # #? Fixing library Pass's NSFW
                     # if library_pass in user.roles:
                     #     await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
