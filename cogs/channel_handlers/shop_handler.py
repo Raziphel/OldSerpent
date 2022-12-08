@@ -164,7 +164,7 @@ class Shop_Handler(Cog):
             r, _ = await self.bot.wait_for('reaction_add', check=check)
             if r.emoji == "✔":
                 if c.coins < item["coin"]:
-                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Gold Coins for: `{item['name']}`!\nYou need " + str(floor(item["gold_coins"] - c.coins)) + " more Gold Coins!", footer=" "))
+                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Gold Coins for: `{item['name']}`!\nYou need " + str(floor(item["coin"] - c.coins)) + " more Gold Coins!", footer=" "))
                     return False
                 else: return True
 
