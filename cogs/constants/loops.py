@@ -134,7 +134,7 @@ class Loops(Cog):
 
         #* Add in level rankings 2
         sorted_rank = utils.Levels.sort_levels()
-        ranks = sorted_rank[:10]
+        ranks = sorted_rank[:20]
         users = []
         for i in sorted_rank:
             user = self.bot.get_user(i.user_id)
@@ -143,7 +143,7 @@ class Loops(Cog):
         # users = [self.bot.get_user(i.user_id) for i in ranks]
         text = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
-            if index > 10:
+            if ranks > 10:
                 text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
         embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
 
@@ -179,7 +179,7 @@ class Loops(Cog):
         embed.set_footer(text="Those with the most coins!")
 
         sorted_rank = utils.Currency.sort_coins()
-        ranks = sorted_rank[:10]
+        ranks = sorted_rank[:20]
         users = []
         for i in ranks:
             user = self.bot.get_user(i.user_id)
@@ -187,7 +187,7 @@ class Loops(Cog):
                 users.append(user)
         text = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
-            if index > 10:
+            if ranks > 10:
                 text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
         embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
         await msg.edit(content=" ", embed=embed)
