@@ -109,7 +109,7 @@ class Loops(Cog):
 
         #* Levels Leaderboard
         channel = self.bot.get_channel(self.bot.config['channels']['leaderboard'])
-        msg = await channel.fetch_message(1012924362128621608)
+        msg = await channel.fetch_message(1050324838721523782)
 
         #* Set up the embed
         embed = Embed(color=randint(1, 0xffffff))
