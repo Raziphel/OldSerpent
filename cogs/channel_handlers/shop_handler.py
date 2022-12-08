@@ -90,7 +90,7 @@ class Shop_Handler(Cog):
             item = {"name": "BROKEN OH NO", "coin": -1}
             #? Get the correct item
             if emoji == "✨":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase Discord Nitro!\nCost: {evilcoin} 100x", footer=" "))
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase Discord Nitro!\nCost: {coin} 100x", footer=" "))
                 item['coin'] = 1000
                 item['name'] = "Discord Nitro"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
@@ -101,7 +101,7 @@ class Shop_Handler(Cog):
                     await razi.send(embed=utils.LogEmbed(type="special", title="Discord Nitro Purchase", desc=f"{user} purchased Discord Nitro!!!!", footer=" "))
 
             if emoji == "📚":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Library Pass!\nCost: {goldcoin} 5,000x", footer=" "))
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Library Pass!\nCost: {coin} 5,000x", footer=" "))
                 item['coin'] = 5000
                 item['name'] = "Library Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
@@ -112,7 +112,7 @@ class Shop_Handler(Cog):
                     await user.add_roles(adult_library_pass, reason="Given a Library Pass role.")
 
             if emoji == "🎫":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Image Pass!\nCost: {goldcoin} 5,000x", footer=" "))
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Image Pass!\nCost: {coin} 5,000x", footer=" "))
                 item['coin'] = 5000
                 item['name'] = "Image Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
