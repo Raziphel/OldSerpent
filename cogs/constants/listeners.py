@@ -23,7 +23,7 @@ class Listeners(Cog):
         '''
 
         tr = utils.Tracking.get(message.author.id)
-        tr.messages += 10
+        tr.messages += 1
         async with self.bot.database() as db:
             await tr.save(db)
 
