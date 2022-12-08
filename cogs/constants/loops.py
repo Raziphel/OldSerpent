@@ -93,11 +93,11 @@ class Loops(Cog):
                     #? Fixing SCPS for donators
                     if thaumiel in user.roles:
                         await user.add_roles(scps, reason="Fixing SCP role.")
-                    if safe in user.roles:
+                    elif safe in user.roles:
                         await user.add_roles(scps, reason="Fixing SCP role.")
-                    if euclid in user.roles:
+                    elif euclid in user.roles:
                         await user.add_roles(scps, reason="Fixing SCP role.")
-                    if keter in user.roles:
+                    elif keter in user.roles:
                         await user.add_roles(scps, reason="Fixing SCP role.")
                     elif scps in user.roles:
                         await user.remove_roles(scps, reason="Fixing SCP role.")
