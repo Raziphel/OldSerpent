@@ -91,7 +91,7 @@ class Shop_Handler(Cog):
             #? Get the correct item
             if emoji == "✨":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase Discord Nitro!\nCost: {coin} 100x", footer=" "))
-                item['coin'] = 1000
+                item['coin'] = 1000000
                 item['name'] = "Discord Nitro"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats!!!  Razi will give you your reward within 24 hours!", footer=" "))
@@ -102,7 +102,7 @@ class Shop_Handler(Cog):
 
             if emoji == "📚":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Library Pass!\nCost: {coin} 5,000x", footer=" "))
-                item['coin'] = 5000
+                item['coin'] = 50000
                 item['name'] = "Library Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Library pass!", footer=" "))
@@ -113,7 +113,7 @@ class Shop_Handler(Cog):
 
             if emoji == "🎫":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Image Pass!\nCost: {coin} 5,000x", footer=" "))
-                item['coin'] = 5000
+                item['coin'] = 25000
                 item['name'] = "Image Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Image pass!", footer=" "))
