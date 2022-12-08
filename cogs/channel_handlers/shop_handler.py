@@ -68,7 +68,7 @@ class Shop_Handler(Cog):
             '''Buys item's from the shop.'''
 
             #! See if I need to deal with it
-            if not payload.channel_id == self.bot.config['shop_handler']:
+            if not payload.channel_id == self.bot.config['channels']['gift_shop']:
                 return
             if self.bot.get_user(payload.user_id).bot:
                 return
@@ -80,58 +80,45 @@ class Shop_Handler(Cog):
                 emoji = payload.emoji.id
 
             #* Get the coin emojis
-            goldcoin = "<:Coin:1026302157521174649>"
-            goodcoin = "<:GoodCoin:1011145572658446366>"
-            evilcoin = "<:EvilCoin:1011145570112512051>"
+            coin = self.bot.config['emotes']['coin']
+
 
             guild = self.bot.get_guild(payload.guild_id)
             user = guild.get_member(payload.user_id)
             c = utils.Currency.get(user.id)
             bought = False
-            item = {"name": "BROKEN OH NO", "gold_coins": -1, "good_coins": -1, "evil_coins": -1}
-
+            item = {"name": "BROKEN OH NO", "coin": -1}
             #? Get the correct item
             if emoji == "✨":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase Discord Nitro!\nCost: {evilcoin} 100x", footer=" "))
-                item['evil_coins'] = 1000
+                item['coin'] = 1000
                 item['name'] = "Discord Nitro"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats!!!  Razi will give you your reward within 24 hours!", footer=" "))
                     bought = True
-                    c.evil_coins -= item['evil_coins']
-                    razi = guild.get_member(self.bot.config['developer'])
-                    await razi.send(embed=utils.LogEmbed(type="special", title="Discord Nitro Purchase", desc=f"{user} purchased Discord Nitro!!!!", footer=" "))
-
-            if emoji == "⭐":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase Discord Nitro Classic!\nCost: {evilcoin} 100x", footer=" "))
-                item['evil_coins'] = 500
-                item['name'] = "Discord Nitro Classic"
-                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
-                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats!!! Razi will give you your reward within 24 hours!", footer=" "))
-                    bought = True
-                    c.evil_coins -= item['evil_coins']
+                    c.evil_coins -= item['coin']
                     razi = guild.get_member(self.bot.config['developer'])
                     await razi.send(embed=utils.LogEmbed(type="special", title="Discord Nitro Purchase", desc=f"{user} purchased Discord Nitro!!!!", footer=" "))
 
             if emoji == "📚":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Library Pass!\nCost: {goldcoin} 5,000x", footer=" "))
-                item['gold_coins'] = 5000
+                item['coin'] = 5000
                 item['name'] = "Library Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Library pass!", footer=" "))
                     bought = True
-                    c.coins -= item['gold_coins']
+                    c.coins -= item['coin']
                     library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['library_pass'])
                     await user.add_roles(adult_library_pass, reason="Given a Library Pass role.")
 
             if emoji == "🎫":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Image Pass!\nCost: {goldcoin} 5,000x", footer=" "))
-                item['gold_coins'] = 5000
+                item['coin'] = 5000
                 item['name'] = "Image Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Image pass!", footer=" "))
                     bought = True
-                    c.coins -= item['gold_coins']
+                    c.coins -= item['coin']
                     library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['image_pass'])
                     await user.add_roles(adult_library_pass, reason="Given a Image Pass role.")
 
@@ -176,14 +163,8 @@ class Shop_Handler(Cog):
             check = lambda x, y: y.id == user.id and x.message.id == msg.id and x.emoji in ["✔", "❌"]
             r, _ = await self.bot.wait_for('reaction_add', check=check)
             if r.emoji == "✔":
-                if c.coins < item["gold_coins"]:
+                if c.coins < item["coin"]:
                     await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Gold Coins for: `{item['name']}`!\nYou need " + str(floor(item["gold_coins"] - c.coins)) + " more Gold Coins!", footer=" "))
-                    return False
-                elif c.good_coins < item["good_coins"]:
-                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Good Coins for: `{item['name']}`!\nYou need " + str(floor(item["good_coins"] - c.good_coins)) + " more Good Coins!", footer=" "))
-                    return False
-                elif c.evil_coins < item["evil_coins"]:
-                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Evil Coins for: `{item['name']}`!\nYou need " + str(floor(item["evil_coins"] - c.evil_coins)) + " more Evil Coins!", footer=" "))
                     return False
                 else: return True
 
