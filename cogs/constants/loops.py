@@ -137,14 +137,14 @@ class Loops(Cog):
         ranks = sorted_rank[:20]
         users = []
         for i in sorted_rank:
-            user = self.bot.get_user(i.user_id)
-            if user != None:
-                users.append(user)
+            if i > 10:
+                user = self.bot.get_user(i.user_id)
+                if user != None:
+                    users.append(user)
         # users = [self.bot.get_user(i.user_id) for i in ranks]
         text = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
-            if ranks > 10:
-                text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
+            text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
         embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
 
         await msg.edit(content=f"**Those with the Highest Levels!**", embed=embed)
@@ -182,13 +182,13 @@ class Loops(Cog):
         ranks = sorted_rank[:20]
         users = []
         for i in ranks:
-            user = self.bot.get_user(i.user_id)
-            if user != None:
-                users.append(user)
+            if i > 10:
+                user = self.bot.get_user(i.user_id)
+                if user != None:
+                    users.append(user)
         text = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
-            if ranks > 10:
-                text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
+            text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
         embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
         await msg.edit(content=" ", embed=embed)
 
