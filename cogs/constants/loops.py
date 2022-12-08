@@ -47,7 +47,7 @@ class Loops(Cog):
             self.last_coins = total_coins
 
         #! Fixing Adult roles.
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
         #! get the varible roles!
         child = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['child'])
@@ -175,11 +175,11 @@ class Loops(Cog):
             return
 
 
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
         coin = "<:Coin:1026302157521174649>"
 
-        t = utils.Timers.get(self.bot.config['razisrealm_id'])
+        t = utils.Timers.get(self.bot.config['garden_id'])
         if (t.last_nitro_reward + timedelta(days=30)) <= dt.utcnow():
             t.last_nitro_reward = dt.now()
             for user in guild.members:

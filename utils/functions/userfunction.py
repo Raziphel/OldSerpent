@@ -74,7 +74,7 @@ class UserFunction(object):
         """Checks the highest level role that the given user is able to receive"""
 
         # Get the users
-        guild = cls.bot.get_guild(cls.bot.config['razisrealm_id'])
+        guild = cls.bot.get_guild(cls.bot.config['garden_id'])
         lvl = utils.Levels.get(user.id)
 
         level_roles = {

@@ -20,7 +20,7 @@ class rules_handler(Cog):
 
     @Cog.listener('on_ready')
     async def rules(self):
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         ch = guild.get_channel(self.bot.config['channels']['rules']) #? Rules Channel
 
         rules1 = await ch.fetch_message(956470547426996244) #? 
@@ -57,7 +57,7 @@ class rules_handler(Cog):
 
     @Cog.listener('on_ready')
     async def role_change(self):
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         ch = guild.get_channel(self.bot.config['channels']['role_change']) #? role change Channel
 
         msg1 = await ch.fetch_message(1029973755428093986) #? msg
@@ -94,7 +94,7 @@ class rules_handler(Cog):
 
     @Cog.listener('on_ready')
     async def handbook(self):
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         ch = guild.get_channel(self.bot.config['channels']['handbook']) #? Rules Channel
 
         table = await ch.fetch_message(1021285665373163530) #? msg intro

@@ -44,7 +44,7 @@ class Developer(Cog):
     @command()
     async def boostrewards(self, ctx):
         '''Give nitros rewards now'''
-        t = utils.Timers.get(self.bot.config['razisrealm_id'])
+        t = utils.Timers.get(self.bot.config['garden_id'])
         t.last_nitro_reward = dt.now() - timedelta(days=50)
         async with self.bot.database() as db:
             await t.save(db)
@@ -73,7 +73,7 @@ class Developer(Cog):
     @command(hidden=True)
     async def adults(self, ctx):
         '''Runs code through Python'''
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
         adult2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult'])
         for user in guild.members:
@@ -112,7 +112,7 @@ class Developer(Cog):
     @command()
     async def payday(self, ctx):
         '''Gives everyone some coins as a payday!'''
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id'])
+        guild = self.bot.get_guild(self.bot.config['garden_id'])
 
         for user in guild.members:
             try:
@@ -131,7 +131,7 @@ class Developer(Cog):
     @utils.is_dev()
     @command(hidden=True)
     async def resetlevels(self, ctx):
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id'])
+        guild = self.bot.get_guild(self.bot.config['garden_id'])
         for user in guild.members:
             for role in user.roles:
                 lvl = utils.Levels.get(user.id)
@@ -163,7 +163,7 @@ class Developer(Cog):
     @utils.is_dev()
     @command(hidden=True)
     async def resetcoins(self, ctx):
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id'])
+        guild = self.bot.get_guild(self.bot.config['garden_id'])
         for user in guild.members:
             for role in user.roles:
                 c = utils.Currency.get(user.id)

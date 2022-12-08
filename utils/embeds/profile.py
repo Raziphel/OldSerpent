@@ -20,7 +20,7 @@ class ProfileEmbed(Embed):
         staff = kwargs.pop('staff', False)
         quick = kwargs.pop('quick', False)
         patron = self.bot.config['patreon']
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
         # Make the embed
         super().__init__(*args, **kwargs)

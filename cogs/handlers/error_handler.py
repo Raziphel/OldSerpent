@@ -17,7 +17,7 @@ class Error_Handler(Cog):
 
         if isinstance(error, CommandOnCooldown):
             countdown_time = error.retry_after
-            guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+            guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
             for role in ctx.author.roles:
                 if role.id == self.bot.config['roles']['scps']:

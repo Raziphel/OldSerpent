@@ -23,7 +23,7 @@ class Shop_Handler(Cog):
 
     @Cog.listener('on_ready')
     async def shop_msg(self):
-        guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         ch = guild.get_channel(self.bot.config['channels']['gift_shop']) #? Rules Channel
 
         msg1 = await ch.fetch_message(959009617155878982) #? Welcome messages
