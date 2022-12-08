@@ -91,7 +91,7 @@ class Loops(Cog):
                         await user.add_roles(adult_furry, reason="Fixing Adult & Furry role.")
                         await user.remove_roles(furry, reason="Fixing Adult & Furry role.")
                     #? Fixing SCPS for donators
-                    if [thaumiel, safe, euclid, keter] in user.roles:
+                    if thaumiel or safe or euclid or keter in user.roles:
                         await user.add_roles(scps, reason="Fixing SCP role.")
                     elif scps in user.roles:
                         await user.remove_roles(scps, reason="Fixing SCP role.")
