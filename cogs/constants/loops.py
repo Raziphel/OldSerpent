@@ -142,7 +142,7 @@ class Loops(Cog):
                 users.append(user)
         # users = [self.bot.get_user(i.user_id) for i in ranks]
         text = []
-        for index, (user, rank) in enumerate(zip(users, ranks+10)):
+        for index, (user, rank) in enumerate(zip(users, ranks)):
             if index > 10:
                 text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
         embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
