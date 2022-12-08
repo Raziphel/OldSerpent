@@ -90,21 +90,21 @@ class Loops(Cog):
                     if furry in user.roles:
                         await user.add_roles(adult_furry, reason="Fixing Adult & Furry role.")
                         await user.remove_roles(furry, reason="Fixing Adult & Furry role.")
-                    #? Fixing SCPS for donators
-                    if thaumiel in user.roles:
-                        await user.add_roles(scps, reason="Fixing SCP role.")
-                    elif safe in user.roles:
-                        await user.add_roles(scps, reason="Fixing SCP role.")
-                    elif euclid in user.roles:
-                        await user.add_roles(scps, reason="Fixing SCP role.")
-                    elif keter in user.roles:
-                        await user.add_roles(scps, reason="Fixing SCP role.")
-                    elif scps in user.roles:
-                        await user.remove_roles(scps, reason="Fixing SCP role.")
                     #? Fixing library Pass's NSFW
                     # if library_pass in user.roles:
                     #     await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
                     #     await user.remove_roles(library_pass, reason="Fixing Adult & Library Pass role.")
+                #? Fixing SCPS for donators
+                if thaumiel in user.roles:
+                    await user.add_roles(scps, reason="Fixing SCP role.")
+                elif safe in user.roles:
+                    await user.add_roles(scps, reason="Fixing SCP role.")
+                elif euclid in user.roles:
+                    await user.add_roles(scps, reason="Fixing SCP role.")
+                elif keter in user.roles:
+                    await user.add_roles(scps, reason="Fixing SCP role.")
+                elif scps in user.roles:
+                    await user.remove_roles(scps, reason="Fixing SCP role.")
             except Exception as e: print(f'Error fixing roles :: {e}')
 
         #* Levels Leaderboard
