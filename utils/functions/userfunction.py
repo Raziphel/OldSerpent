@@ -35,7 +35,6 @@ class UserFunction(object):
 
         RNG = choice([1.25, 1.30, 1.35, 1, 0.75, 0.85, 0.9])
 
-        #! Yes, this is some crazy varible maddness!  It could be better...
         lvl.level += 1
         amount = (lvl.level*60) * RNG
         c.coins += amount
