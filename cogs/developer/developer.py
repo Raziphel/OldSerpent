@@ -138,19 +138,19 @@ class Developer(Cog):
                 if role.name == "Civilian":
                     lvl.level = 3
                 elif role.name == "D-Class":
-                    lvl.level = 15
+                    lvl.level = 10
                 elif role.name == "Scientists":
-                    lvl.level = 25
+                    lvl.level = 20
                 elif role.name == "Facility Guards":
-                    lvl.level = 40
+                    lvl.level = 30
                 elif role.name == "Containment Engineers":
-                    lvl.level = 60
+                    lvl.level = 50
                 elif role.name == "Facility Managers":
-                    lvl.level = 80
+                    lvl.level = 70
                 elif role.name == "Mobile Task Force":
-                    lvl.level = 90
+                    lvl.level = 80
                 elif role.name == "Chaos Insurgency":
-                    lvl.level = 99
+                    lvl.level = 90
                 elif role.name == "Serpent's Hand":
                     lvl.level = 100
                 else: pass
