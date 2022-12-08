@@ -20,7 +20,7 @@ class Error_Handler(Cog):
             guild = self.bot.get_guild(self.bot.config['razisrealm_id']) #? Guild
 
             for role in ctx.author.roles:
-                if role.id in self.bot.config['supporters'].values():
+                if role.id == self.bot.config['roles']['scps']:
                     await ctx.send("*Bypassing Cooldowns. Thanks for supporting!*")
                     await ctx.reinvoke()
                     return

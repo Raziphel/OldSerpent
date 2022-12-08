@@ -117,7 +117,7 @@ class rules_handler(Cog):
         description=f"**Here is a list of all the current staff roles!  These Council roles have a corresponding ranking in number.**\n\n<:foundation:1024847941665562634> **__The 05 Council__**\nThe 05 Council, known for being the Head leaders of the Foundation, are the Administrators for the discord server, this position does not accept application.  Each council member is ranked by number and usually recieve high staff rankin on Serpent's Gaming servers as well.\n\n<:RedRightHand:1020893683853303828> **__Red Right Hand__**\nAka. Alpha-01 is known as being the Elite task force under the 05 Council and it carries over in the Serpent's Garden!  The Red right hand are staff on gaming servers and moderators for the Discord Server.  The Red Right Hand can be obtained via applicattion!\n\n**Interested in being a Red Right Hand?**\n*A link will be here soon...*  ", color=0x00FF00)
 
         embed4=Embed(title=f"**[- 3. The Supporter Roles (NEW) -]**", 
-        description=f"", color=0x00FFF0)
+        description=f"**These roles are only obtained by donating or contributring to the server in some way!**\n\n", color=0x00FFF0)
 
         embed5=Embed(title=f"**[- 4. The Level Roles (NEW) -]**", 
         description=f"", color=0x00FFF0)

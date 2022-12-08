@@ -59,6 +59,11 @@ class Loops(Cog):
         # adult_library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_library_pass'])
         light_zone = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['light_zone'])
         adult_light_zone = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_light_zone'])
+        scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
+        thaumiel = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
+        safe = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['safe'])
+        euclid = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['euclid'])
+        keter = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['keter'])
 
         for user in guild.members:
             try: #! Fixing adults roles
@@ -79,12 +84,18 @@ class Loops(Cog):
                 async with self.bot.database() as db:
                     await mod.save(db)
 
-                #! Fix adult roles
+                #! Fix roles
                 if nsfw_adult in user.roles:
                     #? Fixing Furry's NSFW
                     if furry in user.roles:
                         await user.add_roles(adult_furry, reason="Fixing Adult & Furry role.")
                         await user.remove_roles(furry, reason="Fixing Adult & Furry role.")
+                    #? Fixing SCPS for donators
+                    if [thaumiel, safe, euclid, keter] in user.roles:
+                        await user.add_roles(scps, reason="Fixing SCP role.")
+                    if [thaumiel, safe, euclid, keter] not in user.roles:
+                        if scps in user.roles:
+                            await user.remove_roles(scps, reason="Fixing SCP role.")
                     # #? Fixing library Pass's NSFW
                     # if library_pass in user.roles:
                     #     await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
