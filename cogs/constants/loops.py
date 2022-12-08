@@ -135,7 +135,7 @@ class Loops(Cog):
                 users.append(user)
         text = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
-            text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} Gold Coins")
+            text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
         embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
         await msg.edit(content=" ", embed=embed)
 
