@@ -156,6 +156,8 @@ class Shop_Handler(Cog):
         guild = self.bot.get_guild(payload.guild_id)
         user = guild.get_member(payload.user_id)
         c = utils.Currency.get(user.id)
+        coin = self.bot.config['emotes']['coin']
+
 
         await msg.add_reaction("✔")
         await msg.add_reaction("❌")
