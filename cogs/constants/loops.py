@@ -94,13 +94,13 @@ class Loops(Cog):
                         await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
                         await user.remove_roles(library_pass, reason="Fixing Adult & Library Pass role.")
                 #? Fixing SCPS for donators
-                if thaumiel in user.roles:
+                if thaumiel in user.roles and scps not in user.roles:
                     await user.add_roles(scps, reason="Fixing SCP role.")
-                elif safe in user.roles:
+                elif safe in user.roles and scps not in user.roles:
                     await user.add_roles(scps, reason="Fixing SCP role.")
-                elif euclid in user.roles:
+                elif euclid in user.roles and scps not in user.roles:
                     await user.add_roles(scps, reason="Fixing SCP role.")
-                elif keter in user.roles:
+                elif keter in user.roles and scps not in user.roles:
                     await user.add_roles(scps, reason="Fixing SCP role.")
                 elif scps in user.roles:
                     await user.remove_roles(scps, reason="Fixing SCP role.")
