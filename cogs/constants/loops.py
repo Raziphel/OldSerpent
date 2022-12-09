@@ -21,7 +21,7 @@ class Loops(Cog):
         self.last_coins = 0
 
 
-    @tasks.loop(minutes=1)
+    @tasks.loop(minutes=3)
     async def one_min_loop(self):
         """The loop that handles updating things every minute."""
 
@@ -83,6 +83,7 @@ class Loops(Cog):
                     await mod.save(db)
 
                 #! Fix roles
+                await sleep(0.05)
                 if nsfw_adult in user.roles:
                     #? Fixing Furry's NSFW
                     if furry in user.roles:
