@@ -57,8 +57,6 @@ class Loops(Cog):
         adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult'])
         library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
         adult_library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_library_pass'])
-        light_zone = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['light_zone'])
-        adult_light_zone = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_light_zone'])
         scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
         thaumiel = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
         safe = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['safe'])

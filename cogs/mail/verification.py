@@ -243,7 +243,7 @@ class Verification(Cog):
 
 
     async def verify_adult(self, author:Member, guild:guild, kinda:bool=False):
-        '''Sends a kingussy verification application!'''
+        '''Sends a adult verification application!'''
 
         # Set some stuff up
         table_data = {
@@ -274,7 +274,7 @@ class Verification(Cog):
             return message
 
         try:
-            proof = await get_input(f"We try our hardest to make sure no children are allowed access to NSFW areas!  So please if you are 100% adult and understand you will be permenantly IP banned if you are cought lying about age.  (Please say 'I agree')  or do 'cancel'.")
+            proof = await get_input(f"**Lying about your age is a bannable offense!**   Please say 'I agree' if you are an adult or do 'cancel'.\nLying about your age to get in adult areas is seriously not worth it.")
             table_data['proof'] = proof.content
 
             msg = f"Proof: **{table_data.get('proof')}**"
