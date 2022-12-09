@@ -55,8 +55,8 @@ class Loops(Cog):
         furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['furry'])
         nsfw_adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
         adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult'])
-        # library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
-        # adult_library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_library_pass'])
+        library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
+        adult_library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_library_pass'])
         light_zone = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['light_zone'])
         adult_light_zone = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_light_zone'])
         scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
@@ -91,9 +91,9 @@ class Loops(Cog):
                         await user.add_roles(adult_furry, reason="Fixing Adult & Furry role.")
                         await user.remove_roles(furry, reason="Fixing Adult & Furry role.")
                     #? Fixing library Pass's NSFW
-                    # if library_pass in user.roles:
-                    #     await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
-                    #     await user.remove_roles(library_pass, reason="Fixing Adult & Library Pass role.")
+                    if library_pass in user.roles:
+                        await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
+                        await user.remove_roles(library_pass, reason="Fixing Adult & Library Pass role.")
                 #? Fixing SCPS for donators
                 if thaumiel in user.roles:
                     await user.add_roles(scps, reason="Fixing SCP role.")
@@ -124,8 +124,6 @@ class Loops(Cog):
             user = self.bot.get_user(i.user_id)
             if user != None:
                 users.append(user)
-            else: ranks = sorted_rank[:20]
-        # users = [self.bot.get_user(i.user_id) for i in ranks]
         text = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
             text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
