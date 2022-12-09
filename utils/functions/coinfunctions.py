@@ -39,7 +39,6 @@ class CoinFunctions(object):
         taxed = amount - new_amount
 
         cp.coins -= taxed
-        cp.tax += taxed
         cr.coins += taxed
 
         async with cls.bot.database() as db:
