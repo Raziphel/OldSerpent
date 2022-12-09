@@ -113,12 +113,16 @@ class Developer(Cog):
     async def payday(self, ctx):
         '''Gives everyone some coins as a payday!'''
         guild = self.bot.get_guild(self.bot.config['garden_id'])
+        total = 0
+        coin_e = self.bot.config['emotes']['coin']
 
         for user in guild.members:
             try:
                 c = utils.Currency.get(user.id)
-                c.coins -= 1000
+                c.coins += 10000
+                total += 10000
                 print(f'{user.name} got payed!')
+                await ctx.send(f"Handed out over **{total}x** {coin_e}!  To everyone on the server!")
             except Exception as e:
                 print(e) 
 
