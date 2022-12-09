@@ -39,6 +39,7 @@ class Currency_Gen(Cog):
         '''Level Progression'''
         lvl = utils.Levels.get(message.author.id)
         c = utils.Currency.get(message.author.id)
+        tax = utils.Currency.get(550474149332516881) 
         if lvl.last_xp == None:
             lvl.last_xp = dt.utcnow()
         if (lvl.last_xp + timedelta(seconds=30)) <= dt.utcnow(): # Check Time
@@ -54,8 +55,10 @@ class Currency_Gen(Cog):
 
             rng = choice([0.5, 0.75, 1.0, 1.25, 1.50])
             exp += (lvl.level/2)*rng
-            c.coins += unique_words*rng
-            c.coins_earned += unique_words*rng
+            coins = unique_words*rng
+            c.coins += coins
+            c.coins_earned += coins
+            tax.coins -= coins
 
             #! Command Usage Secret Increase!?
             if message.content.startswith(self.bot.config['prefix']):
@@ -70,6 +73,7 @@ class Currency_Gen(Cog):
         async with self.bot.database() as db:
             await lvl.save(db)
             await c.save(db)
+            await tax.save(db)
 
 
 
@@ -106,10 +110,12 @@ class Currency_Gen(Cog):
                         return
 
                     c = utils.Currency.get(member.id)
+                    tax = utils.Currency.get(550474149332516881) 
                     lvl = utils.Levels.get(member.id)
                     lvl.exp = len(vc.members)*(lvl.level/2)
                     coins = 4 + round(len(vc.members)/2)
                     c.coins += coins
+                    tax.coins -= coins
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
                     if lvl.exp >= requiredexp:
@@ -118,6 +124,7 @@ class Currency_Gen(Cog):
                     async with self.bot.database() as db:
                         await c.save(db)
                         await lvl.save(db)
+                        await tax.save(db)
 
 
 
