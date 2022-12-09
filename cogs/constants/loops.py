@@ -15,14 +15,14 @@ import utils
 class Loops(Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.five_min_loop.start()
+        self.one_min_loop.start()
         self.one_hour_loop.start()
         self.last_members = 0
         self.last_coins = 0
 
 
-    @tasks.loop(minutes=5)
-    async def five_min_loop(self):
+    @tasks.loop(minutes=1)
+    async def one_min_loop(self):
         """The loop that handles updating things every minute."""
 
         #! Databse check
@@ -154,8 +154,8 @@ class Loops(Cog):
 
 
 
-    @five_min_loop.before_loop
-    async def before_five_min_loop(self):
+    @one_min_loop.before_loop
+    async def before_one_min_loop(self):
         """Waits until the cache loads up before running the leaderboard loop"""
         
         await self.bot.wait_until_ready()
