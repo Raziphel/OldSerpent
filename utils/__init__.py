@@ -31,6 +31,7 @@ from utils.sql.admin.staff_track import Staff_Track
 
 #? Functions
 from utils.functions.userfunction import UserFunction
+from utils.functions.coinfunctions import CoinFunctions
 
 
 #? Additions

@@ -96,7 +96,7 @@ class Shop_Handler(Cog):
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats!!!  Razi will give you your reward within 24 hours!", footer=" "))
                     bought = True
-                    c.coins -= item['coin']
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     razi = guild.get_member(self.bot.config['developer'])
                     await razi.send(embed=utils.LogEmbed(type="special", title="Discord Nitro Purchase", desc=f"{user} purchased Discord Nitro!!!!", footer=" "))
 
@@ -107,7 +107,7 @@ class Shop_Handler(Cog):
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Library pass!", footer=" "))
                     bought = True
-                    c.coins -= item['coin']
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['library_pass'])
                     await user.add_roles(adult_library_pass, reason="Given a Library Pass role.")
 
@@ -118,7 +118,7 @@ class Shop_Handler(Cog):
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Image pass!", footer=" "))
                     bought = True
-                    c.coins -= item['coin']
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['image_pass'])
                     await user.add_roles(adult_library_pass, reason="Given a Image Pass role.")
 
@@ -164,7 +164,7 @@ class Shop_Handler(Cog):
             r, _ = await self.bot.wait_for('reaction_add', check=check)
             if r.emoji == "✔":
                 if c.coins < item["coin"]:
-                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Gold Coins for: `{item['name']}`!\nYou need {item['coin'] - floor(c.coins):,}x {coin}!", footer=" "))
+                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Coins for: `{item['name']}`!\nYou need {item['coin'] - floor(c.coins):,}x {coin}!", footer=" "))
                     return False
                 else: return True
 

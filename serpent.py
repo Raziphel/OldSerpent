@@ -30,6 +30,7 @@ class Serpent(commands.AutoShardedBot):
 
         #! Load Functions
         utils.UserFunction.bot = self
+        utils.CoinFunctions().bot = self
 
         self.database = DatabaseConnection
         self.database.config = self.config['database']
