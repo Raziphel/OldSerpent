@@ -55,7 +55,7 @@ class Loops(Cog):
         furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['furry'])
         nsfw_adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
         adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult'])
-        library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
+        library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['library_pass'])
         adult_library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_library_pass'])
         scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
         thaumiel = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
