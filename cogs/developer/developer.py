@@ -125,9 +125,9 @@ class Developer(Cog):
             except Exception as e:
                 print(e) 
 
-            await ctx.send(f"Handed out over **{total}x** {coin_e}!  To everyone on the server!")
-            async with self.bot.database() as db:
-                await c.save(db)
+        await ctx.send(f"Handed out over **{total}x** {coin_e}!  To everyone on the server!")
+        async with self.bot.database() as db:
+            await c.save(db)
 
 
 
