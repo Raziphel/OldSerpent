@@ -109,7 +109,7 @@ class Shop_Handler(Cog):
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['library_pass'])
-                    await user.add_roles(adult_library_pass, reason="Given a Library Pass role.")
+                    await user.add_roles(library_pass, reason="Given a Library Pass role.")
 
             if emoji == "🎫":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Image Pass!\nCost: {coin} 25,000x", footer=" "))
@@ -120,7 +120,7 @@ class Shop_Handler(Cog):
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['image_pass'])
-                    await user.add_roles(adult_library_pass, reason="Given a Image Pass role.")
+                    await user.add_roles(image_ass, reason="Given a Image Pass role.")
 
             #! Save to databse
             async with self.bot.database() as db:
