@@ -44,7 +44,7 @@ class UserFunction(object):
             msg = await channel.send(embed=utils.LogEmbed(type="positive", title=f"🎉 level up!", desc=f"Now {user.mention} is now level: **{lvl.level:,}**\nGranting them: {round(amount):,}x {coin}"))
 
         levels = cls.bot.get_channel(cls.bot.config['channels']['levels'])
-        await levels.send(embed=utils.LogEmbed(type="positive", title=f"🎉{user.name} leveled up! 🎉", desc=f"Now level: **{lvl.level:,}**\n{round(amount):,}x {coin}"))
+        await levels.send(embed=utils.LogEmbed(type="positive", title=f"🎉 level up!", desc=f"Now {user.mention} is now level: **{lvl.level:,}**\nGranting them: {round(amount):,}x {coin}"))
 
         await sleep(6)
         await msg.delete()
