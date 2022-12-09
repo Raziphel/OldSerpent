@@ -119,8 +119,8 @@ class Shop_Handler(Cog):
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Image pass!", footer=" "))
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['image_pass'])
-                    await user.add_roles(image_ass, reason="Given a Image Pass role.")
+                    image_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['image_pass'])
+                    await user.add_roles(image_pass, reason="Given a Image Pass role.")
 
             #! Save to databse
             async with self.bot.database() as db:
