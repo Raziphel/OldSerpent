@@ -6,6 +6,7 @@ from discord import Member, Message, User, Game, Embed
 from asyncio import sleep, wait, iscoroutine
 from time import monotonic
 from datetime import datetime as dt, timedelta
+from random import choice
 
 import utils
 
