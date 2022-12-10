@@ -28,11 +28,14 @@ class Listeners(Cog):
             await tr.save(db)
 
         # Check for general
-        if message.channel.id in [1047026469068623902, 1047024954614480957]: #? Scp suggestions
+        if message.channel.id in [1047026469068623902, 1047024954614480957]: #? Suggestions
             await message.add_reaction("<:UpVote:1041606985080119377>")
             await message.add_reaction("<:DownVote:1041606970492342282>")
-        else:
-            return
+        if message.channel.id in [1051033412456165396]: #? 1 word only
+            total_words = len(message.content.split())
+            if total_words > 1 or list(message.content) in ["=", "-", "_", "~", "`", "."]:
+                await message.delete()
+                await ctx.send(embed=utils.DefualtEmbed(title="1 Word Only!", desc="If it wasn't obvious you can only send 1 word."))
 
 
 
