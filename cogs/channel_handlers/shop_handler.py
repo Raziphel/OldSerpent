@@ -42,6 +42,7 @@ class Shop_Handler(Cog):
         embed2=Embed(title=f"**[- Roles & Perms -]**", description=f"**This is a list of discord related items for sale.**", color=0x47B9F5)
         embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**Get access to all of the server's logs!**\n*(Full Transparency from all users)*\n**{coin} 50,000x**", inline=True)
         embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**Get permission for images & embeds in General Chats.**\n{coin} **25,000x**", inline=True)
+        embed2.add_field(name=f"🎁 ❧ XKClass Channels", value=f"**Get permission to the XK Class channels\nFun/Meme/Random channels!**{coin} **10,000x**", inline=True)
 
 
         embed3=Embed(title=f"**[- Abilities -]**", description=f"**Use special abilites on a set cooldown!  (Keep them forever)**", color=0x475FF5)
@@ -121,6 +122,17 @@ class Shop_Handler(Cog):
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     image_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['image_pass'])
                     await user.add_roles(image_pass, reason="Given a Image Pass role.")
+
+            if emoji == "🎁":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a XKClass Channels!\nCost: {coin} 25,000x", footer=" "))
+                item['coin'] = 10000
+                item['name'] = "XKClass Channels"
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a XKClass Channels!", footer=" "))
+                    bought = True
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
+                    image_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['xkclass'])
+                    await user.add_roles(image_pass, reason="Given a XKClass Channels role.")
 
             #! Save to databse
             async with self.bot.database() as db:
