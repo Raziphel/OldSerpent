@@ -11,4 +11,5 @@ Tips = ([
     "Chaos Channels only rules: No bullying, No TOS & Spoiler gross stuff. ",
     "Read channel topics!  If your confused...",
     "Razi needs to add more tips!",
+    "Buy the XK Class role from the shop!!!  Has great channels.",
 ])
