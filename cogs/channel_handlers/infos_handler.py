@@ -68,7 +68,7 @@ class rules_handler(Cog):
         coin = self.bot.config['emotes']['coin']
 
         embed1=Embed(title=f"**[- Level Roles -]**", 
-        description=f"This is the levels you recieve each role at! Any other roles are probably staff or a donator role!\n\n**Level 100 ->** `Serpent's Hand`\n**Level 91 ->** `Chaos Insurgency`\n**Level 81 ->** `Mobile Task Force`\n**Level 61 ->** `Facility Manager`\n**Level 41 ->** `Containment Engineers`\n**Level 26 ->** `Facility Guards`\n**Level 16 ->** `Scientists`\n**Level 6 ->** `D-Class`\n**Level 0 ->** `Civilian`", color=0xFF0000)
+        description=f"This is the levels you recieve each role at! Any other roles are probably staff or a donator role!\n\n**Level 100 ->** `Serpent's Hand`\n**Level 90 ->** `Gamers Against Weed`\n**Level 80 ->** `Chaos Insurgency`\n**Level 75 ->** `Children of the Scarlet King`\n**Level 70 ->** `Sarkic Cult`\n**Level 65 ->** `Church of the Broken God`\n**Level 60 ->** `Global Occult Coalition`\n**Level 55 ->** `Unusual Incidents Unit`\n**Level 50 ->** `Ethics Committee`\n**Level 45 ->** `Memetics Division`\n**Level 40 ->** `Site Director`\n**Level 35 ->** `Facility Manager`\n**Level 30 ->** `MTF Operative`\n**Level 25 ->** `Sequrity Officer`\n**Level 20 ->** `Containment Specialist`\n**Level 15 ->** `Head-Reseracher`\n**Level 10 ->** `Scientist`\n**Level 5 ->** `D-Class`\n**Level 0 ->** `Janitor`", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Coming Soon -]**", 
         description=f"", color=0x0000FF)
