@@ -40,6 +40,8 @@ class UserFunction(object):
             await c.save(db)
             await lvl.save(db)
 
+        await cls.check_level(user=user)
+
         if channel:
             msg = await channel.send(embed=utils.LogEmbed(type="positive", title=f"🎉 level up!", desc=f"{user.mention} is now level: **{lvl.level:,}**\nGranting them: {round(amount):,}x {coin}"))
 
@@ -76,14 +78,24 @@ class UserFunction(object):
 
         level_roles = {
             100: "Serpent's Hand",
-            91: "Chaos Insurgency",
-            81: "Mobile Task Force",
-            61: "Facility Managers",
-            41: "Containment Engineers",
-            26: "Facility Guards",
-            16: "Scientists",
-            6: "D-Class",
-            0: "Civilian",
+            90: "Gamers Against Weed",
+            85: "Chaos Insurgency",
+            80: "Children of the Scarlet King",
+            75: "Sarkic Cult",
+            70: "Church of the Broken God",
+            65: "Global Occult Coalition",
+            60: "Unusual Incidents Unit",
+            55: "Ethics Committee",
+            50: "Memetics Division",
+            45: "Site Director",
+            40: "Facility Manager",
+            35: "MTF Operative",
+            30: "Security Officer",
+            25: "Containment Specialist",
+            20: "Head-Researcher",
+            15: "Scientist",
+            10: "D-Class",
+            5: "Janitor",
         }
 
         # Get roles from the user we'd need to delete

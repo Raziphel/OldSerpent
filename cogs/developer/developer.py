@@ -139,27 +139,26 @@ class Developer(Cog):
         for user in guild.members:
             for role in user.roles:
                 lvl = utils.Levels.get(user.id)
-                if role.name == "Civilian":
-                    lvl.level = 3
+                if role.name == "Janitor":
+                    lvl.level = 5
                 elif role.name == "D-Class":
-                    lvl.level = 10
+                    lvl.level = 11
                 elif role.name == "Scientists":
-                    lvl.level = 20
-                elif role.name == "Facility Guards":
-                    lvl.level = 30
-                elif role.name == "Containment Engineers":
-                    lvl.level = 50
+                    lvl.level = 16
+                elif role.name == "Containment Specialist":
+                    lvl.level = 21
                 elif role.name == "Facility Managers":
-                    lvl.level = 70
+                    lvl.level = 26
                 elif role.name == "Mobile Task Force":
-                    lvl.level = 80
+                    lvl.level = 31
                 elif role.name == "Chaos Insurgency":
-                    lvl.level = 90
+                    lvl.level = 36
                 elif role.name == "Serpent's Hand":
                     lvl.level = 100
                 else: pass
             async with self.bot.database() as db:
                 await lvl.save(db)
+            await utils.UserFunction.check_level(user=user)
             print(f'{user.name} level set to {lvl.level}')
         await ctx.send('Level Reset Complete.')
 

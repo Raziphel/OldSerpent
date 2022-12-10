@@ -83,7 +83,7 @@ class Loops(Cog):
                     await mod.save(db)
 
                 #! Fix roles
-                await sleep(0.01) #? Causes a huge sharp in cpu why not spread it out.
+                await sleep(0.1) #? Causes a huge sharp in cpu why not spread it out.
                 if nsfw_adult in user.roles:
                     #? Fixing Furry's NSFW
                     if furry in user.roles:
