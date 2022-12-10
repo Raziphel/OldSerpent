@@ -143,13 +143,15 @@ class Developer(Cog):
                     lvl.level = 5
                 elif role.name == "D-Class":
                     lvl.level = 11
-                elif role.name == "Scientists":
+                elif role.name == "Scientist":
+                    lvl.level = 16
+                elif role.name == "Head-Researcher":
                     lvl.level = 16
                 elif role.name == "Containment Specialist":
                     lvl.level = 21
-                elif role.name == "Facility Managers":
+                elif role.name == "Facility Manager":
                     lvl.level = 26
-                elif role.name == "Mobile Task Force":
+                elif role.name == "MTF Operative":
                     lvl.level = 31
                 elif role.name == "Chaos Insurgency":
                     lvl.level = 36
