@@ -37,12 +37,12 @@ class Shop_Handler(Cog):
 
 
         embed1=Embed(title=f"**[- The Realm's Shop -]**", description=f"**By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.**\n\n**Exclusive Items:**\n*Items that are purposely made very expensive, due to there value!*", color=0x47F5DB)
-        embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n**{coin} 1,000,000x**", inline=True)
+        embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n\n**{coin} 1,000,000x**", inline=True)
 
         embed2=Embed(title=f"**[- Roles & Perms -]**", description=f"**This is a list of discord related items for sale.**", color=0x47B9F5)
-        embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**Get access to all of the server's logs!**\n*(Full Transparency from all users)*\n**{coin} 50,000x**", inline=True)
-        embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**Get permission for images & embeds in General Chats.**\n{coin} **25,000x**", inline=True)
-        embed2.add_field(name=f"🎁 ❧ XKClass Channels", value=f"**Get permission to the XK Class channels\nFun/Meme/Random channels!**\n{coin} **10,000x**", inline=True)
+        embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**Get access to all of the server's logs!**\n*(Full Transparency from all users)*\n\n**{coin} 50,000x**", inline=True)
+        embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**Get permission for images & embeds in General Chats.**\n\n{coin} **25,000x**", inline=True)
+        embed2.add_field(name=f"🎁 ❧ XKClass Channels", value=f"**Get permission to the XK Class channels.**\n*(Fun/Meme/Random channels)*\n\n{coin} **10,000x**", inline=True)
 
 
         embed3=Embed(title=f"**[- Abilities -]**", description=f"**Use special abilites on a set cooldown!  (Keep them forever)**", color=0x475FF5)
