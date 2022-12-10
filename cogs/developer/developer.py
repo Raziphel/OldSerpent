@@ -130,6 +130,20 @@ class Developer(Cog):
             await c.save(db)
 
 
+    @utils.is_dev()
+    @command(hidden=True)
+    async def randcomizelevels(self, ctx):
+        guild = self.bot.get_guild(self.bot.config['garden_id'])
+        for user in guild.members:
+            for role in user.roles:
+                lvl = utils.Levels.get(user.id)
+                random = choice([-2,-1,0,1,2,3])
+                lvl.level = lvl.level + random
+            async with self.bot.database() as db:
+                await lvl.save(db)
+            print(f'{user.name} level set to {lvl.level}')
+            await utils.UserFunction.check_level(user=user)
+        await ctx.send('Level slightly ranzomized.')
 
 
     @utils.is_dev()
