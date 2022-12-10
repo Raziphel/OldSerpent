@@ -115,7 +115,7 @@ class Profile(Cog):
     async def setcolor(self, ctx, colour):
         '''Sets your user color'''
         colour_value = utils.Colors.get(colour.lower()) 
-        ss = utils.Settings.get(ctx.author.id)
+        ss = utils.Tracking.get(ctx.author.id)
 
         if colour_value == None:
             try:

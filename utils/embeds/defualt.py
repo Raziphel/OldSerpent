@@ -28,8 +28,8 @@ class DefualtEmbed(Embed):
 
         # Add Color
         if user:
-            ss = utils.Settings.get(user.id)
-            self.color = ss.color
+            t = utils.Tracking.get(user.id)
+            self.color = t.color
 
         #* Add author
         if author:
