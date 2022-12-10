@@ -121,14 +121,14 @@ class Profile(Cog):
             try:
                 colour_value = int(colour.strip('#'), 16)
             except ValueError:
-                await ctx.send(embed=utils.SpecialEmbed(title="Incorrect colour usage!", guild=ctx.guild), delete_after=15)
+                await ctx.send(embed=utils.SpecialEmbed(title="Incorrect colour usage!", guild=ctx.guild), delete_after=5)
                 return
 
         ss.color = colour_value
         async with self.bot.database() as db:
             await ss.save(db)
         
-        await ctx.send(embed=utils.DefualtEmbed(title="Your color setting has been set!", guild=ctx.guild, user=ctx.author), delete_after=15)
+        await ctx.send(embed=utils.DefualtEmbed(title="Your color setting has been set!", guild=ctx.guild, user=ctx.author))
 
 
 
