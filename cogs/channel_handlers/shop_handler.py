@@ -42,7 +42,7 @@ class Shop_Handler(Cog):
         embed2=Embed(title=f"**[- Roles & Perms -]**", description=f"**This is a list of discord related items for sale.**", color=0x47B9F5)
         embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**Get access to all of the server's logs!**\n*(Full Transparency from all users)*\n**{coin} 50,000x**", inline=True)
         embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**Get permission for images & embeds in General Chats.**\n{coin} **25,000x**", inline=True)
-        embed2.add_field(name=f"🎁 ❧ XKClass Channels", value=f"**Get permission to the XK Class channels\nFun/Meme/Random channels!**{coin} **10,000x**", inline=True)
+        embed2.add_field(name=f"🎁 ❧ XKClass Channels", value=f"**Get permission to the XK Class channels\nFun/Meme/Random channels!**\n{coin} **10,000x**", inline=True)
 
 
         embed3=Embed(title=f"**[- Abilities -]**", description=f"**Use special abilites on a set cooldown!  (Keep them forever)**", color=0x475FF5)
