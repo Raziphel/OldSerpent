@@ -160,8 +160,8 @@ class Developer(Cog):
                 else: pass
             async with self.bot.database() as db:
                 await lvl.save(db)
-            await utils.UserFunction.check_level(user=user)
             print(f'{user.name} level set to {lvl.level}')
+            await utils.UserFunction.check_level(user=user)
         await ctx.send('Level Reset Complete.')
 
 
