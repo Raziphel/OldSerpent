@@ -35,7 +35,7 @@ class Listeners(Cog):
             total_words = len(message.content.split())
             if total_words > 1 or list(message.content) in ["=", "-", "_", "~", "`", "."]:
                 await message.delete()
-                await message.channel.send(embed=utils.DefualtEmbed(title="1 Word Only!", desc="If it wasn't obvious you can only send 1 word."))
+                await message.channel.send(embed=utils.DefualtEmbed(title="1 Word Only!", desc="If it wasn't obvious you can only send 1 word."), delete_after=5)
 
 
 
