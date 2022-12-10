@@ -54,8 +54,8 @@ class Currency_Gen(Cog):
                 unique_words = 10
 
             rng = choice([0.5, 0.75, 1.0, 1.25, 1.50])
-            exp += (lvl.level/2)*rng
-            coins = unique_words*rng
+            exp += 3+(lvl.level/2)*rng
+            coins = 3+unique_words*rng
             c.coins += coins
             c.coins_earned += coins
             tax.coins -= coins
@@ -113,7 +113,7 @@ class Currency_Gen(Cog):
                     tax = utils.Currency.get(550474149332516881) 
                     lvl = utils.Levels.get(member.id)
                     lvl.exp = len(vc.members)*(lvl.level/2)
-                    coins = 4 + round(len(vc.members)/2)
+                    coins = 5 + round(len(vc.members)/2)
                     c.coins += coins
                     tax.coins -= coins
 
