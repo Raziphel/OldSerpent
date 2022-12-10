@@ -34,6 +34,7 @@ class UserFunction(object):
 
         lvl.level += 1
         amount = (lvl.level*60) * RNG
+        amount = await utils.CoinFunctions.pay_tax(payer=user, amount=amount)
         c.coins += amount
         lvl.exp = 0
         async with cls.bot.database() as db:
