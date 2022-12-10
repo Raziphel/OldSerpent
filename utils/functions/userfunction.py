@@ -118,3 +118,4 @@ class UserFunction(object):
         if role_to_add:
             role = utils.DiscordGet(guild.roles, name=role_to_add)
             await user.add_roles(role, reason="Adding Level Role.")
+
