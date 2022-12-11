@@ -65,7 +65,7 @@ class UserFunction(object):
         elif level < 5:
             requiredexp = level*25
         else:
-            requiredexp = round(level**2.25)
+            requiredexp = round(level**2.75)
         return requiredexp
 
 

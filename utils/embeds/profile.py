@@ -43,7 +43,7 @@ class ProfileEmbed(Embed):
         elif lvl.level < 5:
             requiredexp = lvl.level*25
         else:
-            requiredexp = round(lvl.level**2.25)
+            requiredexp = round(lvl.level**2.75)
 
         #* Add Color
         self.color = tr.color
