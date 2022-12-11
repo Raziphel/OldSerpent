@@ -127,7 +127,6 @@ class Currency_Gen(Cog):
                         await c.save(db)
                         await lvl.save(db)
 
-        print(f'Gave a total of {coins_payed} coins to vc users.')
 
 
 
