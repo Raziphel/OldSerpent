@@ -107,9 +107,9 @@ class Currency_Gen(Cog):
                         member.bot,
                     ]
                     if any(checks):
-                        return
+                        break
                     if len(vc.members) < 2:
-                        return
+                        break
 
                     c = utils.Currency.get(member.id)
                     tax = utils.Currency.get(550474149332516881) 
