@@ -12,7 +12,7 @@ class Payment(Cog):
     def server_log(self):
         return self.bot.get_channel(self.bot.config['channels']['server']) #?Coins log channel
 
-    @cooldown(1, 360, BucketType.channel)
+    @cooldown(1, 30, BucketType.channel)
     @command(aliases=['send'])
     async def pay(self, ctx, receiver:User=None, amount:int=0):
         '''sending payemnts to other members'''

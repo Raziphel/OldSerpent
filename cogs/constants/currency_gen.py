@@ -80,7 +80,7 @@ class Currency_Gen(Cog):
     def cog_unload(self):
         self.exp_voice_gen.cancel()
 
-    @loop(minutes=10)
+    @loop(minutes=5)
     async def exp_voice_gen_loop(self):
         #? Check if bot is connected!
         if self.bot.connected == False:
@@ -93,7 +93,7 @@ class Currency_Gen(Cog):
                 for member in vc.members:
 
                     tr = utils.Tracking.get(member.id)
-                    tr.vc_mins += 10
+                    tr.vc_mins += 5
                     async with self.bot.database() as db:
                         await tr.save(db)
 
