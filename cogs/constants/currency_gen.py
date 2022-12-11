@@ -112,12 +112,11 @@ class Currency_Gen(Cog):
                         break
 
                     c = utils.Currency.get(member.id)
-                    tax = utils.Currency.get(550474149332516881) 
                     lvl = utils.Levels.get(member.id)
                     lvl.exp = 10+(len(vc.members)/2)*(lvl.level/2)
                     coins = 10 + round(len(vc.members))
                     c.coins += coins
-                    tax.coins -= coins
+                    coins = await utils.CoinFunctions.pay_tax(payer=member, amount=coins)
                     coins_payed += coins
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
@@ -127,9 +126,8 @@ class Currency_Gen(Cog):
                     async with self.bot.database() as db:
                         await c.save(db)
                         await lvl.save(db)
-                        await tax.save(db)
 
-        print(f'Gave a total of {coins_payed} to vc users.')
+        print(f'Gave a total of {coins_payed} coins to vc users.')
 
 
 
