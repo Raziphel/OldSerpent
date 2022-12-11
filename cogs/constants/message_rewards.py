@@ -41,7 +41,7 @@ class Message_Rewards(Cog):
             chance = randint(1, 100)
             if chance <= 4:
                 message = choice(messages)
-                msg = await message.channel.send(embed=utils.DefualtEmbed(title="Random Tip!"))
+                msg = await message.channel.send(embed=utils.DefualtEmbed)
                 await sleep(10)
                 await msg.delete()
             if chance <= 10:
