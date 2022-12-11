@@ -129,7 +129,7 @@ class Currency_Gen(Cog):
                         await lvl.save(db)
                         await tax.save(db)
 
-            print(f'Gave a total of {coins_payed} to vc users.')
+        print(f'Gave a total of {coins_payed} to vc users.')
 
 
 
