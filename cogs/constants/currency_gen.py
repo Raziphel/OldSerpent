@@ -114,8 +114,8 @@ class Currency_Gen(Cog):
                     c = utils.Currency.get(member.id)
                     tax = utils.Currency.get(550474149332516881) 
                     lvl = utils.Levels.get(member.id)
-                    lvl.exp = len(vc.members)*(lvl.level/2)
-                    coins = 5 + round(len(vc.members)/2)
+                    lvl.exp = 10+(len(vc.members)/2)*(lvl.level/2)
+                    coins = 10 + round(len(vc.members))
                     c.coins += coins
                     tax.coins -= coins
                     coins_payed += coins
