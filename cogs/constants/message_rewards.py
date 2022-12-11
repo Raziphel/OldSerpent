@@ -44,7 +44,7 @@ class Message_Rewards(Cog):
                 msg = await message.channel.send(embed=utils.DefualtEmbed(desc="Random Tip:"))
                 await sleep(10)
                 await msg.delete()
-            if chance <= 10:
+            elif chance <= 10:
                 message = choice(messages)
                 await message.add_reaction(self.bot.config['emotes']['coin'])
                 self.coin_messages.append(message.id)
