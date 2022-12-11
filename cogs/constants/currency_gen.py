@@ -119,6 +119,7 @@ class Currency_Gen(Cog):
                     c.coins += coins
                     tax.coins -= coins
                     coins_payed += coins
+                    print('test')
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
                     if lvl.exp >= requiredexp:
