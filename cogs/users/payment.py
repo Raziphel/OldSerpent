@@ -16,6 +16,7 @@ class Payment(Cog):
     @command(aliases=['send'])
     async def pay(self, ctx, receiver:User=None, amount:int=0):
         '''sending payemnts to other members'''
+        coin_e = self.bot.config['emotes']['coin']
         if not receiver:
             await ctx.send(embed=utils.DefualtEmbed(desc=f"{ctx.author} `->pay (user) (amount)`"))
             return
@@ -32,7 +33,7 @@ class Payment(Cog):
 
         await utils.CoinFunctions.pay_user(payer=ctx.author, receiver=receiver, amount=amount)
 
-        await ctx.send(embed=utils.DefualtEmbed(desc=f"**{ctx.author} sent {amount} coins to {receiver}!**"))
+        await ctx.send(embed=utils.DefualtEmbed(desc=f"**{ctx.author} sent {amount:,}x {coin_e} to {receiver}!**"))
 
         await self.server_log.send(embed=utils.LogEmbed(type="special", desc=f"{ctx.author} payed {amount} coins to {receiver}!"))
 
