@@ -102,9 +102,10 @@ class Developer(Cog):
     async def addcoins(self, ctx, user:Member, amount:int):
         if not user:
             user = ctx.author
+        coin_e = self.bot.config['emotes']['coin']
         c = utils.Currency.get(user.id)
         c.coins += amount
-        await ctx.send(f"{user.mention} has earned {amount}!!!")
+        await ctx.send(f"{user.mention} has earned {amount:,} {coin_e} !!!")
         async with self.bot.database() as db:
             await c.save(db)
 
