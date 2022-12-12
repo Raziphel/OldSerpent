@@ -123,25 +123,7 @@ class Logging(Cog):
             await self.message_log.send(embed=utils.LogEmbed(type="positive", title=f"Message Pinned", desc=f"A pinned in: <#{channel.id}>\n{last_pin} was made/modify!"))
         except: pass #? Fail Silently
 
-    @Cog.listener()
-    async def on_member_update(self, before, after):
-        if before.premium_since is None and after.premium_since is not None:
-            c = utils.Currency(before.author.id)
-            coin = self.bot.config['emotes']['coin']
-            try:
-                await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**+500 {coin}**", footer=f"You can expect this reward every 30 days!"))
-            except: pass
-            c.coins += 500
-            for user in guild.members:
-                if nitro in user.roles:
-                    c = utils.Currency(user.id)
-                    try:
-                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward becuase someone nitro boosted!\n\n**+100 {coin}**", footer=f"You can expect this reward every time someone boosts!"))
-                    except: pass
-                    c.coins += 100
-                    async with self.bot.database() as db:
-                        await c.save(db)
-                    print('Handed out Boost rewards')
+
 
 
 
