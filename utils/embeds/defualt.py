@@ -14,7 +14,7 @@ class DefualtEmbed(Embed):
     def __init__(self, *args, **kwargs):
         #Gets the varibles for the embed
         user = kwargs.pop('user', None)
-        author = kwargs.pop('author', None)
+        title = kwargs.pop('author', None)
         thumbnail = kwargs.pop('thumbnail', None)
         image = kwargs.pop('image', None)
         desc = kwargs.pop('desc', None)
@@ -32,8 +32,8 @@ class DefualtEmbed(Embed):
             self.color = t.color
 
         #* Add author
-        if author:
-            self.set_author(name=author, url=patron)
+        if title:
+            self.set_author(name=title, url=patron)
             
         #* Add thumbnail
         if thumbnail:
