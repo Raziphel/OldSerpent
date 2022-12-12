@@ -93,7 +93,7 @@ class Message_Rewards(Cog):
                 coin = await utils.CoinFunctions.pay_tax(payer=user, amount=coin)
                 c.coins += coin
                 c.coins_earned += coin
-                msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{coin} {coin_e}x**", footer=f""))
+                msg = await channel.send(embed=utils.DefaultEmbed(desc=f"{user} found **{coin} {coin_e}x**"))
 
         else: 
             return
