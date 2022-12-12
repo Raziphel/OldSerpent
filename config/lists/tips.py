@@ -12,4 +12,6 @@ Tips = ([
     "Read channel topics!  If your confused...",
     "Razi needs to add more tips!",
     "Buy the XK Class role from the shop!!!  Has great channels.",
+    "Daily's cap out after 365 days!",
+    "Don't forget to claim your .daily!",
 ])

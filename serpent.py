@@ -60,6 +60,7 @@ class Serpent(commands.AutoShardedBot):
             utils.Timers.all_timers.clear()
             utils.Tracking.all_tracking.clear()
             utils.Staff_Track.all_staff_track.clear()
+            utils.Daily.all_dailys.clear()
 
 
             #!   Collect from Database
@@ -72,6 +73,7 @@ class Serpent(commands.AutoShardedBot):
                 timers = await db('SELECT * FROM timers')
                 tracking = await db('SELECT * FROM tracking')
                 staff_track = await db('SELECT * FROM staff_track')
+                daily = await db('SELECT * FROM daily')
 
             #!   Cache all into local objects
             for i in moderation:
@@ -98,6 +100,8 @@ class Serpent(commands.AutoShardedBot):
             for i in staff_track:
                 utils.Staff_Track(**i)
 
+            for i in daily:
+                utils.Daily(**i)
 
 
         except Exception as e:

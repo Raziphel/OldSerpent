@@ -48,7 +48,13 @@ CREATE TABLE levels (
     PRIMARY KEY (user_id)
 );
 
-
+CREATE TABLE daily (
+    user_id bigint NOT NULL,
+    last_daily TIMESTAMP,
+    daily INT NOT NULL DEFAULT 0,
+    premium BOOLEAN DEFAULT False,
+    PRIMARY KEY (user_id)
+);
 
 CREATE TABLE currency (
     user_id bigint NOT NULL,
