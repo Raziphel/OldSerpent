@@ -41,7 +41,7 @@ class Message_Rewards(Cog):
             chance = randint(1, 100)
             if chance <= 4:
                 message = choice(messages)
-                msg = await message.channel.send(embed=utils.DefualtEmbed(desc=f"**Random Tip:** {choice(utils.Tips)}", footer="🍀"))
+                msg = await message.channel.send(embed=utils.DefualtEmbed(user=user, desc=f"**Random Tip:** {choice(utils.Tips)}", footer="🍀"))
                 await sleep(10)
                 await msg.delete()
             elif chance <= 10:
@@ -93,7 +93,7 @@ class Message_Rewards(Cog):
                 coin = await utils.CoinFunctions.pay_tax(payer=user, amount=coin)
                 c.coins += coin
                 c.coins_earned += coin
-                msg = await channel.send(embed=utils.DefaultEmbed(desc=f"{user} found **{coin} {coin_e}x**"))
+                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} found **{coin} {coin_e}x**"))
 
         else: 
             return
