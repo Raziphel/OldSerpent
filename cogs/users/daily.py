@@ -48,6 +48,7 @@ class Daily(Cog):
         #! Determine reward varibles
         if day.daily >= 365:
             daily = 365
+        else: daily = day.daily
         coins = round((100+daily)*rng)
         coins = await utils.CoinFunctions.pay_tax(payer=ctx.author, amount=coins)
         c.coins += coins
