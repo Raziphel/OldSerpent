@@ -46,6 +46,6 @@ class Timers(object):
                 last_nitro_reward=(dt.now()-timedelta(days=50)),
                 last_daily=(dt.now()-timedelta(days=50)),
                 last_weekly=(dt.now()-timedelta(days=50)),
-                last_monthly=(dt.now()-timedelta(days=50))
+                last_monthly=(dt.now()-timedelta(days=50)),
             )
         return guild
