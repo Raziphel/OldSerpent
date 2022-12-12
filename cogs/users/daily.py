@@ -31,13 +31,13 @@ class Daily(Cog):
             day.daily = 1
             day.last_daily = (day.last_daily - timedelta(days=5))
         #! Check if already claimed
-        if (day.last_daily + timedelta(hours=20)) >= dt.utcnow():
+        if (day.last_daily + timedelta(hours=24)) >= dt.utcnow():
             tf = day.last_daily + timedelta(hours=20)
             t = dt(1,1,1) + (tf - dt.utcnow())
-            await ctx.send(embed=utils.SpecialEmbed(desc=f"You can claim your daily rewards in, {t.hour} hours and {t.minute} minutes!"))
+            await ctx.send(embed=utils.SpecialEmbed(desc=f"You can claim your daily rewards in {t.hour} hours and {t.minute} minutes!"))
             return
         #! Missed daily
-        elif (day.last_daily + timedelta(days=2)) <= dt.utcnow():
+        elif (day.last_daily + timedelta(days=3)) <= dt.utcnow():
             day.daily = 1
         #! Got daily
         elif (day.last_daily + timedelta(hours=20)) <= dt.utcnow():
