@@ -19,6 +19,7 @@ class DefualtEmbed(Embed):
         image = kwargs.pop('image', None)
         desc = kwargs.pop('desc', None)
         guild = kwargs.pop('guild', None)
+        footer = kwargs.pop('footer', None)
 
         patron = self.bot.config['patreon']
 
@@ -45,5 +46,8 @@ class DefualtEmbed(Embed):
         if desc:
             self.description = f"{desc}"
 
-        #* Add Footer
-        self.set_footer(text="🍀 " + choice(utils.Tips))
+        #* Add footer
+        if footer:
+          self.set_footer(text=footer)
+        else:
+          self.set_footer(text="🍀 " + choice(utils.Tips))
