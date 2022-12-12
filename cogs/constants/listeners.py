@@ -41,7 +41,7 @@ class Listeners(Cog):
     @Cog.listener()
     async def on_member_update(self, before, after):
         if before.premium_since is None and after.premium_since is not None:
-            c = utils.Currency(before.author.id)
+            c = utils.Currency(before.id)
             coin = self.bot.config['emotes']['coin']
             total_coins = 0
             try:
