@@ -104,6 +104,7 @@ class Developer(Cog):
             user = ctx.author
         c = utils.Currency.get(user.id)
         c.coins += amount
+        await ctx.send(f"{user.mention} has earned {amount}!!!")
         async with self.bot.database() as db:
             await c.save(db)
 
