@@ -97,6 +97,15 @@ class Developer(Cog):
         async with self.bot.database() as db:
             await c.save(db)
 
+    @utils.is_dev()
+    @command(hidden=True)
+    async def addcoins(self, ctx, user:Member, amount:int):
+        if not user:
+            user = ctx.author
+        c = utils.Currency.get(user.id)
+        c.coins += amount
+        async with self.bot.database() as db:
+            await c.save(db)
 
     @utils.is_dev()
     @command(hidden=True)
