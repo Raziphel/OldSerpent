@@ -61,7 +61,7 @@ class Daily(Cog):
         coin_e = self.bot.config['emotes']['coin']
 
         #! Send the embed
-        msg = await ctx.send(embed=utils.SpecialEmbed(title=f"{emoji} This is your {day.daily:,}x daily in a row! {emoji}", desc=f"**{xp:,} XP was gained!\n{round(coins):,} {coin_e}  were gained!**", footer=footer))
+        msg = await ctx.send(embed=utils.SpecialEmbed(title=f"{emoji} This is your {day.daily:,}x daily in a row! {emoji}", desc=f"**{xp:,} XP was gained!\n{round(coins):,}x {coin_e}**", footer=footer))
 
         #! Premium
         if day.premium == True:
@@ -82,7 +82,7 @@ class Daily(Cog):
             if emoji == "🔶":
                 reward = choice([-250, -500])
 
-            await msg.edit(embed=utils.SpecialEmbed(title=f"This is your {day.daily:,}x daily in a row!", desc=f"**{xp:,} XP was gained!\n{round(coins):,} Coins were gained!**", footer=f" {emoji} Extra reward of {reward:,} coins!"))
+            await msg.edit(embed=utils.SpecialEmbed(title=f"This is your {day.daily:,}x daily in a row!", desc=f"**{xp:,} XP was gained!\n{round(coins):,}x {coin_e**}", footer=f" {emoji} Extra reward of {reward:,} coins!"))
             c.coins += reward
 
         #! Save data changes
