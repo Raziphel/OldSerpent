@@ -37,7 +37,7 @@ class lottery_handler(Cog):
             tickets = utils.Currency.get_total_tickets()
 
             embed=Embed(description=f"**__Welcome to the raffle!!!__**\n\n*Current Prize Pool: {lot.coins:,}x {coin_e}", color=0xff00ff)
-            await msg.edit(content=f"**Congrats to the last winner:** <@{lot.last_winner_id}>\nThey won: **{coin_e} {lot.last_amount:,}** | **{evil_coin_e} {floor(lot.last_amount/1000):,}** ",embed=embed)
+            await msg.edit(content=f"**Congrats to the last winner:** <@{lot.last_winner_id}>\nThey won: **{coin_e} {lot.last_amount:,}**",embed=embed)
             
             embed=Embed(description=f"**__Welcome to the lottery store!!!__**\n*You're really fucking bad with money...*", color=0xff00ff)
             embed.add_field(name="🍏 25 Tickets", value=f"**{coin_e} : 2,000**", inline=False)
@@ -122,7 +122,7 @@ class lottery_handler(Cog):
                     return
 
                 c = utils.Currency.get(winner.id)
-                rc = utils.Currency.get(self.bot.user.id)
+                rc = utils.Currency.get(550474149332516881)
 
                 # now tickets is a list of user ids, where each user ID appears the same amount of times as the tickets they've purchased
                 await ch.send(embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner}**!"))
@@ -131,7 +131,6 @@ class lottery_handler(Cog):
                 lot_winnings = await utils.CoinFunctions.pay_tax(payer=winner, amount=lot.coins)
                 c.coins += lot_winnings
                 rc.coins -= lot_winnings
-                c.evil_coins += floor(lot.coins/1000)
                 lot.last_winner = winner.id
                 lot.last_amount = lot.coins
                 lot.coins = 0
@@ -241,7 +240,7 @@ class lottery_handler(Cog):
             if emoji == "🍇":
                 item = "500 Tickets"
                 cost = 25000
-                if c.evil_coins >= cost:
+                if c.coins >= cost:
                     bought = True
                     c.coins -= cost
                     c.lot_tickets += 500
