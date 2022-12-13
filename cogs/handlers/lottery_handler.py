@@ -36,10 +36,10 @@ class lottery_handler(Cog):
             msg2 = await ch.fetch_message(1052128498019479562)
             tickets = utils.Currency.get_total_tickets()
 
-            embed=Embed(description=f"**__Welcome to the raffle!!!__**\n\n*Current Prize Pool: *{lot.coins:,}x {coin_e}**", color=0xff00ff)
+            embed=Embed(description=f"**__Welcome to the raffle!!!__**\n\n**Prize Pool: {lot.coins:,}x {coin_e}**", color=randint(1, 0xffffff))
             await msg.edit(content=f"**Congrats to the last winner:** <@{lot.last_winner_id}>\nThey won: **{coin_e} {lot.last_amount:,}**",embed=embed)
             
-            embed=Embed(description=f"**__Welcome to the lottery store!!!__**\n*You're really fucking bad with money...*", color=0xff00ff)
+            embed=Embed(description=f"**__Welcome to the lottery store!!!__**\n*You're really fucking bad with money...*", color=randint(1, 0xffffff))
             embed.add_field(name="🍏 25 Tickets", value=f"**{coin_e} 2,000x**\n", inline=False)
             embed.add_field(name="🍎 50 Tickets", value=f"**{coin_e} 3,500x**\n", inline=False)
             embed.add_field(name="🍐 100 Tickets", value=f"**{coin_e} 6,000x**\n", inline=False)
