@@ -46,7 +46,7 @@ class Shop_Handler(Cog):
 
 
         embed3=Embed(title=f"**[- Abilities & Items -]**", description=f"**Use special abilites on a set cooldown! (Some are Permenant.)**", color=0x475FF5)
-        embed2.add_field(name=f"💎 ❧ Daily Bonus", value=f"**{coin} 40,000x**\n\n**Get a bonus with every daily!**\n*(Doesn't get better with more dailys)*", inline=True)
+        embed3.add_field(name=f"💎 ❧ Daily Bonus", value=f"**{coin} 40,000x**\n\n**Get a bonus with every daily!**\n*(Doesn't get better with more dailys)*", inline=True)
 
         embed4=Embed(title=f"**[- Trait Roles -]**", description=f"**Get temporary roles to enjoy for up to 8 hours. (May not always be 8 hours.)**", color=0xB347F5)
 
