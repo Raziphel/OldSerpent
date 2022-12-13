@@ -44,6 +44,7 @@ class Loops(Cog):
         scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
         members = len(set(self.bot.get_all_members()))
         total_coins = utils.Currency.get_total_coins()
+        total_scps = 0
         for user in guild.members:
             if scps in user.roles:
                 total_scps += 1
