@@ -43,9 +43,9 @@ class Timers(object):
         if guild is None:
             return cls(
                 guild_id=guild_id,
-                last_nitro_reward=(dt.now()-timedelta(days=50)),
-                last_daily=(dt.now()-timedelta(days=50)),
-                last_weekly=(dt.now()-timedelta(days=50)),
-                last_monthly=(dt.now()-timedelta(days=50)),
+                last_nitro_reward=(dt.utcnow()-timedelta(days=50)),
+                last_daily=(dt.utcnow()-timedelta(days=50)),
+                last_weekly=(dt.utcnow()-timedelta(days=50)),
+                last_monthly=(dt.utcnow()-timedelta(days=50)),
             )
         return guild
