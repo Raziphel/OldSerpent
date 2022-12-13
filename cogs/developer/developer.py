@@ -46,7 +46,7 @@ class Developer(Cog):
     async def boostrewards(self, ctx):
         '''Give nitros rewards now'''
         t = utils.Timers.get(self.bot.config['garden_id'])
-        t.last_nitro_reward = dt.now() - timedelta(days=50)
+        t.last_nitro_reward = dt.utcnow() - timedelta(days=50)
         async with self.bot.database() as db:
             await t.save(db)
 

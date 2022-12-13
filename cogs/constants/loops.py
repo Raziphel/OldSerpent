@@ -179,7 +179,7 @@ class Loops(Cog):
 
         t = utils.Timers.get(self.bot.config['garden_id'])
         if (t.last_nitro_reward + timedelta(days=30)) <= dt.utcnow():
-            t.last_nitro_reward = dt.now()
+            t.last_nitro_reward = dt.utcnow()
             for user in guild.members:
                 if nitro in user.roles:
                     c = utils.Currency(user.id)
