@@ -7,12 +7,10 @@ from datetime import datetime as dt, timedelta
 class Timers(object):
     all_timers = {}
 
-    def __init__(self, guild_id:int, last_nitro_reward:str=dt.utcnow(), last_daily:str=dt.utcnow(), last_weekly:str=dt.utcnow(), last_monthly:str=dt.utcnow()):
+    def __init__(self, guild_id:int, last_nitro_reward:str=dt.utcnow()):
         self.guild_id = guild_id
         self.last_nitro_reward = last_nitro_reward
-        self.last_daily = last_daily
-        self.last_weekly = last_weekly
-        self.last_monthly = last_monthly
+
 
         self.all_timers[self.guild_id] = self
 
@@ -22,18 +20,18 @@ class Timers(object):
             await db('''
                 INSERT INTO timers
                 VALUES
-                ($1, $2, $3, $4, $5)
+                ($1, $2)
                 ''',
-                self.guild_id, self.last_nitro_reward, self.last_daily, self.last_weekly, self.last_monthly
+                self.guild_id, self.last_nitro_rewar
             )
         except asyncpg.exceptions.UniqueViolationError: 
             await db('''
                 UPDATE timers SET
-                last_nitro_reward=$2, last_daily=$3, last_weekly=4, last_monthly=$5
+                last_nitro_reward=$2
                 WHERE
                 guild_id=$1
                 ''',
-                self.guild_id, self.last_nitro_reward, self.last_daily, self.last_weekly, self.last_monthly
+                self.guild_id, self.last_nitro_reward
             )
 
     @classmethod
@@ -44,8 +42,5 @@ class Timers(object):
             return cls(
                 guild_id=guild_id,
                 last_nitro_reward=(dt.utcnow()-timedelta(days=50)),
-                last_daily=(dt.utcnow()-timedelta(days=50)),
-                last_weekly=(dt.utcnow()-timedelta(days=50)),
-                last_monthly=(dt.utcnow()-timedelta(days=50)),
             )
         return guild
