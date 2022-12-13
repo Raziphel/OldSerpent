@@ -40,12 +40,13 @@ class Shop_Handler(Cog):
         embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n\n**{coin} 1,000,000x**", inline=True)
 
         embed2=Embed(title=f"**[- Roles & Perms -]**", description=f"**This is a list of discord related items for sale.**", color=0x47B9F5)
-        embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**Get access to all of the server's logs!**\n*(Full Transparency from all users)*\n\n**{coin} 50,000x**", inline=True)
-        embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**Get permission for images & embeds in General Chats.**\n\n{coin} **25,000x**", inline=True)
-        embed2.add_field(name=f"🎁 ❧ XKClass Channels", value=f"**Get permission to the XK Class channels.**\n*(Fun/Meme/Random channels)*\n\n{coin} **5,000x**", inline=True)
+        embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**{coin} 25,000x**\n\n**Get access to all of the server's logs!**\n*(Full Transparency from all users)*", inline=True)
+        embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**{coin} 20,000x**\n\n**Get permission for images & embeds in General Chats.**", inline=True)
+        embed2.add_field(name=f"🎁 ❧ XKClass Channels", value=f"**{coin} 5,000x**\n\n**Get permission to the XK Class channels.**\n*(Fun/Meme/Random channels)*", inline=True)
 
 
-        embed3=Embed(title=f"**[- Abilities -]**", description=f"**Use special abilites on a set cooldown!  (Keep them forever)**", color=0x475FF5)
+        embed3=Embed(title=f"**[- Abilities & Items -]**", description=f"**Use special abilites on a set cooldown! (Some are Permenant.)**", color=0x475FF5)
+        embed2.add_field(name=f"💎 ❧ Daily Bonus", value=f"**{coin} 40,000x**\n\n**Get a bonus with every daily!**\n*(Doesn't get better with more dailys)*", inline=True)
 
         embed4=Embed(title=f"**[- Trait Roles -]**", description=f"**Get temporary roles to enjoy for up to 8 hours. (May not always be 8 hours.)**", color=0xB347F5)
 
@@ -103,7 +104,7 @@ class Shop_Handler(Cog):
 
             if emoji == "📚":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Library Pass!\nCost: {coin} 50,000x", footer=" "))
-                item['coin'] = 50000
+                item['coin'] = 25000
                 item['name'] = "Library Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Library pass!", footer=" "))
@@ -114,7 +115,7 @@ class Shop_Handler(Cog):
 
             if emoji == "🎫":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Image Pass!\nCost: {coin} 25,000x", footer=" "))
-                item['coin'] = 25000
+                item['coin'] = 20000
                 item['name'] = "Image Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Image pass!", footer=" "))
@@ -133,6 +134,19 @@ class Shop_Handler(Cog):
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     image_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['xkclass'])
                     await user.add_roles(image_pass, reason="Given a XKClass Channels role.")
+
+            if emoji == "💎":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Daily Bonus!\nCost: {coin} 40,000x", footer=" "))
+                item['coin'] =40000
+                item['name'] = "Daily Bonus"
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a daily bonus Channels!", footer=" "))
+                    bought = True
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
+                    day = utils.Daily.get(user.id)
+                    day.premium = True
+                    async with cls.bot.database() as db:
+                        await day.save(db)
 
             #! Save to databse
             async with self.bot.database() as db:
