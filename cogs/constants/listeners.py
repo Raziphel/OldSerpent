@@ -54,7 +54,7 @@ class Listeners(Cog):
                 if nitro in user.roles:
                     c = utils.Currency(user.id)
                     try:
-                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A smaller reward becuase someone nitro boosted!\n\n**+1,000 {coin}**", footer=f"You can expect this reward every time someone boosts!"))
+                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Rewards -", desc=f"A smaller reward becuase someone nitro boosted!\n\n**+1,000 {coin}**", footer=f"You can expect this reward every time someone boosts!"))
                     except: pass
                     c.coins += 1000
                     total_coins += 1000

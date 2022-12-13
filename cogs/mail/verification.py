@@ -79,10 +79,10 @@ class Verification(Cog):
                     colour_value = int(color.content.strip('#'), 16)
                 except ValueError:
                     pass
-            ss = utils.Settings.get(author.id)
-            ss.color = colour_value
+            tr = utils.Tracking.get(author.id)
+            tr.color = colour_value
             async with self.bot.database() as db:
-                await ss.save(db)
+                await tr.save(db)
 
             if color is None:
                 color = 0x0
@@ -90,7 +90,7 @@ class Verification(Cog):
 
             msg = f"How they were invited: **{table_data.get('invited')}**\nReason For Joining: **{table_data.get('reason')}**\nAge: **{str(table_data.get('age'))}**"
 
-            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Razi's Realm Application", footer=f"Verification", message=msg, color=ss.color, author=author, image=author.avatar.url))
+            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Razi's Realm Application", footer=f"Verification", message=msg, color=tr.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
 
@@ -151,7 +151,7 @@ class Verification(Cog):
 
             msg = f"Password: **{table_data.get('password')}**\nGrepolis Username: **{table_data.get('username')}**"
 
-            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Kingussy Application", footer=f"Kingussy", message=msg, color=ss.color, author=author, image=author.avatar.url))
+            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Kingussy Application", footer=f"Kingussy", message=msg, color=tr.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
 
@@ -221,7 +221,7 @@ class Verification(Cog):
 
             msg = f"A furry?: **{table_data.get('furry')}**\nSona?: **{table_data.get('sona')}**\nReason?: **{table_data.get('reason')}**\nDrama?: **{table_data.get('drama')}**"
 
-            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Furry Application", footer=f"Furry", message=msg, color=ss.color, author=author, image=author.avatar.url))
+            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Furry Application", footer=f"Furry", message=msg, color=tr.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
 
@@ -279,11 +279,11 @@ class Verification(Cog):
 
             msg = f"Proof: **{table_data.get('proof')}**"
 
-            ss = utils.Settings.get(author.id)
+            tr = utils.Tracking.get(author.id)
             footer = "Adult"
             if kinda == True:
                 footer == "KindaAdult"
-            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=ss.color, author=author, image=author.avatar.url))
+            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=tr.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
 
