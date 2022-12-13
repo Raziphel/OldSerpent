@@ -33,7 +33,7 @@ class Daily(Cog):
         #! Check if already claimed
         if (day.last_daily + timedelta(hours=24)) >= dt.utcnow():
             tf = day.last_daily + timedelta(hours=20)
-            t = dt(1,1,1) + (tf - dt.utcnow())
+            t = dt(1,1,1) + (tf - dt.now())
             await ctx.send(embed=utils.SpecialEmbed(desc=f"You can claim your daily rewards in {t.hour} hours and {t.minute} minutes!"))
             return
         #! Missed daily

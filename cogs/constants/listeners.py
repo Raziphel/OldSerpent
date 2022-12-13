@@ -45,7 +45,7 @@ class Listeners(Cog):
             coin = self.bot.config['emotes']['coin']
             total_coins = 0
             try:
-                await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A reward for being a nitro booster!\n\n**+5,000 {coin}**", footer=f"You can expect this reward every 30 days!"))
+                await user.send(embed=utils.SpecialEmbed(title="- Nitro Rewards -", desc=f"A reward for being a nitro booster!\n\n**+5,000 {coin}**", footer=f"You can expect this reward every 30 days!"))
             except: pass
             c.coins += 5000
             total_coins += 5000
