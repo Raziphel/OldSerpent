@@ -50,7 +50,8 @@ class UserFunction(object):
         await levels.send(embed=utils.LogEmbed(type="positive", title=f"🎉 level up!", desc=f"{user.mention} is now level: **{lvl.level:,}**\nGranting them: {round(amount):,}x {coin}"))
 
         await sleep(6)
-        await msg.delete()
+        try: await msg.delete()
+        except: pass
 
         return
 
