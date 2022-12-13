@@ -22,7 +22,7 @@ class Timers(object):
                 VALUES
                 ($1, $2)
                 ''',
-                self.guild_id, self.last_nitro_rewar
+                self.guild_id, self.last_nitro_reward
             )
         except asyncpg.exceptions.UniqueViolationError: 
             await db('''

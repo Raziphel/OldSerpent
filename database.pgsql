@@ -110,9 +110,6 @@ CREATE TABLE nsfw_sonas (
 CREATE TABLE timers (
     guild_id bigint NOT NULL,
     last_nitro_reward TIMESTAMP,
-    last_daily TIMESTAMP,
-    last_weekly TIMESTAMP,
-    last_monthly TIMESTAMP,
     PRIMARY KEY (guild_id)
 );
 
