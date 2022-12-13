@@ -44,6 +44,12 @@ class Daily(Cog):
             day.daily += 1
 
         rng = choice([1, 1.25, 1.5, 1.75, 2, 3])
+        if rng == 1: "Common"
+        elif rng == 1.25: rarity = "Uncommon"
+        elif rng == 1.5: rarity = "Rare"
+        elif rng == 1.75: rarity = "Epic"
+        elif rng == 2: rarity = "Legendary"
+        elif rng == 3: rarity = "Mythic"
 
         #! Determine reward varibles
         if day.daily >= 365:
@@ -57,11 +63,10 @@ class Daily(Cog):
         xp = round((lvl.level*2.25)*rng)
         lvl.exp += xp
 
-        emoji = choice(['💫', '💙', '♻', '⚜', '💦'])
         coin_e = self.bot.config['emotes']['coin']
 
         #! Send the embed
-        msg = await ctx.send(embed=utils.SpecialEmbed(title=f"{emoji} This is your {day.daily:,}x daily in a row! {emoji}", desc=f"**{xp:,} *XP*\n{round(coins):,}x {coin_e}**", footer=footer))
+        msg = await ctx.send(embed=utils.SpecialEmbed(title=f"{emoji} This is your {day.daily:,}x daily in a row! {emoji}", desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}**", footer=footer))
 
         #! Premium
         if day.premium == True:
@@ -82,7 +87,7 @@ class Daily(Cog):
             if emoji == "🔶":
                 reward = choice([-250, -500])
 
-            await msg.edit(embed=utils.SpecialEmbed(title=f"This is your {day.daily:,}x daily in a row!", desc=f"**{xp:,} *XP*\n{round(coins):,}x {coin_e}**", footer=f" {emoji} Extra reward of {reward:,} coins!"))
+            await msg.edit(embed=utils.SpecialEmbed(title=f"This is your {day.daily:,}x daily in a row!", desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}**", footer=f" {emoji} Extra reward of {reward:,} coins!"))
             c.coins += reward
 
         #! Save data changes
