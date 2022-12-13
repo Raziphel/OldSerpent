@@ -75,19 +75,19 @@ class Daily(Cog):
             await msg.add_reaction(e_emoji)
             check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🔷", "🏴", "🔶", "🍄"]
             r, _ = await self.bot.wait_for('reaction_add', check=check)
-            if emoji == "🏴":
+            if e_emoji == "🏴":
                 if emoji == '🏴':
                     reward = choice([1000, 700])
 
-            if emoji == "🔷":
+            if e_emoji == "🔷":
                 if emoji == '🔷': 
                     reward = choice([300, 500])
 
-            if emoji == "🍄":
+            if e_emoji == "🍄":
                 if emoji == '🍄': 
                     reward = choice([200, 400])
 
-            if emoji == "🔶":
+            if e_emoji == "🔶":
                 if emoji == '🔶':
                     reward = choice([-1000, -500])
 
