@@ -40,7 +40,7 @@ class Daily(Cog):
         elif (day.last_daily + timedelta(days=3)) <= dt.utcnow():
             day.daily = 1
         #! Got daily
-        elif (day.last_daily + timedelta(hours=20)) <= dt.utcnow():
+        elif (day.last_daily + timedelta(hours=24)) <= dt.utcnow():
             day.daily += 1
 
         rng = choice([1, 1.25, 1.5, 1.75, 2, 3])
