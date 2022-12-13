@@ -175,7 +175,7 @@ class lottery_handler(Cog):
             '''Buys item's from the lottery.'''
 
             # See if I need to deal with it
-            if not payload.channel_id == 703457272730353714:
+            if not payload.channel_id == 1046611360890503238:
                 return
             if self.bot.get_user(payload.user_id).bot:
                 return
