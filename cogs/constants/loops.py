@@ -19,6 +19,7 @@ class Loops(Cog):
         self.one_hour_loop.start()
         self.last_members = 0
         self.last_coins = 0
+        self.scps = 0
 
 
     @tasks.loop(minutes=1)
@@ -30,6 +31,8 @@ class Loops(Cog):
             await self.bot.change_presence(activity=Game(name="Databse is Down!!!")) 
             return
 
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+
         #* Setting the bot status.
         playing = choice(["75% Complete"])
         await self.bot.change_presence(activity=Game(name=playing)) 
@@ -37,14 +40,24 @@ class Loops(Cog):
         #* Setting the Channel Stats.
         members_channel = self.bot.get_channel(856451508865466368)
         coins_channel = self.bot.get_channel(1047682198523875399)
+        supp_channel = self.bot.get_channel(1052050250887598180)
+        scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
         members = len(set(self.bot.get_all_members()))
         total_coins = utils.Currency.get_total_coins()
+        for user in guild.members:
+            if scps in user.roles:
+                total_scps += 1
+
+
         if self.last_members != members:
             await members_channel.edit(name=f"Members: {members:,}")
             self.last_members = members
         if self.last_coins != total_coins:
             await coins_channel.edit(name=f"Coins: {math.floor(total_coins):,}")
             self.last_coins = total_coins
+        if self.scps != scps:
+            await supp_channel.edit(name=f"Supporters: {total_scps:,}")
+            self.scps = scps
 
 
         #* Levels Leaderboard
