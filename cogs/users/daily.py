@@ -71,21 +71,25 @@ class Daily(Cog):
         #! Premium
         if day.premium == True:
             footer = f"Click a random reward!"
-            emoji = choice(['🏴', '🔷', '🔶', '🍄'])
-            await msg.add_reaction(emoji)
+            e_emoji = choice(['🏴', '🔷', '🔶', '🍄'])
+            await msg.add_reaction(e_emoji)
             check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🔷", "🏴", "🔶", "🍄"]
             r, _ = await self.bot.wait_for('reaction_add', check=check)
             if emoji == "🏴":
-                reward = choice([500, 400])
+                if emoji == '🏴':
+                    reward = choice([1000, 700])
 
             if emoji == "🔷":
-                reward = choice([100, 150])
+                if emoji == '🔷': 
+                    reward = choice([300, 500])
 
             if emoji == "🍄":
-                reward = choice([200, 300])
+                if emoji == '🍄': 
+                    reward = choice([200, 400])
 
             if emoji == "🔶":
-                reward = choice([-250, -350])
+                if emoji == '🔶':
+                    reward = choice([-1000, -500])
 
             await msg.edit(embed=utils.SpecialEmbed(title=f"This is your {day.daily:,}x daily in a row!", desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}**", footer=f" {emoji} Extra reward of {reward:,} coins!"))
             c.coins += reward
