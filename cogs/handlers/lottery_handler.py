@@ -246,15 +246,6 @@ class lottery_handler(Cog):
                     c.lot_tickets += 500
                     lot.coins += 25000
 
-            if emoji == "🍪":
-                role = utils.DiscordGet(guild.roles, name="Lot Updates~")
-                if len([i for i in member.roles if i.name == "Lot Updates~"]) < 1:
-                    item = "Lottery Updates"
-                    await member.add_roles(role, reason="Lot Updates~")
-                else: 
-                    item = "Lottery Updates Removal"
-                    bought = False
-                    await member.remove_roles(role, reason="Lot Updates~")
 
             #! Save to databse
             async with self.bot.database() as db:
@@ -278,17 +269,9 @@ class lottery_handler(Cog):
                 await message.add_reaction(e)
 
             if bought == True:
-                if item == "Lottery Updates":
-                    await member.send(embed=utils.LogEmbed(type="positive", title=f"You have signed up for {item}!"))        
-                    return            
-
-                await member.send(embed=utils.LogEmbed(type="positive", title=f"You have bought {item}!"))
-            else: 
-                if item == "Lottery Updates":
-                    await member.send(embed=utils.LogEmbed(type="positive", title=f"You have signed out for {item}!"))        
-                    return          
-
-                await member.send(embed=utils.LogEmbed(type="positive", title=f"Failed to purchase: {item}!"))
+                await member.send(embed=utils.DefualtEmbed(user=member, type="positive", title=f"You have bought {item}!"))
+            else:       
+                await member.send(embed=utils.DefualtEmbed(user=member, type="positive", title=f"Failed to purchase: {item}!"))
 
 
 
