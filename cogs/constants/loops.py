@@ -21,7 +21,7 @@ class Loops(Cog):
         self.last_coins = 0
 
 
-    @tasks.loop(minutes=3)
+    @tasks.loop(minutes=1)
     async def one_min_loop(self):
         """The loop that handles updating things every minute."""
 
