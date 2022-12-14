@@ -44,6 +44,7 @@ class Daily(Cog):
             day.daily += 1
 
         rng = choice([1, 1.25, 1.5, 1.75, 2, 3])
+        rarity = "Common"
         if rng == 1: "Common"
         elif rng == 1.25: rarity = "Uncommon"
         elif rng == 1.5: rarity = "Rare"
