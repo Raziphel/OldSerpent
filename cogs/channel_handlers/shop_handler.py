@@ -140,7 +140,7 @@ class Shop_Handler(Cog):
                 item['coin'] =40000
                 item['name'] = "Daily Bonus"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
-                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a daily bonus Channels!", footer=" "))
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a daily bonus!", footer=" "))
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     day = utils.Daily.get(user.id)
