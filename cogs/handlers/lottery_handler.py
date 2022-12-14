@@ -40,11 +40,11 @@ class lottery_handler(Cog):
             await msg.edit(content=f"**Congrats to the last winner:** <@{lot.last_winner_id}>\nThey won: **{coin_e} {lot.last_amount:,}**",embed=embed)
             
             embed=Embed(description=f"**__Welcome to the lottery store!!!__**\n*You're really fucking bad with money...*", color=randint(1, 0xffffff))
-            embed.add_field(name="🍏 -> 25 Tickets", value=f"**{coin_e} 2,000x**\n", inline=True)
-            embed.add_field(name="🍎 -> 50 Tickets", value=f"**{coin_e} 3,500x**\n", inline=True)
-            embed.add_field(name="🍐 -> 100 Tickets", value=f"**{coin_e} 6,000x**\n", inline=True)
-            embed.add_field(name="🍋 -> 200 Tickets", value=f"**{coin_e} 10,000x**\n", inline=True)
-            embed.add_field(name="🍇 -> 500 Tickets", value=f"**{coin_e} 25,000x**\n", inline=True)
+            embed.add_field(name="🍏 -> 25 Tickets", value=f"\n**{coin_e} 2,000x**\n", inline=True)
+            embed.add_field(name="🍎 -> 50 Tickets", value=f"\n**{coin_e} 3,500x**\n", inline=True)
+            embed.add_field(name="🍐 -> 100 Tickets", value=f"\n**{coin_e} 6,000x**\n", inline=True)
+            embed.add_field(name="🍋 -> 200 Tickets", value=f"\n**{coin_e} 10,000x**\n", inline=True)
+            embed.add_field(name="🍇 -> 500 Tickets", value=f"\n**{coin_e} 25,000x**\n", inline=True)
             await msg2.edit(content=f"Here you can purchase lottery tickets!  It is a weighted lottery, so the more tickets the higher chances! (refreshes: {counter:,}x)",embed=embed)
             
             await sleep(60) 
