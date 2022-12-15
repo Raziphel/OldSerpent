@@ -159,7 +159,7 @@ class rules_handler(Cog):
         coin = self.bot.config['emotes']['coin']
 
         embed1=Embed(title=f"**[- SCP Server Info -]**", 
-        description=f"**SCP Server connect addresses**\nSerpent's Garden #1 `n01.infra.serpents.garden:7777`\nSerpent's Garden #2 `n01.infra.serpents.garden:7778`\nSerpent's Garden #3 `n01.infra.serpents.garden:7779`\n\n**Permission Role Sync:** [Click Me](https://serpents_garden.cmod.app)\n*The following site is used to sync your roles on Discord to the SCP server!  All staff, nitro boosters and supporters will need to go here to get their roles synced to the SCP servers!", color=0xFF0000)
+        description=f"**SCP Server connect addresses**\nSerpent's Garden #1 `n01.infra.serpents.garden:7777`\nSerpent's Garden #2 `n01.infra.serpents.garden:7778`\nSerpent's Garden #3 `n01.infra.serpents.garden:7779`\n\n**Permission Role Sync:** [Click Me](https://serpents_garden.cmod.app)\n*The following site is used to sync your roles on Discord to the SCP server!  All staff, nitro boosters and supporters will need to go here to get their roles synced to the SCP servers!*", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Coming Soon -]**", 
         description=f"", color=0x0000FF)
