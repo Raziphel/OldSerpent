@@ -155,6 +155,8 @@ class rules_handler(Cog):
         msg1 = await ch.fetch_message(1052828325422317578) #? msg
         msg2 = await ch.fetch_message(1052828331197874176) #? msg
         msg3 = await ch.fetch_message(1052828335283122196) #? msg
+        
+        msg10 = await ch.fetch_message(1052854912381374514) #? REPORTING
 
         coin = self.bot.config['emotes']['coin']
 
@@ -167,9 +169,14 @@ class rules_handler(Cog):
         embed3=Embed(title=f"**[- Coming Soon -]**", 
         description=f"", color=0xFFFFFF)
 
+
+        embed10=Embed(title=f"**[- Creating a report! -]**", 
+        description=f"**You can create reports on players in the SCP server, using this simple reporting tool!**\n\nEven if staff are not in the server they can punish from these reports and moderate easily!  Please use these over the in-game reports since you already using the Discord!  (Which we thank you for!)\n\nIf your report is not on the list of pre-defined reports its may not be against our rules!", color=0xFFFFFF)
+
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
         await msg3.edit(content=f" ", embed=embed3)
+        await msg10.edit(content=f" ", embed=embed10)
 
 
 
