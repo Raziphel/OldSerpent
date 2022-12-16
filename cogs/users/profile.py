@@ -87,27 +87,6 @@ class Profile(Cog):
             user = ctx.author
         m = await ctx.send(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
 
-    @cooldown(1, 30, BucketType.user)
-    @command(aliases=['NSona', 'nfursona', 'nFursona'])
-    async def nsona(self, ctx, user:Member=None):
-        '''Quick Post Nsfw Sona'''
-        if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
-            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
-            await ctx.message.delete()
-            return
-        if not user:
-            user = ctx.author
-        m = await ctx.send(embed=utils.ProfileEmbed(type="Nsfw_Sona", user=user, quick=True))
-
-
-    @cooldown(1, 30, BucketType.user)
-    @command(aliases=['c', 'C', 'Gems', 'ingots', 'gems', 'Ingots'])
-    async def currency(self, ctx, user:Member=None):
-        '''Quick Check Gems'''
-        if not user:
-            user = ctx.author
-        m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True))
-
 
 
     @cooldown(1, 5, BucketType.user)
