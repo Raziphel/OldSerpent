@@ -39,7 +39,7 @@ class Message_Rewards(Cog):
         #! Give them some rewards!
         try:
             chance = randint(1, 500)
-            if chance <= 25:
+            if chance <= 15:
                 message = choice(messages)
                 msg = await message.channel.send(embed=utils.DefualtEmbed(user=user, desc=f"**Random Tip:** {choice(utils.Tips)}", footer="🍀"))
                 await sleep(10)
