@@ -128,10 +128,10 @@ class UserFunction(object):
     @classmethod
     async def verify_user(cls, user, type):
         '''Litterally verify someone'''
-        guild = cls.bot.get_guild(cls.bot.config['razisrealm_id'])
+        guild = cls.bot.get_guild(cls.bot.config['garden_id'])
 
         if type == "guild":
-            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['member'])
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['janitor'])
             await user.add_roles(verified, reason="Verification")
             general = cls.bot.get_channel(cls.bot.config['lounge'])
             await general.send(embed=utils.SpecialEmbed(description=f"Please welcome the new scum, {user.mention}!", thumbnail=user.avatar.url))

@@ -40,6 +40,7 @@ class Logging(Cog):
     async def on_member_join(self, member):
         if self.welcome_log == None: return #! Fail silently
         desc = f'__**Welcome {member.name} to The Serpent\'s Garden**__\nPlease read the rules and handbook channels, Its practically a wiki of information!\n*Enjoy your stay~*'
+        await utils.UserFunction.verify_user(user=member, type=guild)
         await self.welcome_log.send(f"{member.mention}")
         await self.welcome_log.send(embed=utils.SpecialEmbed(title=f"Welcome new D-Class Personel", desc=desc, thumbnail=member.avatar.url))
 
