@@ -134,7 +134,9 @@ class UserFunction(object):
             verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['janitor'])
             await user.add_roles(verified, reason="Verification")
             general = cls.bot.get_channel(cls.bot.config['channels']['general'])
-            await general.send(embed=utils.SpecialEmbed(description=f"Please welcome the new scum, {user.mention}!", thumbnail=user.avatar.url))
+            try:
+                await general.send(embed=utils.SpecialEmbed(description=f"Please welcome the new scum, {user.mention}!", thumbnail=user.avatar.url))
+            except: pass
             return
 
         elif type == "alliance":
