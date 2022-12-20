@@ -126,8 +126,6 @@ class lottery_handler(Cog):
 
                 # now tickets is a list of user ids, where each user ID appears the same amount of times as the tickets they've purchased
                 await ch.send(embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner}**!"))
-                role = utils.DiscordGet(guild.roles, name="Lot Restricted")
-                await winner.add_roles(role, reason="Won the 7 day raffle~")
                 lot_winnings = await utils.CoinFunctions.pay_tax(payer=winner, amount=lot.coins)
                 c.coins += lot_winnings
                 rc.coins -= lot_winnings
