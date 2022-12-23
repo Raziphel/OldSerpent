@@ -23,6 +23,15 @@ CREATE TABLE tracking (
 );
 
 
+CREATE TABLE lottery (
+    lottery_id BIGINT NOT NULL,
+    last_winner_id BIGINT,
+    last_amount INT,
+    coins INT,
+    lot_time TIMESTAMP,
+    PRIMARY KEY (lottery_id)
+);
+
 CREATE TABLE staff_track (
     user_id bigint NOT NULL,
     mutes INT,
@@ -48,7 +57,13 @@ CREATE TABLE levels (
     PRIMARY KEY (user_id)
 );
 
-
+CREATE TABLE daily (
+    user_id bigint NOT NULL,
+    last_daily TIMESTAMP,
+    daily INT NOT NULL DEFAULT 0,
+    premium BOOLEAN DEFAULT False,
+    PRIMARY KEY (user_id)
+);
 
 CREATE TABLE currency (
     user_id bigint NOT NULL,
@@ -58,6 +73,7 @@ CREATE TABLE currency (
     xp integer DEFAULT 1,
     xp_earned integer DEFAULT 0,
     last_xp TIMESTAMP,
+    lot_tickets Integer DEFAULT 0,
     PRIMARY KEY (user_id)
 );
 
@@ -104,9 +120,6 @@ CREATE TABLE nsfw_sonas (
 CREATE TABLE timers (
     guild_id bigint NOT NULL,
     last_nitro_reward TIMESTAMP,
-    last_daily TIMESTAMP,
-    last_weekly TIMESTAMP,
-    last_monthly TIMESTAMP,
     PRIMARY KEY (guild_id)
 );
 

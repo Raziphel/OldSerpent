@@ -6,6 +6,7 @@ from discord import Member, Message, User, Game, Embed
 from asyncio import sleep, wait, iscoroutine
 from time import monotonic
 from datetime import datetime as dt, timedelta
+from random import choice
 
 import utils
 
@@ -45,7 +46,7 @@ class Developer(Cog):
     async def boostrewards(self, ctx):
         '''Give nitros rewards now'''
         t = utils.Timers.get(self.bot.config['garden_id'])
-        t.last_nitro_reward = dt.now() - timedelta(days=50)
+        t.last_nitro_reward = dt.utcnow() - timedelta(days=50)
         async with self.bot.database() as db:
             await t.save(db)
 
@@ -96,6 +97,17 @@ class Developer(Cog):
         async with self.bot.database() as db:
             await c.save(db)
 
+    @utils.is_dev()
+    @command(hidden=True)
+    async def addcoins(self, ctx, user:Member, amount:int):
+        if not user:
+            user = ctx.author
+        coin_e = self.bot.config['emotes']['coin']
+        c = utils.Currency.get(user.id)
+        c.coins += amount
+        await ctx.send(f"{user.mention} has earned {amount:,} {coin_e} !!!")
+        async with self.bot.database() as db:
+            await c.save(db)
 
     @utils.is_dev()
     @command(hidden=True)
@@ -113,19 +125,37 @@ class Developer(Cog):
     async def payday(self, ctx):
         '''Gives everyone some coins as a payday!'''
         guild = self.bot.get_guild(self.bot.config['garden_id'])
+        total = 0
+        coin_e = self.bot.config['emotes']['coin']
 
         for user in guild.members:
             try:
                 c = utils.Currency.get(user.id)
-                c.coins -= 1000
+                c.coins += 10000
+                total += 10000
                 print(f'{user.name} got payed!')
             except Exception as e:
                 print(e) 
 
+        await ctx.send(f"Handed out over **{total}x** {coin_e}!  To everyone on the server!")
+        async with self.bot.database() as db:
+            await c.save(db)
+
+
+    @utils.is_dev()
+    @command(hidden=True)
+    async def randcomizelevels(self, ctx):
+        guild = self.bot.get_guild(self.bot.config['garden_id'])
+        for user in guild.members:
+            for role in user.roles:
+                lvl = utils.Levels.get(user.id)
+                random = choice([-2,-1,0,1,2,3])
+                lvl.level = lvl.level + random
             async with self.bot.database() as db:
-                await c.save(db)
-
-
+                await lvl.save(db)
+            print(f'{user.name} level set to {lvl.level}')
+            await utils.UserFunction.check_level(user=user)
+        await ctx.send('Level slightly ranzomized.')
 
 
     @utils.is_dev()
@@ -135,28 +165,29 @@ class Developer(Cog):
         for user in guild.members:
             for role in user.roles:
                 lvl = utils.Levels.get(user.id)
-                if role.name == "Civilian":
-                    lvl.level = 3
+                if role.name == "Janitor":
+                    lvl.level = 5
                 elif role.name == "D-Class":
-                    lvl.level = 10
-                elif role.name == "Scientists":
-                    lvl.level = 20
-                elif role.name == "Facility Guards":
-                    lvl.level = 30
-                elif role.name == "Containment Engineers":
-                    lvl.level = 50
-                elif role.name == "Facility Managers":
-                    lvl.level = 70
-                elif role.name == "Mobile Task Force":
-                    lvl.level = 80
+                    lvl.level = 11
+                elif role.name == "Scientist":
+                    lvl.level = 16
+                elif role.name == "Head-Researcher":
+                    lvl.level = 16
+                elif role.name == "Containment Specialist":
+                    lvl.level = 21
+                elif role.name == "Facility Manager":
+                    lvl.level = 26
+                elif role.name == "MTF Operative":
+                    lvl.level = 31
                 elif role.name == "Chaos Insurgency":
-                    lvl.level = 90
+                    lvl.level = 36
                 elif role.name == "Serpent's Hand":
                     lvl.level = 100
                 else: pass
             async with self.bot.database() as db:
                 await lvl.save(db)
             print(f'{user.name} level set to {lvl.level}')
+            await utils.UserFunction.check_level(user=user)
         await ctx.send('Level Reset Complete.')
 
 

@@ -19,6 +19,7 @@ class Loops(Cog):
         self.one_hour_loop.start()
         self.last_members = 0
         self.last_coins = 0
+        self.scps = 0
 
 
     @tasks.loop(minutes=1)
@@ -30,6 +31,8 @@ class Loops(Cog):
             await self.bot.change_presence(activity=Game(name="Databse is Down!!!")) 
             return
 
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+
         #* Setting the bot status.
         playing = choice(["75% Complete"])
         await self.bot.change_presence(activity=Game(name=playing)) 
@@ -37,75 +40,26 @@ class Loops(Cog):
         #* Setting the Channel Stats.
         members_channel = self.bot.get_channel(856451508865466368)
         coins_channel = self.bot.get_channel(1047682198523875399)
+        supp_channel = self.bot.get_channel(1052050250887598180)
+        scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
         members = len(set(self.bot.get_all_members()))
         total_coins = utils.Currency.get_total_coins()
+        total_scps = 0
+        for user in guild.members:
+            if scps in user.roles:
+                total_scps += 1
+
+
         if self.last_members != members:
             await members_channel.edit(name=f"Members: {members:,}")
             self.last_members = members
         if self.last_coins != total_coins:
             await coins_channel.edit(name=f"Coins: {math.floor(total_coins):,}")
             self.last_coins = total_coins
+        if self.scps != scps:
+            await supp_channel.edit(name=f"Supporters: {total_scps:,}")
+            self.scps = scps
 
-        #! Fixing Adult roles.
-        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-
-        #! get the varible roles!
-        child = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['child'])
-        adult_furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_furry'])
-        furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['furry'])
-        nsfw_adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
-        adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult'])
-        # library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
-        # adult_library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_library_pass'])
-        light_zone = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['light_zone'])
-        adult_light_zone = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_light_zone'])
-        scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
-        thaumiel = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
-        safe = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['safe'])
-        euclid = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['euclid'])
-        keter = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['keter'])
-
-        for user in guild.members:
-            try: #! Fixing adults roles
-                mod = utils.Moderation.get(user.id)
-                #? Set child & Adults in DB
-                if child in user.roles: 
-                    if mod.child == False:
-                        mod.child = True
-                        mod.adult = False
-                if adult in user.roles: 
-                    if mod.adult == False:
-                        mod.adult = True
-                        mod.child = False
-                if nsfw_adult in user.roles:
-                    if mod.adult == False:
-                        mod.adult = True
-                        mod.child = False
-                async with self.bot.database() as db:
-                    await mod.save(db)
-
-                #! Fix roles
-                if nsfw_adult in user.roles:
-                    #? Fixing Furry's NSFW
-                    if furry in user.roles:
-                        await user.add_roles(adult_furry, reason="Fixing Adult & Furry role.")
-                        await user.remove_roles(furry, reason="Fixing Adult & Furry role.")
-                    #? Fixing library Pass's NSFW
-                    # if library_pass in user.roles:
-                    #     await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
-                    #     await user.remove_roles(library_pass, reason="Fixing Adult & Library Pass role.")
-                #? Fixing SCPS for donators
-                if thaumiel in user.roles:
-                    await user.add_roles(scps, reason="Fixing SCP role.")
-                elif safe in user.roles:
-                    await user.add_roles(scps, reason="Fixing SCP role.")
-                elif euclid in user.roles:
-                    await user.add_roles(scps, reason="Fixing SCP role.")
-                elif keter in user.roles:
-                    await user.add_roles(scps, reason="Fixing SCP role.")
-                elif scps in user.roles:
-                    await user.remove_roles(scps, reason="Fixing SCP role.")
-            except Exception as e: print(f'Error fixing roles :: {e}')
 
         #* Levels Leaderboard
         channel = self.bot.get_channel(self.bot.config['channels']['leaderboard'])
@@ -124,8 +78,6 @@ class Loops(Cog):
             user = self.bot.get_user(i.user_id)
             if user != None:
                 users.append(user)
-            else: ranks = sorted_rank[:20]
-        # users = [self.bot.get_user(i.user_id) for i in ranks]
         text = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
             text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
@@ -175,19 +127,79 @@ class Loops(Cog):
         if self.bot.connected == False:
             return
 
-
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+
+        child = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['child'])
+        adult_furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_furry'])
+        furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['furry'])
+        nsfw_adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
+        adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult'])
+        library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['library_pass'])
+        adult_library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_library_pass'])
+        #! get the scp roles!
+        scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
+        thaumiel = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
+        safe = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['safe'])
+        euclid = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['euclid'])
+        keter = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['keter'])
+
+        for user in guild.members:
+            try: #! Fixing adults roles
+                mod = utils.Moderation.get(user.id)
+                #? Set child & Adults in DB
+                if child in user.roles: 
+                    if mod.child == False:
+                        mod.child = True
+                        mod.adult = False
+                if adult in user.roles: 
+                    if mod.adult == False:
+                        mod.adult = True
+                        mod.child = False
+                if nsfw_adult in user.roles:
+                    if mod.adult == False:
+                        mod.adult = True
+                        mod.child = False
+                async with self.bot.database() as db:
+                    await mod.save(db)
+
+                #! Fix roles
+                await sleep(0.1) #? Causes a huge sharp in cpu why not spread it out.
+                if nsfw_adult in user.roles:
+                    #? Fixing Furry's NSFW
+                    if furry in user.roles:
+                        await user.add_roles(adult_furry, reason="Fixing Adult & Furry role.")
+                        await user.remove_roles(furry, reason="Fixing Adult & Furry role.")
+                    #? Fixing library Pass's NSFW
+                    if library_pass in user.roles:
+                        await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
+                        await user.remove_roles(library_pass, reason="Fixing Adult & Library Pass role.")
+
+                #? Fixing SCPS for donators
+                if thaumiel in user.roles:
+                    await user.add_roles(scps, reason="Fixing SCP role.")
+                elif safe in user.roles:
+                    await user.add_roles(scps, reason="Fixing SCP role.")
+                elif euclid in user.roles:
+                    await user.add_roles(scps, reason="Fixing SCP role.")
+                elif keter in user.roles:
+                    await user.add_roles(scps, reason="Fixing SCP role.")
+                elif scps in user.roles:
+                    await user.remove_roles(scps, reason="Fixing SCP role.")
+            except Exception as e: print(f'Error fixing roles :: {e}')
+
+
+
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
         coin = "<:Coin:1026302157521174649>"
 
         t = utils.Timers.get(self.bot.config['garden_id'])
         if (t.last_nitro_reward + timedelta(days=30)) <= dt.utcnow():
-            t.last_nitro_reward = dt.now()
+            t.last_nitro_reward = dt.utcnow()
             for user in guild.members:
                 if nitro in user.roles:
                     c = utils.Currency(user.id)
                     try:
-                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 5000x**", footer=f"You can expect this reward every 30 days!"))
+                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 5,000x**", footer=f"You can expect this reward every 30 days!"))
                     except: pass
                     c.coins += 5000
                     c.xp += 1000

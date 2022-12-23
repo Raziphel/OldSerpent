@@ -14,11 +14,12 @@ class DefualtEmbed(Embed):
     def __init__(self, *args, **kwargs):
         #Gets the varibles for the embed
         user = kwargs.pop('user', None)
-        author = kwargs.pop('author', None)
+        title = kwargs.pop('author', None)
         thumbnail = kwargs.pop('thumbnail', None)
         image = kwargs.pop('image', None)
         desc = kwargs.pop('desc', None)
         guild = kwargs.pop('guild', None)
+        footer = kwargs.pop('footer', None)
 
         patron = self.bot.config['patreon']
 
@@ -28,12 +29,12 @@ class DefualtEmbed(Embed):
 
         # Add Color
         if user:
-            ss = utils.Settings.get(user.id)
-            self.color = ss.color
+            t = utils.Tracking.get(user.id)
+            self.color = t.color
 
         #* Add author
-        if author:
-            self.set_author(name=author, url=patron)
+        if title:
+            self.set_author(name=title, url=patron)
             
         #* Add thumbnail
         if thumbnail:
@@ -45,5 +46,8 @@ class DefualtEmbed(Embed):
         if desc:
             self.description = f"{desc}"
 
-        #* Add Footer
-        self.set_footer(text="🍀 " + choice(utils.Tips))
+        #* Add footer
+        if footer:
+          self.set_footer(text=footer)
+        else:
+          self.set_footer(text="🍀 " + choice(utils.Tips))

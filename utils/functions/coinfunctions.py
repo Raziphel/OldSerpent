@@ -32,14 +32,13 @@ class CoinFunctions(object):
 
         #! Define Varibles
         cp = utils.Currency.get(payer.id)
-        cr = utils.Currency.get(cls.bot.user.id)
+        cr = utils.Currency.get(550474149332516881)
 
         #! Determine tax amount
         new_amount = amount*0.92 #? 8% Tax
         taxed = amount - new_amount
 
         cp.coins -= taxed
-        cp.tax += taxed
         cr.coins += taxed
 
         async with cls.bot.database() as db:
@@ -55,7 +54,7 @@ class CoinFunctions(object):
 
         #! Define Varibles
         cp = utils.Currency.get(payer.id)
-        cr = utils.Currency.get(cls.bot.user.id)
+        cr = utils.Currency.get(550474149332516881)
 
         cp.coins -= amount
         cr.coins += amount

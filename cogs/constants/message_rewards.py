@@ -38,8 +38,13 @@ class Message_Rewards(Cog):
 
         #! Give them some rewards!
         try:
-            chance = randint(1, 70000)
-            if chance <= 2000:
+            chance = randint(1, 500)
+            if chance <= 3:
+                message = choice(messages)
+                msg = await message.channel.send(embed=utils.DefualtEmbed(user=user, desc=f"**Random Tip:** {choice(utils.Tips)}", footer="🍀"))
+                await sleep(10)
+                await msg.delete()
+            elif chance <= 35:
                 message = choice(messages)
                 await message.add_reaction(self.bot.config['emotes']['coin'])
                 self.coin_messages.append(message.id)
@@ -84,9 +89,11 @@ class Message_Rewards(Cog):
             if message.id in self.coin_messages:
                 self.coin_messages.remove(message.id)
                 await message.clear_reactions()
-                coin = choice([100, 200, 300])
+                coin = choice([100, 150, 200, 250, 300])
+                coin = await utils.CoinFunctions.pay_tax(payer=user, amount=coin)
                 c.coins += coin
-                msg = await channel.send(embed=utils.SpecialEmbed(desc=f"{user} found **{coin} {coin_e}x**", footer=f""))
+                c.coins_earned += coin
+                msg = await channel.send(embed=utils.DefualtEmbed(user=user, desc=f"{user} found **{coin} {coin_e}x**"))
 
         else: 
             return

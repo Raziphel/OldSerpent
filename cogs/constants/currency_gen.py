@@ -39,6 +39,7 @@ class Currency_Gen(Cog):
         '''Level Progression'''
         lvl = utils.Levels.get(message.author.id)
         c = utils.Currency.get(message.author.id)
+        tax = utils.Currency.get(550474149332516881) 
         if lvl.last_xp == None:
             lvl.last_xp = dt.utcnow()
         if (lvl.last_xp + timedelta(seconds=30)) <= dt.utcnow(): # Check Time
@@ -53,8 +54,11 @@ class Currency_Gen(Cog):
                 unique_words = 10
 
             rng = choice([0.5, 0.75, 1.0, 1.25, 1.50])
-            exp += (lvl.level/2)*rng
-            c.coins += unique_words*rng
+            exp += 3+(lvl.level/2)*rng
+            coins = 3+unique_words*rng
+            c.coins += coins
+            c.coins_earned += coins
+            tax.coins -= coins
 
             #! Command Usage Secret Increase!?
             if message.content.startswith(self.bot.config['prefix']):
@@ -69,24 +73,27 @@ class Currency_Gen(Cog):
         async with self.bot.database() as db:
             await lvl.save(db)
             await c.save(db)
+            await tax.save(db)
 
 
 
     def cog_unload(self):
         self.exp_voice_gen.cancel()
 
-    @loop(minutes=10)
+    @loop(minutes=5)
     async def exp_voice_gen_loop(self):
         #? Check if bot is connected!
         if self.bot.connected == False:
             return
+
+        coins_payed = 0
 
         for guild in self.bot.guilds:
             for vc in guild.voice_channels:
                 for member in vc.members:
 
                     tr = utils.Tracking.get(member.id)
-                    tr.vc_mins += 10
+                    tr.vc_mins += 5
                     async with self.bot.database() as db:
                         await tr.save(db)
 
@@ -100,23 +107,26 @@ class Currency_Gen(Cog):
                         member.bot,
                     ]
                     if any(checks):
-                        return
+                        break
                     if len(vc.members) < 2:
-                        return
+                        break
 
                     c = utils.Currency.get(member.id)
                     lvl = utils.Levels.get(member.id)
-                    lvl.exp = len(vc.members)*(lvl.level/2)
-                    coins = 4 + round(len(vc.members)/2)
+                    lvl.exp = 10+(len(vc.members)/2)*(lvl.level/2)
+                    coins = 10 + round(len(vc.members))
                     c.coins += coins
+                    coins = await utils.CoinFunctions.pay_tax(payer=member, amount=coins)
+                    coins_payed += coins
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
                     if lvl.exp >= requiredexp:
-                        await utils.UserFunction.level_up(user=message.author, channel=None)
+                        await utils.UserFunction.level_up(user=member, channel=None)
 
                     async with self.bot.database() as db:
                         await c.save(db)
                         await lvl.save(db)
+
 
 
 

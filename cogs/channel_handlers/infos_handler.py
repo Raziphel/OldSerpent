@@ -68,16 +68,16 @@ class rules_handler(Cog):
         coin = self.bot.config['emotes']['coin']
 
         embed1=Embed(title=f"**[- Level Roles -]**", 
-        description=f"This is the levels you recieve each role at! Any other roles are probably staff or a donator role!\n\n**Level 100 ->** `Serpent's Hand`\n**Level 91 ->** `Chaos Insurgency`\n**Level 81 ->** `Mobile Task Force`\n**Level 61 ->** `Facility Manager`\n**Level 41 ->** `Containment Engineers`\n**Level 26 ->** `Facility Guards`\n**Level 16 ->** `Scientists`\n**Level 6 ->** `D-Class`\n**Level 0 ->** `Civilian`", color=0xFF0000)
+        description=f"This is the levels you recieve each role at! Any other roles are probably staff or a donator role!\n\n**Level 100 ->** `Serpent's Hand`\n**Level 90 ->** `Gamers Against Weed`\n**Level 80 ->** `Chaos Insurgency`\n**Level 75 ->** `Children of the Scarlet King`\n**Level 70 ->** `Sarkic Cult`\n**Level 65 ->** `Church of the Broken God`\n**Level 60 ->** `Global Occult Coalition`\n**Level 55 ->** `Unusual Incidents Unit`\n**Level 50 ->** `Ethics Committee`\n**Level 45 ->** `Memetics Division`\n**Level 40 ->** `Site Director`\n**Level 35 ->** `Facility Manager`\n**Level 30 ->** `MTF Operative`\n**Level 25 ->** `Sequrity Officer`\n**Level 20 ->** `Containment Specialist`\n**Level 15 ->** `Head-Reseracher`\n**Level 10 ->** `Scientist`\n**Level 5 ->** `D-Class`\n**Level 0 ->** `Janitor`", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Coming Soon -]**", 
         description=f"", color=0x0000FF)
 
-        embed3=Embed(title=f"**[- Coming Soon -]**", 
-        description=f"", color=0xFFFFFF)
+        embed3=Embed(title=f"**[- Update Pings -]**", 
+        description=f"**These roles are pinged by staff only.  Anyone who pings the role will be banned.** *So atleast if ya do get pinged and its not staff! Ya get to see someone banned! :)*\n\n🔔 `Discord Pings`\nThese are pings focused towards the Discord Server!.\n\n🧪 `Server Pings`\nThese are pings focused towards the SCP Servers!. ", color=0xFFFFFF)
 
         embed4=Embed(title=f"**[- Pickable Roles -]**", 
-        description=f"**These roles cannot and will not be taken away you from the Serpent's Game**\n\n🚬 `Adult`\nThis will give you access to any NSFW marked channels in any category on the server.  Your other roles automatically update to adult versions.\n\n🍺 `Adult?`\nThis will give you access to VC channels that only Adults can join.\nYou will not have access to the NSFW text channels.\n\n🍼 `Child`\nThis will let the mark you as a child.\nIt is encouraged to get and not lie.\n\n🐾 `Furry`\nThis role is for those degenerates\n\n🏹 `Kingussy`\nThis is for certian specific people.  You must be invited and have a password.", color=0xFF00FF)
+        description=f"**These roles are permenant will require DMing or pinging 05 Council to change.**\n\n🚬 `Adult`\nThis will give you access to any NSFW marked channels in any category on the server.  Your other roles automatically update to adult versions.\n\n🍺 `Adult?`\nThis will give you access to VC channels that only Adults can join.\nYou will not have access to the NSFW text channels.\n\n🍼 `Child`\nThis will let the mark you as a child.\nIt is encouraged to get and not lie.\n\n🐾 `Furry`\nThis role is for those degenerates\n\n🏹 `Kingussy`\nThis is for certian specific people.  You must be invited and have a password.", color=0xFF00FF)
 
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
@@ -147,6 +147,41 @@ class rules_handler(Cog):
 
 
 
+    @Cog.listener('on_ready')
+    async def server_info(self):
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+        ch = guild.get_channel(self.bot.config['channels']['server_info']) #? role change Channel
+
+        msg1 = await ch.fetch_message(1052828325422317578) #? msg
+        msg2 = await ch.fetch_message(1052828331197874176) #? msg
+        msg3 = await ch.fetch_message(1052828335283122196) #? msg
+
+        ch2 = guild.get_channel(1052824545146445885) #? role change Channel
+        msg10 = await ch2.fetch_message(1052854912381374514) #? REPORTING
+
+        coin = self.bot.config['emotes']['coin']
+
+        embed1=Embed(title=f"**[- SCP Server Info -]**", 
+        description=f"**SCP Server connect addresses**\nSerpent's Garden #1 `n01.infra.serpents.garden:7777`\nSerpent's Garden #2 `n01.infra.serpents.garden:7778`\nSerpent's Garden #3 `n01.infra.serpents.garden:7779`\n\n**Permission Role Sync:** [Click Me](https://serpents_garden.cmod.app) (Will have to sync your Steam and Discord)\n*The following site is used to sync your roles on Discord to the SCP server!  All staff, nitro boosters and supporters will need to go here to get their roles synced to the SCP servers!*\n\n**Were you banned from the server?**\nYou can make an appeal here: [Click Me](https://serpents_garden.cmod.app) (Will have to sync your Steam and Discord)", color=0xFF0000)
+
+        embed2=Embed(title=f"**[- SCP Plugin List -]**", 
+        description=f"**This is a list of the plugins currently running on the SCP Serpent's Garden Server!**\n\n**Permission Systems**\nThis is just a plugin for syncing roles on the Discord Server.", color=0x0000FF)
+
+        embed3=Embed(title=f"**[- Coming Soon -]**", 
+        description=f"", color=0xFFFFFF)
+
+
+        embed10=Embed(title=f"**[- Creating a report! -]**", 
+        description=f"**You can create reports on players in the SCP server, using this simple reporting tool!**\n\nEven if staff are not in the server they can punish from these reports and moderate easily!  Please use these over the in-game reports since you already using the Discord!  (Which we thank you for!)\n\nIf your report is not on the list of pre-defined reports its may not be against our rules!", color=0xFFFFFF)
+
+        await msg1.edit(content=f" ", embed=embed1)
+        await msg2.edit(content=f" ", embed=embed2)
+        await msg3.edit(content=f" ", embed=embed3)
+        await msg10.edit(content=f" ", embed=embed10)
+
+
+
+
 
 
 
@@ -212,6 +247,12 @@ class rules_handler(Cog):
             mod.child = True
             child = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['child'])
             await member.add_roles(child, reason="Marked as child.")
+        elif emoji == "🧪":
+            updates = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['server_updates'])
+            await member.add_roles(updates, reason="Will get updates now.")
+        elif emoji == "🔔":
+            updates = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['discord_updates'])
+            await member.add_roles(updates, reason="Will get updates now.")
 
         async with self.bot.database() as db:
             await mod.save(db)

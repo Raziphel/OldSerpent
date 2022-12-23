@@ -39,7 +39,8 @@ class Logging(Cog):
     @Cog.listener()
     async def on_member_join(self, member):
         if self.welcome_log == None: return #! Fail silently
-        desc = f'__**Welcome {member.name} to The Serpent\'s Garden**__\nPlease read the rules and handbook channels, Its practically a wiki of information!\n*Enjoy your stay~*'
+        desc = f'__**Welcome {member.name} to The Serpent\'s Garden**__\nPlease be sure to read the #rules and check the #user-settings to change your role!\nEnjoy your stay in the Serpent\'s Garden!'
+        await utils.UserFunction.verify_user(user=member, type='guild')
         await self.welcome_log.send(f"{member.mention}")
         await self.welcome_log.send(embed=utils.SpecialEmbed(title=f"Welcome new D-Class Personel", desc=desc, thumbnail=member.avatar.url))
 
@@ -54,9 +55,9 @@ class Logging(Cog):
         if math.floor(self.bot.latency*1000) <= 100: #? Secret bullshit bro.
             await self.bot_log.send(embed=utils.LogEmbed(type="positive", title=f"Serpent is Online!", desc=f"Perfect Restart."))
         elif math.floor(self.bot.latency*1000) <= 420:
-            await self.bot_log.send(embed=utils.LogEmbed(type="change", title=f"Serpent is Online!", desc=f"Normal Restart."))
+            await self.bot_log.send(embed=utils.LogEmbed(type="change", title=f"Serpent is Online!", desc=f"Weird Restart."))
         elif math.floor(self.bot.latency*1000) > 200:
-            await self.bot_log.send(embed=utils.LogEmbed(type="negative", title=f"Serpent is Online!", desc=f"Weird Restart."))
+            await self.bot_log.send(embed=utils.LogEmbed(type="change", title=f"Serpent is Online!", desc=f"Discord Connection Refresh"))
 
 
     @Cog.listener()
@@ -123,25 +124,7 @@ class Logging(Cog):
             await self.message_log.send(embed=utils.LogEmbed(type="positive", title=f"Message Pinned", desc=f"A pinned in: <#{channel.id}>\n{last_pin} was made/modify!"))
         except: pass #? Fail Silently
 
-    @Cog.listener()
-    async def on_member_update(self, before, after):
-        if before.premium_since is None and after.premium_since is not None:
-            c = utils.Currency(before.author.id)
-            coin = self.bot.config['emotes']['coin']
-            try:
-                await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**+500 {coin}**", footer=f"You can expect this reward every 30 days!"))
-            except: pass
-            c.coins += 500
-            for user in guild.members:
-                if nitro in user.roles:
-                    c = utils.Currency(user.id)
-                    try:
-                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward becuase someone nitro boosted!\n\n**+100 {coin}**", footer=f"You can expect this reward every time someone boosts!"))
-                    except: pass
-                    c.coins += 100
-                    async with self.bot.database() as db:
-                        await c.save(db)
-                    print('Handed out Boost rewards')
+
 
 
 
