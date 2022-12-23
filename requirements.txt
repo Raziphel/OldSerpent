@@ -2,3 +2,4 @@ asyncpg
 novus
 more_itertools
 toml
+playwright
