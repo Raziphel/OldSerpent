@@ -67,7 +67,7 @@ class Daily(Cog):
         coin_e = self.bot.config['emotes']['coin']
 
         #! Send the embed
-        msg = await ctx.send(embed=utils.SpecialEmbed(title=f" This is your {day.daily:,}x daily in a row!", desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}**", footer=footer))
+        msg = await ctx.send(embed=utils.SpecialEmbed(title=f" This is your {day.daily:,}x daily in a row!", desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}", footer=footer))
 
         #! Premium
         if day.premium == True:

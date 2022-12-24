@@ -1,6 +1,5 @@
 Tips = ([
     ".help for a list of commands.",
-    "Read the #Handbook!",
     "Goto #user-settings for changing your roles!",
     "There is 19 different level roles.",
     "Post suggestions in the suggestion channels.",

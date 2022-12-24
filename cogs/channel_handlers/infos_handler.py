@@ -32,11 +32,11 @@ class rules_handler(Cog):
         embed1=Embed(title=f"**[- The Server's Rules -]**", 
         description=f"**These are rules for the entire Discord Server.**\n\n**1.)** Respect Everyone, not a single person doesn't deserve respect, especially the 05 Council.\n\n**2.)** Harrassment, Bully, Attacking of any kind or form of any member on this server isnt allowed. Period.\n\n**3.)** Drama, most people here have already gone through highschool, don't bring it back.\n\n**4.)** This server only allows the use of English.  We can not moderate other languages.\n\n**5.)** Common Sense, Don't be annoying or do anything that would make a 05 Council have to punish. (Should be easy.)\n\n**6.)** Discord TOS, obviously don't do anything discord already doesn't allow, could count as previous rule.\n\n**7.)** Respect The Serpent.", color=0xF54747)
 
-        embed2=Embed(title=f"**[- The Serpent's Handbook -]**", 
-        description=f"**This Discord server is suprisingly complicated but it doesn't have to be.**\nThis Handbook channel could be considered a Wikipidia for anything your looking for!  Be sure to check it out, it even has a fucking Table of Contents!  Ya ain't gonna find that anywhere else.", color=0x47F599)
+        embed2=Embed(title=f"**[- SCP Servers -]**", 
+        description=f"**If you are looking for information related SCP servers check #server-info for most things you'd meed!**\n\nThis will be updated soon.", color=0x47F599)
 
         embed3=Embed(title=f"**[- The 05 Council -]**", 
-        description=f"The 05 Council are the formal Administrators of the server!  Where as the The Red Right Hand is a form of moderators for the server!  The 05 council is never open to applications, but the Red RIght hand always is!  You can find out how to apply for staff in The Handbook.", color=0xF5AE47)
+        description=f"The 05 Council are the formal Administrators of the server!  Where as the The Red Right Hand is a form of moderators for the server!  The 05 council is never open to applications, but the Red Right Hand and Nine Tailed Fox always are.", color=0xF5AE47)
 
         embed4=Embed(title=f"**[- Moderation System -]**", 
         description=f"**By absolutely no means do the 05 Council (Staff) have to be \"Fair\", in any situation or decision. They are put there for a reason and we usually run everything past one another.**\n\nFor most situations a Council member will give a single warning and after that you are completely fair game; from that council member or any other for whatever punishment they believe you deserve.  Lying about your age, breaking Discord TOS, sending spam, hate, phishing links or scamming in anyway, is awlays going to be a ban with no warning.  *It won't be tolerated at all.*", color=0xB6F547)
@@ -88,61 +88,6 @@ class rules_handler(Cog):
 
 
 
-
-
-
-
-    @Cog.listener('on_ready')
-    async def handbook(self):
-        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['handbook']) #? Rules Channel
-
-        table = await ch.fetch_message(1021285665373163530) #? msg intro
-        msg1 = await ch.fetch_message(1021285478210748428) #? msg 1
-        msg2 = await ch.fetch_message(1021285487815700500) #? msg 2
-        msg3 = await ch.fetch_message(1021285495268982794) #? msg 3
-        msg4 = await ch.fetch_message(1021285508359401492) #? msg 4
-        msg5 = await ch.fetch_message(1021285519067455508) #? msg 5
-        msg6 = await ch.fetch_message(1021285528487862377) #? msg 6
-        msg7 = await ch.fetch_message(1021285538826821653) #? msg 7
-        msg01 = await ch.fetch_message(1021285550596046908) #? msg 1
-
-        embed1=Embed(title=f"**[- Table of Contents -]**", 
-        description=f"Welcome to the Serpent's Game, this channel catalogs any and all the information relating to the entire Serpent's Garden.\n\n**The Serpent's Gaden Discord server information is listed below**\n[1. Intro](https://discord.com/channels/689534383878701223/1020959150890565703/1021285478210748428)\n[2. Staff Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285487815700500)\n[3. The Foundation Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285495268982794)\n[4. The Level Roles](https://discord.com/channels/689534383878701223/1020959150890565703/1021285508359401492)\n[5. Seperated Areas](https://discord.com/channels/689534383878701223/1020959150890565703/1021285519067455508)\n[6. The Wander's Library](https://discord.com/channels/689534383878701223/1020959150890565703/1021285528487862377)\n[7. Coming Soon](https://discord.com/channels/689534383878701223/1020959150890565703/1021285538826821653)\n\n**The Serpent's Gaden Game server information is listed below**\n[1.  Game Server info](https://discord.com/channels/689534383878701223/1020959150890565703/1021285550596046908)", color=0xFF0000)
-
-        embed2=Embed(title=f"**[- 1. Intro (NEW) -]**", 
-        description=f"**Welcome to the Serpent's game!**\n\nFor starters the goal in development is to keep the game as simplistic as possible and be more a fun different Discord expierence.\nThere is currently no win conditions in the game at this time, this is planned to be changed some day.\n\n Reading throught this Handbook will be the 1 spot \"wikipedia\" for the entire game and how most things function!\nLook for the flairs in the titles such as (New or Changed) to find updates.", color=0x0000FF)
-
-        embed3=Embed(title=f"**[- 2. Staff Roles (NEW) -]**", 
-        description=f"**Here is a list of all the current staff roles!  These Council roles have a corresponding ranking in number.**\n\n<:foundation:1024847941665562634> **__The 05 Council__**\nThe 05 Council, known for being the Head leaders of the Foundation, are the Administrators for the discord server, this position does not accept application.  Each council member is ranked by number and usually recieve high staff rankin on Serpent's Gaming servers as well.\n\n<:RedRightHand:1020893683853303828> **__Red Right Hand__**\nAka. Alpha-01 is known as being the Elite task force under the 05 Council and it carries over in the Serpent's Garden!  The Red right hand are staff on gaming servers and moderators for the Discord Server.  The Red Right Hand can be obtained via applicattion!\n\n**Interested in being a Red Right Hand?**\n*A link will be here soon...*  ", color=0x00FF00)
-
-        embed4=Embed(title=f"**[- 3. The Supporter Roles (NEW) -]**", 
-        description=f"**These roles are only obtained by donating or contributring to the server in some way!**\n\n", color=0x00FFF0)
-
-        embed5=Embed(title=f"**[- 4. The Level Roles (NEW) -]**", 
-        description=f"", color=0x00FFF0)
-
-        embed6=Embed(title=f"**[- 5. Seperated Areas (NEW) -]**", 
-        description=f"", color=0x00FFF0)
-
-        embed7=Embed(title=f"**[- 6. The Wander's Library (NEW) -]**", 
-        description=f"", color=0x00FFF0)
-
-        embed8=Embed(title=f"**[- 7. Coming Soon -]**", 
-        description=f"", color=0x00FFF0)
-
-        embed01=Embed(title=f"**[- 1. Serpent's Game Servers -]**", 
-        description=f"", color=0x00FFF0)
-
-        await table.edit(content=f" ", embed=embed1)
-        await msg1.edit(content=f" ", embed=embed2)
-        await msg2.edit(content=f" ", embed=embed3)
-        await msg3.edit(content=f" ", embed=embed4)
-        await msg4.edit(content=f" ", embed=embed5)
-        await msg5.edit(content=f" ", embed=embed6)
-        await msg6.edit(content=f" ", embed=embed7)
-        await msg7.edit(content=f" ", embed=embed8)
-        await msg01.edit(content=f" ", embed=embed01)
 
 
 

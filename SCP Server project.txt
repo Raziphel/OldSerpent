@@ -1,0 +1,46 @@
+
+This is my list of everything I'm wanting to do for the SCP Server!  :D
+
+
+This is the Custom Roles I'm wanting to have!
+
+
+**__RESEARCH SUPERVISOR__**
+```
++ 25% chance to spawn in a round.
++ Spawns as Scientist in candy room with head researcher card instead.
++ Becomes a MTF Captain on escape.
+```
+
+**__ JANITOR__**
+```
++ 1-3 to spawns in a round.
++ Spawns as D-Class with Janitor Card and Coin.
++ Spawns near 173 room or bathrooms or GR18.
+```
+
+
+**__CI SPY & NTF SPY__**
+```
++ 10% chance to spawn in a MTF or Chaos wave, requires at least 16 players on the server.
++ Spawns appearing as a MTF Sergeant but is a Chaos Conscript. 
++ Spawns with normal MTF Inventory (Grenade swapped for flash)
++ Can not be damaged by MTF until they have damaged a MTF or after 5 minutes.
++ Reversed if the MTF spy.
+```
+
+**__GUARD CAPTAIN__**
+```
++ 1 spawns in a round.
++ Spawns as a Facility Guard with a Crossvec, Combat Amour and more ammo.
++ Spawns in a entrance checkpoint Armory.
+```
+
+
+**__SECRET SERPENT__**
+```
++ 10% chance to spawn in a round, requires at least 16 players on the server.
++ Spawns as a tutorial in 079's room.
++ Spawns with a Facility Guard inventory (except Chaos Insurgency Card) and SCP 268.
+```
+
