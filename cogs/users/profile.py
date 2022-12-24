@@ -81,32 +81,34 @@ class Profile(Cog):
         voice_days = floor((tracking.vc_mins / 60) / 24)
 
         # Create a new page and set the HTML content of the page
-        page = await self.browser.new_page()
+        async with async_playwright() as playwright:
+            browser = await playwright.chromium.launch(headless=True)
+            page = await browser.new_page()
 
-        page.on("request", lambda request: print(">>", request.method, request.url))
-        page.on("response", lambda response: print("<<", response.status, response.url))
+            page.on("request", lambda request: print(">>", request.method, request.url))
+            page.on("response", lambda response: print("<<", response.status, response.url))
 
-        # Read HTML from the template
-        with open('profile-template.html', 'r') as html_template_hdl:
-            html_template = html_template_hdl.read()
-            html_template = html_template.format(
-                avatar=member.avatar.url,
-                username=str(member),
-                title=str(member.top_role),
-                level=levels.level,
-                progress=experience_percentage,
-                experience=f'{current_experience:,}/{required_exp:,}',
-                coins=format_number(currency.coins),
-                messages=format_number(tracking.messages),
-                voice=format_number(voice_days)
-            )
+            # Read HTML from the template
+            with open('profile-template.html', 'r') as html_template_hdl:
+                html_template = html_template_hdl.read()
+                html_template = html_template.format(
+                    avatar=member.avatar.url,
+                    username=str(member),
+                    title=str(member.top_role),
+                    level=levels.level,
+                    progress=experience_percentage,
+                    experience=f'{current_experience:,}/{required_exp:,}',
+                    coins=format_number(currency.coins),
+                    messages=format_number(tracking.messages),
+                    voice=format_number(voice_days)
+                )
 
-        await page.set_content(html_template)
+            await page.set_content(html_template)
 
-        screenshot_buffer = await page.locator('.outer-rectangle').screenshot()
-        file = File(screenshot_buffer, filename='profile.png')
+            screenshot_buffer = await page.locator('.outer-rectangle').screenshot()
+            file = File(screenshot_buffer, filename='profile.png')
 
-        return file
+            return file
 
     async def base_profile(self, ctx, user, msg):
         if msg == None:
