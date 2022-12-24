@@ -90,6 +90,7 @@ class Profile(Cog):
         with open('profile-template.html', 'r') as html_template_hdl:
             html_template = html_template_hdl.read()
             html_template = html_template.format(
+                avatar=member.avatar.url,
                 username=str(member),
                 title=str(member.top_role),
                 level=levels.level,
