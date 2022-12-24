@@ -90,6 +90,8 @@ class Profile(Cog):
         with open('profile-template.html', 'r') as html_template_hdl:
             html_template = html_template_hdl.read()
             html_template = html_template.format(
+                username=str(member),
+                title=str(member.top_role),
                 level=levels.level,
                 progress=experience_percentage,
                 experience=f'{current_experience:,}/{required_exp:,}',
