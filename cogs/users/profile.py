@@ -170,8 +170,9 @@ class Profile(Cog):
         badges = []  # TODO: replace with real data
         networth = format_number(currency.coins)
         messages = format_number(tracking.messages)
-        voice_days = floor((tracking.vc_mins / 60) / 24)
-        voice_days = format_number(voice_days)
+
+        voice_activity = floor(tracking.vc_mins)
+        voice_activity = format_number(voice_activity)
 
         experience_percentage = current_experience / required_exp
         relative_inner_progress_bar_width = experience_percentage * parent_progress_bar_h_w[0]
@@ -318,7 +319,7 @@ class Profile(Cog):
 
         draw.text(
             xy=(168, 156),
-            text=f': {voice_days} days in VC',
+            text=f': {voice_activity} minutes in voice-chat',
             fill=text_color,
             font=fnt
         )
