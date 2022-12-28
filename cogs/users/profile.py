@@ -103,9 +103,6 @@ def format_number(num):
         return f"{num / 1000000000:.1f}B"
 
 
-
-
-
 class Profile(Cog):
     def __init__(self, bot):
         self.bot = bot
