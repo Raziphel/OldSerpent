@@ -298,7 +298,7 @@ class Profile(Cog):
 
         draw.text(
             xy=(168, 90),
-            text=f': {messages:,} messages',
+            text=f': {messages} messages',
             fill=text_color,
             font=fnt
         )
@@ -308,7 +308,7 @@ class Profile(Cog):
 
         draw.text(
             xy=(168, 123),
-            text=f': {networth:,} coins',
+            text=f': {networth} coins',
             fill=text_color,
             font=fnt
         )
