@@ -96,11 +96,11 @@ def format_number(num):
     if num < 1000:
         return str(num)
     elif num < 1000000:
-        return f"{num / 1000:.1f}K"
+        return f"{num / 1000:.1f}k"
     elif num < 1000000000:
-        return f"{num / 1000000:.1f}M"
+        return f"{num / 1000000:.1f}m"
     else:
-        return f"{num / 1000000000:.1f}B"
+        return f"{num / 1000000000:.1f}b"
 
 
 class Profile(Cog):
@@ -171,7 +171,7 @@ class Profile(Cog):
         networth = format_number(currency.coins)
         messages = format_number(tracking.messages)
 
-        voice_activity = floor(tracking.vc_mins)
+        voice_activity = floor((tracking.vc_mins)/60)
         voice_activity = format_number(voice_activity)
 
         experience_percentage = current_experience / required_exp
@@ -319,7 +319,7 @@ class Profile(Cog):
 
         draw.text(
             xy=(168, 156),
-            text=f': {voice_activity} VC Minutes',
+            text=f': {voice_activity} VC Hours',
             fill=text_color,
             font=fnt
         )
