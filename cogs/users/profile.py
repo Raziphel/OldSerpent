@@ -319,7 +319,7 @@ class Profile(Cog):
 
         draw.text(
             xy=(168, 156),
-            text=f': {floor(int(voice_activity)/60)} hours in VC',
+            text=f': {voice_activity} VC Minutes',
             fill=text_color,
             font=fnt
         )
