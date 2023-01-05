@@ -132,7 +132,8 @@ class Profile(Cog):
         # await self.base_profile(ctx=ctx, user=user, msg=None)
         file = await self.generate_screenshot(user)
 
-        await ctx.send(file=file)
+        # await ctx.send(file=file)
+        await ctx.interaction.response.send_message(file=file)
 
     async def get_user_avatar(self, member: Member) -> BytesIO:
         avatar = member.display_avatar
@@ -171,7 +172,7 @@ class Profile(Cog):
         networth = format_number(currency.coins)
         messages = format_number(tracking.messages)
 
-        voice_activity = floor((tracking.vc_mins)/60)
+        voice_activity = floor(tracking.vc_mins / 60)
         voice_activity = format_number(voice_activity)
 
         experience_percentage = current_experience / required_exp
