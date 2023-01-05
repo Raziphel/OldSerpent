@@ -34,7 +34,7 @@ class Loops(Cog):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
         #* Setting the bot status.
-        playing = choice(["75% Complete"])
+        playing = choice(["Bashin' people with SCP 956", "Lookin' at 096's face", "Curing SCP 008", "Upgrading in 914", "Worshipin' The Scarlet King", "Breaching Containment"])
         await self.bot.change_presence(activity=Game(name=playing)) 
 
         #* Setting the Channel Stats.
