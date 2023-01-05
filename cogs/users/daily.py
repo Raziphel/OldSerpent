@@ -73,6 +73,7 @@ class Daily(Cog):
         if day.premium == True:
             footer = f"Click a random reward!"
             e_emoji = choice(['🏴', '🔷', '🔶', '🍄'])
+            emoji = e_emoji
             await msg.add_reaction(e_emoji)
             check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🔷", "🏴", "🔶", "🍄"]
             r, _ = await self.bot.wait_for('reaction_add', check=check)
