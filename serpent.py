@@ -7,9 +7,9 @@ import utils
 from utils.database import DatabaseConnection
 
 
-#! ------------------------- Serpent Main Class
+# ! ------------------------- Serpent Main Class
 class Serpent(commands.AutoShardedBot):
-    def __init__(self, config_filename:str, *args, logger:logging.Logger=None, **kwargs):
+    def __init__(self, config_filename: str, *args, logger: logging.Logger = None, **kwargs):
         super().__init__(*args, fetch_offline_members=True, guild_subscriptions=True, **kwargs)
 
         self.logger = logger or logging.getLogger("Serpent")
@@ -18,7 +18,7 @@ class Serpent(commands.AutoShardedBot):
         with open(self.config_filename) as z:
             self.config = toml.load(z)
 
-        #! Adds all embeds to the Serpent Bot.
+        # ! Adds all embeds to the Serpent Bot.
         utils.DefualtEmbed.bot = self
         utils.SpecialEmbed.bot = self
         utils.LogEmbed.bot = self
@@ -28,7 +28,7 @@ class Serpent(commands.AutoShardedBot):
         utils.MailEmbed.bot = self
         utils.WarningEmbed.bot = self
 
-        #! Load Functions
+        # ! Load Functions
         utils.UserFunction.bot = self
         utils.CoinFunctions.bot = self
 
@@ -37,21 +37,19 @@ class Serpent(commands.AutoShardedBot):
         self.startup_method = None
         self.connected = False
 
-        #! Supporters
+        # ! Supporters
         self.donators = ["🔥 Supporter II 🔥", "🔱 Supporter  III🔱"]
 
-
     def run(self):
-        
+
         self.startup_method = self.loop.create_task(self.startup())
         super().run(self.config['token'])
-
 
     async def startup(self):
         """Load database"""
 
-        try:   #? Try this to prevent reseting the database on accident!
-            #! Clear cache
+        try:  # ? Try this to prevent reseting the database on accident!
+            # ! Clear cache
             utils.Moderation.all_moderation.clear()
             utils.Levels.all_levels.clear()
             utils.Currency.all_currency.clear()
@@ -63,8 +61,7 @@ class Serpent(commands.AutoShardedBot):
             utils.Daily.all_dailys.clear()
             utils.Lottery.all_lotterys.clear()
 
-
-            #!   Collect from Database
+            # !   Collect from Database
             async with self.database() as db:
                 moderation = await db('SELECT * FROM moderation')
                 levels = await db('SELECT * FROM levels')
@@ -77,8 +74,7 @@ class Serpent(commands.AutoShardedBot):
                 daily = await db('SELECT * FROM daily')
                 lottery = await db('SELECT * FROM lottery')
 
-
-            #!   Cache all into local objects
+            # !   Cache all into local objects
             for i in moderation:
                 utils.Moderation(**i)
             for i in levels:
@@ -103,12 +99,14 @@ class Serpent(commands.AutoShardedBot):
         except Exception as e:
             print(f'Couldn\'t connect to the database... :: {e}')
 
-
-        #! If Razi ain't got coins the DB ain't connected correctly... lmfao
+        # ! If Razi ain't got coins the DB ain't connected correctly... lmfao
         lvl = utils.Levels.get(159516156728836097)
         if lvl.level == 0:
             self.connected = False
             print('Bot database is NOT connected!')
-        else: 
+        else:
             self.connected = True
             print('Bot database is connected!')
+
+        # Register slash commands
+        await self.register_application_commands()
