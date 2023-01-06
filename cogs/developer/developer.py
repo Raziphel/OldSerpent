@@ -122,9 +122,7 @@ class Developer(Cog):
 
     @utils.is_dev()
     @command(hidden=True)
-    async def removeleavers(self, ctx):
-        x = utils.Levels.all_levels()
-        y = utils.Currency.all_currency()
+    async def removeleavers(self, ctx, user):
         for user in x:
             utils.Levels.delete(user)
         for user in y:
