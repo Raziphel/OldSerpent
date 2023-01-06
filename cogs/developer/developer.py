@@ -125,6 +125,7 @@ class Developer(Cog):
     async def remove(self, ctx, user):
         utils.Levels.delete(user)
         utils.Currency.delete(user)
+        print(f'{user} has been removed from db')
 
 
     @utils.is_dev()
