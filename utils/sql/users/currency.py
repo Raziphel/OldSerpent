@@ -78,3 +78,16 @@ class Currency(object):
         for i in cls.all_currency.values():
             total += i.lot_tickets
         return total
+
+
+
+    @classmethod
+    def delete(cls, user_id:int):
+        '''
+        Removes a user from cache via their ID, fails silently if not present
+        '''
+        try:
+            del cls.all_levels[user_id]
+        except KeyError:
+            pass
+

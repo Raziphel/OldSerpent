@@ -121,6 +121,15 @@ class Developer(Cog):
 
 
     @utils.is_dev()
+    @command(hidden=True)
+    async def removeleavers(self, ctx,):
+        for user in utils.Levels.all_levels:
+            await utils.Levels.delete(user)
+        for user in utils.Currency.all_currency:
+            await utils.Currency.delete(user)
+
+
+    @utils.is_dev()
     @command()
     async def payday(self, ctx):
         '''Gives everyone some coins as a payday!'''

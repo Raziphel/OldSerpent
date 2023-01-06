@@ -46,3 +46,14 @@ class Levels(object):
         '''sorts the user's by balance. getting ranks!'''
         sorted_levels = sorted(cls.all_levels.values(), key=lambda u: u.level, reverse=True)
         return sorted_levels
+
+    @classmethod
+    def delete(cls, user_id:int):
+        '''
+        Removes a user from cache via their ID, fails silently if not present
+        '''
+        try:
+            del cls.all_levels[user_id]
+        except KeyError:
+            pass
+
