@@ -87,7 +87,7 @@ class Currency(object):
         Removes a user from cache via their ID, fails silently if not present
         '''
         try:
-            del cls.all_levels[user_id]
+            del cls.all_currency[user_id]
         except KeyError:
             pass
 
