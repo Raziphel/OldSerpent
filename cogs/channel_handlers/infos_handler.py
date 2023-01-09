@@ -77,7 +77,7 @@ class rules_handler(Cog):
         description=f"**These roles are pinged by staff only.  Anyone who pings the role will be banned.** *So atleast if ya do get pinged and its not staff! Ya get to see someone banned! :)*\n\n🔔 `Discord Pings`\nThese are pings focused towards the Discord Server!.\n\n🧪 `Server Pings`\nThese are pings focused towards the SCP Servers!. ", color=0xFFFFFF)
 
         embed4=Embed(title=f"**[- Pickable Roles -]**", 
-        description=f"**These roles are permenant will require DMing or pinging 05 Council to change.**\n\n🚬 `Adult`\nThis will give you access to any NSFW marked channels in any category on the server.  Your other roles automatically update to adult versions.\n\n🍺 `Adult?`\nThis will give you access to VC channels that only Adults can join.\nYou will not have access to the NSFW text channels.\n\n🍼 `Child`\nThis will let the mark you as a child.\nIt is encouraged to get and not lie.\n\n🐾 `Furry`\nThis role is for those degenerates\n\n🏹 `Kingussy`\nThis is for certian specific people.  You must be invited and have a password.", color=0xFF00FF)
+        description=f"**These roles are permenant will require DMing or pinging 05 Council to change.**\n\n🚬 `Adult`\nThis will give you access to any Adult marked channels in any category on the server.  There is still no NSFW allowed on this server at all.\n\n🍼 `Child`\nThis will let the mark you as a child.\nIt is encouraged to get and not lie.\n\n🐾 `Furry`\nThis role is for those degenerates\n\n🏹 `Kingussy`\nThis is for certian specific people.  You must be invited and have a password.", color=0xFF00FF)
 
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
@@ -185,9 +185,6 @@ class rules_handler(Cog):
         elif emoji == "🚬":
             if mod.child == False:
                 await self.bot.get_cog('Verification').verify_adult(author=member, guild=guild)
-        elif emoji == "🍺":
-            if mod.child == False:
-                await self.bot.get_cog('Verification').verify_adult(author=member, guild=guild, kinda=True)
         elif emoji == "🍼":
             mod.child = True
             child = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['child'])

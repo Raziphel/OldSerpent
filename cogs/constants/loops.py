@@ -164,7 +164,11 @@ class Loops(Cog):
 
                 #! Fix roles
                 await sleep(0.1) #? Causes a huge sharp in cpu why not spread it out.
-                if nsfw_adult in user.roles:
+                if mod.adult == True:
+                    #? Fix old adult role
+                    if adult in user.roles:
+                        await user.add_roles(nsfw_adult, reason="Fixing Adult role.")
+                        await user.remove_roles(adult, reason="Fixing Adult role.")
                     #? Fixing Furry's NSFW
                     if furry in user.roles:
                         await user.add_roles(adult_furry, reason="Fixing Adult & Furry role.")
