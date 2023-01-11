@@ -113,6 +113,7 @@ class Currency_Gen(Cog):
 
                     c = utils.Currency.get(member.id)
                     lvl = utils.Levels.get(member.id)
+                    #! VC BOOST! change the 50 to 10
                     lvl.exp += 50+(len(vc.members)/2)*(lvl.level/2)
                     coins = 10 + round(len(vc.members))
                     c.coins += coins
