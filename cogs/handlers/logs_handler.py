@@ -84,6 +84,13 @@ class Logging(Cog):
         try:
             if member.bot: return
             await self.server_log.send(embed=utils.LogEmbed(type="negative", title=f"{member.name} has left the realm.", thumbnail=member.avatar.url))
+            c = utils.Currency.get(member.id)
+            lvl = utils.Level.get(member.id)
+            lvl.level = 0
+            c.coins = 0
+            async with self.bot.database() as db:
+                await c.save(db)
+                await lvl.save(db)
         except: pass #? Fail Silently
 
     @Cog.listener()
