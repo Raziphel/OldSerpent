@@ -107,7 +107,7 @@ class Profile(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @cooldown(1, 60, BucketType.channel)
+    @cooldown(1, 60, BucketType.user)
     @command(
         aliases=['p', 'P', 'Profile'],
         application_command_meta=ApplicationCommandMeta(
