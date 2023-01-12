@@ -195,6 +195,15 @@ class rules_handler(Cog):
         elif emoji == "🔔":
             updates = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['discord_updates'])
             await member.add_roles(updates, reason="Will get updates now.")
+        elif emoji == "☢":
+            updates = utils.DiscordGet(guild.roles, id=1062945474757271564)
+            await member.add_roles(updates, reason="Will get updates now.")
+        elif emoji == "🍙":
+            updates = utils.DiscordGet(guild.roles, id=1057833430685057146)
+            await member.add_roles(updates, reason="Will get updates now.")
+        elif emoji == "🌈":
+            updates = utils.DiscordGet(guild.roles, id=1057833439518261292)
+            await member.add_roles(updates, reason="Will get updates now.")
 
         async with self.bot.database() as db:
             await mod.save(db)
