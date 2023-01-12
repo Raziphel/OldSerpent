@@ -113,12 +113,11 @@ class Currency_Gen(Cog):
 
                     c = utils.Currency.get(member.id)
                     lvl = utils.Levels.get(member.id)
-                    #! VC BOOST! change the 50 to 10
+                    #? VC BOOST! change the 50 to 10
                     lvl.exp += 50+(len(vc.members)/2)*(lvl.level/2)
                     coins = 10 + round(len(vc.members))
-                    c.coins += coins
                     coins = await utils.CoinFunctions.pay_tax(payer=member, amount=coins)
-                    coins_payed += coins
+                    c.coins += coins
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
                     if lvl.exp >= requiredexp:

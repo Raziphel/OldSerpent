@@ -112,7 +112,7 @@ class rules_handler(Cog):
         embed2=Embed(title=f"**[- SCP Plugin List -]**", 
         description=f"**We use a google doc to display all the plugin and settings we have set on the Serpnet's Garden, just for simplicity as discord chats aren't the best for a lot of information!**\n\n[Click Here](https://docs.google.com/spreadsheets/d/1FuaqGm7l0sQg4JKpkvG7ooLM5Cdw-s4bu3YnpIoFKlc/edit?usp=sharing)\n\n*It should be noted that this is a heavily modded server and our rules for the most part represent that by being kind of anarchy besides being strict on not letting someones mics ruining the expierance for everyone.*", color=0x0000FF)
 
-        embed3=Embed(title=f"**[- Coming Soon -]**", 
+        embed3=Embed(title=f"**[- Coning Soon... -]**", 
         description=f"", color=0xFFFFFF)
 
 
