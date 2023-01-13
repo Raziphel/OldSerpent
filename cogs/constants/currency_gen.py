@@ -48,6 +48,8 @@ class Currency_Gen(Cog):
             exp = 1
             unique_words = len(list(unique_everseen(message.content.split(), str.lower)))
             requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
+            if message.attachments != None:
+                unique_words += 5
 
             #! Unique Word Nerfer
             if unique_words > 10:
