@@ -130,7 +130,11 @@ class Loops(Cog):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
 
-        #* Create the supporter sticky.
+
+
+
+
+        #? Create the supporter sticky.
         supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
         check = lambda m: m.author.id == self.bot.user.id
         await supporter.purge(check=check)
@@ -142,9 +146,50 @@ class Loops(Cog):
 
         msg = await supporter.fetch_message(sti.message_id) #? msg
         profit = 10
-        embed=Embed(title=f"**[- Supporter Info -]**", 
+        embed=Embed(title=f"**[- Supporter Sticky -]**", 
         description=f"**This channel displays any type of support shown to the Serpent's Garden!**\n\nThank you to everyone who chooses to support the server!\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: ***{profit}$ / 200$***\n\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*", color=0xFF0000)
         await msg.edit(content=f" ", embed=embed)
+
+        #? Create the Bot usage sticky.
+        bot_usage = guild.get_channel(1028771493179560066) #? Supporter Channel
+        check = lambda m: m.author.id == self.bot.user.id
+        await bot_usage.purge(check=check)
+        sti = utils.Sticky.get(bot_usage.id)
+        msg = await bot_usage.send('**This is a sticky message**')
+        sti.message_id = msg.id
+        async with self.bot.database() as db:
+            await sti.save(db) 
+
+        msg = await bot_usage.fetch_message(sti.message_id) #? msg
+        embed=Embed(title=f"**[- Bot Usage Sticky -]**", 
+        description=f"**This channel is only for using bot commands!**\n\nthe Serpent bot has the `.` prefix for regular commands.\nThe Serpent's Music commands use the prefix `!` and both have a help command!", color=0xFF0000)
+        await msg.edit(content=f" ", embed=embed)
+
+        #? Create the adult lounge sticky.
+        lounge = guild.get_channel(807828084937850921) #? Supporter Channel
+        check = lambda m: m.author.id == self.bot.user.id
+        await lounge.purge(check=check)
+        sti = utils.Sticky.get(lounge.id)
+        msg = await lounge.send('**This is a sticky message**')
+        sti.message_id = msg.id
+        async with self.bot.database() as db:
+            await sti.save(db) 
+
+        msg = await lounge.fetch_message(sti.message_id) #? msg
+        embed=Embed(title=f"**[- Adult Lounge Sticky -]**", 
+        description=f"**This channel is only for adults**\n\nBut NSFW content is not allowed!\nThe Auto Chat filters are off, but you can still be punished for beign overly offensive ofourse.", color=0xFF0000)
+        await msg.edit(content=f" ", embed=embed)
+
+
+
+
+
+
+
+
+
+
+
 
         #* AUTO ROLE FIXING
         child = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['child'])
@@ -203,6 +248,12 @@ class Loops(Cog):
 
 
 
+
+
+
+
+
+
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
         coin = "<:Coin:1026302157521174649>"
 
@@ -221,6 +272,15 @@ class Loops(Cog):
                         await t.save(db)
                         await c.save(db)
                     print('Handed out Boost rewards')
+
+
+
+
+
+
+
+
+
 
 
 
