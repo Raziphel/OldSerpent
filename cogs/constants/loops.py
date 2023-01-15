@@ -135,7 +135,7 @@ class Loops(Cog):
         check = lambda m: m.author.id == self.bot.user.id
         await supporter.purge(check=check)
         sti = utils.Sticky.get(supporter.id)
-        msg = await ctx.send('**This is a sticky message**')
+        msg = await supporter.send('**This is a sticky message**')
         sti.message_id = msg.id
         async with self.bot.database() as db:
             await sti.save(db) 
