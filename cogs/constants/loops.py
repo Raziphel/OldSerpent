@@ -143,12 +143,13 @@ class Loops(Cog):
         sti.message_id = msg.id
         async with self.bot.database() as db:
             await sti.save(db) 
-
         msg = await supporter.fetch_message(sti.message_id) #? msg
         profit = 10
         embed=Embed(title=f"**[- Supporter Sticky -]**", 
-        description=f"**This channel displays any type of support shown to the Serpent's Garden!**\n\nThank you to everyone who chooses to support the server!\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: ***{profit}$ / 200$***\n\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*\n\n<:thaumiel:1060393337061912657> `These are the Nitro Boosters`\n<:safe:1060391143315083305> `These are 10$ Supporters`\n<:euclid:1060391150709641226> `These are 20$ Supporters`\n<:keter:1060392410682773594> `These are the 30$ Supporters`", color=0xFF0000)
+        description=f"**This channel displays any type of support shown to the Serpent's Garden!**\n\nThank you to everyone who chooses to support the server!\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: ***{profit}$ / 200$***\n\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*\n\n<:thaumiel:1060393337061912657> `These are the Nitro Boosters`\n<:safe:1060391143315083305> `These are 10$ Supporters`\n<:euclid:1060391150709641226> `These are 20$ Supporters`\n<:keter:1060392410682773594> `These are the 30$ Supporters`", color=randint(1, 0xffffff))
         await msg.edit(content=f" ", embed=embed)
+
+
 
         #? Create the Bot usage sticky.
         bot_usage = guild.get_channel(1028771493179560066) #? Supporter Channel
@@ -159,11 +160,12 @@ class Loops(Cog):
         sti.message_id = msg.id
         async with self.bot.database() as db:
             await sti.save(db) 
-
         msg = await bot_usage.fetch_message(sti.message_id) #? msg
         embed=Embed(title=f"**[- Bot Usage Sticky -]**", 
-        description=f"**This channel is only for using bot commands!**\nthe Serpent bot has the `.` prefix for regular commands.\nThe Serpent's Music commands use the prefix `!` and both have a help command!", color=0xFF0000)
+        description=f"**This channel is only for using bot commands!**\nthe Serpent bot has the `.` prefix for regular commands.\nThe Serpent's Music commands use the prefix `!` and both have a help command!", color=randint(1, 0xffffff))
         await msg.edit(content=f" ", embed=embed)
+
+
 
         #? Create the adult lounge sticky.
         lounge = guild.get_channel(1022373213520547912) #? Supporter Channel
@@ -174,10 +176,9 @@ class Loops(Cog):
         sti.message_id = msg.id
         async with self.bot.database() as db:
             await sti.save(db) 
-
         msg = await lounge.fetch_message(sti.message_id) #? msg
         embed=Embed(title=f"**[- Adult Lounge Sticky -]**", 
-        description=f"**This channel is only for adults**\n**But NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofourse.", color=0xFF0000)
+        description=f"**This channel is only for adults**\n**But NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofourse.", color=randint(1, 0xffffff))
         await msg.edit(content=f" ", embed=embed)
 
 
