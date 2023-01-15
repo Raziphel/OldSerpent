@@ -170,7 +170,7 @@ class Loops(Cog):
                         await user.add_roles(nsfw_adult, reason="Fixing Adult role.")
                         await user.remove_roles(adult, reason="Fixing Adult role.")
                     #? Fixing Furry's NSFW
-                    if furry in user.roles:
+                    if adult_furry in user.roles:
                         await user.remove_roles(adult_furry, reason="Fixing Adult & Furry role.")
                         await user.add_roles(furry, reason="Fixing Adult & Furry role.")
                     #? Fixing library Pass's NSFW
