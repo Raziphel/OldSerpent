@@ -119,7 +119,7 @@ class Loops(Cog):
 
 
 
-    @tasks.loop(minutes=60)
+    @tasks.loop(minutes=360)
     async def one_hour_loop(self):
         """The loop that handles updating things every 60 minutes."""
 
