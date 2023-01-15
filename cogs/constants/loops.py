@@ -166,7 +166,7 @@ class Loops(Cog):
         await msg.edit(content=f" ", embed=embed)
 
         #? Create the adult lounge sticky.
-        lounge = guild.get_channel(807828084937850921) #? Supporter Channel
+        lounge = guild.get_channel(1022373213520547912) #? Supporter Channel
         check = lambda m: m.author.id == self.bot.user.id
         await lounge.purge(check=check)
         sti = utils.Sticky.get(lounge.id)
