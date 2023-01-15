@@ -137,7 +137,7 @@ class Shop_Handler(Cog):
 
             if emoji == "💎":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Daily Bonus!\nCost: {coin} 40,000x", footer=" "))
-                item['coin'] =40000
+                item['coin'] = 40000
                 item['name'] = "Daily Bonus"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a daily bonus!", footer=" "))
@@ -145,12 +145,11 @@ class Shop_Handler(Cog):
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     day = utils.Daily.get(user.id)
                     day.premium = True
-                    async with cls.bot.database() as db:
-                        await day.save(db)
 
             #! Save to databse
             async with self.bot.database() as db:
                 await c.save(db)
+                await day.save(db)
 
 
             if bought == True:
