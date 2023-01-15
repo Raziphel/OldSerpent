@@ -152,7 +152,7 @@ class Loops(Cog):
 
 
         #? Create the Bot usage sticky.
-        bot_usage = guild.get_channel(1028771493179560066) #? Supporter Channel
+        bot_usage = guild.get_channel(1028771493179560066) #? bot_usage Channel
         check = lambda m: m.author.id == self.bot.user.id
         await bot_usage.purge(check=check)
         sti = utils.Sticky.get(bot_usage.id)
@@ -168,7 +168,7 @@ class Loops(Cog):
 
 
         #? Create the adult lounge sticky.
-        lounge = guild.get_channel(1022373213520547912) #? Supporter Channel
+        lounge = guild.get_channel(1022373213520547912) #? lounge Channel
         check = lambda m: m.author.id == self.bot.user.id
         await lounge.purge(check=check)
         sti = utils.Sticky.get(lounge.id)
@@ -180,6 +180,25 @@ class Loops(Cog):
         embed=Embed(title=f"**[- Adult Lounge Sticky -]**", 
         description=f"**This channel is only for adults**\n**But NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofourse.", color=randint(1, 0xffffff))
         await msg.edit(content=f" ", embed=embed)
+
+
+
+        #? Create the issues sticky.
+        issues = guild.get_channel(1056747603829731338) #? issues Channel
+        check = lambda m: m.author.id == self.bot.user.id
+        await issues.purge(check=check)
+        sti = utils.Sticky.get(issues.id)
+        msg = await issues.send('**This is a sticky message**')
+        sti.message_id = msg.id
+        async with self.bot.database() as db:
+            await sti.save(db) 
+        msg = await issues.fetch_message(sti.message_id) #? msg
+        embed=Embed(title=f"**[- Issues Sticky -]**", 
+        description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n<@891793700932431942> - Ping for Major bugs or anything if you think its important enough.\n<@1020893519885373450> - Ping for needed moderation on the server.\n<@1055972422429442141> - Ping for needed moderation on the server.\n<@1051307966223089755> - Ya can't ping this actually.\n<@1057833171539996792> - Ping this for moderation as well.", color=randint(1, 0xffffff))
+        await msg.edit(content=f" ", embed=embed)
+
+
+
 
 
 
