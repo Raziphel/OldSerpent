@@ -169,13 +169,9 @@ class rules_handler(Cog):
 
         # Get the right verification
         if emoji == "🏹":
-            await self.bot.get_cog('Verification').verify_kingussy(author=member, guild=guild)
-        elif emoji == "🐾":
-            scp = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['furry'])
-            await member.add_roles(scp, reason="SCP Access.")
-        elif emoji == "💣":
-            furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scp'])
-            await member.add_roles(furry, reason="Furry Access.")
+            await utils.UserFunction.verify_user(user=member, type='alliance')
+        elif emoji == "🐾": 
+            await utils.UserFunction.verify_user(user=member, type='furry')
         elif emoji == "🚬":
             if mod.child == False:
                 await self.bot.get_cog('Verification').verify_adult(author=member, guild=guild)
