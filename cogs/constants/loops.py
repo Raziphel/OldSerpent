@@ -146,7 +146,7 @@ class Loops(Cog):
         msg = await supporter.fetch_message(sti.message_id) #? msg
         profit = 10
         embed=Embed(title=f"**[- Supporter Sticky -]**", 
-        description=f"**This channel displays any type of support shown to the Serpent's Garden!**\nThank you to everyone who chooses to support the server!\n\n<:thaumiel:1060393337061912657> `These are the Nitro Boosters`\n<:safe:1060391143315083305> `These are 10$ Supporters`\n<:euclid:1060391150709641226> `These are 20$ Supporters`\n<:keter:1060392410682773594> `These are the 30$ Supporters`\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: ***{profit}$ / 200$***\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*", color=randint(1, 0xffffff))
+        description=f"**This channel displays any type of support shown to the Serpent's Garden!**\nThank you to everyone who chooses to support the server!\n\n<:thaumiel:1060393337061912657> `These are the Nitro Boosters`\n<:safe:1060391143315083305> `These are 10$ Supporters`\n<:euclid:1060391150709641226> `These are 20$ Supporters`\n<:keter:1060392410682773594> `These are the 30$ Supporters`\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: ***{profit}$ / 200$***\n\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*", color=randint(1, 0xffffff))
         await msg.edit(content=f" ", embed=embed)
 
 
