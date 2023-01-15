@@ -143,7 +143,7 @@ class Loops(Cog):
         msg = await supporter.fetch_message(sti.message_id) #? msg
         profit = 10
         embed=Embed(title=f"**[- Supporter Info -]**", 
-        description=f"**This channel displays any type of support shown to the Serpent's Garden!**\n\nThank you to everyone who chooses to support the server!\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: ***{profit}$ / 200$***", color=0xFF0000)
+        description=f"**This channel displays any type of support shown to the Serpent's Garden!**\n\nThank you to everyone who chooses to support the server!\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: ***{profit}$ / 200$***\n\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*", color=0xFF0000)
         await msg.edit(content=f" ", embed=embed)
 
         #* AUTO ROLE FIXING
