@@ -23,13 +23,10 @@ CREATE TABLE tracking (
 );
 
 
-CREATE TABLE lottery (
-    lottery_id BIGINT NOT NULL,
-    last_winner_id BIGINT,
-    last_amount INT,
-    coins INT,
-    lot_time TIMESTAMP,
-    PRIMARY KEY (lottery_id)
+CREATE TABLE sticky (
+    channel_id BIGINT NOT NULL,
+    message_id BIGINT,
+    PRIMARY KEY (guild_id)
 );
 
 CREATE TABLE staff_track (

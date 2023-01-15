@@ -60,6 +60,15 @@ class Loops(Cog):
             await supp_channel.edit(name=f"Supporters: {total_scps:,}")
             self.scps = scps
 
+        #* Create the supporter sticky.
+        supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
+        sti = utils.Sticky.get(supporter.id)
+        msg = await supporter.fetch_message(sti.message_id) #? msg
+        profit = 10
+        embed=Embed(title=f"**[- Supporter Info -]**", 
+        description=f"**This channel displays any type of support shown to the Serpent's Garden!**\n\nThank you to everyone who chooses to support the server!\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: {profit}$ / 200$", color=0xFF0000)
+        await msg.edit(content=f" ", embed=embed)
+
 
         #* Levels Leaderboard
         channel = self.bot.get_channel(self.bot.config['channels']['leaderboard'])

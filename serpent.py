@@ -59,7 +59,7 @@ class Serpent(commands.AutoShardedBot):
             utils.Tracking.all_tracking.clear()
             utils.Staff_Track.all_staff_track.clear()
             utils.Daily.all_dailys.clear()
-            utils.Lottery.all_lotterys.clear()
+            utils.Sticky.all_stickys.clear()
 
             # !   Collect from Database
             async with self.database() as db:
@@ -72,7 +72,7 @@ class Serpent(commands.AutoShardedBot):
                 tracking = await db('SELECT * FROM tracking')
                 staff_track = await db('SELECT * FROM staff_track')
                 daily = await db('SELECT * FROM daily')
-                lottery = await db('SELECT * FROM lottery')
+                sticky = await db('SELECT * FROM sticky')
 
             # !   Cache all into local objects
             for i in moderation:
@@ -93,8 +93,8 @@ class Serpent(commands.AutoShardedBot):
                 utils.Staff_Track(**i)
             for i in daily:
                 utils.Daily(**i)
-            for i in lottery:
-                utils.Lottery(**i)
+            for i in sticky:
+                utils.Sticky(**i)
 
         except Exception as e:
             print(f'Couldn\'t connect to the database... :: {e}')

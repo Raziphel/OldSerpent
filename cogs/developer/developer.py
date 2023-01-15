@@ -69,6 +69,16 @@ class Developer(Cog):
 
 
 
+    @utils.is_dev()
+    @command(hidden=True)
+    async def setsticky(self, ctx):
+        sti = utils.Sticky.get(ctx.channel.id)
+        msg = await ctx.send('Making Sticky!')
+        sti.message_id = msg.id
+        async with self.bot.database() as db:
+            await sti.save(db)
+
+
 
     @utils.is_dev()
     @command(hidden=True)

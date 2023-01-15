@@ -27,7 +27,7 @@ from utils.sql.users.daily import Daily
 #? Admin
 from utils.sql.admin.timers import Timers
 from utils.sql.admin.staff_track import Staff_Track
-from utils.sql.admin.lottery import Lottery
+from utils.sql.admin.sticky import Sticky
 
 #* --------------------- Functions
 
