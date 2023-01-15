@@ -18,7 +18,7 @@ class Logging(Cog):
         return self.bot.get_channel(self.bot.config['channels']['bot']) 
 
     @property  #! The members logs
-    def server_log(self):
+    def discord_log(self):
         return self.bot.get_channel(self.bot.config['channels']['server']) 
 
     @property  #! The message logs
@@ -79,7 +79,7 @@ class Logging(Cog):
     async def on_member_remove(self, member):
         try:
             if member.bot: return
-            await self.server_log.send(embed=utils.LogEmbed(type="negative", title=f"{member.name} has left the realm.", thumbnail=member.avatar.url))
+            await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"{member.name} has left the realm.", thumbnail=member.avatar.url))
             c = utils.Currency.get(member.id)
             lvl = utils.Level.get(member.id)
             lvl.level = 0
@@ -92,13 +92,13 @@ class Logging(Cog):
     @Cog.listener()
     async def on_member_ban(self, guild, member):
         try:
-            await self.server_log.send(embed=utils.LogEmbed(type="negative", title=f"Member Banned", desc=f"{member} has been banned!"))
+            await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"Member Banned", desc=f"{member} has been banned!"))
         except: pass #? Fail Silently
 
     @Cog.listener()
     async def on_member_unban(self, guild, member):
         try:
-            await self.server_log.send(embed=utils.LogEmbed(type="change", title=f"Member Unbanned", desc=f"{member} has been unbanned!"))
+            await self.discord_log.send(embed=utils.LogEmbed(type="change", title=f"Member Unbanned", desc=f"{member} has been unbanned!"))
         except: pass #? Fail Silently
 
     @Cog.listener()

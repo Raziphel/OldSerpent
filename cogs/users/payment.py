@@ -9,7 +9,7 @@ class Payment(Cog):
         self.bot = bot
 
     @property  #! The members logs
-    def server_log(self):
+    def discord_log(self):
         return self.bot.get_channel(self.bot.config['channels']['server']) #?Coins log channel
 
     @cooldown(1, 30, BucketType.user)
@@ -35,7 +35,7 @@ class Payment(Cog):
 
         await ctx.send(embed=utils.DefualtEmbed(desc=f"**{ctx.author} sent {amount:,}x {coin_e} to {receiver}!**"))
 
-        await self.server_log.send(embed=utils.LogEmbed(type="special", desc=f"{ctx.author} payed {amount} coins to {receiver}!"))
+        await self.discord_log.send(embed=utils.LogEmbed(type="special", desc=f"{ctx.author} payed {amount} coins to {receiver}!"))
 
 
 
