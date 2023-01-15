@@ -5,10 +5,11 @@ import asyncpg
 class Moderation(object):
     all_moderation = {}
 
-    def __init__(self, user_id:int, adult:bool=False, child:bool=False):
+    def __init__(self, user_id:int, adult:bool=False, child:bool=False, muted:bool=False):
         self.user_id = user_id
         self.adult = adult
         self.child = child
+        self.muted = muted
 
         self.all_moderation[self.user_id] = self
 
@@ -18,18 +19,18 @@ class Moderation(object):
             await db('''
                 INSERT INTO moderation
                 VALUES
-                ($1, $2, $3)
+                ($1, $2, $3, $4)
                 ''',
-                self.user_id, self.adult, self.child
+                self.user_id, self.adult, self.child, self.muted
             )
         except asyncpg.exceptions.UniqueViolationError: 
             await db('''
                 UPDATE moderation SET
-                adult=$2, child=$3
+                adult=$2, child=$3, muted=$4
                 WHERE
                 user_id=$1
                 ''',
-                self.user_id, self.adult, self.child
+                self.user_id, self.adult, self.child, self.muted
             )
 
     @classmethod
