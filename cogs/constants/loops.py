@@ -163,16 +163,8 @@ class Loops(Cog):
                     await mod.save(db)
 
                 #! Fix roles
-                await sleep(0.1) #? Causes a huge sharp in cpu why not spread it out.
+                await sleep(0.05) #? Causes a huge sharp in cpu why not spread it out.
                 if mod.adult == True:
-                    #? Fix old adult role
-                    if adult in user.roles:
-                        await user.add_roles(nsfw_adult, reason="Fixing Adult role.")
-                        await user.remove_roles(adult, reason="Fixing Adult role.")
-                    #? Fixing Furry's NSFW
-                    if adult_furry in user.roles:
-                        await user.remove_roles(adult_furry, reason="Fixing Adult & Furry role.")
-                        await user.add_roles(furry, reason="Fixing Adult & Furry role.")
                     #? Fixing library Pass's NSFW
                     if library_pass in user.roles:
                         await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
