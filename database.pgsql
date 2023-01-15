@@ -9,6 +9,7 @@ CREATE TABLE moderation (
     user_id bigint NOT NULL,
     adult boolean DEFAULT false,
     child boolean DEFAULT false,
+    muted boolean DEFAULT false,
     PRIMARY KEY (user_id)
 );
 
