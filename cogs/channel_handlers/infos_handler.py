@@ -107,10 +107,10 @@ class rules_handler(Cog):
         coin = self.bot.config['emotes']['coin']
 
         embed1=Embed(title=f"**[- SCP Server Info -]**", 
-        description=f"**SCP Server connect addresses**\nSerpent's Garden #1 `n01.infra.serpents.garden:7777`\nSerpent's Garden #2 `n01.infra.serpents.garden:7778`\nSerpent's Garden #3 `n01.infra.serpents.garden:7779`\nSerpent's Garden #4 `n01.infra.serpents.garden:7782`\n\n**Permission Role Sync:** [Click Here](https://serpents_garden.cmod.app) (Will have to sync your Steam and Discord)\n*The following site is used to sync your roles on Discord to the SCP server!  All staff, nitro boosters and supporters will need to go here to get their roles synced to the SCP servers!*\n\n**Were you banned from the server?**\nYou can make an appeal here: [Click Here](https://serpents_garden.cmod.app) (Will have to sync your Steam and Discord)", color=0xFF0000)
+        description=f"**SCP Server connect addresses**\nSerpent's Garden [Alpha] `n01.infra.serpents.garden:7777`\nSerpent's Garden [Epsilon] `n01.infra.serpents.garden:7778`\nSerpent's Garden [Kappa] `n01.infra.serpents.garden:7779`\nSerpent's Garden [Theta] `n01.infra.serpents.garden:7782`", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Most Common Questions -]**", 
-        description=f"**Q: How can I see a comprehensive list off all the modded features on the servers?**\nA: [Click Here to veiw our google spreadsheet](https://docs.google.com/spreadsheets/d/1FuaqGm7l0sQg4JKpkvG7ooLM5Cdw-s4bu3YnpIoFKlc/edit?usp=sharing)\n\n**Q: How can I apply for staff?**\nA: We currently do not have applications open yet.\n\n**Q: How do I claim my in-game role?**\nA:  [Click Here to sync your accounts to the servers](https://serpents_garden.cmod.app)\n\n ", color=0x0000FF)
+        description=f"**Q: How can I see a comprehensive list off all the modded features on the servers?**\nA: [Click Here to veiw our google spreadsheet](https://docs.google.com/spreadsheets/d/1FuaqGm7l0sQg4JKpkvG7ooLM5Cdw-s4bu3YnpIoFKlc/edit?usp=sharing)\n\n**Q: How can I apply for staff?**\nA: We currently do not have applications open yet.\n\n**Q: How do I claim my in-game role?**\nA:  [Click Here to sync your accounts to the servers](https://serpents_garden.cmod.app)\n\n**Q: How can I appeal my ban?**\nA: [Click Here to appeal your ban](https://serpents_garden.cmod.app)", color=0x0000FF)
 
         embed3=Embed(title=f"**[- Coning Soon... -]**", 
         description=f"", color=0xFFFFFF)
