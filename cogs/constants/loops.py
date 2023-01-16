@@ -26,7 +26,7 @@ class Loops(Cog):
     async def one_min_loop(self):
         """The loop that handles updating things every minute."""
 
-        #! Databse check
+        #! Database check
         if self.bot.connected == False:
             await self.bot.change_presence(activity=Game(name="Databse is Down!!!")) 
             return
