@@ -26,12 +26,13 @@ class Muting(Cog):
         guild = member.guild
 
         mod = utils.Moderation.get(member.id)
-        if mod.prisoner == True: #! Checks to make sure they were muted!
+        if mod.muted == True: #! Checks to make sure they were muted!
             try: #! Get the guilds muted role
                 for role in ctx.guild.roles:
                     if role.id == 1028881308006502400:
                         role_id = role.id
-                await member.add_roles(prisoner)
+                muted_role = utils.DiscordGet(ctx.guild.roles, id=role_id)
+                await member.add_roles(muted_role)
             except: return
 
             await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"Prisoner Tried to escape...", desc=f"{member} Was thrown back into the dungeons."))
