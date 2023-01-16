@@ -178,7 +178,7 @@ class Loops(Cog):
             await sti.save(db) 
         msg = await lounge.fetch_message(sti.message_id) #? msg
         embed=Embed(title=f"**[- Adult Lounge Sticky -]**", 
-        description=f"**This channel is only for adults**\n**But NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofourse.", color=randint(1, 0xffffff))
+        description=f"**This channel is only for adults**\n**NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofcourse.", color=randint(1, 0xffffff))
         await msg.edit(content=f" ", embed=embed)
 
 
