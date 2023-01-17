@@ -50,6 +50,9 @@ class Muting(Cog):
         if len(user) == 0:
             return await ctx.send('Please specify a valid user.', delete_after=15)
 
+        if len(user) > 10:
+            return await ctx.send('Please specify a valid user.', delete_after=15)
+
         for i in user: 
             if any([r for r in i.roles if r.id == 891793700932431942]):
                 return await ctx.send(embed=utils.WarningEmbed(desc="Staff can't be banned!  Please demote first!", guild=ctx.guild))
