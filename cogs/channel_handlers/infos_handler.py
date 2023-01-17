@@ -107,10 +107,10 @@ class rules_handler(Cog):
         coin = self.bot.config['emotes']['coin']
 
         embed1=Embed(title=f"**[- SCP Server Info -]**", 
-        description=f"**SCP Server connect addresses**\nSerpent's Garden #1 `n01.infra.serpents.garden:7777`\nSerpent's Garden #2 `n01.infra.serpents.garden:7778`\nSerpent's Garden #3 `n01.infra.serpents.garden:7779`\nSerpent's Garden #4 `n01.infra.serpents.garden:7782`\n\n**Permission Role Sync:** [Click Here](https://serpents_garden.cmod.app) (Will have to sync your Steam and Discord)\n*The following site is used to sync your roles on Discord to the SCP server!  All staff, nitro boosters and supporters will need to go here to get their roles synced to the SCP servers!*\n\n**Were you banned from the server?**\nYou can make an appeal here: [Click Here](https://serpents_garden.cmod.app) (Will have to sync your Steam and Discord)", color=0xFF0000)
+        description=f"**SCP Server connect addresses**\n**Serpent's Garden [Alpha]** `n01.infra.serpents.garden:7777`\n**Serpent's Garden [Epsilon]** `n01.infra.serpents.garden:7778`\n**Serpent's Garden [Kappa]** `n01.infra.serpents.garden:7779`\n**Serpent's Garden [Theta]** `n01.infra.serpents.garden:7782`", color=0xFF0000)
 
-        embed2=Embed(title=f"**[- Our Plugin List -]**", 
-        description=f"**We use a google doc to display all the plugin and settings we have set on the Serpnet's Garden, just for simplicity as discord chats aren't the best for a lot of information!**\n\n[Click Here](https://docs.google.com/spreadsheets/d/1FuaqGm7l0sQg4JKpkvG7ooLM5Cdw-s4bu3YnpIoFKlc/edit?usp=sharing)\n*To go to our google spreadheet on plugin developemnt*\n\nIt should be noted that this is a heavily modded server and our rules for the most part represent that by being kind of anarchy besides being strict on not letting someones mics ruining the expierance for everyone; or ofcourse harrassment and bigotry.", color=0x0000FF)
+        embed2=Embed(title=f"**[- Most Common Questions -]**", 
+        description=f"**Q: How can I see a comprehensive list off all the modded features on the servers?**\nA: [Click Here to veiw our google spreadsheet](https://docs.google.com/spreadsheets/d/1FuaqGm7l0sQg4JKpkvG7ooLM5Cdw-s4bu3YnpIoFKlc/edit?usp=sharing)\n\n**Q: How can I apply for staff?**\nA: We currently do not have applications open yet.\n\n**Q: How do I claim my in-game role?**\nA:  [Click Here to sync your accounts to the servers](https://serpents_garden.cmod.app)\n\n**Q: How can I appeal my ban?**\nA: [Click Here to appeal your ban](https://serpents_garden.cmod.app)\n\n**Q: Are the plugins custom made?**\nA: No some of our plugins are public to the community.  but we do have a dev who makes most of our plugins special & only for Serpent's Garden!", color=0x0000FF)
 
         embed3=Embed(title=f"**[- Coning Soon... -]**", 
         description=f"", color=0xFFFFFF)
@@ -123,7 +123,6 @@ class rules_handler(Cog):
         await msg2.edit(content=f" ", embed=embed2)
         await msg3.edit(content=f" ", embed=embed3)
         await msg10.edit(content=f" ", embed=embed10)
-
 
 
 
