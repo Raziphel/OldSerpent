@@ -199,7 +199,19 @@ class Loops(Cog):
 
 
 
-
+        #? Create the live round sticky.
+        live_round = guild.get_channel(1061580480388026398) #? live_round Channel
+        check = lambda m: m.author.id == self.bot.user.id
+        await live_round.purge(check=check)
+        sti = utils.Sticky.get(live_round.id)
+        msg = await live_round.send('**This is a sticky message**')
+        sti.message_id = msg.id
+        async with self.bot.database() as db:
+            await sti.save(db) 
+        msg = await live_round.fetch_message(sti.message_id) #? msg
+        embed=Embed(title=f"**[- Live Rounds Sticky -]**", 
+        description=f"**This channel is 30 minutes behind the actual games!**\n\nThis is to prevent cheating obviously!\nThis informations is also used to keep a database of information about each player!", color=randint(1, 0xffffff))
+        await msg.edit(content=f" ", embed=embed)
 
 
 
