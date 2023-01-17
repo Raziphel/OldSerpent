@@ -112,7 +112,7 @@ class rules_handler(Cog):
         embed2=Embed(title=f"**[- Most Common Questions -]**", 
         description=f"**Q: How can I see a comprehensive list off all the modded features on the servers?**\nA: [Click Here to veiw our google spreadsheet](https://docs.google.com/spreadsheets/d/1FuaqGm7l0sQg4JKpkvG7ooLM5Cdw-s4bu3YnpIoFKlc/edit?usp=sharing)\n\n**Q: How can I apply for staff?**\nA: We currently do not have applications open yet.\n\n**Q: How do I claim my in-game role?**\nA:  [Click Here to sync your accounts to the servers](https://serpents_garden.cmod.app)\n\n**Q: How can I appeal my ban?**\nA: [Click Here to appeal your ban](https://serpents_garden.cmod.app)\n\n**Q: Are the plugins custom made?**\nA: No some of our plugins are public to the community.  but we do have a dev who makes most of our plugins special & only for Serpent's Garden!", color=0x0000FF)
 
-        embed3=Embed(title=f"**[- Coning Soon... -]**", 
+        embed3=Embed(title=f"**[- Coming Soon... -]**", 
         description=f"", color=0xFFFFFF)
 
 
@@ -148,13 +148,13 @@ class rules_handler(Cog):
         embed2=Embed(title=f"**[- Discord Moderation -]**", 
         description=f"`.ban (Multiple Mentions) (Reason)`\n**Only 05 Council can run this command.**\nThis command should be simple, its used to ban multiple people at once!\nIt deletes that members last day of messages.\n\n`.mute (Multiple Mentions) (Reason)`\n**Only 05 Council can run this command.**\nThis command gives members a muted role, that is re-applied if they try to leave and rejoin!\n*Use `.unmute` to unmute them obviously.*\n\n`.adult (Mention)`\n**Only 05 Council can run this command.**\nThis command marks a member as an adult!\n\n`.child (Mention)`\n**Only 05 Council can run this command.**\nThis command marks a member as a child!", color=0x0000FF)
 
-        embed3=Embed(title=f"**[- Coning Soon... -]**", 
+        embed3=Embed(title=f"**[- SCP:SL Moderation -]**", 
+        description=f"**Mic Spamming / Soundboard in Spectator**\nThey should be banned for 1 month. (730 Hours)\n\n**Saying the N-Word**\nThey should be banned for 6 months. (4,380 Hours)\n\n**Pro-longing the round by Teaming or Glitched Spot**\nThey should be banned for 3 months. (2,190 Hours)\n\n**Harassment / Racism / Homophobia, Ect.**\nThey should be banned for 1 year. (8,760 Hours)\n\n`They can appeal these bans and you should mention that to them if you want.`", color=0x00FF00)
+
+        embed4=Embed(title=f"**[- Coming Soon... -]**", 
         description=f"", color=0xFFFFFF)
 
-        embed4=Embed(title=f"**[- Coning Soon... -]**", 
-        description=f"", color=0xFFFFFF)
-
-        embed5=Embed(title=f"**[- Coning Soon... -]**", 
+        embed5=Embed(title=f"**[- Coming Soon... -]**", 
         description=f"", color=0xFFFFFF)
 
 
