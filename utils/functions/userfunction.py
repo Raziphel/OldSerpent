@@ -33,7 +33,7 @@ class UserFunction(object):
         RNG = choice([1.25, 1.30, 1.35, 1, 0.75, 0.85, 0.9])
 
         lvl.level += 1
-        amount = (lvl.level*1000) * RNG
+        amount = (lvl.level*500) * RNG
         amount = await utils.CoinFunctions.pay_tax(payer=user, amount=amount)
         c.coins += amount
         lvl.exp = 0
