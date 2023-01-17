@@ -71,7 +71,7 @@ class rules_handler(Cog):
         description=f"This is the levels you recieve each role at! Any other roles are probably staff or a donator role!\n\n**Level 100 ->** `Serpent's Hand`\n**Level 90 ->** `Gamers Against Weed`\n**Level 80 ->** `Chaos Insurgency`\n**Level 75 ->** `Children of the Scarlet King`\n**Level 70 ->** `Sarkic Cult`\n**Level 65 ->** `Church of the Broken God`\n**Level 60 ->** `Global Occult Coalition`\n**Level 55 ->** `Unusual Incidents Unit`\n**Level 50 ->** `Ethics Committee`\n**Level 45 ->** `Memetics Division`\n**Level 40 ->** `Site Director`\n**Level 35 ->** `Facility Manager`\n**Level 30 ->** `MTF Operative`\n**Level 25 ->** `Sequrity Officer`\n**Level 20 ->** `Containment Specialist`\n**Level 15 ->** `Head-Reseracher`\n**Level 10 ->** `Scientist`\n**Level 5 ->** `D-Class`\n**Level 0 ->** `Janitor`", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Pickable Roles -]**", 
-        description=f"☢ `SCP Ping`\nAnyone can ping you with this role!\nIts only to be used when notifying people to play SCP!\n\n🍙`Weebs`\nGives you access to the Anime channel... Oh no.\n\n🌈`LGBT`\nSingals that you support or are LGBT! c:\n\n🐾 `Furry`\nThis role is for those degenerates!", color=0x0000FF)
+        description=f"🔥 `SCP Ping`\nAnyone can ping you with this role!\nIts only to be used when notifying people to play SCP!\n\n🍙`Weebs`\nGives you access to the Anime channel... Oh no.\n\n🌈`LGBT`\nSingals that you support or are LGBT! c:\n\n🐾 `Furry`\nThis role is for those degenerates!", color=0x0000FF)
 
         embed3=Embed(title=f"**[- Update Pings -]**", 
         description=f"**These roles are pinged by staff only.  Anyone who pings the role will be banned.** *So atleast if ya do get pinged and its not staff! Ya get to see someone banned! :)*\n\n🔔 `Discord Pings`\nThese are pings focused towards the Discord Server!.\n\n🧪 `Server Pings`\nThese are pings focused towards the SCP Servers!. ", color=0xFFFFFF)
@@ -184,7 +184,7 @@ class rules_handler(Cog):
         elif emoji == "🔔":
             updates = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['discord_updates'])
             await member.add_roles(updates, reason="Will get updates now.")
-        elif emoji == ":radioactive:":
+        elif emoji == "🔥":
             updates = utils.DiscordGet(guild.roles, id=1062945474757271564)
             await member.add_roles(updates, reason="Will get updates now.")
         elif emoji == "🍙":
