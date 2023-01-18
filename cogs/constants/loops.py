@@ -144,12 +144,12 @@ class Loops(Cog):
             except IndexError:
                 # no messages in the channel
                 print('No message in channel?')
-                continue
+                break
 
             #? Check its not the last message already.
             sti = utils.Sticky.get(channel.id)
             if last_message == sti.message_id:
-                continue
+                break
             else:
                 msg = await channel.fetch_message(sti.message_id) #? get last message
                 await msg.delete()
