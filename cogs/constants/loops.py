@@ -119,7 +119,7 @@ class Loops(Cog):
 
 
 
-    @tasks.loop(minutes=360)
+    @tasks.loop(minutes=60)
     async def one_hour_loop(self):
         """The loop that handles updating things every 60 minutes."""
 
@@ -151,6 +151,8 @@ class Loops(Cog):
             if last_message == sti.message_id:
                 continue
             else:
+                msg = await ch.fetch_message(sti.message_id) #? get last message
+                await msg.delete()
                 msg = await channel.send('**Loading sticky message**')
                 sti.message_id = msg.id
 
