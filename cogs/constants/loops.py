@@ -138,7 +138,7 @@ class Loops(Cog):
         supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
         channels = [lounge, bot_usage, issues, supporter]
         for channel in channels:
-            await channel.history(limit=1).flatten()
+            message_list = await channel.history(limit=1).flatten()
             try:
                 last_message = message_list[0]
             except IndexError:
