@@ -148,7 +148,7 @@ class Loops(Cog):
 
             #? Check its not the last message already.
             sti = utils.Sticky.get(channel.id)
-            if last_message = sti.message_id:
+            if last_message == sti.message_id:
                 continue
             else:
                 msg = await channel.send('**Loading sticky message**')
