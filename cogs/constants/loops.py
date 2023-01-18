@@ -12,6 +12,18 @@ from asyncio import sleep
 
 import utils
 
+
+def format_number(num):
+    if num < 1000:
+        return str(num)
+    elif num < 1000000:
+        return f"{num / 1000:.1f}k"
+    elif num < 1000000000:
+        return f"{num / 1000000:.1f}m"
+    else:
+        return f"{num / 1000000000:.1f}b"
+
+
 class Loops(Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -20,6 +32,7 @@ class Loops(Cog):
         self.last_members = 0
         self.last_coins = 0
         self.scps = 0
+
 
 
     @tasks.loop(minutes=1)
@@ -43,7 +56,7 @@ class Loops(Cog):
         supp_channel = self.bot.get_channel(1052050250887598180)
         scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
         members = len(set(self.bot.get_all_members()))
-        total_coins = utils.Currency.get_total_coins()
+        total_coins = format_number(utils.Currency.get_total_coins())
         total_scps = 0
         for user in guild.members:
             if scps in user.roles:
