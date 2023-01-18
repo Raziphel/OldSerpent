@@ -148,7 +148,7 @@ class Loops(Cog):
 
             #? Check its not the last message already.
             sti = utils.Sticky.get(channel.id)
-            if last_message == sti.message_id:
+            if last_message.id == sti.message_id:
                 break
             else:
                 msg = await channel.fetch_message(sti.message_id) #? get last message
