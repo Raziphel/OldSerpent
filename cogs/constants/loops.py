@@ -19,9 +19,9 @@ def format_number(num):
     elif num < 1000000:
         return f"{num / 1000:.1f}k"
     elif num < 1000000000:
-        return f"{num / 1000000:.1f}m"
+        return f"{num / 1000000:.1f}mil."
     else:
-        return f"{num / 1000000000:.1f}b"
+        return f"{num / 1000000000:.1f}bil."
 
 
 class Loops(Cog):
