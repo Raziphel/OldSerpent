@@ -67,7 +67,7 @@ class Loops(Cog):
             await members_channel.edit(name=f"Members: {members:,}")
             self.last_members = members
         if self.last_coins != total_coins:
-            await coins_channel.edit(name=f"Coins: {math.floor(total_coins):,}")
+            await coins_channel.edit(name=f"Coins: {total_coins}")
             self.last_coins = total_coins
         if self.scps != scps:
             await supp_channel.edit(name=f"Supporters: {total_scps:,}")
