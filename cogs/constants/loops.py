@@ -119,7 +119,7 @@ class Loops(Cog):
 
 
 
-    @tasks.loop(minutes=360)
+    @tasks.loop(minutes=60)
     async def one_hour_loop(self):
         """The loop that handles updating things every 60 minutes."""
 
@@ -131,94 +131,51 @@ class Loops(Cog):
 
 
 
-
-
-
-        #? Create the supporter sticky.
-        supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
-        check = lambda m: m.author.id == self.bot.user.id
-        await supporter.purge(check=check)
-        sti = utils.Sticky.get(supporter.id)
-        msg = await supporter.send('**This is a sticky message**')
-        sti.message_id = msg.id
-        async with self.bot.database() as db:
-            await sti.save(db) 
-        msg = await supporter.fetch_message(sti.message_id) #? msg
-        profit = 10
-        embed=Embed(title=f"**[- Supporter Sticky -]**", 
-        description=f"**This channel displays any type of support shown to the Serpent's Garden!**\nThank you to everyone who chooses to support the server!\n\n<:thaumiel:1060393337061912657> `These are Nitro Boosters`\n<:safe:1060391143315083305> `These are 10$ Supporters`\n<:euclid:1060391150709641226> `These are 20$ Supporters`\n<:keter:1060392410682773594> `These are 30$ Supporters`\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: ***{profit}$ / 200$***\n\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*", color=randint(1, 0xffffff))
-        await msg.edit(content=f" ", embed=embed)
-
-
-
-        #? Create the Bot usage sticky.
+        #! THE STICKY CODE BLOCK >:O
+        lounge = guild.get_channel(1022373213520547912) #? adult lounge Channel
         bot_usage = guild.get_channel(1028771493179560066) #? bot_usage Channel
-        check = lambda m: m.author.id == self.bot.user.id
-        await bot_usage.purge(check=check)
-        sti = utils.Sticky.get(bot_usage.id)
-        msg = await bot_usage.send('**This is a sticky message**')
-        sti.message_id = msg.id
-        async with self.bot.database() as db:
-            await sti.save(db) 
-        msg = await bot_usage.fetch_message(sti.message_id) #? msg
-        embed=Embed(title=f"**[- Bot Usage Sticky -]**", 
-        description=f"**This channel is only for using bot commands!**\nthe Serpent bot has the `.` prefix for regular commands.\nThe Serpent's Music commands use the prefix `!` and both have a help command!", color=randint(1, 0xffffff))
-        await msg.edit(content=f" ", embed=embed)
-
-
-
-        #? Create the adult lounge sticky.
-        lounge = guild.get_channel(1022373213520547912) #? lounge Channel
-        check = lambda m: m.author.id == self.bot.user.id
-        await lounge.purge(check=check)
-        sti = utils.Sticky.get(lounge.id)
-        msg = await lounge.send('**This is a sticky message**')
-        sti.message_id = msg.id
-        async with self.bot.database() as db:
-            await sti.save(db) 
-        msg = await lounge.fetch_message(sti.message_id) #? msg
-        embed=Embed(title=f"**[- Adult Lounge Sticky -]**", 
-        description=f"**This channel is only for adults**\n**NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofcourse.", color=randint(1, 0xffffff))
-        await msg.edit(content=f" ", embed=embed)
-
-
-
-        #? Create the issues sticky.
         issues = guild.get_channel(1056747603829731338) #? issues Channel
-        check = lambda m: m.author.id == self.bot.user.id
-        await issues.purge(check=check)
-        sti = utils.Sticky.get(issues.id)
-        msg = await issues.send('**This is a sticky message**')
-        sti.message_id = msg.id
-        async with self.bot.database() as db:
-            await sti.save(db) 
-        msg = await issues.fetch_message(sti.message_id) #? msg
-        embed=Embed(title=f"**[- Issues Sticky -]**", 
-        description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@[Alpha-1] Red Right Hand** - Ping for needed moderation on the server.\n**@[Epsilon-11] Nine-Tailed Fox** - Ping for needed moderation on the server.\n**@[Theta-4] Gardeners** - Ya can't ping this actually.\n**@[Zeta-9] Mole Rats** - Ping this for moderation on the server.", color=randint(1, 0xffffff))
-        await msg.edit(content=f" ", embed=embed)
+        supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
+        channels = [lounge, bot_usage, issues, supporter]
+        for channel in channels:
+            message_list = await channel.history(limit=1).flatten()
+            try:
+                last_message = message_list[0]
+            except IndexError:
+                # no messages in the channel
+                print('No message in channel?')
+                break
 
+            #? Check its not the last message already.
+            sti = utils.Sticky.get(channel.id)
+            if last_message.id == sti.message_id:
+                break
+            else:
+                msg = await channel.fetch_message(sti.message_id) #? get last message
+                await msg.delete()
+                msg = await channel.send('**Loading sticky message**')
+                sti.message_id = msg.id
 
+            #? Check the channels sticky!
+            if channel == supporter:
+                profit = 10
+                embed=Embed(title=f"**[- Supporter Sticky -]**", 
+                description=f"**This channel displays any type of support shown to the Serpent's Garden!**\nThank you to everyone who chooses to support the server!\n\n<:thaumiel:1060393337061912657> `These are Nitro Boosters`\n<:safe:1060391143315083305> `These are 10$ Supporters`\n<:euclid:1060391150709641226> `These are 20$ Supporters`\n<:keter:1060392410682773594> `These are 30$ Supporters`\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: ***{profit}$ / 200$***\n\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*", color=randint(1, 0xffffff))
+            if channel == bot_usage:
+                embed=Embed(title=f"**[- Bot Usage Sticky -]**", 
+                description=f"**This channel is only for using bot commands!**\nthe Serpent bot has the `.` prefix for regular commands.\nThe Serpent's Music commands use the prefix `!` and both have a help command!", color=randint(1, 0xffffff))
+            if channel == lounge:
+                embed=Embed(title=f"**[- Adult Lounge Sticky -]**", 
+                description=f"**This channel is only for adults**\n**NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofcourse.", color=randint(1, 0xffffff))
+            if channel == issues:
+                embed=Embed(title=f"**[- Issues Sticky -]**", 
+                description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@[Alpha-1] Red Right Hand** - Ping for needed moderation on the server.\n**@[Epsilon-11] Nine-Tailed Fox** - Ping for needed moderation on the server.\n**@[Theta-4] Gardeners** - Ya can't ping this actually.\n**@[Zeta-9] Mole Rats** - Ping this for moderation on the server.", color=randint(1, 0xffffff))
 
-        #? Create the live round sticky.
-        live_round = guild.get_channel(1061580480388026398) #? live_round Channel
-        check = lambda m: m.author.id == self.bot.user.id
-        await live_round.purge(check=check)
-        sti = utils.Sticky.get(live_round.id)
-        msg = await live_round.send('**This is a sticky message**')
-        sti.message_id = msg.id
-        async with self.bot.database() as db:
-            await sti.save(db) 
-        msg = await live_round.fetch_message(sti.message_id) #? msg
-        embed=Embed(title=f"**[- Live Rounds Sticky -]**", 
-        description=f"**This channel is 30 minutes behind the actual games!**\n\nThis is to prevent cheating obviously!\nThis informations is also used to keep a database of information about each player!", color=randint(1, 0xffffff))
-        await msg.edit(content=f" ", embed=embed)
+            await msg.edit(content=f" ", embed=embed)
 
-
-
-
-
-
-
+            #! SAVE THAT SHIT
+            async with self.bot.database() as db:
+                await sti.save(db) 
 
 
 
