@@ -93,7 +93,7 @@ class Daily(Cog):
                 if emoji == '🔶':
                     reward = choice([-1000, -500])
 
-            await msg.edit(embed=utils.SpecialEmbed(title=f"This is your {day.daily:,}x daily in a row!", desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}**", footer=f" {emoji} Extra reward of {reward:,} coins!"))
+            await msg.edit(embed=utils.SpecialEmbed(title=f"This is your {day.daily:,}x daily in a row!", desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}", footer=f" {emoji} Extra reward of {reward:,} coins!"))
             c.coins += reward
 
         #! Save data changes
