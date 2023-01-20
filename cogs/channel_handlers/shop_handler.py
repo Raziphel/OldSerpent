@@ -88,6 +88,7 @@ class Shop_Handler(Cog):
             guild = self.bot.get_guild(payload.guild_id)
             user = guild.get_member(payload.user_id)
             c = utils.Currency.get(user.id)
+            day = utils.Daily.get(user.id)
             bought = False
             item = {"name": "BROKEN OH NO", "coin": -1}
             #? Get the correct item
@@ -143,7 +144,6 @@ class Shop_Handler(Cog):
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a daily bonus!", footer=" "))
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    day = utils.Daily.get(user.id)
                     day.premium = True
 
             #! Save to databse
