@@ -168,8 +168,10 @@ class Loops(Cog):
             if last_message.id == sti.message_id:
                 continue
             else:
-                msg = await channel.fetch_message(sti.message_id) 
-                await msg.delete()
+                try:
+                    msg = await channel.fetch_message(sti.message_id) 
+                    await msg.delete() #! Fuck this god damn thing man
+                except: pass
                 msg = await channel.send('**Loading sticky message**')
                 sti.message_id = msg.id
 
