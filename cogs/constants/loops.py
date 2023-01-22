@@ -157,7 +157,7 @@ class Loops(Cog):
         for channel in channels:
             message_list = await channel.history(limit=1).flatten()
             try:
-                last_message = message_list[0]
+                last_message = message_list[0] #? get last message
             except IndexError:
                 # no messages in the channel
                 print('No message in channel?')
@@ -168,7 +168,7 @@ class Loops(Cog):
             if last_message.id == sti.message_id:
                 continue
             else:
-                msg = await channel.fetch_message(sti.message_id) #? get last message
+                msg = await channel.fetch_message(sti.message_id) 
                 await msg.delete()
                 msg = await channel.send('**Loading sticky message**')
                 sti.message_id = msg.id
