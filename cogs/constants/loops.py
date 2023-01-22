@@ -185,7 +185,7 @@ class Loops(Cog):
                 description=f"**This channel is only for adults**\n**NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofcourse.", color=randint(1, 0xffffff))
             if channel == issues:
                 embed=Embed(title=f"**[- Issues Sticky -]**", 
-                description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@[Alpha-1] Red Right Hand** - Ping for needed moderation on the server.\n**@[Epsilon-11] Nine-Tailed Fox** - Ping for needed moderation on the server.\n**@[Theta-4] Gardeners** - Ya can't ping this actually.\n**@[Zeta-9] Mole Rats** - Ping this for moderation on the server.", color=randint(1, 0xffffff))
+                description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@[Alpha-1] Red Right Hand** - Ping for needed moderation on the server.\n**@[Epsilon-11] Nine-Tailed Fox** - Ping for needed moderation on the server.\n**@[Theta-4] Gardeners** - Ya can't ping this actually.", color=randint(1, 0xffffff))
 
             await msg.edit(content=f" ", embed=embed)
 
