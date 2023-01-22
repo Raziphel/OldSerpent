@@ -104,7 +104,7 @@ class Shop_Handler(Cog):
                     await razi.send(embed=utils.LogEmbed(type="special", title="Discord Nitro Purchase", desc=f"{user} purchased Discord Nitro!!!!", footer=" "))
 
             if emoji == "📚":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Library Pass!\nCost: {coin} 50,000x", footer=" "))
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Library Pass!\nCost: {coin} 25,000x", footer=" "))
                 item['coin'] = 25000
                 item['name'] = "Library Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
