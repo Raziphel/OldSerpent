@@ -153,6 +153,7 @@ class Loops(Cog):
         issues = guild.get_channel(1056747603829731338) #? issues Channel
         supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
         channels = [lounge, bot_usage, issues, supporter]
+        last_message = None
         for channel in channels:
             message_list = await channel.history(limit=1).flatten()
             try:
@@ -166,10 +167,8 @@ class Loops(Cog):
             if last_message.id == sti.message_id:
                 continue
             else:
-                try:
                     msg = await channel.fetch_message(sti.message_id) #? get last message
                     await msg.delete()
-                except: continue
                 msg = await channel.send('**Loading sticky message**')
                 sti.message_id = msg.id
 
