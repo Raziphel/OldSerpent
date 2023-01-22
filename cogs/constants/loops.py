@@ -160,7 +160,6 @@ class Loops(Cog):
             except IndexError:
                 # no messages in the channel
                 print('No message in channel?')
-                continue
 
             #? Check its not the last message already.
             sti = utils.Sticky.get(channel.id)
