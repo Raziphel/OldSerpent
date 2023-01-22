@@ -115,7 +115,7 @@ class Shop_Handler(Cog):
                     await user.add_roles(library_pass, reason="Given a Library Pass role.")
 
             if emoji == "🎫":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Image Pass!\nCost: {coin} 25,000x", footer=" "))
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Image Pass!\nCost: {coin} 20,000x", footer=" "))
                 item['coin'] = 20000
                 item['name'] = "Image Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
