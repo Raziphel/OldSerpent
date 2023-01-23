@@ -41,14 +41,14 @@ class Loops(Cog):
 
         #! Database check
         if self.bot.connected == False:
-            await self.bot.change_presence(activity=Game(name="Databse is Down!!!")) 
+            await self.bot.change_presence(activity=Game(name="Databse is Down!!!"))
             return
 
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
         #* Setting the bot status.
         playing = choice(["Bashin' people with SCP 956", "Lookin' at 096's face", "Curing SCP 008", "Upgrading in 914", "Worshipin' The Scarlet King", "Breaching Containment"])
-        await self.bot.change_presence(activity=Game(name=playing)) 
+        await self.bot.change_presence(activity=Game(name=playing))
 
         #* Setting the Channel Stats.
         members_channel = self.bot.get_channel(856451508865466368)
@@ -128,7 +128,7 @@ class Loops(Cog):
     @one_min_loop.before_loop
     async def before_one_min_loop(self):
         """Waits until the cache loads up before running the leaderboard loop"""
-        
+
         await self.bot.wait_until_ready()
 
 
@@ -169,32 +169,34 @@ class Loops(Cog):
                 continue
             else:
                 try:
-                    msg = await channel.fetch_message(sti.message_id) 
+                    msg = await channel.fetch_message(sti.message_id)
                     await msg.delete() #! Fuck this god damn thing man
-                except: pass
+                except:  # Unable to delete message
+                    pass
+
                 msg = await channel.send('**Loading sticky message**')
                 sti.message_id = msg.id
 
-            #? Check the channels sticky!
-            if channel == supporter:
-                profit = 53
-                embed=Embed(title=f"**[- Supporter Sticky -]**", 
-                description=f"**This channel displays any type of support shown to the Serpent's Garden!**\nThank you to everyone who chooses to support the server!\n\n<:thaumiel:1060393337061912657> `These are Nitro Boosters`\n<:safe:1060391143315083305> `These are 10$ Supporters`\n<:euclid:1060391150709641226> `These are 20$ Supporters`\n<:keter:1060392410682773594> `These are 30$ Supporters`\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: `{profit}$ / 200$` (Keep in mind Discord takes a cut.)\n\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*", color=randint(1, 0xffffff))
-            if channel == bot_usage:
-                embed=Embed(title=f"**[- Bot Usage Sticky -]**", 
-                description=f"**This channel is only for using bot commands!**\nthe Serpent bot has the `.` prefix for regular commands.\nThe Serpent's Music commands use the prefix `!` and both have a help command!", color=randint(1, 0xffffff))
-            if channel == lounge:
-                embed=Embed(title=f"**[- Adult Lounge Sticky -]**", 
-                description=f"**This channel is only for adults**\n**NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofcourse.", color=randint(1, 0xffffff))
-            if channel == issues:
-                embed=Embed(title=f"**[- Issues Sticky -]**", 
-                description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@[Alpha-1] Red Right Hand** - Ping for needed moderation on the server.\n**@[Epsilon-11] Nine-Tailed Fox** - Ping for needed moderation on the server.\n**@[Theta-4] Gardeners** - Ya can't ping this actually.", color=randint(1, 0xffffff))
+                # ! SAVE THAT SHIT
+                async with self.bot.database() as db:
+                    await sti.save(db)
 
-            await msg.edit(content=f" ", embed=embed)
+                #? Check the channels sticky!
+                if channel == supporter:
+                    profit = 53
+                    embed=Embed(title=f"**[- Supporter Sticky -]**",
+                    description=f"**This channel displays any type of support shown to the Serpent's Garden!**\nThank you to everyone who chooses to support the server!\n\n<:thaumiel:1060393337061912657> `These are Nitro Boosters`\n<:safe:1060391143315083305> `These are 10$ Supporters`\n<:euclid:1060391150709641226> `These are 20$ Supporters`\n<:keter:1060392410682773594> `These are 30$ Supporters`\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: `{profit}$ / 200$` (Keep in mind Discord takes a cut.)\n\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*", color=randint(1, 0xffffff))
+                if channel == bot_usage:
+                    embed=Embed(title=f"**[- Bot Usage Sticky -]**",
+                    description=f"**This channel is only for using bot commands!**\nthe Serpent bot has the `.` prefix for regular commands.\nThe Serpent's Music commands use the prefix `!` and both have a help command!", color=randint(1, 0xffffff))
+                if channel == lounge:
+                    embed=Embed(title=f"**[- Adult Lounge Sticky -]**",
+                    description=f"**This channel is only for adults**\n**NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofcourse.", color=randint(1, 0xffffff))
+                if channel == issues:
+                    embed=Embed(title=f"**[- Issues Sticky -]**",
+                    description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@[Alpha-1] Red Right Hand** - Ping for needed moderation on the server.\n**@[Epsilon-11] Nine-Tailed Fox** - Ping for needed moderation on the server.\n**@[Theta-4] Gardeners** - Ya can't ping this actually.", color=randint(1, 0xffffff))
 
-        #! SAVE THAT SHIT
-        async with self.bot.database() as db:
-            await sti.save(db) 
+                await msg.edit(content=f" ", embed=embed)
 
 
 
@@ -218,11 +220,11 @@ class Loops(Cog):
             try: #! Fixing adults roles
                 mod = utils.Moderation.get(user.id)
                 #? Set child & Adults in DB
-                if child in user.roles: 
+                if child in user.roles:
                     if mod.child == False:
                         mod.child = True
                         mod.adult = False
-                if adult in user.roles: 
+                if adult in user.roles:
                     if mod.adult == False:
                         mod.adult = True
                         mod.child = False
@@ -285,7 +287,7 @@ class Loops(Cog):
     @one_hour_loop.before_loop
     async def before_one_hour_loop(self):
         """Waits until the cache loads up before running the leaderboard loop"""
-        
+
         await self.bot.wait_until_ready()
 
 
