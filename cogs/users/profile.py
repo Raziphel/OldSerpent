@@ -324,14 +324,14 @@ class Profile(Cog):
 
         draw.text(
             xy=(17, 190),
-            text=f'Level rank:   {level_rank}#',  # Extra spacing to line up the ranks
+            text=f'Level rank:  {level_rank}#',  # Extra spacing to line up the ranks
             fill=text_color,
             font=fnt
         )
 
         draw.text(
             xy=(17, 215),
-            text=f'Coin rank: {wealth_rank}#',
+            text=f'Coin rank:   {wealth_rank}#',
             fill=text_color,
             font=fnt
         )
