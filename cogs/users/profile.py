@@ -151,8 +151,9 @@ class Profile(Cog):
 
     def get_level_rank(self, member: discord.Member) -> int:
         sorted_levels = utils.Levels.sort_levels()
+        member_level = utils.Levels.get(member.id)
         try:
-            level_rank = sorted_levels.index(member.id)
+            level_rank = sorted_levels.index(member_level)
 
             return level_rank + 1  # Add 1 because indexes start from 0
         except ValueError:  # User is not in the list yet maybe?
@@ -160,8 +161,9 @@ class Profile(Cog):
 
     def get_wealth_rank(self, member: discord.Member) -> int:
         sorted_wealth = utils.Currency.sort_coins()
+        member_wealth = utils.Currency.get(member.id)
         try:
-            wealth_rank = sorted_wealth.index(member.id)
+            wealth_rank = sorted_wealth.index(member_wealth)
 
             return wealth_rank + 1
         except ValueError:
@@ -321,14 +323,14 @@ class Profile(Cog):
         )
 
         draw.text(
-            xy=(17, 200),
-            text=f'Level rank: {level_rank}',
+            xy=(17, 190),
+            text=f'Level rank:    {level_rank}',  # Extra spacing to line up the ranks 
             fill=text_color,
             font=fnt
         )
 
         draw.text(
-            xy=(17, 220),
+            xy=(17, 215),
             text=f'Wealth rank: {wealth_rank}',
             fill=text_color,
             font=fnt
