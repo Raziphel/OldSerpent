@@ -4,6 +4,7 @@ from collections import Counter
 from io import BytesIO
 from math import floor
 
+import discord
 from PIL import Image, ImageDraw, ImageFont
 from discord import Member, ApplicationCommandOption, ApplicationCommandOptionType, File, NotFound
 from discord.ext.commands import command, Cog, BucketType, cooldown, ApplicationCommandMeta
@@ -148,6 +149,24 @@ class Profile(Cog):
 
         return BytesIO(data)
 
+    def get_level_rank(self, member: discord.Member) -> int:
+        sorted_levels = utils.Levels.sort_levels()
+        try:
+            level_rank = sorted_levels.index(member.id)
+
+            return level_rank + 1  # Add 1 because indexes start from 0
+        except ValueError:  # User is not in the list yet maybe?
+            return -1
+
+    def get_wealth_rank(self, member: discord.Member) -> int:
+        sorted_wealth = utils.Currency.sort_coins()
+        try:
+            wealth_rank = sorted_wealth.index(member.id)
+
+            return wealth_rank + 1
+        except ValueError:
+            return -1
+
     async def generate_screenshot(self, member: Member):
         moderation = utils.Moderation.get(member.id)
         levels = utils.Levels.get(member.id)
@@ -173,6 +192,9 @@ class Profile(Cog):
 
         voice_activity = floor(tracking.vc_mins / 60)
         voice_activity = format_number(voice_activity)
+
+        level_rank = self.get_level_rank(member)
+        wealth_rank = self.get_wealth_rank(member)
 
         experience_percentage = current_experience / required_exp
         relative_inner_progress_bar_width = experience_percentage * parent_progress_bar_h_w[0]
@@ -293,6 +315,20 @@ class Profile(Cog):
             font=title_fnt
         )
 
+        draw.text(
+            xy=(17, 200),
+            text=f'Level rank: {level_rank}',
+            fill=text_color,
+            font=fnt
+        )
+
+        draw.text(
+            xy=(17, 220),
+            text=f'Wealth rank: {wealth_rank}',
+            fill=text_color,
+            font=fnt
+        )
+
         # Toss in all the basic information
         speech_balloon = Image.open(f'{resources_directory}/speech-balloon.png').convert('RGBA').resize((27, 27))
         canvas.alpha_composite(speech_balloon, dest=(140, 90))
@@ -304,22 +340,22 @@ class Profile(Cog):
             font=fnt
         )
 
-        coin = Image.open(f'{resources_directory}/gold-coin.png').convert('RGBA').resize((27, 27))
-        canvas.alpha_composite(coin, dest=(140, 123))
+        microphone = Image.open(f'{resources_directory}/microphone-3.png').convert('RGBA').resize((27, 27))
+        canvas.alpha_composite(microphone, dest=(140, 123))
 
         draw.text(
             xy=(168, 123),
-            text=f': {networth} Coins',
+            text=f': {voice_activity} VC hours',
             fill=text_color,
             font=fnt
         )
 
-        microphone = Image.open(f'{resources_directory}/microphone-3.png').convert('RGBA').resize((27, 27))
-        canvas.alpha_composite(microphone, dest=(140, 156))
+        coin = Image.open(f'{resources_directory}/gold-coin.png').convert('RGBA').resize((27, 27))
+        canvas.alpha_composite(coin, dest=(140, 156))
 
         draw.text(
             xy=(168, 156),
-            text=f': {voice_activity} VC hours',
+            text=f': {networth} Coins',
             fill=text_color,
             font=fnt
         )
