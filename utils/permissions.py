@@ -16,7 +16,7 @@ def is_in_dms():
 def is_user(*user_ids):
     '''Commands only certain id's can run'''
     async def predicate(ctx):
-        if ctx.author.id != ctx.bot.config['developers'].values():
+        if ctx.author.id in ctx.bot.config['developers'].values():
             return True
         if ctx.author.id != user_ids:
             raise UserCheckError
@@ -27,7 +27,7 @@ def is_user(*user_ids):
 def is_dev():
     '''Commands only the bot dev can run'''
     async def predicate(ctx):
-        if ctx.author.id != ctx.bot.config['developers'].values():
+        if ctx.author.id in ctx.bot.config['developers'].values():
             raise DevCheckError()
         return True
     return check(predicate)
@@ -47,7 +47,7 @@ def is_guild(*guild_ids):
 def is_nsfw():
     '''Commands only made for NSFW channels.'''
     def predicate(ctx):
-        if ctx.author.id != ctx.bot.config['developers'].values():
+        if ctx.author.id in ctx.bot.config['developers'].values():
             return True
         if isinstance(ctx.channel, DMChannel) or not ctx.channel.nsfw:
             raise NSFWCheckError()
@@ -57,7 +57,7 @@ def is_nsfw():
 def is_staff():
     '''Commands only made for mods'''
     def predicate(ctx):
-        if ctx.author.id != ctx.bot.config['developers'].values():
+        if ctx.author.id in ctx.bot.config['developers'].values():
             return True
         if ctx.author.guild_permissions.manage_messages:
             return True
@@ -68,7 +68,7 @@ def is_staff():
 def is_mod_staff():
     '''Commands only made for admins'''
     def predicate(ctx):
-        if ctx.author.id != ctx.bot.config['developers'].values():
+        if ctx.author.id in ctx.bot.config['developers'].values():
             return True
         if ctx.author.guild_permissions.mute_members:
             return True
@@ -79,7 +79,7 @@ def is_mod_staff():
 def is_admin_staff():
     '''Commands only made for owners'''
     def predicate(ctx):
-        if ctx.author.id != ctx.bot.config['developers'].values():
+        if ctx.author.id in ctx.bot.config['developers'].values():
             return True
         if ctx.author.guild_permissions.manage_roles:
             return True
