@@ -1,11 +1,11 @@
 
 #* Discord
 from discord.ext.commands import command, Cog
-#* Addition
-from asyncio import iscoroutine
-from traceback import format_exc
 
 import utils
+
+
+# * Addition
 class Cogs(Cog):
     def __init__(self, bot):
         self.bot = bot

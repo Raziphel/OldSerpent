@@ -1,16 +1,12 @@
 
 #* Discord
-from discord.ext.commands import command, Cog, BucketType, cooldown, group, RoleConverter
-from discord import Member, Message, User, TextChannel, Role, RawReactionActionEvent, Embed
-import utils
-#* Additions
-from asyncio import iscoroutine, gather, sleep
-from traceback import format_exc
-from math import floor
-from random import randint, choice
-from datetime import datetime as dt, timedelta
+from discord import RawReactionActionEvent, Embed
+from discord.ext.commands import Cog
 
 import utils
+
+
+# * Additions
 
 class rules_handler(Cog):
     def __init__(self, bot):

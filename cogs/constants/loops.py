@@ -1,14 +1,11 @@
-from datetime import datetime as dt, timedelta
-from random import choice
-
-from discord.ext.commands import Cog
-from discord.ext import tasks
-from discord import Member, Message, User, Game, Embed, Color
-
 import math
+from asyncio import sleep
+from datetime import datetime as dt, timedelta
 from random import randint, choice
 
-from asyncio import sleep
+from discord import Game, Embed
+from discord.ext import tasks
+from discord.ext.commands import Cog
 
 import utils
 

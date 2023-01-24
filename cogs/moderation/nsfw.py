@@ -1,9 +1,10 @@
 
 #* Discord
-from discord.ext.commands import command, Cog, Greedy
-from discord import Member, Message, User
+from discord import Member
+from discord.ext.commands import command, Cog
 
 import utils
+
 
 class Nsfw(Cog):
     def __init__(self, bot):

@@ -1,11 +1,9 @@
 
 # Discord
-from discord.ext.commands import command, Cog, BucketType, cooldown, group
-from discord import Member, Message, User, Game, Embed
+from random import randint
 
-from random import randint, choice
-
-import utils
+from discord import Embed
+from discord.ext.commands import command, Cog
 
 
 class Help(Cog):

@@ -1,14 +1,20 @@
 
 #* Discord
 from discord.ext.commands import command, Cog, Greedy
-from discord import Member, Message, User, DiscordException
+from discord import Member, DiscordException
 
 #* Additions
-from asyncio import sleep, Task
-from datetime import datetime, timedelta
-from typing import Tuple, Dict, Optional
+from typing import Optional
 
 import utils
+# * Additions
+from typing import Optional
+
+from discord import Member, DiscordException
+from discord.ext.commands import command, Cog, Greedy
+
+import utils
+
 
 class Muting(Cog):
     def __init__(self, bot):

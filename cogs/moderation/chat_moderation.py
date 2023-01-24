@@ -1,14 +1,12 @@
 # Discord
-from discord.ext.commands import command, Cog, Greedy
-from discord import Member, Message, User, TextChannel
-
-# Additions
-from random import randint
-from datetime import datetime as dt, timedelta
-from more_itertools import unique_everseen
-from re import search
 from asyncio import sleep
+# Additions
+from datetime import datetime as dt
 from re import compile
+
+from discord import Member, Message
+from discord.ext.commands import Cog
+from more_itertools import unique_everseen
 
 import utils
 

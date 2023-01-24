@@ -1,12 +1,17 @@
 
 #* Discord
-from discord.ext.commands import command, Cog
-from discord.utils import get
+from discord.ext.commands import Cog
 #* Additions
 import math
-from random import randint, choice
 
 import utils
+# * Additions
+import math
+
+from discord.ext.commands import Cog
+
+import utils
+
 
 class Logging(Cog):
 

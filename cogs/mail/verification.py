@@ -1,11 +1,18 @@
 
 #* Discord
-from discord.ext.commands import command, Cog
-from discord import Embed, PartialEmoji, Message, Member, DiscordException, guild
+from discord.ext.commands import Cog
+from discord import Embed, Member, DiscordException, guild
 #* Additions
-from asyncio import sleep, TimeoutError
+from asyncio import TimeoutError
 from typing import Optional
-from re import findall
+
+import utils
+# * Additions
+from asyncio import TimeoutError
+from typing import Optional
+
+from discord import Embed, Member, DiscordException, guild
+from discord.ext.commands import Cog
 
 import utils
 

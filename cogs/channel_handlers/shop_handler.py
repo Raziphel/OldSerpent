@@ -1,15 +1,14 @@
 
 #* Discord
-from discord.ext.commands import command, Cog, group, RoleConverter
-from discord import Member, Message, User, TextChannel, Role, RawReactionActionEvent, Embed
-#* Additions
-from asyncio import iscoroutine, gather, sleep
-from traceback import format_exc
-
-from random import choice, randint
 from math import floor
 
+from discord import RawReactionActionEvent, Embed
+from discord.ext.commands import Cog
+
 import utils
+
+
+# * Additions
 
 class Shop_Handler(Cog):
     def __init__(self, bot):

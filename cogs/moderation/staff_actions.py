@@ -1,15 +1,20 @@
 
 #* Discord
-from discord.ext.commands import command, Cog, Greedy
-from discord import Member, Message, User, Embed
+from discord.ext.commands import command, Cog
+from discord import Member, User, Embed
 
 #* Additions
 from typing import Optional
-from asyncio import sleep
-from datetime import datetime as dt, timedelta
-from random import choice
 
 import utils
+# * Additions
+from typing import Optional
+
+from discord import Member, User, Embed
+from discord.ext.commands import command, Cog
+
+import utils
+
 
 class Staff_Actions(Cog):
     def __init__(self, bot):

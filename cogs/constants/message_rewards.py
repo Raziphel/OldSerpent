@@ -1,11 +1,10 @@
 # Discord
-from discord.ext.commands import command, Cog, BucketType, cooldown, group, RoleConverter
-from discord import Member, Message, User, TextChannel, Role, RawReactionActionEvent, Embed
 # Additions
-from datetime import datetime as dt, timedelta
-from asyncio import iscoroutine, gather, sleep
-from math import floor 
+from asyncio import sleep
 from random import choice, randint
+
+from discord import RawReactionActionEvent
+from discord.ext.commands import Cog
 
 import utils
 

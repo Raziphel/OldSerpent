@@ -1,16 +1,16 @@
 # Discord
-from discord.ext.commands import command, Cog
-from discord import Member, Message, User, TextChannel
-from discord.ext.tasks import loop
-# Additions
-from random import randint, choice
 from datetime import datetime as dt, timedelta
-from more_itertools import unique_everseen
-from re import search
-from asyncio import sleep
+# Additions
+from random import choice
 from re import compile
 
+from discord import Message
+from discord.ext.commands import Cog
+from discord.ext.tasks import loop
+from more_itertools import unique_everseen
+
 import utils
+
 
 class Currency_Gen(Cog):
     def __init__(self, bot):

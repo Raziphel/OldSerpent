@@ -1,14 +1,22 @@
 
 #* Discord
 from discord.ext.commands import command, Cog
-from discord import Embed, PartialEmoji, Message, Member, DiscordException, guild
+from discord import Embed, DiscordException
 #* Additions
-from asyncio import sleep, TimeoutError
+from asyncio import TimeoutError
 from typing import Optional
-from re import findall, compile
+from re import compile
 
 import utils
+# * Additions
+from asyncio import TimeoutError
+from re import compile
+from typing import Optional
 
+from discord import Embed, DiscordException
+from discord.ext.commands import command, Cog
+
+import utils
 
 
 class SonaCancelled(BaseException):

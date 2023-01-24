@@ -1,14 +1,25 @@
 
 #* Discord
 from discord.ext.commands import command, Cog
-from discord import Member, Message, User, Game, Embed
+from discord import Member
 #*Additions
-from asyncio import sleep, wait, iscoroutine
+from asyncio import sleep, iscoroutine
 from time import monotonic
 from datetime import datetime as dt, timedelta
 from random import choice
 
 import utils
+# *Additions
+from asyncio import sleep, iscoroutine
+from datetime import datetime as dt, timedelta
+from random import choice
+from time import monotonic
+
+from discord import Member
+from discord.ext.commands import command, Cog
+
+import utils
+
 
 class Developer(Cog):
     def __init__(self, bot):

@@ -1,12 +1,11 @@
 # Discord
-from discord.ext.commands import command, cooldown, BucketType, Cog
-from discord import Member, Message, User
-
 from datetime import datetime as dt, timedelta
-from math import floor
 from random import choice
 
+from discord.ext.commands import command, Cog
+
 import utils
+
 
 class Daily(Cog):
     def __init__(self, bot):
