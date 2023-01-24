@@ -301,6 +301,11 @@ class Profile(Cog):
             font=fnt
         )
 
+        # Temporary solution for long usernames? In the future, it'd be nice to adjust the text's size dynamically so
+        # that it fits. Although we will have to set a limit either way, so..
+        if len(username) > 16:
+            username = username[:16] + '..'
+
         draw.text(
             xy=(140, 20),
             text=username,
