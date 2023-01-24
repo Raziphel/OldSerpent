@@ -99,7 +99,7 @@ class Shop_Handler(Cog):
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats!!!  Razi will give you your reward within 24 hours!", footer=" "))
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    razi = guild.get_member(self.bot.config['developers']['razi']])
+                    razi = guild.get_member(self.bot.config['developers']['razi'])
                     await razi.send(embed=utils.LogEmbed(type="special", title="Discord Nitro Purchase", desc=f"{user} purchased Discord Nitro!!!!", footer=" "))
 
             if emoji == "📚":
