@@ -12,6 +12,7 @@ class Daily(Cog):
         self.bot = bot
 
 
+
     @command()
     async def daily(self, ctx):
         '''Claim you daily rewards!'''

@@ -72,7 +72,7 @@ class Error_Handler(Cog):
             msg = await ctx.send(embed=utils.ErrorEmbed(error_msg=f"Something unexpected happened?", guild=ctx.author.guild))
             pass
 
-        if ctx.author.id == self.bot.config['developer']:
+        if ctx.author.id == self.bot.config['developers'].values():
             await ctx.author.send(f"Command failed - `{error!s}`;")
 
         await sleep(4)
