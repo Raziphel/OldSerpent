@@ -113,19 +113,19 @@ class Daily(Cog):
             # Wait for the user to respond
             interaction = await self.bot.wait_for("component_interaction", check=check)
 
-            # Now the user has responded, disable the buttons on the message
-            components.disable_components()
-            await interaction.response.edit_message(components=components)
-
             reward = choice([100, 500])
             c.coins += reward
 
-            await ctx.interaction.response.edit_message(
+            # Now the user has responded, disable the buttons on the message
+            components.disable_components()
+
+            await interaction.response.edit_message(
                 embed=utils.SpecialEmbed(
                     title=f"This is your {day.daily:,}x daily in a row!",
                     desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}",
                     footer=f" {emoji} Extra reward of {reward:,} coins!"
-                )
+                ),
+                components=components
             )
 
         # ! Save data changes
