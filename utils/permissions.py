@@ -27,7 +27,7 @@ def is_user(*user_ids):
 def is_dev():
     '''Commands only the bot dev can run'''
     async def predicate(ctx):
-        if ctx.author.id in ctx.bot.config['developers'].values():
+        if ctx.author.id not in ctx.bot.config['developers'].values():
             raise DevCheckError()
         return True
     return check(predicate)
