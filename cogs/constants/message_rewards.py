@@ -33,17 +33,17 @@ class Message_Rewards(Cog):
 
         #! Define some variables
         user = message.author
-        messages = await message.channel.history(limit=8).flatten()
+        messages = await message.channel.history(limit=10).flatten()
 
         #! Give them some rewards!
         try:
             chance = randint(1, 750)
             if chance <= 3:
-                message = choice(messages)
-                msg = await message.channel.send(embed=utils.DefualtEmbed(user=user, desc=f"**Random Tip:** {choice(utils.Tips)}", footer="🍀"))
-                await sleep(10)
-                await msg.delete()
-            elif chance <= 35:
+                for x in range(5):
+                    message = choice(messages)
+                    await message.add_reaction(self.bot.config['emotes']['bunny'])
+                    self.bunny_messages.append(message.id)
+            elif chance <= 25:
                 message = choice(messages)
                 await message.add_reaction(self.bot.config['emotes']['coin'])
                 self.coin_messages.append(message.id)
@@ -93,6 +93,17 @@ class Message_Rewards(Cog):
                 c.coins += coin
                 c.coins_earned += coin
                 msg = await channel.send(embed=utils.DefualtEmbed(user=user, desc=f"{user} found **{coin} {coin_e}x**"))
+
+        #! Get the correct item
+        if str(payload.emoji) == bunny_e:
+            if message.id in self.bunny_messages:
+                self.bunny_messages.remove(message.id)
+                await message.clear_reactions()
+                coin = choice([100, 150, 250])
+                coin = await utils.CoinFunctions.pay_tax(payer=user, amount=coin)
+                c.coins += coin
+                c.coins_earned += coin
+                msg = await channel.send(embed=utils.DefualtEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a bunny!**"))
 
         else: 
             return
