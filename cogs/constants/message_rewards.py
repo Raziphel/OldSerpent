@@ -37,7 +37,7 @@ class Message_Rewards(Cog):
 
         #! Give them some rewards!
         try:
-            chance = randint(1, 750)
+            chance = randint(1, 1000)
             if chance <= 3:
                 for x in range(5):
                     message = choice(messages)
