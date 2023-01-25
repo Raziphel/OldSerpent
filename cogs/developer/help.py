@@ -1,9 +1,8 @@
-
 # Discord
 from random import randint
 
 from discord import Embed
-from discord.ext.commands import command, Cog
+from discord.ext.commands import command, Cog, Group, ApplicationCommandMeta
 
 
 class Help(Cog):
@@ -19,9 +18,14 @@ class Help(Cog):
     async def cog_command_error(self, ctx, error):
         raise error
 
-    @command(name='help', aliases=['commands'], hidden=True)
-    async def help(self, ctx, *, command_name:str=None):
-        '''Gives you the new help command uwu'''
+    @command(
+        name='help',
+        aliases=['commands'],
+        hidden=True,
+        application_command_meta=ApplicationCommandMeta(),
+    )
+    async def help(self, ctx, *, command_name: str = None):
+        """Gives you the new help command uwu"""
 
         # Get all the cogs
         if not command_name:
@@ -47,7 +51,7 @@ class Help(Cog):
             for command in cog:
                 runnable = command.hidden == False and command.enabled == True
                 if runnable:
-                    runnable_cog.append(command) 
+                    runnable_cog.append(command)
             runnable_cog.sort(key=lambda x: x.name)
             if len(runnable_cog) > 0:
                 runnable_commands.append(runnable_cog)
@@ -64,13 +68,14 @@ class Help(Cog):
         if command_name:
             help_embed.add_field(name=f"{ctx.prefix}{base_command.qualified_name}", value=f"{base_command.help}")
         for cog_commands in runnable_commands:
-            value = '\n'.join([f"**{ctx.prefix}{command.qualified_name}** - *{command.short_doc}*" for command in cog_commands])
+            value = '\n'.join(
+                [f"**{ctx.prefix}{command.qualified_name}** - *{command.short_doc}*" for command in cog_commands])
             help_embed.add_field(
                 name=cog_commands[0].cog_name,
                 value=value,
                 inline=False
             )
-        
+
         # Send it to the user
         try:
             await ctx.author.send(embed=help_embed)
