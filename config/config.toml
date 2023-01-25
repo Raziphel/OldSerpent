@@ -2,10 +2,11 @@ token = "NTUwNDc0MTQ5MzMyNTE2ODgx.XHcrAA.ZgHJ_6yYFb9CTim_ElLTWrFwwX8"
 prefix = "."
 garden_id = 689534383878701223
 patreon = "https://discord.com/servers/the-serpent-s-garden-689534383878701223"
+bot_id = 896690181455892481
+
 [developers]
     razi = 159516156728836097
     basil = 206430272671973377
-bot_id = 896690181455892481
 
 
 [database]
