@@ -297,7 +297,7 @@ class Profile(Cog):
         canvas.paste(profile_picture, (22, 22))
 
         draw.text(
-            xy=(38, 132),
+            xy=(38 if current_level > 10 else 40, 132),
             text=f'Level {current_level}',
             fill=text_color,
             font=fnt

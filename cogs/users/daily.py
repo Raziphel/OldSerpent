@@ -2,6 +2,7 @@
 from datetime import datetime as dt, timedelta
 from random import choice
 
+import discord
 from discord.ext.commands import command, Cog, ApplicationCommandMeta
 
 import utils
@@ -20,10 +21,6 @@ class Daily(Cog):
         day = utils.Daily.get(ctx.author.id)
         lvl = utils.Levels.get(ctx.author.id)
         c = utils.Currency.get(ctx.author.id)
-        if not day.premium:
-            footer = " ~ Hasn't unlocked Bonus Rewards ~"
-        else:
-            footer = "Click a reward!"
 
         # ! Check if it's first daily
         if not day.daily:
@@ -77,51 +74,62 @@ class Daily(Cog):
 
         coin_e = self.bot.config['emotes']['coin']
 
+        footer = " ~ Hasn't unlocked Bonus Rewards ~"
+        components = None
+
+        # ! Premium
+        if day.premium:
+            footer = "Click for a reward!"
+            emojis = (
+                "🔷",
+                "🏴",
+                "🔶",
+                "🍄"
+            )
+            emoji = choice(emojis)
+            components = discord.ui.MessageComponents(
+                discord.ui.ActionRow(
+                    (reward_button := discord.ui.Button(emoji=emoji)),
+                ),
+            )
+
         # ! Send the embed
         msg = await ctx.interaction.response.send_message(
             embed=utils.SpecialEmbed(
                 title=f" This is your {day.daily:,}x daily in a row!",
                 desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}",
                 footer=footer
-            )
+            ),
+            components=components
         )
 
-        # ! Premium
         if day.premium:
-            footer = f"Click a random reward!"
-            e_emoji = choice(['🏴', '🔷', '🔶', '🍄'])
-            emoji = e_emoji
-            await msg.add_reaction(e_emoji)
-            check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🔷", "🏴", "🔶", "🍄"]
-            r, _ = await self.bot.wait_for('reaction_add', check=check)
-            if e_emoji == "🏴":
-                if emoji == '🏴':
-                    reward = choice([1000, 700])
+            def check(interaction: discord.Interaction):
+                if interaction.user != ctx.author:
+                    return False
 
-            if e_emoji == "🔷":
-                if emoji == '🔷':
-                    reward = choice([300, 500])
+                return interaction.custom_id == reward_button.custom_id
 
-            if e_emoji == "🍄":
-                if emoji == '🍄':
-                    reward = choice([200, 400])
+            # Wait for the user to respond
+            interaction = await self.bot.wait_for("component_interaction", check=check)
 
-            if e_emoji == "🔶":
-                if emoji == '🔶':
-                    reward = choice([-1000, -500])
+            reward = choice([100, 500])
+            c.coins += reward
 
-            await msg.edit(
+            # Now the user has responded, disable the buttons on the message
+            components.disable_components()
+
+            await interaction.response.edit_message(
                 embed=utils.SpecialEmbed(
                     title=f"This is your {day.daily:,}x daily in a row!",
                     desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}",
                     footer=f" {emoji} Extra reward of {reward:,} coins!"
-                )
+                ),
+                components=components
             )
-            c.coins += reward
 
         # ! Save data changes
         day.last_daily = dt.utcnow()
-        await msg.clear_reactions()
         async with self.bot.database() as db:
             await day.save(db)
             await c.save(db)
