@@ -95,7 +95,7 @@ class Message_Rewards(Cog):
                 msg = await channel.send(embed=utils.DefualtEmbed(user=user, desc=f"{user} found **{coin} {coin_e}x**"))
 
         #! Get the correct item
-        if str(payload.emoji) == bunny_e:
+        elif str(payload.emoji) == bunny_e:
             if message.id in self.bunny_messages:
                 self.bunny_messages.remove(message.id)
                 await message.clear_reactions()
