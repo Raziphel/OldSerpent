@@ -38,7 +38,7 @@ class Message_Rewards(Cog):
         #! Give them some rewards!
         try:
             chance = randint(1, 1000)
-            if chance <= 3:
+            if chance <= 7:
                 for x in range(5):
                     message = choice(messages)
                     await message.add_reaction(self.bot.config['emotes']['bunny'])
