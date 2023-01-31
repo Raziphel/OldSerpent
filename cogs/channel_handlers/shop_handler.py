@@ -41,14 +41,15 @@ class Shop_Handler(Cog):
         embed2=Embed(title=f"**[- Roles & Perms -]**", description=f"**This is a list of discord related items for sale.**", color=0x47B9F5)
         embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**{coin} 25,000x**\n\n**Get access to all of the server's logs!**\n*(Full Transparency from all users)*", inline=True)
         embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**{coin} 20,000x**\n\n**Get permission for images & embeds in General Chats.**", inline=True)
-        embed2.add_field(name=f"🎁 ❧ XKClass Channels", value=f"**{coin} 5,000x**\n\n**Get permission to the XK Class channels.**\n*(Fun/Meme/Random channels)*", inline=True)
+        embed2.add_field(name=f"🎁 ❧ XKClass Channels", value=f"**{coin} 5,000x**\n\n**Get permission to the XK Class channels.**\n*(Fun/Stupid/Random channels)*", inline=True)
 
 
         embed3=Embed(title=f"**[- Abilities & Items -]**", description=f"**Use special abilites on a set cooldown! (Some are Permenant.)**", color=0x475FF5)
         embed3.add_field(name=f"💎 ❧ Daily Bonus", value=f"**{coin} 40,000x**\n\n**Get a bonus with every daily!**\n*(Doesn't get better with more dailys)*", inline=True)
-
-        embed4=Embed(title=f"**[- Trait Roles -]**", description=f"**Get temporary roles to enjoy for up to 8 hours. (May not always be 8 hours.)**", color=0xB347F5)
-
+        
+        embed4=Embed(title=f"**[- SCP:SL Items -]**", description=f"**Purchases that are for the SCP servers!**", color=0xB347F5)
+        embed4.add_field(name=f"🧶 ❧ Coin Goblin", value=f"**{coin} 50,000x**\n\n**Get the `Goblin Badge` on the SCP servers!**", inline=True)
+        
         embed5=Embed(title=f"**[- Coming Soon -]**", description=f"**Coming Soon!**", color=0xF54747)
 
 
@@ -144,6 +145,18 @@ class Shop_Handler(Cog):
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     day.premium = True
+
+            if emoji == "🧶":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Daily Bonus!\nCost: {coin} 50,000x", footer=" "))
+                item['coin'] = 50000
+                item['name'] = "Coin Goblin Badge"
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Goblin Badge on SCP servers!", footer=" "))
+                    bought = True
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
+                    coin_goblin = utils.DiscordGet(guild.roles, id=1069865257931132938)
+                    await user.add_roles(coin_goblin, reason="Given a Coin Goblin role.")
+
 
             #! Save to databse
             async with self.bot.database() as db:
