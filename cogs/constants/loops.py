@@ -145,11 +145,17 @@ class Loops(Cog):
 
 
         #! THE STICKY CODE BLOCK >:O
+        general = guild.get_channel(807828084937850921) #? General Channel
         lounge = guild.get_channel(1022373213520547912) #? adult lounge Channel
+        furry_lounge = guild.get_channel(1028881630363926568) #? furry lounge Channel
+        supporter_lounge = guild.get_channel(1056775863842111488) #? supporter lounge Channel
+        scp_lounge = guild.get_channel(1056048682878910534) #? scp lounge Channel
         bot_usage = guild.get_channel(1028771493179560066) #? bot_usage Channel
         issues = guild.get_channel(1056747603829731338) #? issues Channel
         supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
-        channels = [lounge, bot_usage, issues, supporter]
+        adult_memes = guild.get_channel(1069887003094683698) #? Adult Memes Channel
+        channels = [lounge, bot_usage, issues, supporter, adult_memes, general]
+        lounges = [lounge, scp_lounge, supporter_lounge, furry_lounge]
         last_message = None
         for channel in channels:
             message_list = await channel.history(limit=1).flatten()
@@ -189,9 +195,15 @@ class Loops(Cog):
                 if channel == lounge:
                     embed=Embed(title=f"**[- Adult Lounge Sticky -]**",
                     description=f"**This channel is only for adults**\n**NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofcourse.", color=randint(1, 0xffffff))
+                if channel == adult_memes:
+                    embed=Embed(title=f"**[- Adult Memes Sticky -]**",
+                    description=f"**This channel is only for adults**\n**NSFW content is not allowed!**\nThe Auto Chat filters are off, but you can still be punished\n for being overly offensive ofcourse.", color=randint(1, 0xffffff))
                 if channel == issues:
                     embed=Embed(title=f"**[- Issues Sticky -]**",
                     description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@Game Staff** - Ping for anything SCP Server related.\n**@Discord Staff** - Ping for anything Discord related.", color=randint(1, 0xffffff))
+                if channel in lounges:
+                    embed=Embed(title=f"**[- Lounge Stickys! -]**",
+                    description=f"**Confused by which lounge is which!?**\n\n`🌺 | General Channels\n🍺 | Adult Channels\n🦺 | SCP Channels\n🐾 | Furry Channels\n💕 Supporter Channels\n\nPlease understand this and only post in the correct channels! **<3**", color=randint(1, 0xffffff))
 
                 await msg.edit(content=f" ", embed=embed)
 
