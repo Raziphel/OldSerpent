@@ -97,7 +97,7 @@ class rules_handler(Cog):
         msg2 = await ch.fetch_message(1052828331197874176) #? msg
         msg3 = await ch.fetch_message(1052828335283122196) #? msg
 
-        ch2 = guild.get_channel(1052824545146445885) #? role change Channel
+        ch2 = guild.get_channel(1069848085167091712) #? Stat Channel
         msg10 = await ch2.fetch_message(1052854912381374514) #? REPORTING
 
         coin = self.bot.config['emotes']['coin']
@@ -112,8 +112,8 @@ class rules_handler(Cog):
         description=f"", color=0xFFFFFF)
 
 
-        embed10=Embed(title=f"**[- Creating a report! -]**", 
-        description=f"**You can create reports on players in the SCP server, using this simple reporting tool!**\n\nEven if staff are not in the server they can punish from these reports and moderate easily!  Please use these over the in-game reports since you already using the Discord!  (Which we thank you for!)\n\nIf your report is not on the list of pre-defined reports its may not be against our rules!", color=0xFFFFFF)
+        embed10=Embed(title=f"**[- Stats Table -]**", 
+        description=f"[Most Kills](https://discord.com/channels/689534383878701223/1069729906994450462/1069745339520786472)\n[Most Deaths](https://discord.com/channels/689534383878701223/1069729906994450462/1069745366502748240)\n[Rounds Played](https://discord.com/channels/689534383878701223/1069729906994450462/1069745393723772989)\n[Most Playtime](https://discord.com/channels/689534383878701223/1069729906994450462/1069745459905708132)\n[Sodas Used](https://discord.com/channels/689534383878701223/1069729906994450462/1069745478570365010)\n[Medkits Used](https://discord.com/channels/689534383878701223/1069729906994450462/1069745499755794502)\n[Balls Used](https://discord.com/channels/689534383878701223/1069729906994450462/1069745523021586462)\n[Adrenalines Used](https://discord.com/channels/689534383878701223/1069729906994450462/1069745547096903690)\n[Most Escapes](https://discord.com/channels/689534383878701223/1069729906994450462/1069745575865614346)\n[Fastest Escape](https://discord.com/channels/689534383878701223/1069729906994450462/1069745597189460038)\n[Most Won Rounds](https://discord.com/channels/689534383878701223/1069729906994450462/1069745619402490039)\n[Most Rounds Lost](https://discord.com/channels/689534383878701223/1069729906994450462/1069745640936054784)\n[Most Pocket Escapes](https://discord.com/channels/689534383878701223/1069729906994450462/1069745667737669673)", color=0xFFFFFF)
 
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
