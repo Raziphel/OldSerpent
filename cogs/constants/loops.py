@@ -203,9 +203,11 @@ class Loops(Cog):
                     description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@Game Staff** - Ping for anything SCP Server related.\n**@Discord Staff** - Ping for anything Discord related.", color=randint(1, 0xffffff))
                 if channel in lounges:
                     embed=Embed(title=f"**[- Lounge Stickys! -]**",
-                    description=f"**Confused by which lounge is which!?**\n\n`🌺 General Channels`\n`🍺 Adult Channels`\n`🦺 SCP Channels`\n`🐾 Furry Channels`\n`💕 Supporter Channels`\n\nPlease understand this and only post in the correct channels! **<3**", color=randint(1, 0xffffff))
-
-                await msg.edit(content=f" ", embed=embed)
+                    description=f"**Confused by which lounge is which!?**\n\n`🌺 General Channels`\n`🍺 Adult Channels`\n`🔒 SCP Channels`\n`🐾 Furry Channels`\n`💕 Supporter Channels`\n\nPlease understand this and only post in the correct channels! **<3**", color=randint(1, 0xffffff))
+                try:
+                    await msg.edit(content=f" ", embed=embed)
+                except: 
+                    print(f'Couldnt edit sticky for {channel}')
 
 
 
