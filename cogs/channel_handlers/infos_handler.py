@@ -98,7 +98,7 @@ class rules_handler(Cog):
         msg3 = await ch.fetch_message(1052828335283122196) #? msg
 
         ch2 = guild.get_channel(1069729906994450462) #? Stat Channel
-        msg10 = await ch2.fetch_message(1052854912381374514) #? REPORTING
+        msg10 = await ch2.fetch_message(1069848085167091712) #? REPORTING
 
         coin = self.bot.config['emotes']['coin']
 
