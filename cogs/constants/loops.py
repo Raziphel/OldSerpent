@@ -163,7 +163,7 @@ class Loops(Cog):
                 last_message = message_list[0] #? get last message
             except IndexError:
                 # no messages in the channel
-                print('No message in channel? {channel}')
+                print(f'No message in channel? {channel}')
                 continue
 
             #? Check its not the last message already.
