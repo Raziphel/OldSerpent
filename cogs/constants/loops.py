@@ -145,8 +145,8 @@ class Loops(Cog):
 
 
         #! THE STICKY CODE BLOCK >:O
-        general = guild.get_channel(807828084937850921) #? General Channel
-        lounge = guild.get_channel(1022373213520547912) #? adult lounge Channel
+        lounge = guild.get_channel(807828084937850921) #? General Channel
+        adult_lounge = guild.get_channel(1022373213520547912) #? adult lounge Channel
         furry_lounge = guild.get_channel(1028881630363926568) #? furry lounge Channel
         supporter_lounge = guild.get_channel(1056775863842111488) #? supporter lounge Channel
         scp_lounge = guild.get_channel(1056048682878910534) #? scp lounge Channel
@@ -154,7 +154,7 @@ class Loops(Cog):
         issues = guild.get_channel(1056747603829731338) #? issues Channel
         supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
         adult_memes = guild.get_channel(1069887003094683698) #? Adult Memes Channel
-        channels = [lounge, bot_usage, issues, supporter, adult_memes, general, lounge, scp_lounge, supporter_lounge, furry_lounge]
+        channels = [adult_lounge, bot_usage, issues, supporter, adult_memes, lounge, scp_lounge, supporter_lounge, furry_lounge]
         lounges = [lounge, scp_lounge, supporter_lounge, furry_lounge]
         last_message = None
         for channel in channels:
