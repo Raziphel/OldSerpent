@@ -45,7 +45,7 @@ class rules_handler(Cog):
         await rules2.edit(content=f" ", embed=embed2)
         await rules3.edit(content=f" ", embed=embed3)
         await rules4.edit(content=f" ", embed=embed4)
-        await rules5.edit(content=f" ", embed=embed5
+        await rules5.edit(content=f" ", embed=embed5)
 
 
 
