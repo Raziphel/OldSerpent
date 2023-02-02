@@ -281,7 +281,7 @@ class Verification(Cog):
             return message
 
         try:
-            proof = await get_input(f"**Lying about your age is a bannable offense!**   Please say 'I agree' if you are an adult or do 'cancel'.\nLying about your age to get in adult areas is seriously not worth it, there is **NO NSFW** allowed.\nYou have nothing to gain..\n\n**WARNING THIS MESSAGE WILL SEND EVERY MINUTE UNTIL YOU RESPOND**.")
+            proof = await get_input(f"**Lying about your age is a bannable offense!**   Please say `I agree` if you are an adult or do `cancel`.\n**NO NSFW CONTENT IS ALLOWED**\nYou have nothing to gain..\n\n**This message can send twice sometimes.")
             table_data['proof'] = proof.content
 
             msg = f"Proof: **{table_data.get('proof')}**"
@@ -301,12 +301,18 @@ class Verification(Cog):
             await author.send(embed=embed2)
 
         except DiscordException:
+            wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
+            await author.remove_roles(wanting_adult, reason="Removed wanting adult role")
             await author.send('I\'m unable to DM you?')
 
         except VerificationCancelled:
+            wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
+            await author.remove_roles(wanting_adult, reason="Removed wanting adult role")
             await author.send('Aborting Adult Verification!')
 
         except TimeoutError:
+            wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
+            await author.remove_roles(wanting_adult, reason="Removed wanting adult role")
             await author.send('Sorry, but you took too long to respond.  Verification has closed.')
 
 
