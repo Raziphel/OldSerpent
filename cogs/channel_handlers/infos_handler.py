@@ -45,43 +45,7 @@ class rules_handler(Cog):
         await rules2.edit(content=f" ", embed=embed2)
         await rules3.edit(content=f" ", embed=embed3)
         await rules4.edit(content=f" ", embed=embed4)
-        await rules5.edit(content=f" ", embed=embed5)
-
-
-
-
-
-    @Cog.listener('on_ready')
-    async def role_change(self):
-        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['role_change']) #? role change Channel
-
-        msg1 = await ch.fetch_message(1029973755428093986) #? msg
-        msg2 = await ch.fetch_message(1029973761673408543) #? msg
-        msg3 = await ch.fetch_message(1029973773656531015) #? msg
-        msg4 = await ch.fetch_message(1029975810251169873) #? msg
-        
-        coin = self.bot.config['emotes']['coin']
-
-        embed1=Embed(title=f"**[- Level Roles -]**", 
-        description=f"This is the levels you recieve each role at! Any other roles are probably staff or a donator role!\n\n**Level 100 ->** `Serpent's Hand`\n**Level 90 ->** `Gamers Against Weed`\n**Level 80 ->** `Chaos Insurgency`\n**Level 75 ->** `Children of the Scarlet King`\n**Level 70 ->** `Sarkic Cult`\n**Level 65 ->** `Church of the Broken God`\n**Level 60 ->** `Global Occult Coalition`\n**Level 55 ->** `Unusual Incidents Unit`\n**Level 50 ->** `Ethics Committee`\n**Level 45 ->** `Memetics Division`\n**Level 40 ->** `Site Director`\n**Level 35 ->** `Facility Manager`\n**Level 30 ->** `MTF Operative`\n**Level 25 ->** `Sequrity Officer`\n**Level 20 ->** `Containment Specialist`\n**Level 15 ->** `Head-Reseracher`\n**Level 10 ->** `Scientist`\n**Level 5 ->** `D-Class`\n**Level 0 ->** `Janitor`", color=0xFF0000)
-
-        embed2=Embed(title=f"**[- Pickable Roles -]**", 
-        description=f"🔥 `SCP Ping`\nAnyone can ping you with this role!\nIts only to be used when notifying people to play SCP!\n\n🍙`Weebs`\nGives you access to the Anime channel... Oh no.\n\n🌈`LGBT`\nSingals that you support or are LGBT! c:\n\n🐾 `Furry`\nThis role is for those degenerates!", color=0x0000FF)
-
-        embed3=Embed(title=f"**[- Update Pings -]**", 
-        description=f"**These roles are pinged by staff only.  Anyone who pings the role will be banned.** *So atleast if ya do get pinged and its not staff! Ya get to see someone banned! :)*\n\n🔔 `Discord Pings`\nThese are pings focused towards the Discord Server!.\n\n🧪 `Server Pings`\nThese are pings focused towards the SCP Servers!. ", color=0xFFFFFF)
-
-        embed4=Embed(title=f"**[- Age Roles -]**", 
-        description=f"**These roles are permenant will require DMing or pinging 05 Council to change.**\n\n🚬 `Adult`\nThis will give you access to any Adult marked channels in any category on the server.  There is still no NSFW allowed on this server at all.\n\n🍼 `Child`\nThis lets people know your a child.\nIt is encouraged to get this role and not lie..", color=0xFF00FF)
-
-        await msg1.edit(content=f" ", embed=embed1)
-        await msg2.edit(content=f" ", embed=embed2)
-        await msg3.edit(content=f" ", embed=embed3)
-        await msg4.edit(content=f" ", embed=embed4)
-
-
-
+        await rules5.edit(content=f" ", embed=embed5
 
 
 
@@ -165,79 +129,6 @@ class rules_handler(Cog):
 
 
 
-
-
-
-
-
-
-
-
-
-
-    @Cog.listener('on_raw_reaction_add')
-    async def role_add(self, payload:RawReactionActionEvent):
-        """Reaction role add handler"""
-
-        #* Validate channel
-        if payload.channel_id != self.bot.config['channels']['role_change']:
-            return
-
-        # Not bot
-        if self.bot.get_user(payload.user_id).bot:
-            return
-
-        # See what the emoji is
-        if payload.emoji.is_unicode_emoji():
-            emoji = payload.emoji.name
-        else:
-            emoji = payload.emoji.id
-
-        # Work out out cached items
-        channel = self.bot.get_channel(payload.channel_id)
-        guild = channel.guild
-        member = guild.get_member(payload.user_id)
-        mod = utils.Moderation.get(member.id)
-
-        # Get the right verification
-        if emoji == "🏹":
-            await utils.UserFunction.verify_user(user=member, type='alliance')
-        elif emoji == "🐾": 
-            await utils.UserFunction.verify_user(user=member, type='furry')
-        elif emoji == "🚬":
-            if mod.child == False:
-                await self.bot.get_cog('Verification').verify_adult(author=member, guild=guild)
-        elif emoji == "🍼":
-            mod.child = True
-            child = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['child'])
-            await member.add_roles(child, reason="Marked as child.")
-        elif emoji == "🧪":
-            updates = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['server_updates'])
-            await member.add_roles(updates, reason="Will get updates now.")
-        elif emoji == "🔔":
-            updates = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['discord_updates'])
-            await member.add_roles(updates, reason="Will get updates now.")
-        elif emoji == "🔥":
-            updates = utils.DiscordGet(guild.roles, id=1062945474757271564)
-            await member.add_roles(updates, reason="Will get updates now.")
-        elif emoji == "🍙":
-            updates = utils.DiscordGet(guild.roles, id=1057833430685057146)
-            await member.add_roles(updates, reason="Will get updates now.")
-        elif emoji == "🌈":
-            updates = utils.DiscordGet(guild.roles, id=1057833439518261292)
-            await member.add_roles(updates, reason="Will get updates now.")
-
-        async with self.bot.database() as db:
-            await mod.save(db)
-
-
-        # Check to see total reactions on the message
-        message = await channel.fetch_message(payload.message_id)
-        emoji = [i.emoji for i in message.reactions]
-        if sum([i.count for i in message.reactions]) > 200:
-            await message.clear_reactions()
-        for e in emoji:
-            await message.add_reaction(e)
 
 
 
