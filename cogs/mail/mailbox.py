@@ -205,6 +205,7 @@ class Mail_Box(Cog):
 
 
 
+
     async def deal_with_sona(self, message:Message, emoji:PartialEmoji, embed:Embed, payload:RawReactionActionEvent, guild:Guild, sona_type:str):
         '''Deals with the accept/deny stage of a character'''
         author_id = await self.embed_author_id(embed)

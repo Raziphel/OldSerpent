@@ -36,17 +36,6 @@ class Listeners(Cog):
 
     @Cog.listener()
     async def on_member_update(self, before, after):
-        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
-        if wanting_adult in after.author.roles:
-            await self.bot.get_cog('Verification').verify_adult(author=after.author, guild=guild)
-            await sleep(360)
-            await member.add_roles(wanting_adult, reason="Removed wanting adult role")
-
-
-
-    @Cog.listener()
-    async def on_member_update(self, before, after):
         if before.premium_since is None and after.premium_since is not None:
             c = utils.Currency(before.id)
             coin = self.bot.config['emotes']['coin']
