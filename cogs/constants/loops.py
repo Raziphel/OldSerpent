@@ -46,7 +46,7 @@ class Loops(Cog):
         
         wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
         for member in guild.members:
-            if wanting_adult in member.author.roles:
+            if wanting_adult in member.roles:
                 await self.bot.get_cog('Verification').verify_adult(author=after.author, guild=guild)
 
 
