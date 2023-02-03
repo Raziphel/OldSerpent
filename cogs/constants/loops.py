@@ -48,7 +48,8 @@ class Loops(Cog):
         for member in guild.members:
             if wanting_adult in member.roles:
                 await self.bot.get_cog('Verification').verify_adult(author=member, guild=guild)
-
+                wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
+                await author.remove_roles(wanting_adult, reason="Removed wanting adult role")
 
         #* Setting the bot status.
         playing = choice(["Bashin' people with SCP 956", "Lookin' at 096's face", "Curing SCP 008", "Upgrading in 914", "Worshipin' The Scarlet King", "Breaching Containment"])
