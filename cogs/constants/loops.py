@@ -211,9 +211,9 @@ class Loops(Cog):
                 if channel == issues:
                     embed=Embed(title=f"**[- Issues Sticky -]**",
                     description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@Game Staff** - Ping for anything SCP Server related.\n**@Discord Staff** - Ping for anything Discord related.", color=randint(1, 0xffffff))
-                if channel in lounges:
-                    embed=Embed(title=f"**[- Lounge Stickys! -]**",
-                    description=f"**Check out the new roles and channel tab at the top of the channels list!**\n\nLounge stickys are updated occasionally to help with any changes", color=randint(1, 0xffffff))
+                # if channel in lounges:
+                #     embed=Embed(title=f"**[- Lounge Stickys! -]**",
+                #     description=f"**Check out the new roles and channel tab at the top of the channels list!**\n\nLounge stickys are updated occasionally to help with any changes", color=randint(1, 0xffffff))
                 try:
                     await msg.edit(content=f" ", embed=embed)
                 except: 
