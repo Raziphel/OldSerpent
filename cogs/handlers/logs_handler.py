@@ -38,6 +38,10 @@ class Logging(Cog):
     def adult_log(self):
         return self.bot.get_channel(self.bot.config['channels']['adult'])
 
+    @property  #! The adult logs
+    def staff_log(self):
+        return self.bot.get_channel(1070960923587645481)
+
 
 
     #! Welcome channel 
@@ -115,6 +119,8 @@ class Logging(Cog):
         name_list = list(message.channel.name)
         if '🍺' in name_list:
             channel = self.adult_log
+        elif '✨' in name_list:
+            channel = self.staff_log
         else: channel = self.message_log
         await channel.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar.url, image=image))
 
@@ -125,6 +131,8 @@ class Logging(Cog):
         name_list = list(message.channel.name)
         if '🍺' in name_list:
             channel = self.adult_log
+        elif '✨' in name_list:
+            channel = self.staff_log
         else: channel = self.message_log
         await channel.send(embed=utils.LogEmbed(type="change", title=f"Message Edited", desc=f"**Author:** {before.author.mention}\n**Channel:** <#{before.channel.id}>\n**Before:**\n{before.content}\n\n**after:**\n{after.content}", thumbnail=before.author.avatar.url))
 
