@@ -47,7 +47,8 @@ class Loops(Cog):
         wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
         for member in guild.members:
             if wanting_adult in member.roles:
-                await self.bot.get_cog('Verification').verify_adult(author=member, guild=guild)
+                try:
+                    await self.bot.get_cog('Verification').verify_adult(author=member, guild=guild)
                 wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
                 await member.remove_roles(wanting_adult, reason="Removed wanting adult role")
 
