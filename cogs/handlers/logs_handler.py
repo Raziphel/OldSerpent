@@ -112,7 +112,8 @@ class Logging(Cog):
         image = None
         if message.attachments: 
             image = message.attachments[0].url 
-        if message.channel.is_nsfw():
+        name_list = list(message.channel.name)
+        if '🍺' in name_list:
             channel = self.adult_log
         else: channel = self.message_log
         await channel.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar.url, image=image))
@@ -121,7 +122,8 @@ class Logging(Cog):
     async def on_message_edit(self, before, after):
         if before.author.bot: return
         if before.content == after.content: return
-        if before.channel.is_nsfw():
+        name_list = list(message.channel.name)
+        if '🍺' in name_list:
             channel = self.adult_log
         else: channel = self.message_log
         await channel.send(embed=utils.LogEmbed(type="change", title=f"Message Edited", desc=f"**Author:** {before.author.mention}\n**Channel:** <#{before.channel.id}>\n**Before:**\n{before.content}\n\n**after:**\n{after.content}", thumbnail=before.author.avatar.url))
