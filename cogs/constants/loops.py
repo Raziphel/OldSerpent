@@ -164,7 +164,7 @@ class Loops(Cog):
         issues = guild.get_channel(1056747603829731338) #? issues Channel
         supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
         adult_memes = guild.get_channel(1069887003094683698) #? Adult Memes Channel
-        channels = [adult_lounge, bot_usage, issues, supporter, adult_memes, lounge, scp_lounge, supporter_lounge, furry_lounge]
+        channels = [adult_lounge, bot_usage, issues, supporter, adult_memes]
         lounges = [lounge, scp_lounge, supporter_lounge, furry_lounge]
         last_message = None
         for channel in channels:
