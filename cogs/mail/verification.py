@@ -281,7 +281,7 @@ class Verification(Cog):
             return message
 
         try:
-            proof = await get_input(f"**Lying about your age is a bannable offense!**   Please say `I agree` if you are an adult or do `cancel`.\n**NO NSFW CONTENT IS ALLOWED**\nYou have nothing to gain..\n\n**This message can sent twice sometimes.")
+            proof = await get_input(f"**Lying about your age is a bannable offense!**   Please say `I agree` if you are an adult or do `cancel`.\n**NO NSFW CONTENT IS ALLOWED**\nYou have nothing to gain..")
             table_data['proof'] = proof.content
 
             msg = f"Proof: **{table_data.get('proof')}**"
