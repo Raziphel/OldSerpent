@@ -284,7 +284,7 @@ class Verification(Cog):
             proof = await get_input(f"**Lying about your age is a bannable offense!**   Please say `I agree` if you are an adult or do `cancel`.\n**NO NSFW CONTENT IS ALLOWED**\nYou have nothing to gain..")
             table_data['proof'] = proof.content
 
-            msg = f"Proof: **{table_data.get('proof')}**"
+            msg = f"**Marked Child?**: {mod.child}\n**Proof:** {table_data.get('proof')}"
 
             tr = utils.Tracking.get(author.id)
             mod = utils.Moderation.get(author.id)
@@ -293,7 +293,7 @@ class Verification(Cog):
             footer = "Adult"
             if kinda == True:
                 footer == "KindaAdult"
-            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application - MARKED CHILD BEFORE?: {mod.child}", footer=footer, message=msg, color=tr.color, author=author, image=author.avatar.url))
+            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=tr.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
 
