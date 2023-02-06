@@ -114,6 +114,8 @@ class Logging(Cog):
     async def on_message_delete(self, message):
         if message.author.bot: return
         image = None
+        if message is None:
+            return
         if message.attachments: 
             image = message.attachments[0].url 
         name_list = list(message.channel.name)
@@ -127,6 +129,8 @@ class Logging(Cog):
     @Cog.listener()
     async def on_message_edit(self, before, after):
         if before.author.bot: return
+        if message is None:
+            return
         if before.content == after.content: return
         name_list = list(message.channel.name)
         if '🍺' in name_list:
