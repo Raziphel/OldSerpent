@@ -129,8 +129,6 @@ class Logging(Cog):
     @Cog.listener()
     async def on_message_edit(self, before, after):
         if before.author.bot: return
-        if message is None:
-            return
         if before.content == after.content: return
         name_list = list(message.channel.name)
         if '🍺' in name_list:
