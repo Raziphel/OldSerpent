@@ -130,7 +130,7 @@ class Logging(Cog):
     async def on_message_edit(self, before, after):
         if before.author.bot: return
         if before.content == after.content: return
-        name_list = list(message.channel.name)
+        name_list = list(before.message.channel.name)
         if '🍺' in name_list:
             channel = self.adult_log
         elif '✨' in name_list:
