@@ -17,7 +17,7 @@ class Listeners(Cog):
         Ping when a streamer pings!
         '''
         if message.channel.id == 1051323487287005264:
-            if message.author.id == self.bot.id
+            if message.author.id == 550474149332516881
                 await message.channel.send(f"<@&1070576949837180939>")
 
 
