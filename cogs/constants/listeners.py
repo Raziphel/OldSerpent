@@ -16,8 +16,9 @@ class Listeners(Cog):
         '''
         Ping when a streamer pings!
         '''
-        if message.channel.id == 1051323487287005264: 
-            await message.channel.send(f"<@1070576949837180939>")
+        if message.channel.id == 1051323487287005264:
+            if message.author.id == self.bot.id
+                await message.channel.send(f"<@&1070576949837180939>")
 
 
     @Cog.listener('on_message')
