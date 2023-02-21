@@ -12,6 +12,15 @@ class Listeners(Cog):
 
 
     @Cog.listener('on_message')
+    async def stream_ping(self, message):
+        '''
+        Ping when a streamer pings!
+        '''
+        if message.channel.id == 1051323487287005264: 
+            await message.send(f"<@1070576949837180939>")
+
+
+    @Cog.listener('on_message')
     async def vote_channels(self, message):
         '''
         Adds votes reactions!
