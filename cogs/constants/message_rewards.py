@@ -75,7 +75,9 @@ class Message_Rewards(Cog):
         #! Define Varibles
         c = utils.Currency.get(user.id)
         channel = guild.get_channel(payload.channel_id)
-        message = await channel.fetch_message(payload.message_id)
+        try:
+            message = await channel.fetch_message(payload.message_id)
+        except: return
         msg = None
 
 
