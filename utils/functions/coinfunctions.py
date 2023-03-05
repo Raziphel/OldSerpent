@@ -62,3 +62,20 @@ class CoinFunctions(object):
         async with cls.bot.database() as db:
             await cp.save(db)
             await cr.save(db)
+
+            
+    @classmethod 
+    async def earn(cls, earner:Member, amount:int):
+        '''Use this method for letting users earn coins'''
+
+        #! Define Varibles
+        cu = utils.Currency.get(earner.id)
+        cb = utils.Currency.get(550474149332516881)
+
+        #! Just take it away from the bot!
+        cu.coins += amount
+        cb.coins -= amount
+
+        async with cls.bot.database() as db:
+            await cu.save(db)
+            await cb.save(db)

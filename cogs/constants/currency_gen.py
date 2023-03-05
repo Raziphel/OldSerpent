@@ -38,8 +38,6 @@ class Currency_Gen(Cog):
     async def level_progression(self, message:Message):
         '''Level Progression'''
         lvl = utils.Levels.get(message.author.id)
-        c = utils.Currency.get(message.author.id)
-        tax = utils.Currency.get(550474149332516881) 
         if lvl.last_xp == None:
             lvl.last_xp = dt.utcnow()
         if (lvl.last_xp + timedelta(seconds=30)) <= dt.utcnow(): # Check Time
@@ -55,12 +53,11 @@ class Currency_Gen(Cog):
             if unique_words > 10:
                 unique_words = 10
 
-            rng = choice([0.5, 0.75, 1.0, 1.25, 1.50])
-            exp += 3+(lvl.level/2)*rng
+            rng = choice([0.5, 0.75, 1.0, 1.25, 1.50, 2])
+            exp += 4+(lvl.level/2)*rng
             coins = 3+unique_words*rng
-            c.coins += coins
-            c.coins_earned += coins
-            tax.coins -= coins
+
+            await utils.CoinFunctions.earn(earner=message.author, amount=coins)
 
             #! Command Usage Secret Increase!?
             if message.content.startswith(self.bot.config['prefix']):
@@ -74,8 +71,6 @@ class Currency_Gen(Cog):
             lvl.last_xp = dt.utcnow()
         async with self.bot.database() as db:
             await lvl.save(db)
-            await c.save(db)
-            await tax.save(db)
 
 
 
@@ -115,11 +110,9 @@ class Currency_Gen(Cog):
 
                     c = utils.Currency.get(member.id)
                     lvl = utils.Levels.get(member.id)
-                    #? VC BOOST! change the 50 to 10
-                    lvl.exp += 50+(len(vc.members)/2)*(lvl.level/2)
+                    lvl.exp += 10+(len(vc.members)/2)*(lvl.level/2)
                     coins = 10 + round(len(vc.members))
-                    coins = await utils.CoinFunctions.pay_tax(payer=member, amount=coins)
-                    c.coins += coins
+                    await utils.CoinFunctions.earn(earner=message.author, amount=coins)
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
                     if lvl.exp >= requiredexp:
