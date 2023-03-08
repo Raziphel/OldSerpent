@@ -46,6 +46,7 @@ class Listeners(Cog):
 
     @Cog.listener()
     async def on_member_update(self, before, after):
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         if before.premium_since is None and after.premium_since is not None:
             c = utils.Currency(before.id)
             coin = self.bot.config['emotes']['coin']
