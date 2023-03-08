@@ -81,7 +81,7 @@ def insert_returns(body):
 
     @utils.is_dev()
     @command(hidden=True)
-    async def evan(ctx, *, cmd):
+    async def ev(ctx, *, cmd):
         """Evaluates input."""
         fn_name = "_eval_expr"
 
