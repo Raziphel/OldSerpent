@@ -11,6 +11,18 @@ class Listeners(Cog):
         self.bot = bot
 
 
+
+    # @Cog.listener() #! Remove the fucking loosers!
+    # async def on_member_update(self, before, after):
+    #     guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+    #     if before.author.nickname 
+
+
+
+
+
+
+
     @Cog.listener('on_message')
     async def stream_ping(self, message):
         '''
