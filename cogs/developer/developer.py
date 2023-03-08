@@ -48,7 +48,7 @@ class Developer(Cog):
 
     @utils.is_dev()
     @command(hidden=True)
-    async def ev(ctx, *, cmd):
+    async def ev(ctx, cmd):
         """Evaluates input."""
         fn_name = "_eval_expr"
 
