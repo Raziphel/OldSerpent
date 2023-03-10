@@ -65,8 +65,7 @@ class Daily(Cog):
         else:
             daily = day.daily
         coins = round((100 + daily) * rng)
-        coins = await utils.CoinFunctions.pay_tax(payer=ctx.author, amount=coins)
-        c.coins += coins
+        await utils.CoinFunctions.earn(earner=ctx.author, amount=coins)
 
         # ! Add xP!
         xp = round((lvl.level * 2.25) * rng)
@@ -132,7 +131,6 @@ class Daily(Cog):
         day.last_daily = dt.utcnow()
         async with self.bot.database() as db:
             await day.save(db)
-            await c.save(db)
             await lvl.save(db)
 
 
