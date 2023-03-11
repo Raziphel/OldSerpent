@@ -33,7 +33,7 @@ class UserFunction(object):
 
         lvl.level += 1
         amount = (lvl.level*500) * RNG
-        await utils.CoinFunctions.earn(earner=ctx.author, amount=amount)
+        await utils.CoinFunctions.earn(earner=user, amount=amount)
 
         lvl.exp = 0
         async with cls.bot.database() as db:
