@@ -30,7 +30,7 @@ class Listeners(Cog):
             return
         
         # Staff bypass
-        if [i for i in message.author.roles if i.name in ["Game Staff", "Discord Staff"]:
+        if [i for i in message.author.roles if i.name in ["Game Staff", "Discord Staff"]]:
             return
 
         # Check for attachments
