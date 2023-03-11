@@ -9,7 +9,7 @@ import utils
 class Listeners(Cog):
     def __init__(self, bot):
         self.bot = bot
-
+        self.last_image = dt(year=2000, month=1, day=1)  # Some time in the definite past 
 
 
     # @Cog.listener() #! Remove the fucking loosers!
@@ -17,6 +17,32 @@ class Listeners(Cog):
     #     guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
     #     if before.author.nickname 
 
+
+
+    @Cog.listener('on_message')
+    async def image_handler_listener(self, message):
+        '''
+        Looks for attachments on messages sent in general
+        '''
+
+        # Check for general
+        if message.channel.id != 807828084937850921:
+            return
+        
+        # Staff bypass
+        if [i for i in message.author.roles if i.name in ["Game Staff", "Discord Staff"]:
+            return
+
+        # Check for attachments
+        if not message.attachments:
+            return
+
+        # Check counter
+        if dt.now() - timedelta(minutes=5) < self.last_image:
+            await message.delete()
+            m = await message.channel.send(embed=WarnEmbed(warning="An image can only be sent to the main lounge every 5 minutes!"))
+        else:
+            self.last_image = message.created_at
 
 
 
