@@ -112,7 +112,7 @@ class Daily(Cog):
             # Wait for the user to respond
             interaction = await self.bot.wait_for("component_interaction", check=check)
 
-            reward = choice([100, 500])
+            reward = choice([100, 200, 300, 400, 500])
             c.coins += reward
 
             # Now the user has responded, disable the buttons on the message

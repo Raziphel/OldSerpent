@@ -25,7 +25,6 @@ class UserFunction(object):
 
         #! Set Varible
         lvl = utils.Levels.get(user.id)
-        c = utils.Currency.get(user.id)
 
         #* Emojis
         coin = "<:Coin:1026302157521174649>"
@@ -34,11 +33,10 @@ class UserFunction(object):
 
         lvl.level += 1
         amount = (lvl.level*500) * RNG
-        amount = await utils.CoinFunctions.pay_tax(payer=user, amount=amount)
-        c.coins += amount
+        await utils.CoinFunctions.earn(earner=ctx.author, amount=amount)
+
         lvl.exp = 0
         async with cls.bot.database() as db:
-            await c.save(db)
             await lvl.save(db)
 
         await cls.check_level(user=user)

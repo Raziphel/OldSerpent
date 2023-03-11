@@ -81,7 +81,7 @@ class Listeners(Cog):
                         await c.save(db)
 
             supporters = self.bot.get_channel(self.bot.config['channels']['supporters'])
-            await supporters.send(embed=utils.SpecialEmbed(desc=f"*All nitro boosters recieved a reward!\n**Total Coins:** {total_coins:,}", footer=f" "))
+            await supporters.send(embed=utils.SpecialEmbed(desc=f"*All nitro boosters recieved a reward!*\n**Total Coins:** {total_coins:,} {coin}", footer=f" "))
 
 
 def setup(bot):

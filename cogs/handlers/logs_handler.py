@@ -88,7 +88,7 @@ class Logging(Cog):
     async def on_member_remove(self, member):
         try:
             if member.bot: return
-            await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"{member.name} has left the realm.", thumbnail=member.avatar.url))
+            await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"{member.name} has left the Garden.", thumbnail=member.avatar.url))
             c = utils.Currency.get(member.id)
             lvl = utils.Level.get(member.id)
             lvl.level = 0
@@ -97,6 +97,8 @@ class Logging(Cog):
                 await c.save(db)
                 await lvl.save(db)
         except: pass #? Fail Silently
+
+
 
     @Cog.listener()
     async def on_member_ban(self, guild, member):
