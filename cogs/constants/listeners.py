@@ -45,6 +45,8 @@ class Listeners(Cog):
             m = await message.channel.send(embed=utils.DefualtEmbed(title="An image can only be sent to the main lounge every 5 minutes!"))
         else:
             self.last_image = dt.utcnow()
+            await sleep(6)
+            await m.delete()
 
 
 
