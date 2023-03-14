@@ -173,7 +173,6 @@ class Muting(Cog):
 
 
     async def handle_mute_expiration(self, member:Member):
-
         try: #? Get any muted roles to remove!
             for role_id in role_ids:
                 muted_role = utils.DiscordGet(member.guild.roles, id=1028881308006502400)
@@ -199,7 +198,8 @@ class Muting(Cog):
 
 
 
-    def create_temp_gag_task(self, member:Member, expiration:datetime):
+
+    async def create_temp_gag_task(self, member:Member, expiration:datetime):
         coro = utils.run_at(expiration, self.handle_mute_expiration, member)
         task = self.bot.loop.create_task(coro)
         self.temporary_mutes[member.id] = (task, expiration)
