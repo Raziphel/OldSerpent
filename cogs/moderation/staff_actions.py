@@ -73,7 +73,7 @@ class Staff_Actions(Cog):
             ],
         )
     )
-    async def purge(self, ctx], amount: int = 10):
+    async def purge(self, ctx, amount: int = 10):
         """Purges the given amount of messages from the channel."""
         check = lambda m: True
 
