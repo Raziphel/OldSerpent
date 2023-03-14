@@ -96,7 +96,7 @@ class Muting(Cog):
 
 
     @utils.is_admin_staff()
-    @command(aliases=['g', 'pg'])
+    @command(aliases=['g', 'pg', 'mute'])
     async def gag(self, ctx, user:Greedy[Member], *, reason:Optional[str]="[No Reason Given]"):
         '''Applies the prisoner role to a user or users'''
 
@@ -113,17 +113,17 @@ class Muting(Cog):
 
         #! Add the role to the user
         for i in user:
-            await i.add_roles(muted_role, reason=f'{reason} :: gagged by {ctx.author.mention}')
-            try: #? Tell them they are gagged!
-                await i.send(f'You were permanently gagged for reason `{reason}`')
+            await i.add_roles(muted_role, reason=f'{reason} :: muted by {ctx.author.mention}')
+            try: #? Tell them they are muted!
+                await i.send(f'You were permanently muted for reason `{reason}`')
             except DiscordException:
                 pass
 
         #! Send message to the channel
         if len(user) == 1:
-            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} gagged {user[0].mention} permenantly!", guild=ctx.guild))
+            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} muted {user[0].mention} permenantly!", guild=ctx.guild))
         else:
-            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} gagged `{len(user)}` users!", guild=ctx.guild))
+            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} muted `{len(user)}` users!", guild=ctx.guild))
 
         #!Save to the DB
         for i in user:
@@ -133,7 +133,7 @@ class Muting(Cog):
             await mod.save(db)
 
         for i in user:
-            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{i.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
+            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Muted", desc=f"{i.name} was muted!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
 
 
 
@@ -146,19 +146,16 @@ class Muting(Cog):
         if len(user) == 0:
             return await ctx.send('Please specify a valid user.', delete_after=15)
 
-        for i in user:
-            try: #? Get any muted roles to remove!
-                for role_id in role_ids:
-                    muted_role = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
-                    await user.remove_roles(muted_role, reason='Gag removed.')
+            muted_role = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
+            await user.remove_roles(muted_role, reason='Mute removed.')
             except DiscordException: pass
-            await i.remove_roles(muted_role, reason=f'{reason} :: gag removed by {ctx.author.mention}')
+            await i.remove_roles(muted_role, reason=f'{reason} :: muted removed by {ctx.author.mention}')
 
         #! Send message to the channel
         if len(user) == 1:
-            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} un-gagged {user[0].mention}!", guild=ctx.guild))
+            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} un-muted {user[0].mention}!", guild=ctx.guild))
         else:
-            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} un-gagged `{len(user)}` users!", guild=ctx.guild))
+            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} un-muted `{len(user)}` users!", guild=ctx.guild))
 
         #!Save to the DB
         for i in user:
@@ -168,7 +165,7 @@ class Muting(Cog):
             await mod.save(db)
 
         for i in user:
-            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Un-Gagged", desc=f"{i.name} was un-gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
+            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Un-Gagged", desc=f"{i.name} was un-muted!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
 
 
 
@@ -180,7 +177,7 @@ class Muting(Cog):
         try: #? Get any muted roles to remove!
             for role_id in role_ids:
                 muted_role = utils.DiscordGet(member.guild.roles, id=1028881308006502400)
-                await member.remove_roles(muted_role, reason='Temp-gag expired.')
+                await member.remove_roles(muted_role, reason='Temp-mute expired.')
         except DiscordException: pass
 
         try:
@@ -198,7 +195,7 @@ class Muting(Cog):
             await mod.save(db)
             await db('DELETE FROM tempmute_timeout WHERE user_id = $1', member.id)
 
-        await self.server_logs.send(embed=utils.LogEmbed(type="positive", title=f"User Ungagged", desc=f"{member.mention} was ungagged!\n\n**Temp-Gag Has Expired!**"))
+        await self.server_logs.send(embed=utils.LogEmbed(type="positive", title=f"User un-muted", desc=f"{member.mention} was ungagged!\n\n**Temp-mute Has Expired!**"))
 
 
 
@@ -213,7 +210,7 @@ class Muting(Cog):
 
 
     @utils.is_admin_staff()
-    @command(aliases=['tg'])
+    @command(aliases=['tg', 'tmute', 'tempmute', 'tm'])
     async def tempgag(self, ctx, user:Greedy[Member], duration:utils.TimeConverter, *, reason:str="[No Reason Given]"):
         '''Temporarily applies the prisoner role to a user or users'''
 
