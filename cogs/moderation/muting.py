@@ -227,7 +227,7 @@ class Muting(Cog):
             except DiscordException:
                 pass
 
-        #! Send message to the channel
+        #! Send message to the channel!
         if len(user) == 1:
             await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} gagged {user[0].mention} for {duration} seconds!", guild=ctx.guild))
         else:
