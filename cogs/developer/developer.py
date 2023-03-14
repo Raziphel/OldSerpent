@@ -48,34 +48,19 @@ class Developer(Cog):
 
     @utils.is_dev()
     @command(hidden=True)
-    async def ev(ctx, cmd):
-        """Evaluates input."""
-        fn_name = "_eval_expr"
+    async def ev(self, ctx, *, content:str):
+        '''
+        Runs code through Python
+        '''
+        try:
+            ans = eval(content, globals(), locals())
+        except Exception:
+            await ctx.send('```py\n' + format_exc() + '```')
+            return
+        if iscoroutine(ans):
+            ans = await ans
+        await ctx.send('```py\n' + str(ans) + '```')
 
-        cmd = cmd.strip("` ")
-
-        # add a layer of indentation
-        cmd = "\n".join(f"    {i}" for i in cmd.splitlines())
-
-        # wrap in async def body
-        body = f"async def {fn_name}():\n{cmd}"
-
-        parsed = ast.parse(body)
-        body = parsed.body[0].body
-
-        insert_returns(body)
-
-        env = {
-            'bot': ctx.bot,
-            'discord': discord,
-            'commands': commands,
-            'ctx': ctx,
-            '__import__': __import__
-        }
-        exec(compile(parsed, filename="<ast>", mode="exec"), env)
-
-        result = (await eval(f"{fn_name}()", env))
-        await ctx.send(result)
 
 
 
