@@ -133,7 +133,7 @@ class Muting(Cog):
             await mod.save(db)
 
         for i in user:
-            await self.erver_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{i.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
+            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{i.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
 
 
 
@@ -168,7 +168,7 @@ class Muting(Cog):
             await mod.save(db)
 
         for i in user:
-            await server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Un-Gagged", desc=f"{i.name} was un-gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
+            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Un-Gagged", desc=f"{i.name} was un-gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
 
 
 
