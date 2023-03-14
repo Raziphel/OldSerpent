@@ -50,10 +50,6 @@ class Listeners(Cog):
 
 
 
-
-
-
-
     @Cog.listener('on_message')
     async def stream_ping(self, message):
         '''
@@ -62,6 +58,7 @@ class Listeners(Cog):
         if message.channel.id == 1051323487287005264:
             if message.author.id != 550474149332516881:
                 await message.channel.send(f"<@&1070576949837180939>")
+
 
 
     @Cog.listener('on_message')
@@ -113,6 +110,7 @@ class Listeners(Cog):
 
             supporters = self.bot.get_channel(self.bot.config['channels']['supporters'])
             await supporters.send(embed=utils.SpecialEmbed(desc=f"*All nitro boosters recieved a reward!*\n**Total Coins:** {total_coins:,} {coin}", footer=f" "))
+
 
 
 def setup(bot):

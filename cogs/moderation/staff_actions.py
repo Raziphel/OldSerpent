@@ -19,7 +19,7 @@ class Staff_Actions(Cog):
 
     @utils.is_mod_staff()
     @command(
-        aliases=['prune'],
+        aliases=['pr'],
         application_command_meta=ApplicationCommandMeta(
             options=[
                 ApplicationCommandOption(
@@ -37,12 +37,9 @@ class Staff_Actions(Cog):
             ],
         )
     )
-    async def purge(self, ctx, user: Optional[User], amount: int = 10):
+    async def prune(self, ctx, user:User, amount: int = 10):
         """Purges the given amount of messages from the channel."""
-        if user:
-            check = lambda m: m.author.id == user.id
-        else:
-            check = lambda m: True
+        check = lambda m: m.author.id == user.id
 
         # ! Add max amount
         if amount > 250:
@@ -60,6 +57,44 @@ class Staff_Actions(Cog):
                 guild=ctx.guild
             )
         )
+
+
+    @utils.is_mod_staff()
+    @command(
+        aliases=['pu'],
+        application_command_meta=ApplicationCommandMeta(
+            options=[
+                ApplicationCommandOption(
+                    name="amount",
+                    description="Amount of messages you want to delete.",
+                    type=ApplicationCommandOptionType.integer,
+                    required=False,
+                ),
+            ],
+        )
+    )
+    async def purge(self, ctx], amount: int = 10):
+        """Purges the given amount of messages from the channel."""
+        check = lambda m: True
+
+        # ! Add max amount
+        if amount > 250:
+            return await ctx.interaction.response.send_message(f"**250 is the maximum amount of messages.**")
+
+        # ! Report and log the purging!
+        # st = utils.Staff_Track.get(ctx.author.id)
+        # st.purges += 1
+        # async with self.bot.database() as db:
+        #     await st.save(db)
+        removed = await ctx.channel.purge(limit=amount, check=check)
+        await ctx.interaction.response.send_message(
+            embed=utils.SpecialEmbed(
+                title=f"Deleted {len(removed)} messages!",
+                guild=ctx.guild
+            )
+        )
+
+
 
         await self.message_log.send(
             embed=utils.LogEmbed(
