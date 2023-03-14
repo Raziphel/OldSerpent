@@ -43,6 +43,13 @@ CREATE TABLE staff_track (
 );
 
 
+CREATE TABLE tempmute_timeout (
+    user_id bigint NOT NULL,
+    unmute_time TIMESTAMP,
+    PRIMARY KEY (user_id)
+);
+
+
 #############################################################################
 ##################### LEVELS / USER RESOURCES / VALUE  ######################
 #############################################################################
