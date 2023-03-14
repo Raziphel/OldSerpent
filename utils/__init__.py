@@ -34,6 +34,7 @@ from utils.sql.admin.sticky import Sticky
 #? Functions
 from utils.functions.userfunction import UserFunction
 from utils.functions.coinfunctions import CoinFunctions
+from utils.functions.TimeConverter import TimeConverter
 
 
 #? Additions
