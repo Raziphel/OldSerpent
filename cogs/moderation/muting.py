@@ -145,10 +145,8 @@ class Muting(Cog):
 
         if len(user) == 0:
             return await ctx.send('Please specify a valid user.', delete_after=15)
-
             muted_role = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
             await user.remove_roles(muted_role, reason='Mute removed.')
-            except DiscordException: pass
             await i.remove_roles(muted_role, reason=f'{reason} :: muted removed by {ctx.author.mention}')
 
         #! Send message to the channel
