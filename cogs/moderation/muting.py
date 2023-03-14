@@ -132,9 +132,8 @@ class Muting(Cog):
         async with self.bot.database() as db:
             await mod.save(db)
 
-        log = await utils.ChannelFunction.get_log_channel(guild=ctx.guild, log="member")
         for i in user:
-            await log.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{i.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
+            await self.erver_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{i.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
 
 
 
