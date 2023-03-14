@@ -187,6 +187,8 @@ class Muting(Cog):
             del self.temporary_mutes[member.id]
         except KeyError: pass
 
+        await self.server_logs.send(embed=utils.LogEmbed(type="positive", title=f"User un-muted", desc=f"{member.mention} was ungagged!\n\n**Temp-mute Has Expired!**"))
+
         #! Database Update!
         mod = utils.Moderation.get(member.id)
         mod.gagged = False
@@ -194,12 +196,11 @@ class Muting(Cog):
             await mod.save(db)
             await db('DELETE FROM tempmute_timeout WHERE user_id = $1', member.id)
 
-        await self.server_logs.send(embed=utils.LogEmbed(type="positive", title=f"User un-muted", desc=f"{member.mention} was ungagged!\n\n**Temp-mute Has Expired!**"))
 
 
 
 
-    async def create_temp_gag_task(self, member:Member, expiration:datetime):
+    def create_temp_gag_task(self, member:Member, expiration:datetime):
         coro = utils.run_at(expiration, self.handle_mute_expiration, member)
         task = self.bot.loop.create_task(coro)
         self.temporary_mutes[member.id] = (task, expiration)
