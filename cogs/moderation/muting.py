@@ -236,7 +236,6 @@ class Muting(Cog):
         for i in user:
             mod = utils.Moderation.get(i.id)
             mod.gagged = True
-            mod.violations += 1
             async with self.bot.database() as db:
                 await mod.save(db)
                 mute_expiration = datetime.now() + timedelta(seconds=duration)
@@ -245,9 +244,8 @@ class Muting(Cog):
                                 'DO UPDATE SET unmute_time = $2', i.id, mute_expiration)
                 self.create_temp_gag_task(i, mute_expiration)
 
-        log = await utils.ChannelFunction.get_log_channel(guild=ctx.guild, log="member")
         for i in user:
-            await log.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{i.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**\nDuration :: **{duration}**"))
+            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{i.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**\nDuration :: **{duration}**"))
 
 
 
