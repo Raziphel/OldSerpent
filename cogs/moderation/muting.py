@@ -114,6 +114,9 @@ class Muting(Cog):
         #! Add the role to the user
         for i in user:
             await i.add_roles(muted_role, reason=f'{reason} :: muted by {ctx.author.mention}')
+            try:
+                await member.edit(mute=False)
+            except DiscordException: pass
             try: #? Tell them they are muted!
                 await i.send(f'You were permanently muted for reason `{reason}`')
             except DiscordException:
@@ -171,11 +174,8 @@ class Muting(Cog):
 
 
     async def handle_mute_expiration(self, member:Member):
-        try: #? Get any muted roles to remove!
-            for role_id in role_ids:
-                muted_role = utils.DiscordGet(member.guild.roles, id=1028881308006502400)
-                await member.remove_roles(muted_role, reason='Temp-mute expired.')
-        except DiscordException: pass
+        muted_role = utils.DiscordGet(member.guild.roles, id=1028881308006502400)
+        await member.remove_roles(muted_role, reason='Temp-mute expired.')
 
         try:
             await member.edit(mute=False)
@@ -221,6 +221,9 @@ class Muting(Cog):
         #! Add the role to the user
         for i in user:
             await i.add_roles(muted_role, reason=f'{reason} :: temp muted by {ctx.author.mention}')
+            try:
+                await member.edit(mute=False)
+            except DiscordException: pass
             try: #? Tell them they are muted!
                 await i.send(f'You were temporarily muted for `{duration}` seconds for reason: `{reason}`.')
             except DiscordException:
