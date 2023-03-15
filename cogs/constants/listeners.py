@@ -36,7 +36,7 @@ class Listeners(Cog):
             return
 
         # Check for attachments
-        if not message.attachments:
+        if not message.attachments or "http" in message.content.casefold():
             return
 
         # Check counter
