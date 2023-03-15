@@ -86,9 +86,9 @@ class Muting(Cog):
 
         #! Report who has been banned!
         if len(user) == 1:
-            await ctx.send(embed=utils.WarningEmbed(warning=f"Banned `{i}`."))
+            await ctx.send(embed=utils.WarningEmbed(title=f"Banned `{i}`."))
         else:
-            await ctx.send(embed=utils.WarningEmbed(warning=f"Banned `{len(user)}` users."))
+            await ctx.send(embed=utils.WarningEmbed(title=f"Banned `{len(user)}` users."))
         for i in user:
             await self.server_logs.send(embed=utils.LogEmbed(type="negative", author=f"User Banned", desc=f"{i.name} was banned!\n**By: {ctx.author}\nReason :: {reason}**"))
 
@@ -220,17 +220,17 @@ class Muting(Cog):
 
         #! Add the role to the user
         for i in user:
-            await i.add_roles(muted_role, reason=f'{reason} :: temp gagged by {ctx.author.mention}')
-            try: #? Tell them they are gagged!
-                await i.send(f'You were temporarily gagged for `{duration}` seconds for reason: `{reason}`.')
+            await i.add_roles(muted_role, reason=f'{reason} :: temp muted by {ctx.author.mention}')
+            try: #? Tell them they are muted!
+                await i.send(f'You were temporarily muted for `{duration}` seconds for reason: `{reason}`.')
             except DiscordException:
                 pass
 
         #! Send message to the channel!
         if len(user) == 1:
-            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} gagged {user[0].mention} for {duration} seconds!", guild=ctx.guild))
+            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} muted {user[0].mention} for {duration} seconds!", guild=ctx.guild))
         else:
-            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} gagged `{len(user)}` users  for {duration} seconds!", guild=ctx.guild))
+            await ctx.send(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} muted `{len(user)}` users  for {duration} seconds!", guild=ctx.guild))
 
         #!Save to the DB
         for i in user:
