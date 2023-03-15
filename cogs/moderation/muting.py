@@ -222,7 +222,7 @@ class Muting(Cog):
         for i in user:
             await i.add_roles(muted_role, reason=f'{reason} :: temp muted by {ctx.author.mention}')
             try:
-                await member.edit(mute=False)
+                await user.edit(mute=False)
             except DiscordException: pass
             try: #? Tell them they are muted!
                 await i.send(f'You were temporarily muted for `{duration}` seconds for reason: `{reason}`.')
