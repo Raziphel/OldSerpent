@@ -129,6 +129,38 @@ CREATE TABLE timers (
 );
 
 
+CREATE TABLE IF NOT EXISTS public.starboard
+(
+    user_id bigint NOT NULL,
+    message_id bigint NOT NULL,
+    reference_channel_id bigint NOT NULL,
+    reference_message_id bigint NOT NULL,
+    jump_link text COLLATE pg_catalog."default" NOT NULL,
+    star_count smallint NOT NULL DEFAULT 1,
+    attachment_messages bigint[],
+    CONSTRAINT starboard_pkey PRIMARY KEY (message_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.starboard
+    OWNER to root;
+
+COMMENT ON COLUMN public.starboard.user_id
+    IS 'Discord user ID';
+
+COMMENT ON COLUMN public.starboard.message_id
+    IS 'The ID of the message sent in the starboard channel';
+
+COMMENT ON COLUMN public.starboard.reference_channel_id
+    IS 'Channel ID where the original message was sent';
+
+COMMENT ON COLUMN public.starboard.reference_message_id
+    IS 'Original message''s Discord ID';
+
+COMMENT ON COLUMN public.starboard.attachment_messages
+    IS 'List of Discord message IDs';
+
 
 
 
