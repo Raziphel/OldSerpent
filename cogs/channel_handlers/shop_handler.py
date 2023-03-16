@@ -48,7 +48,9 @@ class Shop_Handler(Cog):
         embed3.add_field(name=f"💎 ❧ Daily Bonus", value=f"**{coin} 40,000x**\n\n**Get a bonus with every daily!**\n*(Doesn't get better with more dailys)*", inline=True)
         
         embed4=Embed(title=f"**[- SCP:SL Items -]**", description=f"**Purchases that are for the SCP servers!**", color=0xB347F5)
-        embed4.add_field(name=f"🧶 ❧ Coin Goblin", value=f"**{coin} 50,000x**\n\n**Get the `Goblin Badge` on the SCP servers!**", inline=True)
+        embed4.add_field(name=f"🧶 ❧ Coin Lord", value=f"**{coin} 250,000x**\n\n**Get the orange `Coin Lord Badge` on the SCP servers!**", inline=True)
+        embed4.add_field(name=f"🎆 ❧ Bottom Dweller", value=f"**{coin} 100,000x**\n\n**Get the pink `Bottom Dweller Badge` on the SCP servers!**", inline=True)
+        embed4.add_field(name=f"🧨 ❧ Toxic", value=f"**{coin} 50,000x**\n\n**Get the green `Toxic Badge` on the SCP servers!**", inline=True)
         
         embed5=Embed(title=f"**[- Coming Soon -]**", description=f"**Coming Soon!**", color=0xF54747)
 
@@ -147,15 +149,39 @@ class Shop_Handler(Cog):
                     day.premium = True
 
             if emoji == "🧶":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the Coin Lord badge.\nCost: {coin} 250,000x", footer=" "))
+                item['coin'] = 250000
+                item['name'] = "Coin Lord Badge"
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Lord Badge on SCP servers!", footer=" "))
+                    bought = True
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
+                    coin_goblin = utils.DiscordGet(guild.roles, id=1069865257931132938)
+                    await user.add_roles(coin_goblin, reason="Given a Coin Lord role.")
+
+            if emoji == "🎆":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the Bottom Dweller badge!\nCost: {coin} 100,000x", footer=" "))
+                item['coin'] = 100000
+                item['name'] = "Bottom Dweller Badge"
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Bottom Dweller Badge on SCP servers!", footer=" "))
+                    bought = True
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
+                    bottom = utils.DiscordGet(guild.roles, id=1085838138183798906)
+                    await user.add_roles(bottom, reason="Given a Coin Goblin role.")
+
+
+            if emoji == "🧨":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Daily Bonus!\nCost: {coin} 50,000x", footer=" "))
                 item['coin'] = 50000
-                item['name'] = "Coin Goblin Badge"
+                item['name'] = "Toxic Badge"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Goblin Badge on SCP servers!", footer=" "))
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    coin_goblin = utils.DiscordGet(guild.roles, id=1069865257931132938)
-                    await user.add_roles(coin_goblin, reason="Given a Coin Goblin role.")
+                    coin_goblin = utils.DiscordGet(guild.roles, id=1085838699469733939)
+                    await user.add_roles(coin_goblin, reason="Given a Toxic role.")
+
 
 
             #! Save to databse
