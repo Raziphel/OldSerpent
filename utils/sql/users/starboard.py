@@ -7,10 +7,10 @@ import discord
 @dataclass
 class StarredMessage:
     user_id: int
-    message_id: int
     reference_channel_id: int
     reference_message_id: int
     jump_link: str
+    message_id: typing.Optional[int] = None
     star_count: int = 1
     attachment_messages: list[int] = field(default_factory=list)
 
@@ -25,6 +25,19 @@ class Starboards:
     def cache(self, **starred_message_data):
         starred_message = StarredMessage(**starred_message_data)
         self.starred_messages[starred_message.reference_message_id] = starred_message
+
+    async def add_to_starboard(
+            self,
+            reference_message_id: int,
+            starboard_message_id: int,
+            attachment_message_ids: list[int]
+    ):
+        async with self.database() as database:
+            await database(
+                'UPDATE starboard SET message_id = $1, attachment_messages = $2::bigint[] '
+                'WHERE reference_message_id = $3',
+                starboard_message_id, attachment_message_ids, reference_message_id
+            )
 
     async def delete(self, message_id: int):
         async with self.database() as database:

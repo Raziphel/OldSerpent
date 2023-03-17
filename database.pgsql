@@ -132,13 +132,13 @@ CREATE TABLE timers (
 CREATE TABLE IF NOT EXISTS public.starboard
 (
     user_id bigint NOT NULL,
-    message_id bigint NOT NULL,
+    message_id bigint,
     reference_channel_id bigint NOT NULL,
     reference_message_id bigint NOT NULL,
     jump_link text COLLATE pg_catalog."default" NOT NULL,
     star_count smallint NOT NULL DEFAULT 1,
     attachment_messages bigint[],
-    CONSTRAINT starboard_pkey PRIMARY KEY (message_id)
+    CONSTRAINT starboard_pkey PRIMARY KEY (reference_message_id)
 )
 
 TABLESPACE pg_default;
