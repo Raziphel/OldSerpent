@@ -11,6 +11,8 @@ class StarboardHandler(commands.Cog):
     STAR_EMOJI = '\N{White Medium Star}'
     GLOWING_STAR_EMOJI = '\N{Glowing Star}'
     ADULT_CHANNEL_EMOJI = '\N{Beer Mug}'
+    DEFAULT_UPVOTE_EMOJI = '\N{Upwards Black Arrow}'
+    CUSTOM_UPVOTE_EMOJI = '<:UpVote:1041606985080119377>'
 
     def __init__(self, bot: Serpent):
         self.bot = bot
@@ -60,7 +62,7 @@ class StarboardHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
-        if str(payload.emoji) == self.STAR_EMOJI:
+        if str(payload.emoji) in (self.STAR_EMOJI, self.DEFAULT_UPVOTE_EMOJI, self.CUSTOM_UPVOTE_EMOJI):
             guild = self.bot.get_guild(payload.guild_id)
             channel = guild.get_channel(payload.channel_id)
             message = await channel.fetch_message(payload.message_id)  # The original message
@@ -104,16 +106,20 @@ class StarboardHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
-        if str(payload.emoji) == self.STAR_EMOJI:
+        if str(payload.emoji) in (self.STAR_EMOJI, self.DEFAULT_UPVOTE_EMOJI, self.CUSTOM_UPVOTE_EMOJI):
             guild = self.bot.get_guild(payload.guild_id)
             channel = guild.get_channel(payload.channel_id)
 
             # Before doing anything else, make sure this isn't a message from the adult channels.
             if self.ADULT_CHANNEL_EMOJI in channel.name:
                 return  # Exit.
-            
-            message = await channel.fetch_message(payload.message_id)
+
             member = payload.member
+
+            if member.bot:
+                return  # Ignore bot messages
+
+            message = await channel.fetch_message(payload.message_id)
             starboard_channel = guild.get_channel(self.bot.config['channels']['starboard'])
             file_attachment_message = 'Please view the original message to see the attachment.'
 
