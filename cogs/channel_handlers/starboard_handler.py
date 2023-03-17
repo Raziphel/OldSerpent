@@ -114,12 +114,17 @@ class StarboardHandler(commands.Cog):
             if self.ADULT_CHANNEL_EMOJI in channel.name:
                 return  # Exit.
 
+            # Person who reacted, this will get reset soon.
             member = payload.member
+            if member.bot:
+                return  # Ignore bot reactions
 
+            message = await channel.fetch_message(payload.message_id)
+
+            member = message.author
             if member.bot:
                 return  # Ignore bot messages
 
-            message = await channel.fetch_message(payload.message_id)
             starboard_channel = guild.get_channel(self.bot.config['channels']['starboard'])
             file_attachment_message = 'Please view the original message to see the attachment.'
 
