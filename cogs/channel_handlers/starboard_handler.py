@@ -10,6 +10,7 @@ from utils.sql.users.starboard import Starboards, StarredMessage
 class StarboardHandler(commands.Cog):
     STAR_EMOJI = '\N{White Medium Star}'
     GLOWING_STAR_EMOJI = '\N{Glowing Star}'
+    ADULT_CHANNEL_EMOJI = '\N{Beer Mug}'
 
     def __init__(self, bot: Serpent):
         self.bot = bot
@@ -94,13 +95,23 @@ class StarboardHandler(commands.Cog):
                             )
 
                     # Remove from the database
-                    await self.starboards.delete(message.id)
+                    return await self.starboards.delete(message.id)
+
+                # Update the message with the new star count
+                starboard_message = await starboard_channel.fetch_message(starred_message.message_id)
+                star_emoji = self.GLOWING_STAR_EMOJI if starred_message.star_count >= 5 else self.STAR_EMOJI
+                await starboard_message.edit(content=f'{star_emoji} {starred_message.star_count} | {channel.mention}')
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
         if str(payload.emoji) == self.STAR_EMOJI:
             guild = self.bot.get_guild(payload.guild_id)
             channel = guild.get_channel(payload.channel_id)
+
+            # Before doing anything else, make sure this isn't a message from the adult channels.
+            if self.ADULT_CHANNEL_EMOJI in channel.name:
+                return  # Exit.
+            
             message = await channel.fetch_message(payload.message_id)
             member = payload.member
             starboard_channel = guild.get_channel(self.bot.config['channels']['starboard'])
