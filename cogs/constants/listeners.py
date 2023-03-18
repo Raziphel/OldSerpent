@@ -83,9 +83,9 @@ class Listeners(Cog):
 
         #? ban these reactions.
         if emoji == coin:
-            payload.message.reactions.remove(coin)
+            await payload.message.reactions.remove(coin)
         if emoji == bunny:
-            payload.message.reactions.remove(bunny)
+            await payload.message.reactions.remove(bunny)
 
 
 
