@@ -13,7 +13,7 @@ class StarboardHandler(commands.Cog):
 
     REGULAR_GLOWING_STAR_THRESHOLD = 15
     SUGGESTION_GLOWING_STAR_THRESHOLD = 20
-    
+
     STAR_EMOJI = '\N{White Medium Star}'
     GLOWING_STAR_EMOJI = '\N{Glowing Star}'
     ADULT_CHANNEL_EMOJI = '\N{Beer Mug}'
@@ -158,127 +158,136 @@ class StarboardHandler(commands.Cog):
             starboard_channel = guild.get_channel(self.bot.config['channels']['starboard'])
             file_attachment_message = 'Please view the original message to see the attachment.'
 
-            if message.id in self.starboards.starred_messages:
-                starred_message = self.starboards.starred_messages[message.id]
-                starboard_threshold = self.REGULAR_STARBOARD_THRESHOLD if channel.id not in (
-                    self.bot.config['channels']['suggestions'],
-                    self.bot.config['channels']['premium_suggestions']
-                ) else self.SUGGESTION_STARBOARD_THRESHOLD
+            if message.id not in self.starboards.starred_messages:
+                # Insert the information into the table
+                starred_message = StarredMessage(
+                    user_id=member.id,
+                    message_id=None,
+                    reference_channel_id=channel.id,
+                    reference_message_id=message.id,
+                    jump_link=message.jump_url,
+                    star_count=1,
+                    attachment_messages=[]
+                )
 
-                if starred_message.star_count == starboard_threshold - 1:
-                    # Creating a new entry in the starboard channel
-                    embed = discord.Embed(
-                        timestamp=message.created_at,
-                        description=message.content,
-                        colour=discord.Colour.gold()
-                    )
-                    embed.set_author(
-                        name=str(member),
-                        icon_url=member.avatar.url
-                    )
-                    embed.set_footer(text=f'Message ID: {message.id}')
+                return await self.starboards.insert(starred_message)
 
-                    message_content = f'{self.STAR_EMOJI} {starboard_threshold} | {channel.mention}'
+            starred_message = await self.starboards.incr(message_id=message.id)
+            starboard_threshold = self.REGULAR_STARBOARD_THRESHOLD if channel.id not in (
+                self.bot.config['channels']['suggestions'],
+                self.bot.config['channels']['premium_suggestions']
+            ) else self.SUGGESTION_STARBOARD_THRESHOLD
 
-                    components = discord.ui.MessageComponents(
-                        discord.ui.ActionRow(
-                            discord.ui.Button(
-                                label="Original message",
-                                style=discord.ui.ButtonStyle.link,
-                                url=message.jump_url
-                            ),
+            if starred_message.star_count == starboard_threshold:
+                # Creating a new entry in the starboard channel
+                embed = discord.Embed(
+                    timestamp=message.created_at,
+                    description=message.content,
+                    colour=discord.Colour.gold()
+                )
+                embed.set_author(
+                    name=str(member),
+                    icon_url=member.avatar.url
+                )
+                embed.set_footer(text=f'Message ID: {message.id}')
+
+                message_content = f'{self.STAR_EMOJI} {starboard_threshold} | {channel.mention}'
+
+                components = discord.ui.MessageComponents(
+                    discord.ui.ActionRow(
+                        discord.ui.Button(
+                            label="Original message",
+                            style=discord.ui.ButtonStyle.link,
+                            url=message.jump_url
                         ),
+                    ),
+                )
+
+                attachment_message_ids = []
+
+                if message.attachments:
+                    # Treat the first message specially.
+                    # We don't want to mutate the actual list, just in case.
+                    attachments = message.attachments.copy()
+                    attachment = attachments.pop()
+
+                    if 'image' in attachment.content_type:
+                        embed.set_image(url=attachment.url)
+                    else:
+                        embed.description = f'{message.content}\n\n**{file_attachment_message}**'
+
+                    starboard_message = await starboard_channel.send(
+                        content=message_content,
+                        embed=embed,
+                        components=components
                     )
 
-                    attachment_message_ids = []
+                    for attachment in attachments:
+                        # Send only the first attachment with timestamp and message ID information!
+                        # Otherwise, reset information.
 
-                    if message.attachments:
-                        # Treat the first message specially.
-                        # We don't want to mutate the actual list, just in case.
-                        attachments = message.attachments.copy()
-                        attachment = attachments.pop()
+                        embed = discord.Embed(
+                            colour=discord.Colour.gold()
+                        )
+                        # Since we're working with a new embed we need to set the author's information again.
+                        embed.set_author(
+                            name=str(member),
+                            icon_url=member.avatar.url
+                        )
 
                         if 'image' in attachment.content_type:
                             embed.set_image(url=attachment.url)
                         else:
-                            embed.description = f'{message.content}\n\n**{file_attachment_message}**'
+                            embed.description = file_attachment_message
 
-                        starboard_message = await starboard_channel.send(
-                            content=message_content,
-                            embed=embed,
-                            components=components
+                        starboard_attachment_message = await starboard_channel.send(
+                            embed=embed
                         )
 
-                        for attachment in attachments:
-                            # Send only the first attachment with timestamp and message ID information!
-                            # Otherwise, reset information.
+                        attachment_message_ids.append(starboard_attachment_message.id)
 
-                            embed = discord.Embed(
-                                colour=discord.Colour.gold()
-                            )
-                            # Since we're working with a new embed we need to set the author's information again.
-                            embed.set_author(
-                                name=str(member),
-                                icon_url=member.avatar.url
-                            )
+                    return await self.starboards.add_to_starboard(
+                        reference_message_id=message.id,
+                        starboard_message_id=starboard_message.id,
+                        attachment_message_ids=attachment_message_ids
+                    )
+                else:
+                    starboard_message = await starboard_channel.send(
+                        content=message_content,
+                        embed=embed,
+                        components=components
+                    )
 
-                            if 'image' in attachment.content_type:
-                                embed.set_image(url=attachment.url)
-                            else:
-                                embed.description = file_attachment_message
+                    return await self.starboards.add_to_starboard(
+                        reference_message_id=message.id,
+                        starboard_message_id=starboard_message.id,
+                        attachment_message_ids=attachment_message_ids
+                    )
 
-                            starboard_attachment_message = await starboard_channel.send(
-                                embed=embed
-                            )
+            elif starred_message.star_count > starboard_threshold:  # Update the counter
+                try:
+                    # get_partial_message might also work here, but I'm not sure how reliable it is.
+                    starboard_message = await starboard_channel.fetch_message(starred_message.message_id)
 
-                            attachment_message_ids.append(starboard_attachment_message.id)
-
-                        await self.starboards.add_to_starboard(
-                            reference_message_id=message.id,
-                            starboard_message_id=starboard_message.id,
-                            attachment_message_ids=attachment_message_ids
-                        )
-                    else:
-                        starboard_message = await starboard_channel.send(
-                            content=message_content,
-                            embed=embed,
-                            components=components
-                        )
-
-                        await self.starboards.add_to_starboard(
-                            reference_message_id=message.id,
-                            starboard_message_id=starboard_message.id,
-                            attachment_message_ids=attachment_message_ids
-                        )
-
-                starred_message = await self.starboards.incr(message_id=message.id)
-
-                # get_partial_message might also work here, but I'm not sure how reliable it is.
-                starboard_message = await starboard_channel.fetch_message(starred_message.message_id)
+                except discord.DiscordException as err:
+                    return print(
+                        f'[error] unable to retrieve starboard message. '
+                        f'message id: {starred_message.message_id} - {err}'
+                    )
 
                 glowing_star_threshold = self.SUGGESTION_GLOWING_STAR_THRESHOLD if channel.id in (
                     self.bot.config['channels']['suggestions'],
                     self.bot.config['channels']['premium_suggestions']
                 ) else self.REGULAR_GLOWING_STAR_THRESHOLD
 
-                star_emoji = self.GLOWING_STAR_EMOJI \
-                    if starred_message.star_count >= glowing_star_threshold else self.STAR_EMOJI
+                star_emoji = (
+                    self.GLOWING_STAR_EMOJI if starred_message.star_count >= glowing_star_threshold
+                    else self.STAR_EMOJI
+                )
 
                 return await starboard_message.edit(
                     content=f'{star_emoji} {starred_message.star_count} | {channel.mention}'
                 )
-
-            # Insert the information into the table
-            starred_message = StarredMessage(
-                user_id=member.id,
-                message_id=None,
-                reference_channel_id=channel.id,
-                reference_message_id=message.id,
-                jump_link=message.jump_url,
-                star_count=1,
-                attachment_messages=[]
-            )
-            await self.starboards.insert(starred_message)
 
 
 def setup(bot: Serpent):
