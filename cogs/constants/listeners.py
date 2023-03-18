@@ -63,7 +63,7 @@ class Listeners(Cog):
 
 
     @Cog.listener('on_raw_reaction_add')
-    async def shop_buy(self, payload:RawReactionActionEvent):
+    async def remove_bad_reactions(self, payload:RawReactionActionEvent):
         if self.bot.get_user(payload.user_id).bot:
             return
 
