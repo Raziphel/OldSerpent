@@ -84,32 +84,32 @@ class Listeners(Cog):
 
 
 
-    @Cog.listener()
-    async def on_member_update(self, before, after):
-        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        if before.premium_since is None and after.premium_since is not None:
-            c = utils.Currency(before.id)
-            coin = self.bot.config['emotes']['coin']
-            total_coins = 0
-            try:
-                await user.send(embed=utils.SpecialEmbed(title="- Nitro Rewards -", desc=f"A reward for being a nitro booster!\n\n**+5,000 {coin}**", footer=f"You can expect this reward every 30 days!"))
-            except: pass
-            c.coins += 5000
-            total_coins += 5000
-            for user in guild.members:
-                nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
-                if nitro in user.roles:
-                    c = utils.Currency(user.id)
-                    try:
-                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Rewards -", desc=f"A smaller reward becuase someone nitro boosted!\n\n**+1,000 {coin}**", footer=f"You can expect this reward every time someone boosts!"))
-                    except: pass
-                    c.coins += 1000
-                    total_coins += 1000
-                    async with self.bot.database() as db:
-                        await c.save(db)
+    # @Cog.listener()
+    # async def on_member_update(self, before, after):
+    #     guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+    #     if before.premium_since is None and after.premium_since is not None:
+    #         c = utils.Currency(before.id)
+    #         coin = self.bot.config['emotes']['coin']
+    #         total_coins = 0
+    #         try:
+    #             await user.send(embed=utils.SpecialEmbed(title="- Nitro Rewards -", desc=f"A reward for being a nitro booster!\n\n**+5,000 {coin}**", footer=f"You can expect this reward every 30 days!"))
+    #         except: pass
+    #         c.coins += 5000
+    #         total_coins += 5000
+    #         for user in guild.members:
+    #             nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
+    #             if nitro in user.roles:
+    #                 c = utils.Currency(user.id)
+    #                 try:
+    #                     await user.send(embed=utils.SpecialEmbed(title="- Nitro Rewards -", desc=f"A smaller reward becuase someone nitro boosted!\n\n**+1,000 {coin}**", footer=f"You can expect this reward every time someone boosts!"))
+    #                 except: pass
+    #                 c.coins += 1000
+    #                 total_coins += 1000
+    #                 async with self.bot.database() as db:
+    #                     await c.save(db)
 
-            supporters = self.bot.get_channel(self.bot.config['channels']['supporters'])
-            await supporters.send(embed=utils.SpecialEmbed(desc=f"*All nitro boosters recieved a reward!*\n**Total Coins:** {total_coins:,} {coin}", footer=f" "))
+    #         supporters = self.bot.get_channel(self.bot.config['channels']['supporters'])
+    #         await supporters.send(embed=utils.SpecialEmbed(desc=f"*All nitro boosters recieved a reward!*\n**Total Coins:** {total_coins:,} {coin}", footer=f" "))
 
 
 
