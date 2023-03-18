@@ -1,11 +1,13 @@
 # Discord
 from discord.ext.commands import Cog
+from discord import RawReactionActionEvent, Embed
 
 import utils
 
 # Additions
 from datetime import datetime as dt, timedelta
 from asyncio import sleep
+from math import floor
 
 
 class Listeners(Cog):
@@ -58,6 +60,32 @@ class Listeners(Cog):
         if message.channel.id == 1051323487287005264:
             if message.author.id != 550474149332516881:
                 await message.channel.send(f"<@&1070576949837180939>")
+
+
+    @Cog.listener('on_raw_reaction_add')
+    async def shop_buy(self, payload:RawReactionActionEvent):
+        if self.bot.get_user(payload.user_id).bot:
+            return
+
+        #! See what the emoji is
+        if payload.emoji.is_unicode_emoji():
+            emoji = payload.emoji.name 
+        else:
+            emoji = payload.emoji.id
+
+        #* Get the coin emojis
+        coin = self.bot.config['emotes']['coin']
+        bunny = self.bot.config['emotes']['bunny']
+
+
+        guild = self.bot.get_guild(payload.guild_id)
+        user = guild.get_member(payload.user_id)
+
+        #? ban these reactions.
+        if emoji == coin:
+            payload.message.reactions.remove(coin)
+        if emoji == bunny:
+            payload.message.reactions.remove(bunny)
 
 
 
