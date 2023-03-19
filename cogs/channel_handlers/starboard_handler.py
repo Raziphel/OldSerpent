@@ -67,6 +67,9 @@ class StarboardHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
+        if not payload.guild_id:
+            return  # Ignore DMs
+
         if str(payload.emoji) in (self.STAR_EMOJI, self.CUSTOM_UPVOTE_EMOJI):
             guild = self.bot.get_guild(payload.guild_id)
             channel = guild.get_channel(payload.channel_id)
@@ -124,6 +127,9 @@ class StarboardHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
+        if not payload.guild_id:
+            return  # Ignore DMs
+
         if str(payload.emoji) in (self.STAR_EMOJI, self.CUSTOM_UPVOTE_EMOJI):
             guild = self.bot.get_guild(payload.guild_id)
             channel = guild.get_channel(payload.channel_id)
