@@ -77,10 +77,6 @@ class Listeners(Cog):
         coin = self.bot.config['emotes']['coin']
         bunny = self.bot.config['emotes']['bunny']
 
-
-        guild = self.bot.get_guild(payload.guild_id)
-        user = guild.get_member(payload.user_id)
-
         #? ban these reactions.
         if emoji == coin:
             await payload.message.reactions.remove(coin)
