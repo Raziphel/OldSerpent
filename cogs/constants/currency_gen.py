@@ -54,7 +54,7 @@ class Currency_Gen(Cog):
                 unique_words = 6
 
             rng = choice([0.5, 0.75, 1.0, 1.25, 1.50, 2])
-            exp += 1+lvl.level/2)*rng
+            exp += (1+lvl.level/2)*rng
             coins = 3+unique_words*rng
 
             await utils.CoinFunctions.earn(earner=message.author, amount=coins)
