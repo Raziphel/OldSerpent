@@ -57,8 +57,7 @@ class Nsfw(Cog):
             await mod.save(db)
         # ! Log the action!
         await self.members_log.send(
-            embed=utils.LogEmbed(type="negative", title=f"CHILD ROLE", desc=f"{user.name} was marked as a child!",
-                                 guild=guild))
+            embed=utils.LogEmbed(type="negative", title=f"CHILD ROLE", desc=f"{user.name} was marked as a child!", guild=guild))
 
     @utils.is_mod_staff()
     @utils.is_guild()

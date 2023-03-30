@@ -50,11 +50,11 @@ class Currency_Gen(Cog):
                 unique_words += 5
 
             #! Unique Word Nerfer
-            if unique_words > 10:
-                unique_words = 10
+            if unique_words > 6:
+                unique_words = 6
 
             rng = choice([0.5, 0.75, 1.0, 1.25, 1.50, 2])
-            exp += 4+(lvl.level/2)*rng
+            exp += 1+lvl.level/2)*rng
             coins = 3+unique_words*rng
 
             await utils.CoinFunctions.earn(earner=message.author, amount=coins)
@@ -110,7 +110,7 @@ class Currency_Gen(Cog):
 
                     c = utils.Currency.get(member.id)
                     lvl = utils.Levels.get(member.id)
-                    lvl.exp += 10+(len(vc.members)/2)*(lvl.level/2)
+                    lvl.exp += 15+(len(vc.members)/2)*(lvl.level/2)
                     coins = 10 + round(len(vc.members))
                     await utils.CoinFunctions.earn(earner=member, amount=coins)
 
