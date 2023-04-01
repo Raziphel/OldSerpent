@@ -30,7 +30,9 @@ class Staff_Actions(Cog):
         async with self.bot.database() as db:
             await mod.save(db)
 
-        msg = await ctx.send(embed=utils.DefualtEmbed(title=f"{user} is now image banned"))
+        image_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['image_pass'])
+        await user.remove_roles(image_pass, reason="Removed Image Pass role.")
+        msg = await ctx.send(embed=utils.DefualtEmbed(title=f"{user} is now image pass banned!"))
 
 
 
