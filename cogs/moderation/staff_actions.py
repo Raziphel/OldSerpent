@@ -17,6 +17,11 @@ class Staff_Actions(Cog):
     def message_log(self):
         return self.bot.get_channel(self.bot.config['channels']['messages'])
 
+    @property  #! The members logs
+    def discord_log(self):
+        return self.bot.get_channel(self.bot.config['channels']['server']) 
+
+
 
 
 
@@ -34,7 +39,9 @@ class Staff_Actions(Cog):
 
         image_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['image_pass'])
         await user.remove_roles(image_pass, reason="Removed Image Pass role.")
-        msg = await ctx.send(embed=utils.DefualtEmbed(title=f"{user} is now image pass banned!"))
+        await ctx.send(embed=utils.DefualtEmbed(title=f"{user} is now image pass banned!"))
+        await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"{user.name} has been image banned.", thumbnail=member.avatar.url))
+
 
 
 
