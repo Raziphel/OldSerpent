@@ -90,9 +90,11 @@ class Shop_Handler(Cog):
             guild = self.bot.get_guild(payload.guild_id)
             user = guild.get_member(payload.user_id)
             c = utils.Currency.get(user.id)
+            mod = utils.Moderation.get(user.id)
             day = utils.Daily.get(user.id)
             bought = False
             item = {"name": "BROKEN OH NO", "coin": -1}
+
             #? Get the correct item
             if emoji == "✨":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase Discord Nitro!\nCost: {coin} 1,000,000x", footer=" "))
@@ -117,6 +119,9 @@ class Shop_Handler(Cog):
                     await user.add_roles(library_pass, reason="Given a Library Pass role.")
 
             if emoji == "🎫":
+                if mod.image_banned == True:
+                    await user.send(embed=utils.LogEmbed(type="special", title="IMAGE BANNED", desc=f"You have been banned from ever being able to have an image pass! <3", footer=" "))
+                    return
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Image Pass!\nCost: {coin} 20,000x", footer=" "))
                 item['coin'] = 20000
                 item['name'] = "Image Pass"
@@ -188,6 +193,7 @@ class Shop_Handler(Cog):
             async with self.bot.database() as db:
                 await c.save(db)
                 await day.save(db)
+                await mod.save(db)
 
 
             if bought == True:

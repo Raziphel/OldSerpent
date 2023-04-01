@@ -17,6 +17,26 @@ class Staff_Actions(Cog):
     def message_log(self):
         return self.bot.get_channel(self.bot.config['channels']['messages'])
 
+
+
+
+
+    @utils.is_mod_staff()
+    @command(aliases=['iban'])
+    async def imageban(self, ctx, user:Member):
+        '''Restarts the bot'''  
+        mod = utils.Moderation.get(user.id)
+        mod.image_banned = True
+        async with self.bot.database() as db:
+            await mod.save(db)
+
+        msg = await ctx.send(embed=utils.DefualtEmbed(title=f"{user} is now image banned"))
+
+
+
+
+
+
     @utils.is_mod_staff()
     @command(
         aliases=['pr'],
@@ -51,11 +71,7 @@ class Staff_Actions(Cog):
         async with self.bot.database() as db:
             await st.save(db)
         removed = await ctx.channel.purge(limit=amount, check=check)
-        await ctx.interaction.response.send_message(
-            embed=utils.SpecialEmbed(
-                title=f"Deleted {len(removed)} messages!",
-                guild=ctx.guild
-            )
+        await ctx.interaction.response.send_message(embed=utils.SpecialEmbed(title=f"Deleted {len(removed)} messages!")
         )
 
 
@@ -93,16 +109,7 @@ class Staff_Actions(Cog):
                 guild=ctx.guild
             )
         )
-
-
-
-        await self.message_log.send(
-            embed=utils.LogEmbed(
-                type="negative",
-                title=f"Channel messages Purged",
-                desc=f"<@{ctx.author.id}> purged {amount} messages from <#{ctx.channel.id}>!"
-            )
-        )
+        await self.message_log.send(embed=utils.LogEmbed(type="negative", title=f"Channel messages Purged",desc=f"<@{ctx.author.id}> purged {amount} messages from <#{ctx.channel.id}>!"))
 
     @utils.is_mod_staff()
     @command(

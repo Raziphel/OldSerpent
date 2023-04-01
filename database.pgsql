@@ -10,6 +10,7 @@ CREATE TABLE moderation (
     adult boolean DEFAULT false,
     child boolean DEFAULT false,
     muted boolean DEFAULT false,
+    image_banned boolean DEFAULT false,
     PRIMARY KEY (user_id)
 );
 
