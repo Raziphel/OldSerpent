@@ -64,11 +64,11 @@ class Daily(Cog):
             daily = 365
         else:
             daily = day.daily
-        coins = round((100 + daily) * rng)
+        coins = round((10 + (daily*2.7)) * rng)
         await utils.CoinFunctions.earn(earner=ctx.author, amount=coins)
 
         # ! Add xP!
-        xp = round((lvl.level * 2.25) * rng)
+        xp = round((lvl.level * (2.25+(daily*0.25))) * rng)
         lvl.exp += xp
 
         coin_e = self.bot.config['emotes']['coin']
@@ -80,10 +80,15 @@ class Daily(Cog):
         if day.premium:
             footer = "Click for a reward!"
             emojis = (
-                "🔷",
-                "🏴",
-                "🔶",
-                "🍄"
+                "❤",
+                "🧡",
+                "💛",
+                "💚",
+                "💙",
+                "💜",
+                "🤎",
+                "🖤",
+                "🤍"
             )
             emoji = choice(emojis)
             components = discord.ui.MessageComponents(
@@ -112,7 +117,7 @@ class Daily(Cog):
             # Wait for the user to respond
             interaction = await self.bot.wait_for("component_interaction", check=check)
 
-            reward = choice([100, 200, 300, 400, 500])
+            reward = choice([50, 100, 150, 200, 250])
             c.coins += reward
 
             # Now the user has responded, disable the buttons on the message
