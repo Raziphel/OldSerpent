@@ -61,9 +61,6 @@ class rules_handler(Cog):
         msg2 = await ch.fetch_message(1052828331197874176) #? msg
         msg3 = await ch.fetch_message(1052828335283122196) #? msg
 
-        ch2 = guild.get_channel(1069729906994450462) #? Stat Channel
-        msg10 = await ch2.fetch_message(1069848085167091712) #? REPORTING
-
         coin = self.bot.config['emotes']['coin']
 
         embed1=Embed(title=f"**[- SCP Server Info -]**", 
@@ -75,9 +72,6 @@ class rules_handler(Cog):
         embed3=Embed(title=f"**[- Coming Soon... -]**", 
         description=f"", color=0xFFFFFF)
 
-
-        embed10=Embed(title=f"**[- Stats Table -]**", 
-        description=f"[Most Kills](https://discord.com/channels/689534383878701223/1069729906994450462/1069745339520786472)\n[Most Deaths](https://discord.com/channels/689534383878701223/1069729906994450462/1069745366502748240)\n[Rounds Played](https://discord.com/channels/689534383878701223/1069729906994450462/1069745393723772989)\n[Most Playtime](https://discord.com/channels/689534383878701223/1069729906994450462/1069745459905708132)\n[Sodas Used](https://discord.com/channels/689534383878701223/1069729906994450462/1069745478570365010)\n[Medkits Used](https://discord.com/channels/689534383878701223/1069729906994450462/1069745499755794502)\n[Balls Used](https://discord.com/channels/689534383878701223/1069729906994450462/1069745523021586462)\n[Adrenalines Used](https://discord.com/channels/689534383878701223/1069729906994450462/1069745547096903690)\n[Most Escapes](https://discord.com/channels/689534383878701223/1069729906994450462/1069745575865614346)\n[Fastest Escape](https://discord.com/channels/689534383878701223/1069729906994450462/1069745597189460038)\n[Most Won Rounds](https://discord.com/channels/689534383878701223/1069729906994450462/1069745619402490039)\n[Most Rounds Lost](https://discord.com/channels/689534383878701223/1069729906994450462/1069745640936054784)\n[Most Pocket Escapes](https://discord.com/channels/689534383878701223/1069729906994450462/1069745667737669673)", color=0xFFFFFF)
 
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
