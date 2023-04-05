@@ -285,24 +285,24 @@ class Loops(Cog):
 
 
 
-        nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
-        coin = "<:Coin:1026302157521174649>"
+        # nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
+        # coin = "<:Coin:1026302157521174649>"
 
-        t = utils.Timers.get(self.bot.config['garden_id'])
-        if (t.last_nitro_reward + timedelta(days=30)) <= dt.utcnow():
-            t.last_nitro_reward = dt.utcnow()
-            for user in guild.members:
-                if nitro in user.roles:
-                    c = utils.Currency(user.id)
-                    try:
-                        await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 5,000x**", footer=f"You can expect this reward every 30 days!"))
-                    except: pass
-                    c.coins += 5000
-                    c.xp += 1000
-                    async with self.bot.database() as db:
-                        await t.save(db)
-                        await c.save(db)
-                    print('Handed out Boost rewards')
+        # t = utils.Timers.get(self.bot.config['garden_id'])
+        # if (t.last_nitro_reward + timedelta(days=30)) <= dt.utcnow():
+        #     t.last_nitro_reward = dt.utcnow()
+        #     for user in guild.members:
+        #         if nitro in user.roles:
+        #             c = utils.Currency(user.id)
+        #             try:
+        #                 await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 5,000x**", footer=f"You can expect this reward every 30 days!"))
+        #             except: pass
+        #             c.coins += 5000
+        #             c.xp += 1000
+        #             async with self.bot.database() as db:
+        #                 await t.save(db)
+        #                 await c.save(db)
+        #             print('Handed out Boost rewards')
 
 
 
