@@ -98,14 +98,40 @@ class ProfileEmbed(Embed):
             self.add_field(name='-', value=f"**Work In Progress**", inline=True)
             self.set_footer(text=f"Joined Razi's Realm: {joined_at}")
 
+
+
+
+
+
         if type_ == "Staff-Track":
             self.add_field(name='STAFF', value=f"❧ Mutes: {st.mutes}\n❧ Memes: {st.memes}\n❧ Nsfws: {st.nsfws}\n❧ Sonas: {st.mail_sonas}", inline=True)
             self.add_field(name='TRACK', value=f"❧ Purges: {st.purges}\n❧ Messages: {st.messages}\n❧ Monthly Msgs: {st.messages_month}\n❧ Verified: {st.mail_verification}", inline=True)
             if quick == False:
                 self.set_footer(text=f"| 🔷 Main Profile |")
 
+
+
+
+
         if type_ == "Currency":
             self.add_field(name='COINS', value=f"❧ {coin_e} Coins: **{floor(c.coins):,}**", inline=True)
+            if quick == False:
+                self.set_footer(text=f"| 🔷 Main Profile |")
+
+
+
+
+
+
+        if type_ == "Items":
+            self.add_field(name='Items', value=f"❧ 🍭 Daily Increaser: **{items.daily_increaser:,}**\n❧ 🧤 Thief's Gloves: **{items.thief_gloves:,}**\n❧ {bunny_e} Luck: **{items.rabbit_luck:,}/100**\n❧ 🍒 Lottery Tickets: **{c.lot_tickets:,}**", inline=True)
+            self.add_field(name='𝙋𝙖𝙜𝙚 ２', value=f"❧ 🎉Party Popper: **{items.party_popper:,}**", inline=True)
+            if quick == False:
+                self.set_footer(text=f"| 🔷 Main Profile |")
+
+
+
+
 
         if type_ == "Sfw_Sona":
             if staff == True:
