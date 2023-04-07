@@ -34,7 +34,6 @@ class Shop_Handler(Cog):
         #* Get the coin emojis
         coin = self.bot.config['emotes']['coin']
 
-
         embed1=Embed(title=f"**[- Serpent's Toys -]**", description=f"**By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.**\n\n**Exclusive Items:**\n*Items that are purposely made very expensive, due to there value!*", color=0x47F5DB)
         embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n\n**{coin} 1,000,000x**", inline=True)
 
@@ -47,6 +46,7 @@ class Shop_Handler(Cog):
 
         embed3=Embed(title=f"**[- Abilities & Items -]**", description=f"**Use special abilites on a set cooldown! (Some are Permenant.)**", color=0x475FF5)
         embed3.add_field(name=f"💎 ❧ Daily Bonus", value=f"**{coin} 40,000x**\n\n**Get a bonus with every daily!**\n*(Doesn't get better with more dailys)*", inline=True)
+        embed3.add_field(name=f"🧤 ❧ Thief Gloves", value=f"**{coin} 20,000x**\n\n**Get 5 thief gloves!**\n*(Let's you steal coins from people!)*", inline=True)
         
         embed4=Embed(title=f"**[- In-Server Purchases -]**", description=f"**Purchases that are for the SCP servers!**", color=0xB347F5)
         embed4.add_field(name=f"🧶 ❧ Coin Lord", value=f"**{coin} 250,000x**\n\n**Get the orange `Coin Lord Badge` on the SCP servers!**", inline=True)
@@ -93,6 +93,7 @@ class Shop_Handler(Cog):
             c = utils.Currency.get(user.id)
             mod = utils.Moderation.get(user.id)
             day = utils.Daily.get(user.id)
+            items = utils.Items.get(user.id)
             bought = False
             item = {"name": "BROKEN OH NO", "coin": -1}
 
@@ -164,6 +165,16 @@ class Shop_Handler(Cog):
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     day.premium = True
+
+            if emoji == "🧤":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 5 thief gloves!\nCost: {coin} 20,000x", footer=" "))
+                item['coin'] = 20000
+                item['name'] = "5 thief gloves"
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased 5 thief gloves!", footer=" "))
+                    bought = True
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
+                    items.thief_gloves += 5
 
             if emoji == "🧶":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the Coin Lord badge.\nCost: {coin} 250,000x", footer=" "))

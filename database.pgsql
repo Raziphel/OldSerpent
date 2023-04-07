@@ -71,6 +71,14 @@ CREATE TABLE daily (
     PRIMARY KEY (user_id)
 );
 
+CREATE TABLE items (
+    user_id BIGINT NOT NULL,
+    thief_gloves INT,
+    party_popper INT,
+    PRIMARY KEY (user_id)
+);
+
+
 CREATE TABLE currency (
     user_id bigint NOT NULL,
     coins integer DEFAULT 500,

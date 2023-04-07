@@ -23,6 +23,7 @@ from utils.sql.users.sonas import Sonas
 from utils.sql.users.nsfw_sonas import Nsfw_sonas
 from utils.sql.users.tracking import Tracking
 from utils.sql.users.daily import Daily
+from utils.sql.users.items import Items
 
 #? Admin
 from utils.sql.admin.timers import Timers
