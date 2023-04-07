@@ -29,7 +29,7 @@ class Error_Handler(Cog):
             guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
             for role in ctx.author.roles:
-                if role.id == self.bot.config['roles']['scps'] or ctx.author.id == self.bot.config['developers'].values():
+                if role.id == self.bot.config['roles']['scps']:
                     await ctx.send("*Bypassing Cooldowns. Thanks for supporting!*")
                     await ctx.reinvoke()
                     return
