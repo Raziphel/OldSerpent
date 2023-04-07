@@ -441,9 +441,7 @@ class Profile(Cog):
         '''Quick Check Coins'''
         if not user:
             user = ctx.author
-        m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True))
-        await sleep(5)
-        await m.delete()
+        m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True), delete_after=10)
 
     @cooldown(1, 5, BucketType.user)
     @command(aliases=['color', 'Color', 'Setcolor', 'SetColor'])
