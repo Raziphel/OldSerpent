@@ -94,7 +94,7 @@ class UserFunction(object):
             15: "Zealot (Lvl 15)",
             10: "Member (Lvl 10)",
             5: "Initiate (Lvl 5)",
-            0: "Sacrafice (Lvl 1)",
+            0: "sacrifice (Lvl 1)",
         }
 
         # Get roles from the user we'd need to delete
