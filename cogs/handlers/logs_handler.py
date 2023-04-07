@@ -123,6 +123,8 @@ class Logging(Cog):
         name_list = list(message.channel.name)
         if '🍺' in name_list:
             channel = self.adult_log
+        elif '🐁' in name_list:
+            channel = self.adult_log
         elif '✨' in name_list:
             channel = self.staff_log
         else: channel = self.message_log

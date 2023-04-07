@@ -76,7 +76,6 @@ class rules_handler(Cog):
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
         await msg3.edit(content=f" ", embed=embed3)
-        await msg10.edit(content=f" ", embed=embed10)
 
 
 
