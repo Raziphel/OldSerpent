@@ -97,7 +97,7 @@ class Listeners(Cog):
             await tr.save(db)
 
         # Check for general
-        if message.channel.id in [1047026469068623902, 1056747785749278761, 1056776991770161162]: #? Suggestions
+        if message.channel.id in [1047026469068623902, 1056747785749278761, 1056776991770161162, 1093622505236865045]: #? Suggestions
             await message.add_reaction("<:UpVote:1041606985080119377>")
             await message.add_reaction("<:DownVote:1041606970492342282>")
         if message.channel.id in [1051033412456165396]: #? 1 word only
