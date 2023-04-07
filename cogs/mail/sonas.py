@@ -77,7 +77,7 @@ class Sonas(Cog):
             'bio': None,
             'image': None,
             'species': None,
-            'color': None,
+            'color': 0,
             'likes': None,
             'nsfw': None,
         }
