@@ -477,7 +477,7 @@ class Profile(Cog):
             await ss.save(db)
 
         await ctx.send(
-            embed=utils.DefualtEmbed(title="Your color setting has been set!", guild=ctx.guild, user=ctx.author))
+            embed=utils.DefaultEmbed(title="Your color setting has been set!", guild=ctx.guild, user=ctx.author))
 
 
 def setup(bot):

@@ -39,7 +39,7 @@ class Staff_Actions(Cog):
 
         image_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['image_pass'])
         await user.remove_roles(image_pass, reason="Removed Image Pass role.")
-        await ctx.send(embed=utils.DefualtEmbed(title=f"{user} is now image pass banned!"))
+        await ctx.send(embed=utils.DefaultEmbed(title=f"{user} is now image pass banned!"))
         await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"{user.name} has been image banned.", thumbnail=member.avatar.url))
 
 

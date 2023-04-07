@@ -7,7 +7,7 @@ from random import choice
 import utils
 
 
-class DefualtEmbed(Embed):
+class DefaultEmbed(Embed):
 
     bot = None
 

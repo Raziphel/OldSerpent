@@ -32,7 +32,7 @@ class Daily(Cog):
             t = dt(1, 1, 1) + (tf - dt.utcnow())
 
             return await ctx.interaction.response.send_message(
-                embed=utils.DefualtEmbed(
+                embed=utils.DefaultEmbed(
                     description=f"You can claim your daily rewards in {t.hour} hours and {t.minute} minutes!"
                 )
             )

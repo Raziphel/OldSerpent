@@ -41,14 +41,14 @@ class Payment(Cog):
         # Check if the recipient is the same as the user.
         if recipient == ctx.author:
             return await ctx.interaction.response.send_message(
-                embed=utils.DefualtEmbed(
+                embed=utils.DefaultEmbed(
                     description=f"{ctx.author} You can't pay yourself coins! stupid..."
                 )
             )
 
         if amount <= 10:
             return await ctx.interaction.response.send_message(
-                embed=utils.DefualtEmbed(
+                embed=utils.DefaultEmbed(
                     description=f"{ctx.author} Has to be more than 10!"
                 )
             )
@@ -57,7 +57,7 @@ class Payment(Cog):
         c = utils.Currency.get(ctx.author.id)
         if amount > c.coins:
             return await ctx.interaction.response.send_message(
-                embed=utils.DefualtEmbed(
+                embed=utils.DefaultEmbed(
                     description=f"{recipient.mention} you don't have that many coins."
                 )
             )
@@ -65,7 +65,7 @@ class Payment(Cog):
         await utils.CoinFunctions.pay_user(payer=ctx.author, receiver=recipient, amount=amount)
 
         await ctx.interaction.response.send_message(
-            embed=utils.DefualtEmbed(
+            embed=utils.DefaultEmbed(
                 description=f"**{ctx.author} sent {amount:,}x {coin_e} to {recipient}!**"
             )
         )

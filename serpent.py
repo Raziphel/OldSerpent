@@ -19,7 +19,7 @@ class Serpent(commands.AutoShardedBot):
             self.config = toml.load(z)
 
         # ! Adds all embeds to the Serpent Bot.
-        utils.DefualtEmbed.bot = self
+        utils.DefaultEmbed.bot = self
         utils.SpecialEmbed.bot = self
         utils.LogEmbed.bot = self
         utils.DevEmbed.bot = self
