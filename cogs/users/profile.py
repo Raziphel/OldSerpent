@@ -423,6 +423,8 @@ class Profile(Cog):
             await self.base_profile(ctx=ctx, user=user, msg=msg)
             return
 
+
+
     @cooldown(1, 30, BucketType.user)
     @command(aliases=['Sona', 'fursona', 'Fursona'])
     async def sona(self, ctx, user: Member = None):
@@ -435,6 +437,8 @@ class Profile(Cog):
             user = ctx.author
         m = await ctx.send(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
 
+
+
     @cooldown(1, 30, BucketType.user)
     @command(aliases=['c', 'C'])
     async def currency(self, ctx, user: Member = None):
@@ -442,6 +446,17 @@ class Profile(Cog):
         if not user:
             user = ctx.author
         m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True), delete_after=10)
+
+
+
+    @command(aliases=['inv', 'items', 'Inv'])
+    async def inventory(self, ctx, user:Member=None):
+        '''Quick Check inventory'''
+        if not user:
+            user = ctx.author
+        await ctx.send(embed=utils.ProfileEmbed(type="Items", user=user, quick=True))
+
+
 
     @cooldown(1, 5, BucketType.user)
     @command(aliases=['color', 'Color', 'Setcolor', 'SetColor'])
