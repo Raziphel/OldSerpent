@@ -106,10 +106,10 @@ class item_usage(Cog):
         coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs'])
         if coins_lost != None:
             await ctx.send(content=f"{user.mention}", embed=utils.DefualtEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** coins to them instead..."))
-            await coin_logs.send(embed=utils.DefualtEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** coins to them instead..."))
+            await coin_logs.send(embed=utils.LogEmbed(type="negative", title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** coins to them instead..."))
         else:
             await ctx.send(content=f"{user.mention}", embed=utils.DefualtEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** coins!"))
-            await coin_logs.send(embed=utils.DefualtEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** coins!"))
+            await coin_logs.send(embed=utils.LogEmbed(type="negative", title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** coins!"))
 
         
 
