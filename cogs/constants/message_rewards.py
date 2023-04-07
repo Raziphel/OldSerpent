@@ -80,7 +80,7 @@ class Message_Rewards(Cog):
         except: return
         msg = None
 
-        coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs']
+        coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs'])
 
         #! Define Emojis
         bunny_e = "<a:Bunny:703136644366336000>"
