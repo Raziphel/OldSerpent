@@ -27,10 +27,9 @@ class item_usage(Cog):
         '''
 
         if (self.restart_cooldown + timedelta(minutes=30)) >= dt.utcnow():
-            await ctx.send(embed=utils.DefualtEmbed(title=f"Stealing is on cooldown for another 30 minutes!\nDue to a bot restart!"))
             tf = self.restart_cooldown + timedelta(minutes=30)
             t = dt(1, 1, 1) + (tf - dt.utcnow())
-            await ctx.send(embed=utils.DefualtEmbed(description=f"You can steal again in {t.minute} minutes!"))
+            await ctx.send(embed=utils.DefualtEmbed(title=f"Stealing is on cooldown for another 30 minutes!\nDue to a bot restart!", description=f"You can steal again in {t.minute} minutes!"))
             return
 
         if not user:
