@@ -436,9 +436,9 @@ class Profile(Cog):
         m = await ctx.send(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
 
     @cooldown(1, 30, BucketType.user)
-    @command(aliases=['c', 'C', 'Gems', 'ingots', 'gems', 'Ingots'])
+    @command(aliases=['c', 'C'])
     async def currency(self, ctx, user: Member = None):
-        '''Quick Check Gems'''
+        '''Quick Check Coins'''
         if not user:
             user = ctx.author
         m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True))

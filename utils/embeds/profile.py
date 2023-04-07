@@ -104,6 +104,9 @@ class ProfileEmbed(Embed):
             if quick == False:
                 self.set_footer(text=f"| 🔷 Main Profile |")
 
+        if type_ == "Currency":
+            self.add_field(name='COINS', value=f"❧ {coins_e} Coins: **{floor(c.coins):,}**\n\n❧ {evil_coins_e} Evil Coins: **{c.evil_coins:,}**", inline=True)
+
         if type_ == "Sfw_Sona":
             if staff == True:
                 self.add_field(name='Name', value=f"{ch.name}", inline=True)
