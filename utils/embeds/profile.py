@@ -31,6 +31,7 @@ class ProfileEmbed(Embed):
         c = utils.Currency.get(user.id)
         tr = utils.Tracking.get(user.id)
         st = utils.Staff_Track.get(user.id)
+        items = utils.Items.get(user.id)
 
         if type_ == 'Sfw_Sona':
             ch = utils.Sonas.get(user.id)
