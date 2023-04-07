@@ -217,6 +217,7 @@ class Shop_Handler(Cog):
                 await c.save(db)
                 await day.save(db)
                 await mod.save(db)
+                await items.save(db)
 
 
             if bought == True:
