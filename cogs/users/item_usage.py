@@ -14,7 +14,7 @@ class item_usage(Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.restart_cooldown = dt.utcnow()
+        # self.restart_cooldown = dt.utcnow()
 
 
 
@@ -26,11 +26,11 @@ class item_usage(Cog):
         Use your gloves to steal!
         '''
 
-        if (self.restart_cooldown + timedelta(minutes=30)) >= dt.utcnow():
-            tf = self.restart_cooldown + timedelta(minutes=30)
-            t = dt(1, 1, 1) + (tf - dt.utcnow())
-            await ctx.send(embed=utils.DefualtEmbed(title=f"Stealing is on cooldown for another 30 minutes!", description=f"this is due to a bot restart recently!\n\nYou can steal again in {t.minute} minutes!"), delete_after=5)
-            return
+        # if (self.restart_cooldown + timedelta(minutes=30)) >= dt.utcnow():
+        #     tf = self.restart_cooldown + timedelta(minutes=30)
+        #     t = dt(1, 1, 1) + (tf - dt.utcnow())
+        #     await ctx.send(embed=utils.DefualtEmbed(title=f"Stealing is on cooldown for another 30 minutes!", description=f"this is due to a bot restart recently!\n\nYou can steal again in {t.minute} minutes!"), delete_after=5)
+        #     return
 
         if not user:
             await ctx.send(embed=utils.DefualtEmbed(title=f"You didn't say who your stealing from?", desc=f"**Stealing Odds:**\nSteal 1,000\nSteal 2,000\nSteal 3,000\nSteal 1%\nSteal 3%\nLose 5,000\nLose 5%"))
