@@ -3,7 +3,7 @@
 from utils.permissions import *
 
 #* Embeds
-from utils.embeds.defualt import DefaultEmbed
+from utils.embeds.default import DefaultEmbed
 from utils.embeds.special import SpecialEmbed
 from utils.embeds.log import LogEmbed
 from utils.embeds.dev import DevEmbed
