@@ -201,7 +201,7 @@ class Sonas(Cog):
             sona.age = int(table_data.get('age'))
             sona.species = table_data.get('species')
             sona.bio = table_data.get('bio')
-            sona.image = table_data.get('image')
+            sona.image = str(table_data.get('image'))
             sona.color = int(table_data.get('color'))
             sona.likes = table_data.get('likes')
             sona.verified = False
