@@ -38,7 +38,7 @@ class Loops(Cog):
 
         #! Database check
         if self.bot.connected == False:
-            await self.bot.change_presence(activity=Game(name="Databse is Down!!!"))
+            await self.bot.change_presence(activity=Game(name="Database is Down!!!"))
             return
 
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
