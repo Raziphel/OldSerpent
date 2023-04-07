@@ -442,6 +442,8 @@ class Profile(Cog):
         if not user:
             user = ctx.author
         m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True))
+        await sleep(5)
+        await m.delete()
 
     @cooldown(1, 5, BucketType.user)
     @command(aliases=['color', 'Color', 'Setcolor', 'SetColor'])
@@ -454,8 +456,7 @@ class Profile(Cog):
             try:
                 colour_value = int(colour.strip('#'), 16)
             except ValueError:
-                await ctx.send(embed=utils.SpecialEmbed(title="Incorrect colour usage!", guild=ctx.guild),
-                               delete_after=5)
+                await ctx.send(embed=utils.SpecialEmbed(title="Incorrect colour usage!", guild=ctx.guild), delete_after=5)
                 return
 
         ss.color = colour_value

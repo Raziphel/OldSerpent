@@ -215,10 +215,10 @@ class Loops(Cog):
                     description=f"**This channel is only for using bot commands!**\nthe Serpent bot has the `/` prefix for regular commands.\nThe Serpent's Music commands use the prefix `!` and both have a help command!", color=randint(1, 0xffffff))
                 if channel == adult_lounge:
                     embed=Embed(title=f"**[- Adult Lounge Sticky -]**",
-                    description=f"**This channel is only for adults**\n\n**NSFW content is allowed!**\n*Only art/drawn nsfw!  No IRL porn is allowed.**", color=randint(1, 0xffffff))
+                    description=f"**This channel is only for adults**\n\n**NSFW content is allowed!**\n**Only art/drawn nsfw!  No IRL porn is allowed.**", color=randint(1, 0xffffff))
                 if channel == adult_memes:
                     embed=Embed(title=f"**[- Adult Memes Sticky -]**",
-                    description=f"**This channel is only for adults**\n\n**NSFW content is allowed!**\n*Only art/drawn nsfw!  No IRL porn is allowed.**", color=randint(1, 0xffffff))
+                    description=f"**This channel is only for adults**\n\n**NSFW content is allowed!**\n**Only art/drawn nsfw!  No IRL porn is allowed.**", color=randint(1, 0xffffff))
                 if channel == issues:
                     embed=Embed(title=f"**[- Issues Sticky -]**",
                     description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@Game Staff** - Ping for anything SCP Server related.\n**@Discord Staff** - Ping for anything Discord related.", color=randint(1, 0xffffff))

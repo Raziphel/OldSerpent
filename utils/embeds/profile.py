@@ -49,7 +49,7 @@ class ProfileEmbed(Embed):
         self.color = tr.color
 
         #* Emojis
-        coin = self.bot.config['emotes']['coin']
+        coin_e = self.bot.config['emotes']['coin']
         safe = "<:SAFE:1020576690604343296>"
         euclid = "<:EUCLID:1020576687693496352>"
         keter = "<:KETER:1020576689245392937>"
@@ -105,7 +105,7 @@ class ProfileEmbed(Embed):
                 self.set_footer(text=f"| 🔷 Main Profile |")
 
         if type_ == "Currency":
-            self.add_field(name='COINS', value=f"❧ {coins_e} Coins: **{floor(c.coins):,}**\n\n❧ {evil_coins_e} Evil Coins: **{c.evil_coins:,}**", inline=True)
+            self.add_field(name='COINS', value=f"❧ {coin_e} Coins: **{floor(c.coins):,}**", inline=True)
 
         if type_ == "Sfw_Sona":
             if staff == True:
