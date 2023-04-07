@@ -35,19 +35,20 @@ class Shop_Handler(Cog):
         coin = self.bot.config['emotes']['coin']
 
 
-        embed1=Embed(title=f"**[- The Realm's Shop -]**", description=f"**By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.**\n\n**Exclusive Items:**\n*Items that are purposely made very expensive, due to there value!*", color=0x47F5DB)
+        embed1=Embed(title=f"**[- Serpent's Items -]**", description=f"**By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.**\n\n**Exclusive Items:**\n*Items that are purposely made very expensive, due to there value!*", color=0x47F5DB)
         embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n\n**{coin} 1,000,000x**", inline=True)
 
         embed2=Embed(title=f"**[- Roles & Perms -]**", description=f"**This is a list of discord related items for sale.**", color=0x47B9F5)
         embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**{coin} 25,000x**\n\n**Get access to all of the server's logs!**\n*(Full Transparency from all users)*", inline=True)
         embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**{coin} 20,000x**\n\n**Get permission for images & embeds in General Chats.**", inline=True)
-        embed2.add_field(name=f"🎁 ❧ XKClass Channels", value=f"**{coin} 5,000x**\n\n**Get permission to the XK Class channels.**\n*(Fun/Stupid/Random channels)*", inline=True)
+        embed2.add_field(name=f"🎁 ❧ Special Channels", value=f"**{coin} 5,000x**\n\n**Get permission to the XK Class channels.**\n*(Fun/Stupid/Random channels)*", inline=True)
+        embed2.add_field(name=f"💀 ❧ Auto-Mod Bypass", value=f"**{coin} 100,000x**\n\n**No longer have to worry about the discord's auto moderation.**", inline=True)
 
 
         embed3=Embed(title=f"**[- Abilities & Items -]**", description=f"**Use special abilites on a set cooldown! (Some are Permenant.)**", color=0x475FF5)
         embed3.add_field(name=f"💎 ❧ Daily Bonus", value=f"**{coin} 40,000x**\n\n**Get a bonus with every daily!**\n*(Doesn't get better with more dailys)*", inline=True)
         
-        embed4=Embed(title=f"**[- SCP:SL Items -]**", description=f"**Purchases that are for the SCP servers!**", color=0xB347F5)
+        embed4=Embed(title=f"**[- In-Server Items -]**", description=f"**Purchases that are for the SCP servers!**", color=0xB347F5)
         embed4.add_field(name=f"🧶 ❧ Coin Lord", value=f"**{coin} 250,000x**\n\n**Get the orange `Coin Lord Badge` on the SCP servers!**", inline=True)
         embed4.add_field(name=f"🎆 ❧ Bottom Dweller", value=f"**{coin} 100,000x**\n\n**Get the pink `Bottom Dweller Badge` on the SCP servers!**", inline=True)
         embed4.add_field(name=f"🧨 ❧ Toxic", value=f"**{coin} 50,000x**\n\n**Get the green `Toxic Badge` on the SCP servers!**", inline=True)
@@ -133,15 +134,26 @@ class Shop_Handler(Cog):
                     await user.add_roles(image_pass, reason="Given a Image Pass role.")
 
             if emoji == "🎁":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a XKClass Channels!\nCost: {coin} 5,000x", footer=" "))
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the Special Channels!\nCost: {coin} 5,000x", footer=" "))
                 item['coin'] = 5000
-                item['name'] = "XKClass Channels"
+                item['name'] = "Special Channels"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
-                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a XKClass Channels!", footer=" "))
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Special Channels!", footer=" "))
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    image_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['xkclass'])
-                    await user.add_roles(image_pass, reason="Given a XKClass Channels role.")
+                    special = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['specials'])
+                    await user.add_roles(special, reason="Given the Special Channels role.")
+
+            if emoji == "💀":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the auto-mod bypass!\nCost: {coin} 100,000x", footer=" "))
+                item['coin'] = 100000
+                item['name'] = "Auto-Mod Bypass"
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Auto-mod bypass!", footer=" "))
+                    bought = True
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
+                    automod = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['automod'])
+                    await user.add_roles(automod, reason="Given Auto-mod bypass role.")
 
             if emoji == "💎":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Daily Bonus!\nCost: {coin} 40,000x", footer=" "))
