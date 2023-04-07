@@ -33,14 +33,14 @@ class item_usage(Cog):
         #     return
 
         if not user:
-            await ctx.send(embed=utils.DefualtEmbed(title=f"You didn't say who your stealing from?", desc=f"**Stealing Odds:**\nSteal 1,000\nSteal 2,000\nSteal 3,000\nSteal 1%\nSteal 3%\nLose 5,000\nLose 5%"))
+            await ctx.send(embed=utils.DefualtEmbed(title=f"You didn't say who your stealing from?", desc=f"**Stealing Odds:**\nSteal 2,000\nSteal 3,000\nSteal 4,000\nSteal 1%\nSteal 2%\nLose 3,000\nLose 2%"))
             return
 
         if user.id == self.bot.user.id:
             await ctx.send(embed=utils.DefualtEmbed(title=f"You can't steal from the master of thiefs!"))
 
         #! Define Varibles
-        chance = choice(['2,000', '3,000', '4,000', '1%', '2%', '-1,000', '-2%'])
+        chance = choice(['2,000', '3,000', '4,000' '1%', '2%', '-3,000', '-2%'])
         c = utils.Currency.get(ctx.author.id)
         uc = utils.Currency.get(user.id)
         item = utils.Items.get(ctx.author.id)
@@ -94,7 +94,7 @@ class item_usage(Cog):
             uc.coins -= coins_stole
             c.coins += coins_stole
 
-        elif chance == '-1,000':
+        elif chance == '-3,000':
             coins_lost = 1000
             if c.coins < coins_lost:
                 coins_lost = c.coins
