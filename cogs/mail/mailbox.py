@@ -27,9 +27,11 @@ class Mail_Box(Cog):
 
     @property 
     def sfw_sonas(self):
-        return self.bot.get_channel(self.bot.config['channels']['sfw_sonas'])
+        return self.bot.get_channel(self.bot.config['fur-channels']['sona_posts'])
 
-
+    @property 
+    def nsfw_sonas(self):
+        return self.bot.get_channel(self.bot.config['nsfw-fur-channels']['sona_posts'])
 
     async def message_embed_author(self, embed_to_get_author_from:Embed, *args, **kwargs):
         '''Gets the author attribute of an embed and the rest of the args go to Messagable.send'''
@@ -123,44 +125,6 @@ class Mail_Box(Cog):
 
 
 
-    async def deal_with_kingussy(self, message:Message, emoji:PartialEmoji, embed:Embed, payload:RawReactionActionEvent, guild:Guild):
-        '''Deals with kingussy'''
-        author_id = await self.embed_author_id(embed)
-        author = guild.get_member(author_id)
-        if author == None: #? if they left the server.
-            await message.delete()
-            return
-
-        if emoji.name == '✅':
-            #! Archive it!
-            embed.colour = 0x008800
-            await author.send(f"**You have been verified!  Welcome to Kingussy!**")
-            embed.set_footer(text='Verification archived on ' + dt.utcnow().strftime('%a %d %B %H:%M'))
-            await self.archive.send(embed=utils.LogEmbed(type="positive", title=f"A Kingussy Application was Accepted!", desc=f'Archived by <@{payload.user_id}>.'))
-            await message.delete()
-            #! Verifys the user
-            await utils.UserFunction.verify_user(user=author, type="alliance")
-
-        elif emoji.name == '🔴':
-            check = lambda m: m.channel == message.channel and payload.user_id == m.author.id
-            z = await message.channel.send("Why are you declining this verification?")
-            try: 
-                reason_message = await self.bot.wait_for('message', check=check, timeout=60.0)
-                reason = reason_message.content
-                await reason_message.delete()
-            except Exception: 
-                reason = '<No reason given>'
-            embed.set_footer(text='Verification declined  on ' + dt.utcnow().strftime('%a %d %B %H:%M'))
-            #! Archive it!
-            await self.archive.send(embed=utils.LogEmbed(type="negative", title=f"A Kingussy Application was Denied!", desc=f'Archived by <@{payload.user_id}>.'))
-            await message.delete()  
-            await self.message_embed_author(embed, f"Your verification was declined. For reason: `{reason}`", embed=embed)
-            await z.delete()
-            #! kick the user
-
-
-
-
 
     async def deal_with_adult(self, message:Message, emoji:PartialEmoji, embed:Embed, payload:RawReactionActionEvent, guild:Guild, kinda:str=False):
         '''Deals with adults'''
@@ -243,8 +207,6 @@ class Mail_Box(Cog):
             await z.delete()
             await message.delete()
             await utils.Sonas.delete(user_id=author.id)
-
-
 
 
 def setup(bot):
