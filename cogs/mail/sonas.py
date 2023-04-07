@@ -202,7 +202,10 @@ class Sonas(Cog):
             sona.species = table_data.get('species')
             sona.bio = table_data.get('bio')
             sona.image = str(table_data.get('image'))
-            sona.color = int(table_data.get('color'))
+            color = table_data.get('color')
+            if color is None:
+                color = 0  # Set default value here
+            sona.color = int(color)
             sona.likes = table_data.get('likes')
             sona.verified = False
             async with self.bot.database() as db:
