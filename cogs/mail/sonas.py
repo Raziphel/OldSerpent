@@ -23,7 +23,6 @@ class SonaCancelled(BaseException):
     pass
 
 
-
 def validate_image(message):
     if message.attachments:
         try:
