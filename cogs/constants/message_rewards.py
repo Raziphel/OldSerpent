@@ -80,6 +80,7 @@ class Message_Rewards(Cog):
         except: return
         msg = None
 
+        coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs']
 
         #! Define Emojis
         bunny_e = "<a:Bunny:703136644366336000>"
@@ -93,6 +94,7 @@ class Message_Rewards(Cog):
                 coin = choice([100, 150, 200, 250, 300])
                 await utils.CoinFunctions.earn(earner=message.author, amount=coin)
                 msg = await channel.send(embed=utils.DefualtEmbed(user=user, desc=f"{user} found **{coin} {coin_e}x**"))
+                await coin_logs.send(f"{user} found **{coin} {coin_e}x**")
 
         #! Get the correct item
         elif str(payload.emoji) == bunny_e:
@@ -102,6 +104,9 @@ class Message_Rewards(Cog):
                 coin = choice([100, 150, 250])
                 await utils.CoinFunctions.earn(earner=message.author, amount=coin)
                 msg = await channel.send(embed=utils.DefualtEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a bunny!**"))
+                await coin_logs.send(f"{user} got **{coin} {coin_e}x from a bunny!**")
+
+
 
         else: 
             return

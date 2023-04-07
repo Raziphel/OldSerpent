@@ -103,10 +103,15 @@ class item_usage(Cog):
                 c.coins -= coins_lost
 
 
+        coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs'])
         if coins_lost != None:
-            await ctx.send(embed=utils.DefualtEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** coins to them instead..."))
+            await ctx.send(content=f"{user.mention}", embed=utils.DefualtEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** coins to them instead..."))
+            await coin_logs.send(embed=utils.DefualtEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** coins to them instead..."))
         else:
-            await ctx.send(embed=utils.DefualtEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** coins!"))
+            await ctx.send(content=f"{user.mention}", embed=utils.DefualtEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** coins!"))
+            await coin_logs.send(embed=utils.DefualtEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** coins!"))
+
+        
 
         #! Quest Complete
         #await self.bot.get_cog('Quests').get_quest(user=ctx.author, quest_no=5, completed=True)
@@ -115,6 +120,7 @@ class item_usage(Cog):
         async with self.bot.database() as db:
             await item.save(db)
             await c.save(db)
+            await uc.save(db)
 
 
 
