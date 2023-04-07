@@ -454,7 +454,7 @@ class Profile(Cog):
         '''Quick Check inventory'''
         if not user:
             user = ctx.author
-        await ctx.send(embed=utils.ProfileEmbed(type="Items", user=user, quick=True))
+        await ctx.send(embed=utils.ProfileEmbed(type="Items", user=user, quick=True), delete_after=10)
 
 
 
