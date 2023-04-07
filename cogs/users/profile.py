@@ -428,7 +428,7 @@ class Profile(Cog):
     async def sona(self, ctx, user: Member = None):
         '''Quick Post Sona'''
         if ctx.channel.id not in self.bot.config['fur-channels'].values() or ctx.channel.id not in self.bot.config['nsfw-fur-channels'].values():
-            await ctx.send("You can't post that nasty-ness here.", delete_after=10)
+            await ctx.send("🐾You can't post that nasty-ness here.", delete_after=10)
             await ctx.message.delete()
             return
         if not user:

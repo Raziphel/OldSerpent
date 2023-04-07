@@ -106,7 +106,7 @@ class Sonas(Cog):
             return message
 
         try:
-            sona_nsfw = await get_input(f"**Welcome to sona creation!**\n\nIs this a NSFW sona? (Yes or No are valid responses.)")
+            sona_nsfw = await get_input(f"**Welcome to sona creation!**\nYou can do `cancel` to quit out of the sona creation at anytime!\nIt will auto timeout if you take more than 2 minutes to reply!\n\nIs this a NSFW sona? (Yes or No are valid responses.)")
             if sona_nsfw.content.lower() == "yes":
                 nsfw = True
             elif sona_nsfw.content.lower() == "no":
@@ -116,7 +116,7 @@ class Sonas(Cog):
 
             table_data['nsfw'] = nsfw
 
-            role = guild.get_role(self.bot.config['roles']['nsfw_adult'])
+            role = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
             member = guild.get_member(ctx.author.id)
             if table_data['nsfw'] == 'yes' and role not in member.roles:
                     await author.send('**Sorry, but you need to be 18+ in order to submit a NSFW fursona.**')
