@@ -274,6 +274,10 @@ class Loops(Cog):
                     if library_pass in user.roles:
                         await user.add_roles(adult_library_pass, reason="Fixing Adult & Library Pass role.")
                         await user.remove_roles(library_pass, reason="Fixing Adult & Library Pass role.")
+                    #? Fixing furry's NSFW
+                    if furry in user.roles:
+                        await user.add_roles(adult_furry, reason="Fixing Adult & furry role.")
+                        await user.remove_roles(furry, reason="Fixing Adult & furry role.")
 
             except Exception as e: print(f'Error fixing roles :: {e}')
 
