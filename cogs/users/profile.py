@@ -449,7 +449,7 @@ class Profile(Cog):
 
 
 
-    @command(aliases=['inv', 'items', 'Inv'])
+    @command(aliases=['i', 'inv', 'items', 'Inv'])
     async def inventory(self, ctx, user:Member=None):
         '''Quick Check inventory'''
         if not user:

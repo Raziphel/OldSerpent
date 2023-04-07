@@ -124,7 +124,7 @@ class ProfileEmbed(Embed):
 
 
         if type_ == "Items":
-            self.add_field(name='Items', value=f"❧ 🍭 Daily Increaser: **{items.daily_increaser:,}**\n❧ 🧤 Thief's Gloves: **{items.thief_gloves:,}**\n❧ {bunny_e} Luck: **{items.rabbit_luck:,}/100**\n❧ 🍒 Lottery Tickets: **{c.lot_tickets:,}**", inline=True)
+            self.add_field(name='Items', value=f"❧ 🧤 Thief's Gloves: **{items.thief_gloves:,}**", inline=True)
             self.add_field(name='𝙋𝙖𝙜𝙚 ２', value=f"❧ 🎉Party Popper: **{items.party_popper:,}**", inline=True)
             if quick == False:
                 self.set_footer(text=f"| 🔷 Main Profile |")
