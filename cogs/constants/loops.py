@@ -194,16 +194,16 @@ class Loops(Cog):
                 async with self.bot.database() as db:
                     await sti.save(db)
 
-                safe = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
-                euclid = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
-                keter = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
+                t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
+                t2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
+                t3 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
                 profit = 0
                 for user in guild.members:
-                    if safe in user.roles:
+                    if t1 in user.roles:
                         profit += 9
-                    elif euclid in user.roles:
+                    elif t2 in user.roles:
                         profit += 18
-                    elif keter in user.roles:
+                    elif t3 in user.roles:
                         profit += 27
 
                 #? Check the channels sticky!
@@ -244,9 +244,9 @@ class Loops(Cog):
         #! get the scp roles!
         supporters = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['supporters'])
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
-        safe = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['safe'])
-        euclid = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['euclid'])
-        keter = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['keter'])
+        t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
+        t2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
+        t3 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
 
         for user in guild.members:
             try: #! Fixing adults roles
