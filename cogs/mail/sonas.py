@@ -61,8 +61,8 @@ class Sonas(Cog):
     async def setsona(self, ctx):
         '''Dms the sona creation prompt'''
 
-        if ctx.channel.id in self.bot.config['fur-channels'].values(): continue
-        elif ctx.channel.id in self.bot.config['nsfw-fur-channels'].values(): continue
+        if ctx.channel.id in self.bot.config['fur-channels'].values(): pass
+        elif ctx.channel.id in self.bot.config['nsfw-fur-channels'].values(): pass
         else:
             return
 
