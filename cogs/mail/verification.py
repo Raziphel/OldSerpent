@@ -117,68 +117,6 @@ class Verification(Cog):
 
 
 
-    async def verify_kingussy(self, author:Member, guild:guild):
-        '''Sends a kingussy verification application!'''
-
-        # Set some stuff up
-        table_data = {
-            'password': None,
-            'username': None,
-        }
-
-
-        async def get_input(prompt: str, timeout: float = 360.0, max_length: Optional[int] = 50):
-            '''Gets users responses and checks them'''
-            await author.send(embed=utils.SpecialEmbed(desc=prompt, footer=" ", guild=guild))
-
-            async def get_response():
-                ''''Waits for users responses'''
-                msg = await self.bot.wait_for('message', check=lambda m: m.author.id == author.id and not m.guild, timeout=timeout)
-
-                if 'cancel' == msg.content.lower():
-                    raise VerificationCancelled
-
-                return msg
-
-            message = await get_response()
-
-            if max_length is not None:
-                while len(message.content) > max_length:
-                    await author.send(f"Sorry, but the value you've responded with is too long. Please keep it within {max_length} characters.")
-                    message = await get_response()
-
-            return message
-
-        try:
-            password = await get_input(f"Whats the password for access?")
-            table_data['password'] = password.content
-
-            username = await get_input(f"Whats your username in Grepolis?")
-            table_data['username'] = username.content
-
-            msg = f"Password: **{table_data.get('password')}**\nGrepolis Username: **{table_data.get('username')}**"
-
-            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Kingussy Application", footer=f"Kingussy", message=msg, color=tr.color, author=author, image=author.avatar.url))
-            await msg.add_reaction('✅')
-            await msg.add_reaction('🔴')
-
-            embed2=Embed(description="**Your verification has been sent!**")
-            await author.send(embed=embed2)
-
-        except DiscordException:
-            await author.send('I\'m unable to DM you?')
-
-        except VerificationCancelled:
-            await author.send('Aborting Alliance Verification!')
-
-        except TimeoutError:
-            await author.send('Sorry, but you took too long to respond.  Verification has closed.')
-
-
-
-
-
-
     async def verify_furry(self, author:Member, guild:guild):
         '''Sends a kingussy verification application!'''
 
@@ -281,18 +219,14 @@ class Verification(Cog):
             return message
 
         try:
-            proof = await get_input(f"**Lying about your age is a bannable offense!**   Please say `I agree` if you are an adult or do `cancel`.\n**NO NSFW CONTENT IS ALLOWED**\nYou have nothing to gain..")
+            proof = await get_input(f"**Lying about your age is a bannable offense!\n\nWe take this rule very seriously and once we find out you are child you will be banned and reported to Discord.**\n\nPlease say `I agree` if you are indeed an adult or do `cancel`.")
             table_data['proof'] = proof.content
 
-            msg = f"**Marked Child?**: {mod.child}\n**Proof:** {table_data.get('proof')}"
+            msg = f"**Marked Child?**: {mod.child}\n**Agreement:** {table_data.get('proof')}"
 
             tr = utils.Tracking.get(author.id)
             mod = utils.Moderation.get(author.id)
-            wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
-            await author.remove_roles(wanting_adult, reason="Removed wanting adult role")
             footer = "Adult"
-            if kinda == True:
-                footer == "KindaAdult"
             msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=tr.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
