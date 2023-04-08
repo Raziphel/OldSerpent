@@ -351,13 +351,13 @@ class Loops(Cog):
 
 
 
-    @one_sec_loop.before_loop
+    @three_sec_loop.before_loop
     async def before_three_sec_loop(self):
         """Waits until the cache loads up before running the leaderboard loop"""
 
         await self.bot.wait_until_ready()
 
-    @three_sec_loop.before_loop
+    @one_min_loop.before_loop
     async def before_one_min_loop(self):
         """Waits until the cache loads up before running the leaderboard loop"""
 
