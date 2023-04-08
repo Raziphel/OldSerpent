@@ -26,7 +26,7 @@ class Loops(Cog):
         self.bot = bot
         self.one_min_loop.start()
         self.one_hour_loop.start()
-        self.three_sec_loop.start()
+        self.ten_sec_loop.start()
         self.last_members = 0
         self.last_coins = 0
         self.supporters = 0
@@ -36,8 +36,8 @@ class Loops(Cog):
 
 
 
-    @tasks.loop(seconds=3)
-    async def three_sec_loop(self):
+    @tasks.loop(seconds=10)
+    async def ten_sec_loop(self):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
         razi = utils.DiscordGet(guild.roles, id=1083620436568453171)
@@ -155,15 +155,6 @@ class Loops(Cog):
             text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
         embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
         await msg.edit(content=" ", embed=embed)
-
-
-
-    @three_sec_loop.before_loop
-    async def before_one_min_loop(self):
-        """Waits until the cache loads up before running the leaderboard loop"""
-
-        await self.bot.wait_until_ready()
-
 
 
 
@@ -351,7 +342,7 @@ class Loops(Cog):
 
 
 
-    @three_sec_loop.before_loop
+    @ten_sec_loop.before_loop
     async def before_three_sec_loop(self):
         """Waits until the cache loads up before running the leaderboard loop"""
 
