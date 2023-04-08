@@ -26,9 +26,35 @@ class Loops(Cog):
         self.bot = bot
         self.one_min_loop.start()
         self.one_hour_loop.start()
+        self.one_sec_loop.start()
         self.last_members = 0
         self.last_coins = 0
         self.supporters = 0
+        self.razis_color = "cyan"
+
+
+
+
+
+    @tasks.loop(seconds=1)
+    async def one_sec_loop(self):
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+
+        razi = utils.DiscordGet(guild.roles, id=1083620436568453171)
+        if self.razis_color == "cyan":
+            await role.edit(color=0xFF218C)
+            self.razis_color = "pink"
+        elif self.razis_color == "pink":
+            await role.edit(color=0xFFD800)
+            self.razis_color = "yellow"
+        elif self.razis_color == "yellow":
+            await role.edit(color=0x21B1FF)
+            self.razis_color = "cyan"
+
+
+
+
+
 
 
 
@@ -325,9 +351,17 @@ class Loops(Cog):
 
 
 
+    @one_sec_loop.before_loop
+    async def before_one_sec_loop(self):
+        """Waits until the cache loads up before running the leaderboard loop"""
 
+        await self.bot.wait_until_ready()
 
+    @one_min_loop.before_loop
+    async def before_one_min_loop(self):
+        """Waits until the cache loads up before running the leaderboard loop"""
 
+        await self.bot.wait_until_ready()
 
 
     @one_hour_loop.before_loop
