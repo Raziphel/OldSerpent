@@ -42,13 +42,13 @@ class Loops(Cog):
 
         razi = utils.DiscordGet(guild.roles, id=1083620436568453171)
         if self.razis_color == "cyan":
-            await role.edit(color=0xFF218C)
+            await razi.edit(color=0xFF218C)
             self.razis_color = "pink"
         elif self.razis_color == "pink":
-            await role.edit(color=0xFFD800)
+            await razi.edit(color=0xFFD800)
             self.razis_color = "yellow"
         elif self.razis_color == "yellow":
-            await role.edit(color=0x21B1FF)
+            await razi.edit(color=0x21B1FF)
             self.razis_color = "cyan"
 
 
