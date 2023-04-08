@@ -28,7 +28,7 @@ class Loops(Cog):
         self.one_hour_loop.start()
         self.last_members = 0
         self.last_coins = 0
-        self.scps = 0
+        self.supporters = 0
 
 
 
@@ -61,15 +61,15 @@ class Loops(Cog):
         members_channel = self.bot.get_channel(856451508865466368)
         coins_channel = self.bot.get_channel(1047682198523875399)
         supp_channel = self.bot.get_channel(1052050250887598180)
-        scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
-        thaumiel = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
+        supporters = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['supporters'])
+        nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
         members = len(set(self.bot.get_all_members()))
         total_coins = format_number(utils.Currency.get_total_coins())
         total_scps = 0
         for user in guild.members:
-            if scps in user.roles:
+            if supporters in user.roles:
                 total_scps += 1
-            elif thaumiel in user.roles:
+            elif nitro in user.roles:
                 total_scps += 1
 
 
@@ -79,9 +79,9 @@ class Loops(Cog):
         if self.last_coins != total_coins:
             await coins_channel.edit(name=f"Coins: {total_coins}")
             self.last_coins = total_coins
-        if self.scps != scps:
+        if self.supporters != supporters:
             await supp_channel.edit(name=f"Supporters: {total_scps:,}")
-            self.scps = scps
+            self.supporters = supporters
 
 
         #* Levels Leaderboard
@@ -194,9 +194,9 @@ class Loops(Cog):
                 async with self.bot.database() as db:
                     await sti.save(db)
 
-                safe = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['safe'])
-                euclid = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['euclid'])
-                keter = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['keter'])
+                safe = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
+                euclid = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
+                keter = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
                 profit = 0
                 for user in guild.members:
                     if safe in user.roles:
@@ -209,7 +209,7 @@ class Loops(Cog):
                 #? Check the channels sticky!
                 if channel == supporter:
                     embed=Embed(title=f"**[- Supporter Sticky -]**",
-                    description=f"**This channel displays any type of support shown to the Serpent's Garden!**\nThank you to everyone who chooses to support the server!\n\n<:thaumiel:1060393337061912657> `These are Nitro Boosters`\n<:safe:1060391143315083305> `These are 10$ Supporters`\n<:euclid:1060391150709641226> `These are 20$ Supporters`\n<:keter:1060392410682773594> `These are 30$ Supporters`\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: `{profit}$ / 200$` (Keep in mind Discord takes a cut.)\n\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*", color=randint(1, 0xffffff))
+                    description=f"**This channel displays any type of support shown to the Serpent's Garden!**\nThank you to everyone who chooses to support the server!\n\n<:nitro:1012165382901092462> `These are Nitro Boosters`\n<:Emerald:1094208934979584032> `These are 10$ Supporters`\n<:Diamond:1094208933079564308> `These are 20$ Supporters`\n<:Ruby:1094208936443383930> `These are 30$ Supporters`\n\n**For Serpent's Garden to be self sustaining**\nWe'd need to reach this goal: `{profit}$ / 200$` (Keep in mind Discord takes a cut.)\n\n*But don't worry!  There is no plans of taking Serpent's Garden down for not reaching goal anytime soon! <3*", color=randint(1, 0xffffff))
                 if channel == bot_usage:
                     embed=Embed(title=f"**[- Bot Usage Sticky -]**",
                     description=f"**This channel is only for using bot commands!**\nthe Serpent bot has the `/` prefix for regular commands.\nThe Serpent's Music commands use the prefix `!` and both have a help command!", color=randint(1, 0xffffff))
@@ -242,8 +242,8 @@ class Loops(Cog):
         library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['library_pass'])
         adult_library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_library_pass'])
         #! get the scp roles!
-        scps = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['scps'])
-        thaumiel = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
+        supporters = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['supporters'])
+        nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
         safe = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['safe'])
         euclid = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['euclid'])
         keter = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['keter'])
@@ -289,7 +289,7 @@ class Loops(Cog):
 
 
 
-        # nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
+        # nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
         # coin = "<:Coin:1026302157521174649>"
 
         # t = utils.Timers.get(self.bot.config['garden_id'])

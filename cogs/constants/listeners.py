@@ -121,7 +121,7 @@ class Listeners(Cog):
     #         c.coins += 5000
     #         total_coins += 5000
     #         for user in guild.members:
-    #             nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['thaumiel'])
+    #             nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
     #             if nitro in user.roles:
     #                 c = utils.Currency(user.id)
     #                 try:

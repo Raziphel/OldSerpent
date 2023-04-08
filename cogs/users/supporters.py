@@ -17,9 +17,9 @@ class supporters(Cog):
         self.bot = bot
 
 
-    @command(aliases=['se', 'party', 'event'])
-    async def start_event(self, ctx):
-        '''Starts a random event'''
+    @command(aliases=['Monthly'])
+    async def monthly(self, ctx):
+        '''Supporters monthly claim of rewards!'''
 
 
 
