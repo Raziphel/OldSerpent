@@ -54,7 +54,7 @@ class Loops(Cog):
                 await member.remove_roles(wanting_adult, reason="Removed wanting adult role")
 
         #* Setting the bot status.
-        playing = choice(["Bashin' people with SCP 956", "Lookin' at 096's face", "Curing SCP 008", "Upgrading in 914", "Worshipin' The Scarlet King", "Breaching Containment"])
+        playing = choice(["Convincing Eve to eat an apple!", "Slitherin' in the Garden...", "Commiting Atrocities.", "Starting Plagues", "Worshipin' The Bearer of light", "Devilish intentions!"])
         await self.bot.change_presence(activity=Game(name=playing))
 
         #* Setting the Channel Stats.
