@@ -37,19 +37,19 @@ class Loops(Cog):
 
 
     @tasks.loop(seconds=10)
-    async def ten_sec_loop(self):
-        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+    # async def ten_sec_loop(self):
+    #     guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
-        razi = utils.DiscordGet(guild.roles, id=1083620436568453171)
-        if self.razis_color == "cyan":
-            await razi.edit(color=0xFF218C)
-            self.razis_color = "pink"
-        elif self.razis_color == "pink":
-            await razi.edit(color=0xFFD800)
-            self.razis_color = "yellow"
-        elif self.razis_color == "yellow":
-            await razi.edit(color=0x21B1FF)
-            self.razis_color = "cyan"
+    #     razi = utils.DiscordGet(guild.roles, id=1083620436568453171)
+    #     if self.razis_color == "cyan":
+    #         await razi.edit(color=0xFF218C)
+    #         self.razis_color = "pink"
+    #     elif self.razis_color == "pink":
+    #         await razi.edit(color=0xFFD800)
+    #         self.razis_color = "yellow"
+    #     elif self.razis_color == "yellow":
+    #         await razi.edit(color=0x21B1FF)
+    #         self.razis_color = "cyan"
 
 
 
