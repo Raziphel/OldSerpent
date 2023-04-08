@@ -24,7 +24,7 @@ def format_number(num):
 class Loops(Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.one_min_loop.start()
+        self.three_sec_loop.start()
         self.one_hour_loop.start()
         self.one_sec_loop.start()
         self.last_members = 0
@@ -36,8 +36,8 @@ class Loops(Cog):
 
 
 
-    @tasks.loop(seconds=1)
-    async def one_sec_loop(self):
+    @tasks.loop(seconds=3)
+    async def three_sec_loop(self):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
         razi = utils.DiscordGet(guild.roles, id=1083620436568453171)
@@ -59,7 +59,7 @@ class Loops(Cog):
 
 
     @tasks.loop(minutes=1)
-    async def one_min_loop(self):
+    async def three_sec_loop(self):
         """The loop that handles updating things every minute."""
 
         #! Database check
@@ -158,7 +158,7 @@ class Loops(Cog):
 
 
 
-    @one_min_loop.before_loop
+    @three_sec_loop.before_loop
     async def before_one_min_loop(self):
         """Waits until the cache loads up before running the leaderboard loop"""
 
@@ -357,7 +357,7 @@ class Loops(Cog):
 
         await self.bot.wait_until_ready()
 
-    @one_min_loop.before_loop
+    @three_sec_loop.before_loop
     async def before_one_min_loop(self):
         """Waits until the cache loads up before running the leaderboard loop"""
 
