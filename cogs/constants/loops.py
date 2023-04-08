@@ -205,15 +205,14 @@ class Loops(Cog):
                 t3s = 0
                 for user in guild.members:
                     if nitro in user.roles:
-                        profit += 0.15
                         nitros += 1
                     if t1 in user.roles:
                         profit += 9
                         t1s += 1
-                    elif t2 in user.roles:
+                    if t2 in user.roles:
                         profit += 18
                         t2s += 1
-                    elif t3 in user.roles:
+                    if t3 in user.roles:
                         profit += 27
                         t3s += 1
 
