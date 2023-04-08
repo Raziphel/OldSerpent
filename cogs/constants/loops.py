@@ -37,7 +37,7 @@ class Loops(Cog):
 
 
     @tasks.loop(seconds=10)
-    # async def ten_sec_loop(self):
+    async def ten_sec_loop(self):
     #     guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
     #     razi = utils.DiscordGet(guild.roles, id=1083620436568453171)
