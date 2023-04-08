@@ -59,7 +59,7 @@ class Loops(Cog):
 
 
     @tasks.loop(minutes=1)
-    async def three_sec_loop(self):
+    async def one_min_loop(self):
         """The loop that handles updating things every minute."""
 
         #! Database check
