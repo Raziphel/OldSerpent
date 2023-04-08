@@ -24,9 +24,9 @@ def format_number(num):
 class Loops(Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.three_sec_loop.start()
+        self.one_min_loop.start()
         self.one_hour_loop.start()
-        self.one_sec_loop.start()
+        self.three_sec_loop.start()
         self.last_members = 0
         self.last_coins = 0
         self.supporters = 0
