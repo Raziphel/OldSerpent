@@ -17,7 +17,7 @@ class supporters(Cog):
         self.bot = bot
 
 
-    @command(aliases=['Monthly'])
+    @command(aliases=['Monthly', 'claim', "Claim"])
     async def monthly(self, ctx):
         '''Supporters monthly claim of rewards!'''
 
