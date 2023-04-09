@@ -37,8 +37,8 @@ class rules_handler(Cog):
         embed4=Embed(title=f"**[- Moderation System -]**", 
         description=f"**By absolutely no means do the 05 Council (Staff) have to be \"Fair\", in any situation or decision. They are put there for a reason and we usually run everything past one another.**\n\nFor most situations a Council member will give a single warning and after that you are completely fair game; from that council member or any other for whatever punishment they believe you deserve.  Lying about your age, breaking Discord TOS, sending spam, hate, phishing links or scamming in anyway, is awlays going to be a ban with no warning.  *It won't be tolerated at all.*\n\n**This server requires a phone number attached to the Discord Account!**\nWe do this to keep every member on the discord hopefully safe from scams and being able to weave out bad apples.", color=0xB6F547)
 
-        embed5=Embed(title=f"**[- The Serpent & Leaving -]**", 
-        description=f"*The Serpent is the Discord bot used to play the Serpent's game*\n\nIt uses the prefix `.` and doesn't like slash commands!  It is quite important you have your settings set up where you can recieve private message from the Serpent! \n\n**What happens when you leave the Serpent's Garden Discord Server?**\n*if you leave the Serpent's Garden, your levels and coins are lost.  This includes getting banned or kicked.*", color=0x89F547)
+        embed5=Embed(title=f"**[- NSFW Content -]**", 
+        description=f"**ONLY ART/DRAWINGS ARE ALLOWED IN ADULT CHANNELS!!!**\n\nAdults are not allowed to post any NSFW content that is depicitng real life people or AI Generated people...  Only art and drawings are allowed, this completely avoids the whole can of worms that is showing real pornography.", color=0x89F547)
 
 
         await rules1.edit(content=f" ", embed=embed1)
