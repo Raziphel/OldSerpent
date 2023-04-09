@@ -74,7 +74,7 @@ class supporters(Cog):
         await ctx.interaction.response.send_message(
             embed=utils.SpecialEmbed(
                 title=f"Monthly Reward Claim!",
-                desc=f"**Thanks for being a supporter!**\n\nGranted: {reward:,} {coin_e}****"
+                desc=f"**Thanks for being a supporter!**\n\nGranted: **{reward:,} {coin_e}**"
             ))
 
 
