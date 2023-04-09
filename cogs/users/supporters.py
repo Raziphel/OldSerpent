@@ -1,5 +1,5 @@
 # Discord
-from discord.ext.commands import command, Cog, BucketType, cooldown, group, RoleConverter
+from discord.ext.commands import command, Cog, BucketType, cooldown, group, RoleConverter, ApplicationCommandMeta
 from discord import Member, Message, User, Game, Embed
 from discord import Member, Message, User, TextChannel, Role, RawReactionActionEvent, Embed
 # Additions
