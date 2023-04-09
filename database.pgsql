@@ -68,6 +68,7 @@ CREATE TABLE daily (
     last_daily TIMESTAMP,
     daily INT NOT NULL DEFAULT 0,
     premium BOOLEAN DEFAULT False,
+    monthly TIMESTAMP,
     PRIMARY KEY (user_id)
 );
 

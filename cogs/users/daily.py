@@ -25,17 +25,13 @@ class Daily(Cog):
         # ! Check if it's first daily
         if not day.daily:
             day.daily = 1
-            day.last_daily = (day.last_daily - timedelta(days=5))
+            day.last_daily = (day.last_daily - timedelta(days=3))
         # ! Check if already claimed
         if (day.last_daily + timedelta(hours=22)) >= dt.utcnow():
             tf = day.last_daily + timedelta(hours=22)
             t = dt(1, 1, 1) + (tf - dt.utcnow())
 
-            return await ctx.interaction.response.send_message(
-                embed=utils.DefaultEmbed(
-                    description=f"You can claim your daily rewards in {t.hour} hours and {t.minute} minutes!"
-                )
-            )
+            return await ctx.interaction.response.send_message(f"**You can claim your daily rewards in {t.hour} hours and {t.minute} minutes!**")
 
         # ! Missed daily
         elif (day.last_daily + timedelta(days=3)) <= dt.utcnow():

@@ -5,11 +5,12 @@ import asyncpg
 class Daily(object):
     all_dailys = {}
 
-    def __init__(self, user_id:int, daily:int=0, last_daily:str=dt.utcnow(), premium:bool=False):
+    def __init__(self, user_id:int, daily:int=0, last_daily:str=dt.utcnow(), premium:bool=False, monthly:str=dt.utcnow()):
         self.user_id = user_id
         self.daily = daily
         self.last_daily = last_daily
         self.premium = premium
+        self.monthly = monthly
 
         self.all_dailys[self.user_id] = self
 
@@ -19,18 +20,18 @@ class Daily(object):
             await db('''
                 INSERT INTO daily
                 VALUES
-                ($1, $2, $3, $4)
+                ($1, $2, $3, $4, $5)
                 ''',
-                self.user_id, self.last_daily, self.daily, self.premium
+                self.user_id, self.last_daily, self.daily, self.premium, self.monthly
             )
         except asyncpg.exceptions.UniqueViolationError: 
             await db('''
                 UPDATE daily SET
-                last_daily=$2, daily=$3, premium=$4
+                last_daily=$2, daily=$3, premium=$4, monthly=$5
                 WHERE
                 user_id=$1
                 ''',
-                self.user_id, self.last_daily, self.daily, self.premium
+                self.user_id, self.last_daily, self.daily, self.premium, self.monthly
             )
 
     @classmethod
@@ -43,5 +44,6 @@ class Daily(object):
                 daily = 0,
                 last_daily = dt.utcnow() - timedelta(days=5),
                 premium = False,
+                monthly = False,
             )
         return user
