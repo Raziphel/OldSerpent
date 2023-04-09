@@ -71,12 +71,11 @@ class supporters(Cog):
 
         coin_e = self.bot.config['emotes']['coin']
 
-        await ctx.interaction.response.edit_message(
+        await ctx.interaction.response.send_message(
             embed=utils.SpecialEmbed(
                 title=f"Monthly Reward Claim!",
                 desc=f"**Thanks for being a supporter!**\n\nGranted: {reward:,} {coin_e}****"
             ))
-        return
 
 
 
