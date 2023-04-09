@@ -70,7 +70,7 @@ class Payment(Cog):
             )
         )
 
-        await self.coin_logs.send(f"**{ctx.author}** payed **{amount} coins** to **{recipient}**!")
+        await self.coin_logs.send(f"**{ctx.author}** payed **{amount} {coin_e}** to **{recipient}**!")
 
 
 def setup(bot):

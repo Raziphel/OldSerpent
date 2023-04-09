@@ -83,7 +83,7 @@ class Supporters(Cog):
                 desc=f"**Thanks for being a supporter!**\n\nGranted: **{reward:,} {coin_e}**"
             ))
 
-        await self.coin_logs.send(f"**{ctx.author}** was Granted **{reward:,} coins** for his monthly!")
+        await self.coin_logs.send(f"**{ctx.author}** was Granted **{reward:,} {coin_e}** for his monthly!")
 
 
 
