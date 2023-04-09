@@ -134,7 +134,7 @@ class Daily(Cog):
                 components=components
             )
 
-        await self.coin_logs.send(f"**{ctx.author}** was Granted **{reward:,} {coin_e}** for his {day.daily:,} daily!")
+        await self.coin_logs.send(f"**{ctx.author}** was Granted **{coins:,} {coin_e}** for his {day.daily:,} daily!")
 
         # ! Save data changes
         day.last_daily = dt.utcnow()
