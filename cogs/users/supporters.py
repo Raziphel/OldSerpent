@@ -68,6 +68,7 @@ class supporters(Cog):
         day.monthly = dt.utcnow()
         async with self.bot.database() as db:
             await c.save(db)
+            await day.save(db)
 
         coin_e = self.bot.config['emotes']['coin']
 
