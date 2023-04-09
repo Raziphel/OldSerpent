@@ -389,87 +389,87 @@ class Profile(Cog):
 
         return file
 
-    async def base_profile(self, ctx, user, msg):
-        if msg == None:
-            msg = await ctx.send(embed=utils.ProfileEmbed(type="Default", user=user))
-        else:
-            await msg.edit(embed=utils.ProfileEmbed(type="Default", user=user))
+    # async def base_profile(self, ctx, user, msg):
+    #     if msg == None:
+    #         msg = await ctx.send(embed=utils.ProfileEmbed(type="Default", user=user))
+    #     else:
+    #         await msg.edit(embed=utils.ProfileEmbed(type="Default", user=user))
 
-        await msg.clear_reactions()
-        # ! adds the reactions
-        if ctx.channel.id in self.bot.config['fur-channels'].values():
-            await msg.add_reaction("✨")
-        if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
-            await msg.add_reaction("🔞")
-        # for role in user.roles:
-        #     if role.id == self.bot.config['roles']['council']:
-        #         await msg.add_reaction("🍃")
+    #     await msg.clear_reactions()
+    #     # ! adds the reactions
+    #     if ctx.channel.id in self.bot.config['fur-channels'].values():
+    #         await msg.add_reaction("✨")
+    #     if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
+    #         await msg.add_reaction("🔞")
+    #     # for role in user.roles:
+    #     #     if role.id == self.bot.config['roles']['council']:
+    #     #         await msg.add_reaction("🍃")
 
-        # Watches for the reactions
-        check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["✨", "🍃"]
-        r, _ = await self.bot.wait_for('reaction_add', check=check)
-        if ctx.channel.id in self.bot.config['fur-channels'].values():
-            if r.emoji == "✨":
-                await msg.edit(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user))
-                pass
-        if r.emoji == "🍃":
-            await msg.edit(embed=utils.ProfileEmbed(type="Staff-Track", user=user))
-            pass
-        await msg.clear_reactions()
-        await msg.add_reaction("🔷")
-        check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🔷"]
-        r, _ = await self.bot.wait_for('reaction_add', check=check)
-        if r.emoji == "🔷":
-            await self.base_profile(ctx=ctx, user=user, msg=msg)
-            return
+    #     # Watches for the reactions
+    #     check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["✨", "🍃"]
+    #     r, _ = await self.bot.wait_for('reaction_add', check=check)
+    #     if ctx.channel.id in self.bot.config['fur-channels'].values():
+    #         if r.emoji == "✨":
+    #             await msg.edit(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user))
+    #             pass
+    #     if r.emoji == "🍃":
+    #         await msg.edit(embed=utils.ProfileEmbed(type="Staff-Track", user=user))
+    #         pass
+    #     await msg.clear_reactions()
+    #     await msg.add_reaction("🔷")
+    #     check = lambda x, y: y.id == ctx.author.id and x.message.id == msg.id and x.emoji in ["🔷"]
+    #     r, _ = await self.bot.wait_for('reaction_add', check=check)
+    #     if r.emoji == "🔷":
+    #         await self.base_profile(ctx=ctx, user=user, msg=msg)
+    #         return
 
 
 
     @cooldown(1, 30, BucketType.user)
-    @command(aliases=['Sona', 'fursona', 'Fursona'])
+    @command(application_command_meta=ApplicationCommandMeta(), aliases=['Sona', 'fursona', 'Fursona'])
     async def sona(self, ctx, user: Member = None):
         '''Quick Post Sona'''
         if not user:
             user = ctx.author
         if ctx.channel.id in self.bot.config['fur-channels'].values():
-            m = await ctx.send(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
+            m = await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
             return
         if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
-            m = await ctx.send(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
+            m = await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
             return
-        await ctx.send("🐾You can't post that nasty-ness here.", delete_after=10)
+        await ctx.interaction.response.send_message("🐾You can't post that nasty-ness here.", delete_after=10)
         await ctx.message.delete()
 
 
 
 
     @cooldown(1, 30, BucketType.user)
-    @command(aliases=['c', 'C'])
+    @command(application_command_meta=ApplicationCommandMeta(), aliases=['c', 'C'])
     async def currency(self, ctx, user: Member = None):
         '''Quick Check Coins'''
         if not user:
             user = ctx.author
-        m = await ctx.send(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True), delete_after=10)
+        m = await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True), delete_after=10)
 
 
 
-    @command(aliases=['i', 'inv', 'items', 'Inv'])
+    @command(application_command_meta=ApplicationCommandMeta(), aliases=['i', 'inv', 'items', 'Inv'])
     async def inventory(self, ctx, user:Member=None):
         '''Quick Check inventory'''
         if not user:
             user = ctx.author
-        await ctx.send(embed=utils.ProfileEmbed(type="Items", user=user, quick=True), delete_after=10)
+        await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Items", user=user, quick=True), delete_after=10)
 
 
 
     @cooldown(1, 5, BucketType.user)
-    @command(aliases=['color', 'Color', 'Setcolor', 'SetColor'])
+    @command(application_command_meta=ApplicationCommandMeta(), aliases=['color', 'Color', 'Setcolor', 'SetColor'])
     async def setcolor(self, ctx, colour=None):
         '''Sets your user color'''
 
         if colour == None:
             file = discord.File('config/lists/colors.py', filename='config/lists/colors.py')
-            await ctx.send(f"Heres a list of colors you can use!", file=file)
+            await ctx.interaction.response.send_message(f"**Heres a list of colors you can use!**", file=file)
             return
 
         colour_value = utils.Colors.get(colour.lower())
@@ -479,7 +479,7 @@ class Profile(Cog):
             try:
                 colour_value = int(colour.strip('#'), 16)
             except ValueError:
-                await ctx.send(embed=utils.SpecialEmbed(title="Incorrect colour usage!", guild=ctx.guild), delete_after=5)
+                await ctx.interaction.response.send_message(embed=utils.SpecialEmbed(title="Incorrect colour usage!", guild=ctx.guild), delete_after=5)
                 return
 
         ss.color = colour_value

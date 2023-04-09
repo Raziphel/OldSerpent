@@ -157,7 +157,8 @@ class Sonas(Cog):
                 return
 
             #! Get the sona's color
-            color = await get_input("What is your sona's favorite color? (Can be a color code or name of color.  Has over 300 color names)")
+            file = discord.File('config/lists/colors.py', filename='config/lists/colors.py')
+            color = await get_input("What is your sona's favorite color?\n\n**Heres a list of colors you can use!**", file=file)
             if color.content.lower() != "none":
                 color = utils.Colors.get(color.content.lower()) 
             else:
