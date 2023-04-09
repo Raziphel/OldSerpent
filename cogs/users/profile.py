@@ -387,7 +387,8 @@ class Profile(Cog):
 
         file = File(buffer, filename='profile.png')
 
-        return file
+        return await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(image=file))
+
 
     # async def base_profile(self, ctx, user, msg):
     #     if msg == None:
