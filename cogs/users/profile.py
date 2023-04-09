@@ -463,7 +463,18 @@ class Profile(Cog):
 
 
     @cooldown(1, 5, BucketType.user)
-    @command(application_command_meta=ApplicationCommandMeta(), aliases=['color', 'Color', 'Setcolor', 'SetColor'])
+    @command(aliases=['color', 'Color', 'Setcolor', 'SetColor'],
+            application_command_meta=ApplicationCommandMeta(
+            options=[
+                ApplicationCommandOption(
+                    name="color",
+                    description="the color you are wanting...",
+                    type=ApplicationCommandOptionType.string,
+                    required=True
+                    )
+                ],
+            ),
+        )
     async def setcolor(self, ctx, colour=None):
         '''Sets your user color'''
 

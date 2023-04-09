@@ -27,7 +27,7 @@ class Staff_Actions(Cog):
 
 
     @utils.is_mod_staff()
-    @command(aliases=['iban'])
+    @command(application_command_meta=ApplicationCommandMeta(), aliases=['iban'])
     async def imageban(self, ctx, user:Member):
         '''Restarts the bot'''  
         mod = utils.Moderation.get(user.id)
@@ -39,7 +39,7 @@ class Staff_Actions(Cog):
 
         image_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['image_pass'])
         await user.remove_roles(image_pass, reason="Removed Image Pass role.")
-        await ctx.send(embed=utils.DefaultEmbed(title=f"{user} is now image pass banned!"))
+        await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title=f"{user} is now image pass banned!"))
         await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"{user.name} has been image banned.", thumbnail=member.avatar.url))
 
 
@@ -68,8 +68,8 @@ class Staff_Actions(Cog):
             ],
         )
     )
-    async def prune(self, ctx, user:User, amount: int = 10):
-        """Purges the given amount of messages from the channel."""
+    async def prune(self, ctx, user:User, amount: int = 100):
+        """Purges message from a specific user!"""
         check = lambda m: m.author.id == user.id
 
         # ! Add max amount
@@ -100,7 +100,7 @@ class Staff_Actions(Cog):
             ],
         )
     )
-    async def purge(self, ctx, amount: int = 10):
+    async def purge(self, ctx, amount: int = 100):
         """Purges the given amount of messages from the channel."""
         check = lambda m: True
 
