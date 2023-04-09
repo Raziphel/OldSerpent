@@ -30,7 +30,7 @@ class Loops(Cog):
         self.last_members = 0
         self.last_coins = 0
         self.supporters = 0
-        self.razis_color = "cyan"
+        self.serpent_color = "black"
 
 
 
@@ -40,16 +40,6 @@ class Loops(Cog):
     async def ten_sec_loop(self):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
-    #     razi = utils.DiscordGet(guild.roles, id=1083620436568453171)
-    #     if self.razis_color == "cyan":
-    #         await razi.edit(color=0xFF218C)
-    #         self.razis_color = "pink"
-    #     elif self.razis_color == "pink":
-    #         await razi.edit(color=0xFFD800)
-    #         self.razis_color = "yellow"
-    #     elif self.razis_color == "yellow":
-    #         await razi.edit(color=0x21B1FF)
-    #         self.razis_color = "cyan"
 
 
 
@@ -69,7 +59,15 @@ class Loops(Cog):
 
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
-        
+        serpent = utils.DiscordGet(guild.roles, id=953876921094111245)
+        if self.serpent_color == "white":
+            await serpent.edit(color=0x000000)
+            self.serpent_color = "black"
+        elif self.serpent_color == "black":
+            await serpent.edit(color=0xFFFFFF)
+            self.serpent_color = "white"
+
+
         wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
         for member in guild.members:
             if wanting_adult in member.roles:
