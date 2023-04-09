@@ -484,21 +484,20 @@ class Profile(Cog):
             return
 
         colour_value = utils.Colors.get(colour.lower())
-        ss = utils.Tracking.get(ctx.author.id)
+        tr = utils.Tracking.get(ctx.author.id)
 
         if colour_value == None:
             try:
                 colour_value = int(colour.strip('#'), 16)
             except ValueError:
-                await ctx.interaction.response.send_message(embed=utils.SpecialEmbed(title="Incorrect colour usage!", guild=ctx.guild), delete_after=5)
+                await ctx.interaction.response.send_message(embed=utils.SpecialEmbed(title="Incorrect colour usage!"), delete_after=5)
                 return
 
-        ss.color = colour_value
+        tr.color = colour_value
         async with self.bot.database() as db:
-            await ss.save(db)
+            await tr.save(db)
 
-        await ctx.send(
-            embed=utils.DefaultEmbed(title="Your color setting has been set!", guild=ctx.guild, user=ctx.author))
+        await ctx.interaction.response(embed=utils.DefaultEmbed(title="Your color setting has been set!", user=ctx.author))
 
 
 def setup(bot):
