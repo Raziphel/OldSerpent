@@ -76,8 +76,10 @@ class Error_Handler(Cog):
             await ctx.author.send(f"Command failed - `{error!s}`;")
 
         await sleep(4)
-        await msg.delete()
-        await ctx.message.delete()
+        try:
+            await msg.delete()
+            await ctx.message.delete()
+        except: pass
 
 def setup(bot):
     x = Error_Handler(bot)
