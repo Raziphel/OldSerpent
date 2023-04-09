@@ -45,11 +45,11 @@ class supporters(Cog):
 
         #! Check if it's first daily
         if not day.monthly:
-            day.monthly = (day.monthly - timedelta(days=30))
+            day.monthly = (day.monthly - timedelta(days=31))
 
         #! Check if already claimed
-        if (day.monthly + timedelta(days=30)) >= dt.utcnow():
-            tf = day.monthly + timedelta(days=30)
+        if (day.monthly + timedelta(days=29)) >= dt.utcnow():
+            tf = day.monthly + timedelta(days=29)
             t = dt(1, 1, 1) + (tf - dt.utcnow())
             await ctx.interaction.response.send_message(f"**You can claim your monthly rewards in {t.hour} hours and {t.minute} minutes!**")
             return
@@ -64,6 +64,7 @@ class supporters(Cog):
         if t3 in ctx.author.roles:
             reward = 40000
         c.coins += Reward
+        day.monthly = dt.utcnow()
         async with self.bot.database() as db:
             await c.save(db)
 

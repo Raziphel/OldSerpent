@@ -42,8 +42,8 @@ class Daily(object):
             return cls(
                 user_id = user_id,
                 daily = 0,
-                last_daily = dt.utcnow() - timedelta(days=5),
+                last_daily = dt.utcnow() - timedelta(days=3),
                 premium = False,
-                monthly = False,
+                monthly = dt.utcnow() - timedelta(days=31),
             )
         return user
