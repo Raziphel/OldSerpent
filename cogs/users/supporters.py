@@ -22,6 +22,7 @@ class supporters(Cog):
         '''Supporters monthly claim of rewards!'''
 
         #! Define some mother fuckign varibles.
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         day = utils.Daily.get(ctx.author.id)
         c = utils.Currency.get(ctx.author.id)
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
