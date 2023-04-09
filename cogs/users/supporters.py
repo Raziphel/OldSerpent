@@ -54,6 +54,7 @@ class supporters(Cog):
             await ctx.interaction.response.send_message(f"**You can claim your monthly rewards in {t.hour} hours and {t.minute} minutes!**")
             return
 
+        reward = 0
         #+ Determine and give rewards!
         if nitro in ctx.author.roles:
             reward = 10000
@@ -63,7 +64,7 @@ class supporters(Cog):
             reward = 30000
         if t3 in ctx.author.roles:
             reward = 40000
-        c.coins += Reward
+        c.coins += reward
         day.monthly = dt.utcnow()
         async with self.bot.database() as db:
             await c.save(db)
