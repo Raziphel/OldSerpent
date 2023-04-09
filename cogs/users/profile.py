@@ -467,7 +467,7 @@ class Profile(Cog):
             application_command_meta=ApplicationCommandMeta(
             options=[
                 ApplicationCommandOption(
-                    name="color",
+                    name="colour",
                     description="the color you are wanting...",
                     type=ApplicationCommandOptionType.string,
                     required=True
