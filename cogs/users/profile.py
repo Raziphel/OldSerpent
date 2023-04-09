@@ -497,7 +497,7 @@ class Profile(Cog):
         async with self.bot.database() as db:
             await tr.save(db)
 
-        await ctx.interaction.response(embed=utils.DefaultEmbed(title="Your color setting has been set!", user=ctx.author))
+        await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title="Your color setting has been set!", user=ctx.author))
 
 
 def setup(bot):
