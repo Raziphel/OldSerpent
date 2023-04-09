@@ -466,8 +466,6 @@ class Profile(Cog):
     @command(aliases=['color', 'Color', 'Setcolor', 'SetColor'])
     async def setcolor(self, ctx, colour=None):
         '''Sets your user color'''
-        colour_value = utils.Colors.get(colour.lower())
-        ss = utils.Tracking.get(ctx.author.id)
 
         if colour == None:
             with open(utils.Colors, 'r') as file:
@@ -476,6 +474,8 @@ class Profile(Cog):
             await ctx.send(f"Heres a list of colors you can use!", file=file)
             return
 
+        colour_value = utils.Colors.get(colour.lower())
+        ss = utils.Tracking.get(ctx.author.id)
 
         if colour_value == None:
             try:
