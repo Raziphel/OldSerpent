@@ -51,7 +51,7 @@ class supporters(Cog):
         if (day.monthly + timedelta(days=29)) >= dt.utcnow():
             tf = day.monthly + timedelta(days=29)
             t = dt(1, 1, 1) + (tf - dt.utcnow())
-            await ctx.interaction.response.send_message(f"**You can claim your monthly rewards in {t.hour} hours and {t.minute} minutes!**")
+            await ctx.interaction.response.send_message(f"**You can claim your monthly rewards in {t.day} days and {t.hour} hours!**")
             return
 
         reward = 0
