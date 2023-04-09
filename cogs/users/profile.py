@@ -468,9 +468,9 @@ class Profile(Cog):
         '''Sets your user color'''
 
         if colour == None:
-            with open(utils.Colors, 'r') as file:
+            with open('colors.py', 'r') as file:
                 file_contents = file.read()
-            file = discord.File(utils.Colors, filename=utils.Colors, content=file_contents)
+            file = discord.File('colors.py', filename='colors.py', content=file_contents)
             await ctx.send(f"Heres a list of colors you can use!", file=file)
             return
 
