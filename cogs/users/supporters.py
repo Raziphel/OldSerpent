@@ -16,6 +16,11 @@ class supporters(Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @property  # ! The members logs
+    def coin_logs(self):
+        return self.bot.get_channel(self.bot.config['channels']['coin_logs'])  # ?Coins log channel
+
+
 
     @command(application_command_meta=ApplicationCommandMeta(), aliases=['Monthly', 'claim', "Claim"])
     async def monthly(self, ctx):
@@ -77,6 +82,8 @@ class supporters(Cog):
                 title=f"Monthly Reward Claim!",
                 desc=f"**Thanks for being a supporter!**\n\nGranted: **{reward:,} {coin_e}**"
             ))
+
+        await self.coin_logs.send(f"**{ctx.author}** was Granted **{reward:,} coins** for his monthly!")
 
 
 

@@ -12,6 +12,12 @@ class Daily(Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @property  # ! The members logs
+    def coin_logs(self):
+        return self.bot.get_channel(self.bot.config['channels']['coin_logs'])  # ?Coins log channel
+
+
+
     @command(
         application_command_meta=ApplicationCommandMeta(),
     )
@@ -127,6 +133,8 @@ class Daily(Cog):
                 ),
                 components=components
             )
+
+        await self.coin_logs.send(f"**{ctx.author}** was Granted **{reward:,} coins** for his {day.daily:,} daily!")
 
         # ! Save data changes
         day.last_daily = dt.utcnow()
