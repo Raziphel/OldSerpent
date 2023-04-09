@@ -133,7 +133,7 @@ class Profile(Cog):
         file = await self.generate_screenshot(user)
 
         # await ctx.send(file=file)
-        await ctx.interaction.response.send_message(file=file)
+        await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(image=file))
 
     async def get_user_avatar(self, member: Member) -> BytesIO:
         avatar = member.display_avatar
@@ -387,7 +387,7 @@ class Profile(Cog):
 
         file = File(buffer, filename='profile.png')
 
-        return await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(image=file))
+        return file
 
 
     # async def base_profile(self, ctx, user, msg):
