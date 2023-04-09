@@ -108,6 +108,8 @@ class Daily(Cog):
             ),
             components=components
         )
+        
+        await self.coin_logs.send(f"**{ctx.author}** was Granted **{coins:,} {coin_e}** for his {day.daily:,} daily!")
 
         if day.premium:
             def check(interaction: discord.Interaction):
@@ -133,8 +135,6 @@ class Daily(Cog):
                 ),
                 components=components
             )
-
-        await self.coin_logs.send(f"**{ctx.author}** was Granted **{coins:,} {coin_e}** for his {day.daily:,} daily!")
 
         # ! Save data changes
         day.last_daily = dt.utcnow()
