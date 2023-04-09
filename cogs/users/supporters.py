@@ -11,7 +11,7 @@ from random import choice, randint
 import utils
 
 
-class supporters(Cog):
+class Supporters(Cog):
 
     def __init__(self, bot):
         self.bot = bot
@@ -91,5 +91,5 @@ class supporters(Cog):
 
 
 def setup(bot):
-    x = supporters(bot)
+    x = Supporters(bot)
     bot.add_cog(x)

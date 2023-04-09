@@ -10,7 +10,7 @@ from random import choice, randint
 
 import utils
 
-class item_usage(Cog):
+class Items(Cog):
 
     def __init__(self, bot):
         self.bot = bot
@@ -160,5 +160,5 @@ class item_usage(Cog):
 
 
 def setup(bot):
-    x = item_usage(bot)
+    x = Items(bot)
     bot.add_cog(x)
