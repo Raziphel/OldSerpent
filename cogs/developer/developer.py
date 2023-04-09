@@ -2,23 +2,16 @@
 #* Discord
 from discord.ext.commands import command, Cog
 from discord import Member
+
 #*Additions
 from asyncio import sleep, iscoroutine
 from time import monotonic
 from datetime import datetime as dt, timedelta
 from random import choice
-
 import utils
-# *Additions
-from asyncio import sleep, iscoroutine
-from datetime import datetime as dt, timedelta
-from random import choice
-from time import monotonic
-
-from discord import Member
-from discord.ext.commands import command, Cog
-
-import ast
+import os
+import sys
+import subprocess
 
 
 def insert_returns(body):
@@ -79,7 +72,8 @@ class Developer(Cog):
             await msg.edit(embed=utils.DevEmbed(title=f"Restarting in {5-num}.", guild=ctx.guild))
         await ctx.message.delete()
         await msg.delete()
-        await self.bot.close()
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
 
 
     @command()
