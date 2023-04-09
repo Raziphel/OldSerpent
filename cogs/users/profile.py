@@ -464,10 +464,18 @@ class Profile(Cog):
 
     @cooldown(1, 5, BucketType.user)
     @command(aliases=['color', 'Color', 'Setcolor', 'SetColor'])
-    async def setcolor(self, ctx, colour):
+    async def setcolor(self, ctx, colour=None):
         '''Sets your user color'''
         colour_value = utils.Colors.get(colour.lower())
         ss = utils.Tracking.get(ctx.author.id)
+
+        if colour == None:
+            with open(utils.Colors, 'r') as file:
+                file_contents = file.read()
+            file = discord.File(utils.Colors, filename=utils.Colors, content=file_contents)
+            await ctx.send(f"Heres a list of colors you can use!", file=file)
+            return
+
 
         if colour_value == None:
             try:
