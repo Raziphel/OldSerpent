@@ -25,7 +25,7 @@ class Daily(Cog):
         # ! Check if it's first daily
         if not day.daily:
             day.daily = 1
-            day.last_daily = (day.last_daily - timedelta(days=3))
+            day.last_daily = (dt.utcnow() - timedelta(days=3))
         # ! Check if already claimed
         if (day.last_daily + timedelta(hours=22)) >= dt.utcnow():
             tf = day.last_daily + timedelta(hours=22)

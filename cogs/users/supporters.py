@@ -45,7 +45,7 @@ class supporters(Cog):
 
         #! Check if it's first daily
         if not day.monthly:
-            day.monthly = (day.monthly - timedelta(days=31))
+            day.monthly = (dt.utcnow() - timedelta(days=31))
 
         #! Check if already claimed
         if (day.monthly + timedelta(days=29)) >= dt.utcnow():
