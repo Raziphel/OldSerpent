@@ -104,16 +104,11 @@ class Developer(Cog):
     async def fixmuted(self, ctx):
         role = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
         
-        all_permissions = [p for p in dir(Permissions) if isinstance(getattr(Permissions, p), property)]
         for channel in ctx.guild.text_channels:
-            for permission in all_permissions:
-                setattr(channel.overwrites_for(role), permission, False)
-            await channel.set_permissions(role, overwrite=channel.overwrites_for(role))
+            await channel.set_permissions(role, overwrite=discord.PermissionOverwrite.from_pair(read_messages=False, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False))
         
         for channel in ctx.guild.voice_channels:
-            for permission in all_permissions:
-                setattr(channel.overwrites_for(role), permission, False)
-            await channel.set_permissions(role, overwrite=channel.overwrites_for(role))
+            await channel.set_permissions(role, overwrite=discord.PermissionOverwrite.from_pair(read_messages=False, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False))
 
         await ctx.send('Fixed Muted role!')
 
