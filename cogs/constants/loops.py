@@ -59,7 +59,7 @@ class Loops(Cog):
 
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
-        serpent = utils.DiscordGet(guild.roles, id=953876921094111245)
+        serpent = utils.DiscordGet(guild.roles, id=1094787752593195088)
         if self.serpent_color == "white":
             await serpent.edit(color=0x000000)
             self.serpent_color = "black"
