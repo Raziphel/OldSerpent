@@ -111,6 +111,7 @@ class Items(Cog):
                 uc.coins += coins_lost
                 c.coins -= coins_lost
 
+        coin_e = self.bot.config['emotes']['coin']
 
         coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs'])
         if coins_lost != None:
