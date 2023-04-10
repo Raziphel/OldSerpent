@@ -25,6 +25,7 @@ class Cogs(Cog):
                 print(f"Failed to load {extension}")
                 await ctx.send(embed=utils.DevEmbed(title=f"Reload Cog Command Failed", desc=f"The cog: `{cog}` couldn't be reloaded.  Error was sent to console logs."))
                 raise e
+        await ctx.send(embed=utils.DevEmbed(title=f"Cogs Reloaded!", desc=f"All cogs were successfully reloaded!"))
 
 
     @utils.is_dev()
