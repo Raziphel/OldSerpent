@@ -1,7 +1,7 @@
 
 #* Discord
 from discord.ext.commands import command, Cog
-from discord import Member, PermissionOverwrite
+from discord import Member, PermissionOverwrite, Permissions
 
 #*Additions
 from asyncio import sleep, iscoroutine
@@ -104,7 +104,7 @@ class Developer(Cog):
     async def fixmuted(self, ctx):
         role = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
         
-        all_permissions = [p for p in dir(discord.Permissions) if isinstance(getattr(discord.Permissions, p), property)]
+        all_permissions = [p for p in dir(discord.Permissions) if isinstance(getattr(Permissions, p), property)]
         for channel in ctx.guild.text_channels:
             for permission in all_permissions:
                 setattr(channel.overwrites_for(role), permission, False)
