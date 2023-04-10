@@ -103,7 +103,7 @@ class Developer(Cog):
     @command(hidden=True)
     async def fixmuted(self, ctx):
         sti = utils.Sticky.get(ctx.channel.id)
-        nitro = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
+        role = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
         
         for channel in ctx.guild.text_channels:
             await channel.set_permissions(role, overwrite=discord.PermissionOverwrite.from_pair(deny_all=True))
