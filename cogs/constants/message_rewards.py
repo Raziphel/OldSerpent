@@ -94,7 +94,7 @@ class Message_Rewards(Cog):
                 coin = choice([100, 150, 200, 250, 300])
                 await utils.CoinFunctions.earn(earner=message.author, amount=coin)
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} found **{coin} {coin_e}x**"))
-                await coin_logs.send(f"{user} found **{coin} {coin_e}x**")
+                await coin_logs.send(f"**{user}** found **{coin} {coin_e}**")
 
         #! Get the correct item
         elif str(payload.emoji) == bunny_e:
@@ -104,7 +104,7 @@ class Message_Rewards(Cog):
                 coin = choice([100, 150, 250])
                 await utils.CoinFunctions.earn(earner=message.author, amount=coin)
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a bunny!**"))
-                await coin_logs.send(f"{user} got **{coin} {coin_e}x from a bunny!**")
+                await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a bunny!**")
 
 
 
