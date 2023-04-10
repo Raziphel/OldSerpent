@@ -1,7 +1,7 @@
 
 #* Discord
 from discord.ext.commands import command, Cog
-from discord import Member
+from discord import Member, PermissionOverwrite
 
 #*Additions
 from asyncio import sleep, iscoroutine
@@ -102,14 +102,13 @@ class Developer(Cog):
     @utils.is_dev()
     @command(hidden=True)
     async def fixmuted(self, ctx):
-        sti = utils.Sticky.get(ctx.channel.id)
         role = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
         
         for channel in ctx.guild.text_channels:
-            await channel.set_permissions(role, overwrite=discord.PermissionOverwrite.from_pair(deny_all=True))
+            await channel.set_permissions(role, overwrite=PermissionOverwrite.from_pair(deny_all=True))
 
         for channel in ctx.guild.voice_channels:
-            await channel.set_permissions(role, overwrite=discord.PermissionOverwrite.from_pair(deny_all=True))
+            await channel.set_permissions(role, overwrite=PermissionOverwrite.from_pair(deny_all=True))
         await ctx.send('Fixed Muted role!')
 
 
