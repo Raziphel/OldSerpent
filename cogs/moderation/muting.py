@@ -98,7 +98,7 @@ class Muting(Cog):
             try:
                 await user.send(F"**Sorry, you were banned from {ctx.guild} for: {reason}**\n\n**Honestly man thats a rip...\nI doubt you will be missed tho! c:**")
             except: pass
-            await ctx.guild.ban(i, delete_message_days=0, reason=f'{reason} :: banned by {ctx.author!s}')
+            await ctx.guild.ban(user, delete_message_days=0, reason=f'{reason} :: banned by {ctx.author!s}')
 
         #! Report who has been banned!
         await ctx.interaction.response.send_message(embed=utils.WarningEmbed(title=f"Banned `{user}`."))
@@ -302,7 +302,7 @@ class Muting(Cog):
                             'DO UPDATE SET unmute_time = $2', user.id, mute_expiration)
             self.create_temp_gag_task(user, mute_expiration)
 
-            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{i.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**\nDuration :: **{duration}**"))
+            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{user.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**\nDuration :: **{duration}**"))
 
 
 
