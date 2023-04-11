@@ -1,13 +1,9 @@
 
 #* Discord
-from discord.ext.commands import command, Cog, Greedy
+from discord.ext.commands import command, Cog, Greedy, ApplicationCommandMeta
 from discord import Member, DiscordException
 
-import utils
 # * Additions
-from discord import Member, DiscordException
-from discord.ext.commands import command, Cog, Greedy
-
 from asyncio import sleep, Task
 from datetime import datetime, timedelta
 from typing import Tuple, Dict, Optional
