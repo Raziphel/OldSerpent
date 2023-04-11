@@ -196,7 +196,7 @@ class Verification(Cog):
         }
 
 
-        async def get_input(prompt: str, timeout: f loat = 360.0, max_length: Optional[int] = 50):
+        async def get_input(prompt: str, timeout: float = 360.0, max_length: Optional[int] = 50):
             '''Gets users responses and checks them'''
             await author.send(embed=utils.SpecialEmbed(desc=prompt, footer=" "))
 
