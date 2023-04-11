@@ -101,7 +101,7 @@ class Daily(Cog):
 
         # ! Send the embed
         msg = await ctx.interaction.response.send_message(
-            embed=utils.SpecialEmbed(
+            embed=utils.DefaultEmbed(
                 title=f" This is your {day.daily:,}x daily in a row!",
                 desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}",
                 footer=footer
@@ -128,7 +128,7 @@ class Daily(Cog):
             components.disable_components()
 
             await interaction.response.edit_message(
-                embed=utils.SpecialEmbed(
+                embed=utils.DefaultEmbed(
                     title=f"This is your {day.daily:,}x daily in a row!",
                     desc=f"**{rarity} Reward!**\n{xp:,} *XP*\n{round(coins):,}x {coin_e}",
                     footer=f" {emoji} Extra reward of {reward:,} coins!"
