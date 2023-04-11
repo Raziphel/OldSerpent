@@ -67,7 +67,6 @@ class Loops(Cog):
             await serpent.edit(color=0xFFFFFF)
             self.serpent_color = "white"
 
-
         wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
         for member in guild.members:
             if wanting_adult in member.roles:

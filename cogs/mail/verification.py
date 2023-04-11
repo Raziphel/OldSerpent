@@ -196,9 +196,9 @@ class Verification(Cog):
         }
 
 
-        async def get_input(prompt: str, timeout: float = 360.0, max_length: Optional[int] = 50):
+        async def get_input(prompt: str, timeout: f loat = 360.0, max_length: Optional[int] = 50):
             '''Gets users responses and checks them'''
-            await author.send(embed=utils.SpecialEmbed(desc=prompt, footer=" ", guild=guild))
+            await author.send(embed=utils.SpecialEmbed(desc=prompt, footer=" "))
 
             async def get_response():
                 ''''Waits for users responses'''
@@ -222,10 +222,11 @@ class Verification(Cog):
             proof = await get_input(f"**Lying about your age is a bannable offense!\n\nWe take this rule very seriously and once we find out you are child you will be banned and reported to Discord.**\n\nPlease say `I agree` if you are indeed an adult or do `cancel`.")
             table_data['proof'] = proof.content
 
-            msg = f"**Marked Child?**: {mod.child}\n**Agreement:** {table_data.get('proof')}"
-
             tr = utils.Tracking.get(author.id)
             mod = utils.Moderation.get(author.id)
+
+            msg = f"**Marked Child?**: {mod.child}\n**Agreement:** {table_data.get('proof')}"
+
             footer = "Adult"
             msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=tr.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
