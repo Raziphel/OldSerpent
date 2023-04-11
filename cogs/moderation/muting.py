@@ -2,6 +2,7 @@
 #* Discord
 from discord.ext.commands import command, Cog, Greedy, ApplicationCommandMeta
 from discord import Member, DiscordException
+from discord import ApplicationCommandOption, ApplicationCommandOptionType
 
 # * Additions
 from asyncio import sleep, Task
