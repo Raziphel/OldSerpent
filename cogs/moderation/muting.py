@@ -151,9 +151,6 @@ class Muting(Cog):
                 await user.send(f'You were permanently muted for reason `{reason}`')
             except DiscordException:
                 pass
-
-        #! Send message to the channel
-        if len(user) == 1:
             await ctx.interaction.response.send_message(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} muted {user[0].mention} permenantly!", guild=ctx.guild))
 
         #!Save to the DB
@@ -199,6 +196,9 @@ class Muting(Cog):
             await user.remove_roles(muted_role, reason='Mute removed.')
             await user.remove_roles(muted_role, reason=f'{reason} :: muted removed by {ctx.author.mention}')
             await ctx.interaction.response.send_message(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} un-muted {user.mention}!", guild=ctx.guild))
+            try:
+                    await user.edit(mute=True)
+            except DiscordException: pass
 
         #!Save to the DB
         mod = utils.Moderation.get(i.id)
@@ -282,7 +282,6 @@ class Muting(Cog):
         #+ Mute that loser
         if user:
             muted_role = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
-            await user.edit(mute=True)
             await user.add_roles(muted_role, reason=f'{reason} :: temp muted by {ctx.author.mention}')
             try: #? Tell them they are muted!
                 await user.send(f'You were temporarily muted for `{duration}` seconds for: `{reason}`.')
