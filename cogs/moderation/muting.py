@@ -208,7 +208,7 @@ class Muting(Cog):
 
 
 
-    @utils.is_admin_staff()
+    @utils.is_mod_staff()
     @command(aliases=['tg', 'tmute', 'tempmute', 'tm'])
     async def tempgag(self, ctx, user:Greedy[Member], duration:utils.TimeConverter, *, reason:str="[No Reason Given]"):
         '''Temporarily applies the prisoner role to a user or users'''
