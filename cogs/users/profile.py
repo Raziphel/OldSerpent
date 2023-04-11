@@ -438,7 +438,7 @@ class Profile(Cog):
         if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
             m = await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
             return
-        await ctx.interaction.response.send_message("🐾You can't post that nasty-ness here.", delete_after=10)
+        await ctx.interaction.response.send_message("🐾You can't post that nasty-ness here.")
         await ctx.message.delete()
 
 
@@ -450,7 +450,7 @@ class Profile(Cog):
         '''Quick Check Coins'''
         if not user:
             user = ctx.author
-        m = await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True), delete_after=10)
+        m = await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True))
 
 
 
@@ -459,7 +459,7 @@ class Profile(Cog):
         '''Quick Check inventory'''
         if not user:
             user = ctx.author
-        await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Items", user=user, quick=True), delete_after=10)
+        await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Items", user=user, quick=True))
 
 
 
