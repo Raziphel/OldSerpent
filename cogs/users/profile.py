@@ -471,7 +471,7 @@ class Profile(Cog):
                     name="colour",
                     description="the color you are wanting...",
                     type=ApplicationCommandOptionType.string,
-                    required=True
+                    required=False
                     )
                 ],
             ),
