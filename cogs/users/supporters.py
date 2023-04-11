@@ -1,7 +1,6 @@
 # Discord
 from discord.ext.commands import command, Cog, BucketType, cooldown, group, RoleConverter, ApplicationCommandMeta
-from discord import Member, Message, User, Game, Embed
-from discord import Member, Message, User, TextChannel, Role, RawReactionActionEvent, Embed
+from discord import Member, Message, User, Game, TextChannel, Role, RawReactionActionEvent, Embed
 # Additions
 from datetime import datetime as dt, timedelta
 from asyncio import iscoroutine, gather, sleep

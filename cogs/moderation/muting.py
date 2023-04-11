@@ -248,7 +248,7 @@ class Muting(Cog):
 
 
     @utils.is_mod_staff()
-    @command(application_command_meta=ApplicationCommandMeta(), 
+    @command(
         application_command_meta=ApplicationCommandMeta(
             options=[
                 ApplicationCommandOption(
