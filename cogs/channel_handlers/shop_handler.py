@@ -42,6 +42,7 @@ class Shop_Handler(Cog):
         embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**{coin} 20,000x**\n\n**Get permission for images & embeds in General Chats.**", inline=True)
         embed2.add_field(name=f"🎁 ❧ Special Channels", value=f"**{coin} 5,000x**\n\n**Get permission to the XK Class channels.**\n*(Fun/Stupid/Random channels)*", inline=True)
         embed2.add_field(name=f"💀 ❧ Auto-Mod Bypass", value=f"**{coin} 100,000x**\n\n**No longer have to worry about the discord's auto moderation.**", inline=True)
+        embed2.add_field(name=f"🔥 ❧ Dungeon Key", value=f"**{coin} 30,000x**\n\n**Get access to hell, where all the muted go!**", inline=True)
 
 
         embed3=Embed(title=f"**[- Abilities & Items -]**", description=f"**Use special abilites on a set cooldown! (Some are Permenant.)**", color=0x475FF5)
@@ -155,6 +156,17 @@ class Shop_Handler(Cog):
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     automod = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['automod'])
                     await user.add_roles(automod, reason="Given Auto-mod bypass role.")
+
+            if emoji == "🔥":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the dungeon key!\nCost: {coin} 100,000x", footer=" "))
+                item['coin'] = 30000
+                item['name'] = "dungeon key"
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the dungeon key!", footer=" "))
+                    bought = True
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
+                    automod = utils.DiscordGet(guild.roles, id=1095177740451323984)
+                    await user.add_roles(automod, reason="Given dungeon key role.")
 
             if emoji == "💎":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Daily Bonus!\nCost: {coin} 40,000x", footer=" "))
