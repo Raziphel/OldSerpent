@@ -1,8 +1,9 @@
-# Discord
-from discord.ext.commands import command, Cog, BucketType, cooldown, group, RoleConverter
-from discord import Member, Message, User, Game, Embed
-from discord import Member, Message, User, TextChannel, Role, RawReactionActionEvent, Embed
-# Additions
+
+#* Discord
+from discord.ext.commands import command, Cog, BucketType, cooldown, group, RoleConverter, ApplicationCommandMeta
+from discord import Member, Message, User, Game, Embed, TextChannel, Role, RawReactionActionEvent, ApplicationCommandOption, ApplicationCommandOptionType
+
+#* Additions
 from datetime import datetime as dt, timedelta
 from asyncio import iscoroutine, gather, sleep
 from math import floor 
@@ -20,10 +21,22 @@ class Items(Cog):
 
 
     @cooldown(1, 3600, BucketType.user)
-    @command(aliases=['Steal', 'yoink', 'Yoink'])
+    @command(        
+        aliases=['yoink'],
+        application_command_meta=ApplicationCommandMeta(
+            options=[
+                ApplicationCommandOption(
+                    name="victim",
+                    description="The user you would like to steal from!",
+                    type=ApplicationCommandOptionType.user,
+                    required=True,
+                ),
+            ],
+        ),
+    )
     async def steal(self, ctx, user:Member=None):
         '''
-        Use your gloves to steal!
+        Use your gloves to steal from other users!!
         '''
 
         # if (self.restart_cooldown + timedelta(minutes=30)) >= dt.utcnow():
@@ -33,17 +46,17 @@ class Items(Cog):
         #     return
 
         if not user:
-            await ctx.send(embed=utils.DefaultEmbed(title=f"You didn't say who your stealing from?", desc=f"**Stealing Odds:**\nSteal 2,000\nSteal 3,000\nSteal 4,000\nSteal 1%\nSteal 2%\nLose 3,000\nLose 2%"))
+            await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title=f"You didn't say who your stealing from?", desc=f"**Stealing Odds:**\nSteal 2,000\nSteal 3,000\nSteal 4,000\nSteal 1%\nSteal 2%\nLose 3,000\nLose 2%"))
             self.steal.reset_cooldown(ctx)
             return
 
         if user.id == self.bot.user.id:
-            await ctx.send(embed=utils.DefaultEmbed(title=f"You can't steal from the master of thiefs!"))
+            await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title=f"You can't steal from the master of thiefs!"))
             self.steal.reset_cooldown(ctx)
             return
 
         if user.id == ctx.author.id:
-            await ctx.send(embed=utils.DefaultEmbed(title=f"You can't steal from yourself!"))
+            await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title=f"You can't steal from yourself!"))
             self.steal.reset_cooldown(ctx)
             return
 
@@ -54,7 +67,7 @@ class Items(Cog):
         item = utils.Items.get(ctx.author.id)
 
         if item.thief_gloves <= 0:
-            await ctx.send(embed=utils.DefaultEmbed(title=f"You don't have any gloves!"))
+            await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title=f"You don't have any gloves!"))
             self.steal.reset_cooldown(ctx)
             return
 
@@ -115,10 +128,10 @@ class Items(Cog):
 
         coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs'])
         if coins_lost != None:
-            await ctx.send(content=f"{user.mention}", embed=utils.DefaultEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** {coin_e} to them instead..."))
+            await ctx.interaction.response.send_message(content=f"{user.mention}", embed=utils.DefaultEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** {coin_e} to them instead..."))
             await coin_logs.send(f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** {coin_e} to them instead...")
         elif coins_stole != None:
-            await ctx.send(content=f"{user.mention}", embed=utils.DefaultEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** {coin_e}"))
+            await ctx.interaction.response.send_message(content=f"{user.mention}", embed=utils.DefaultEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** {coin_e}"))
             await coin_logs.send(f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** {coin_e}")
 
         
