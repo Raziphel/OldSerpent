@@ -26,7 +26,7 @@ class Items(Cog):
         application_command_meta=ApplicationCommandMeta(
             options=[
                 ApplicationCommandOption(
-                    name="victim",
+                    name="user",
                     description="The user you would like to steal from!",
                     type=ApplicationCommandOptionType.user,
                     required=True,
