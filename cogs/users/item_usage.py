@@ -34,7 +34,7 @@ class Items(Cog):
             ],
         ),
     )
-    async def steal(self, ctx, user:Member=None):
+    async def steal(self, ctx, user:Member):
         '''
         Use your gloves to steal from other users!!
         '''
@@ -128,10 +128,13 @@ class Items(Cog):
 
         coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs'])
         if coins_lost != None:
-            await ctx.interaction.followup.sendfix(content=f"{user.mention}", embed=utils.DefaultEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** {coin_e} to them instead..."))
+            await ctx.interaction.response.send_message(
+                content=f"{user.mention}", embed=utils.DefaultEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** {coin_e} to them instead..."))
             await coin_logs.send(f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** {coin_e} to them instead...")
+
         elif coins_stole != None:
-            await ctx.interaction.followup.send(content=f"{user.mention}", embed=utils.DefaultEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** {coin_e}"))
+            await ctx.interaction.response.send_message(
+                content=f"{user.mention}", embed=utils.DefaultEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** {coin_e}"))
             await coin_logs.send(f"**{ctx.author}** Stole coins from **{user}** and they gained **{coins_stole:,}** {coin_e}")
 
         
