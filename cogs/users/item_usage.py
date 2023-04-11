@@ -34,17 +34,17 @@ class Items(Cog):
 
         if not user:
             await ctx.send(embed=utils.DefaultEmbed(title=f"You didn't say who your stealing from?", desc=f"**Stealing Odds:**\nSteal 2,000\nSteal 3,000\nSteal 4,000\nSteal 1%\nSteal 2%\nLose 3,000\nLose 2%"))
-            steal.reset_cooldown(ctx)
+            self.steal.reset_cooldown(ctx)
             return
 
         if user.id == self.bot.user.id:
             await ctx.send(embed=utils.DefaultEmbed(title=f"You can't steal from the master of thiefs!"))
-            steal.reset_cooldown(ctx)
+            self.steal.reset_cooldown(ctx)
             return
 
         if user.id == ctx.author.id:
             await ctx.send(embed=utils.DefaultEmbed(title=f"You can't steal from yourself!"))
-            steal.reset_cooldown(ctx)
+            self.steal.reset_cooldown(ctx)
             return
 
         #! Define Varibles
@@ -55,7 +55,7 @@ class Items(Cog):
 
         if item.thief_gloves <= 0:
             await ctx.send(embed=utils.DefaultEmbed(title=f"You don't have any gloves!"))
-            steal.reset_cooldown(ctx)
+            self.steal.reset_cooldown(ctx)
             return
 
         item.thief_gloves -= 1
