@@ -259,6 +259,12 @@ class Muting(Cog):
                     required=True,
                 ),
                 ApplicationCommandOption(
+                    name="time",
+                    description="How long they should be muted: 1m; 1h or 1d",
+                    type=ApplicationCommandOptionType.string,
+                    required=False,
+                ),
+                ApplicationCommandOption(
                     name="reason",
                     description="The reason for being muted",
                     type=ApplicationCommandOptionType.string,
