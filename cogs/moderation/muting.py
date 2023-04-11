@@ -81,7 +81,7 @@ class Muting(Cog):
                     name="reason",
                     description="The reason for being banned!",
                     type=ApplicationCommandOptionType.string,
-                    required=False,
+                    required=True,
                 ),
             ],
         ),
