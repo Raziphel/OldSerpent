@@ -156,7 +156,7 @@ class Mail_Box(Cog):
             await self.message_embed_author(embed, f"Your verification was declined. For reason: `{reason}`", embed=embed)
             await z.delete()
             await utils.UserFunction.verify_user(user=author, type="notadult")
-            mod = utils.Moderation.get(member.id)
+            mod = utils.Moderation.get(author.id)
             mod.child = True
 
 
