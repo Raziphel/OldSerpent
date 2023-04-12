@@ -152,10 +152,10 @@ class Verification(Cog):
             faith = await get_input(f"**Wanting to join the cultists?**\n*You have 60 seconds to respond!*\n\nWhat do you believe?")
             table_data['faith'] = faith.content
 
-            msg = f"*Marked Child?**: {mod.child}\n\n**What is your faith?**: {table_data.get('faith')}"
-
             tr = utils.Tracking.get(author.id)
             mod = utils.Moderation.get(author.id)
+
+            msg = f"*Marked Child?**: {mod.child}\n\n**What is your faith?**: {table_data.get('faith')}"
 
             mail = await self.mailbox.send(embed=utils.MailEmbed(title=f"Cultist Application", footer=f"Cultist", message=msg, color=tr.color, author=author, image=author.avatar.url))
             await mail.add_reaction('✅')
