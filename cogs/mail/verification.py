@@ -47,7 +47,7 @@ class Verification(Cog):
         }
 
 
-        async def get_input(prompt: str, timeout: float = 360.0, max_length: Optional[int] = 50):
+        async def get_input(prompt: str, timeout: float = 3\60.0, max_length: Optional[int] = 50):
             '''Gets users responses and checks them'''
             await author.send(embed=utils.SpecialEmbed(desc=prompt, footer=" ", guild=guild))
 
@@ -131,7 +131,7 @@ class Verification(Cog):
 
         async def get_input(prompt: str, timeout: float = 60.0, max_length: Optional[int] = 50):
             '''Gets users responses and checks them'''
-            await author.send(embed=utils.SpecialEmbed(desc=prompt, footer=" ", guild=guild))
+            await author.send(embed=utils.SpecialEmbed(desc=prompt, footer=" "))
 
             async def get_response():
                 ''''Waits for users responses'''
@@ -164,7 +164,7 @@ class Verification(Cog):
             why = await get_input(f"4.) Why do you wish to join?")
             table_data['why'] = why.content
 
-            msg = f"Faith?: **{table_data.get('faith')}**\Song?: **{table_data.get('song')}**\Friend?: **{table_data.get('friend')}**\Why?: **{table_data.get('why')}**"
+            msg = f"Faith?: **{table_data.get('faith')}**\nSong?: **{table_data.get('song')}**\nFriend?: **{table_data.get('friend')}**\nWhy?: **{table_data.get('why')}**"
 
             mail = await self.mailbox.send(embed=utils.MailEmbed(title=f"Cultist Application", footer=f"Cultist", message=msg, color=tr.color, author=author, image=author.avatar.url))
             await mail.add_reaction('✅')
