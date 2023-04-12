@@ -164,7 +164,7 @@ class Verification(Cog):
             why = await get_input(f"4.) Why do you wish to join?")
             table_data['why'] = why.content
 
-            msg = f"Faith?: **{table_data.get('faith')}**\song?: **{table_data.get('song')}**\friend?: **{table_data.get('friend')}**\why?: **{table_data.get('why')}**"
+            msg = f"Faith?: **{table_data.get('faith')}**\Song?: **{table_data.get('song')}**\Friend?: **{table_data.get('friend')}**\Why?: **{table_data.get('why')}**"
 
             msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Cultist Application", footer=f"Cultist", message=msg, color=tr.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
