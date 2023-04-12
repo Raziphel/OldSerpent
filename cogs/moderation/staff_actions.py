@@ -77,10 +77,6 @@ class Staff_Actions(Cog):
             return await ctx.interaction.response.send_message(f"**250 is the maximum amount of messages.**")
 
         # ! Report and log the purging!
-        st = utils.Staff_Track.get(ctx.author.id)
-        st.purges += 1
-        async with self.bot.database() as db:
-            await st.save(db)
         removed = await ctx.channel.purge(limit=amount, check=check)
         await ctx.interaction.response.send_message(embed=utils.SpecialEmbed(title=f"Deleted {len(removed)} messages!")
         )
@@ -109,10 +105,6 @@ class Staff_Actions(Cog):
             return await ctx.interaction.response.send_message(f"**250 is the maximum amount of messages.**")
 
         # ! Report and log the purging!
-        st = utils.Staff_Track.get(ctx.author.id)
-        st.purges += 1
-        async with self.bot.database() as db:
-            await st.save(db)
         removed = await ctx.channel.purge(limit=amount, check=check)
         await ctx.interaction.response.send_message(
             embed=utils.SpecialEmbed(
