@@ -141,7 +141,7 @@ class Loops(Cog):
         embed2.add_field(name='Level Rank', value='\n'.join(text2), inline=True)
 
         await msg.edit(content=f"**Those with the Highest Levels!**", embed=embed)
-        await msg2.edit(content=f"**Those with the Highest Levels!**", embed=embed2)
+        await msg2.edit(content=f" ", embed=embed2)
 
 
         #! Coin Leaderboard
@@ -176,7 +176,7 @@ class Loops(Cog):
         embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Coin Rank', value='\n'.join(text2), inline=True)
 
-        await msg.edit(content=" ", embed=embed)
+        await msg.edit(content="**Those with the most coins!**", embed=embed)
         await msg2.edit(content=" ", embed=embed2)
 
 
