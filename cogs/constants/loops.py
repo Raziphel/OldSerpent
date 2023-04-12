@@ -133,7 +133,7 @@ class Loops(Cog):
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
             text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
-            text2.append(f"#{index+15} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
+            text2.append(f"#{index+16} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
 
         embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Level Rank', value='\n'.join(text2), inline=True)
@@ -167,7 +167,7 @@ class Loops(Cog):
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
             text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
-            text2.append(f"#{index+10} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
+            text2.append(f"#{index+11} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
 
         embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Coin Rank', value='\n'.join(text2), inline=True)
