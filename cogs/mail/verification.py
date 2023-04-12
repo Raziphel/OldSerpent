@@ -123,9 +123,6 @@ class Verification(Cog):
         # Set some stuff up
         table_data = {
             'faith': None,
-            'song': None,
-            'friend': None,
-            'why': None,
         }
 
 
@@ -152,19 +149,10 @@ class Verification(Cog):
             return message
 
         try:
-            faith = await get_input(f"**Wanting to join the cultists?**\n*You have 60 seconds to respond!*\n\n1.) What do you believe?")
+            faith = await get_input(f"**Wanting to join the cultists?**\n*You have 60 seconds to respond!*\n\nWhat do you believe?")
             table_data['faith'] = faith.content
 
-            song = await get_input(f"2.) Paste a link to song...")
-            table_data['song'] = song.content
-
-            friend = await get_input(f"3.) Do you have any friends with the Serpent?")
-            table_data['friend'] = friend.content
-
-            why = await get_input(f"4.) Why do you wish to join?")
-            table_data['why'] = why.content
-
-            msg = f"Faith?: **{table_data.get('faith')}**\nSong?: **{table_data.get('song')}**\nFriend?: **{table_data.get('friend')}**\nWhy?: **{table_data.get('why')}**"
+            msg = f"**{table_data.get('faith')}**"
 
             mail = await self.mailbox.send(embed=utils.MailEmbed(title=f"Cultist Application", footer=f"Cultist", message=msg, color=tr.color, author=author, image=author.avatar.url))
             await mail.add_reaction('✅')
@@ -180,7 +168,7 @@ class Verification(Cog):
             await author.send('Aborting Cultist Verification!')
 
         except TimeoutError:
-            await author.send('Sorry, but you took too long to respond.  Verification has closed.')
+            await author.send('Sorry, but you took too long to respond.')
 
 
 
