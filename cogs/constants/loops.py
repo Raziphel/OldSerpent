@@ -133,9 +133,9 @@ class Loops(Cog):
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
             text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
-        embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
-        for index, (user, rank) in enumerate(zip(users, ranks)):
             text2.append(f"#{index+15} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
+
+        embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Level Rank', value='\n'.join(text2), inline=True)
 
         await msg.edit(content=f"**Those with the Highest Levels!**", embed=embed)
@@ -167,12 +167,12 @@ class Loops(Cog):
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
             text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
-        embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
-        await msg.edit(content=" ", embed=embed)
-
-        for index, (user, rank) in enumerate(zip(users, ranks)):
             text2.append(f"#{index+10} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
+
+        embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Coin Rank', value='\n'.join(text2), inline=True)
+
+        await msg.edit(content=" ", embed=embed)
         await msg2.edit(content=" ", embed=embed2)
 
 
