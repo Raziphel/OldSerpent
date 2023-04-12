@@ -21,6 +21,22 @@ class VerificationCancelled(BaseException):
     pass
 
 
+def validate_image(message):
+    if message.attachments:
+        try:
+            return message.attachments[0].url
+        except KeyError:
+            return None
+
+    uri = message.content.split()[0]
+    valid_uri = compile(r"(\b(https?|ftp|file)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]")
+
+    if valid_uri.match(uri):
+        return uri
+
+    return None
+
+
 class Verification(Cog):
 
     def __init__(self, bot):
@@ -30,9 +46,6 @@ class Verification(Cog):
     @property  #! The currency logs
     def mailbox(self):
         return self.bot.get_channel(self.bot.config['channels']['mail_box']) #?archive log channel
-
-
-
 
 
 
@@ -155,7 +168,7 @@ class Verification(Cog):
             tr = utils.Tracking.get(author.id)
             mod = utils.Moderation.get(author.id)
 
-            msg = f"*Marked Child?**: {mod.child}\n\n**What is your faith?**: {table_data.get('faith')}"
+            msg = f"**Marked Child?**: {mod.child}\n\n**What is your faith?**: {table_data.get('faith')}"
 
             mail = await self.mailbox.send(embed=utils.MailEmbed(title=f"Cultist Application", footer=f"Cultist", message=msg, color=tr.color, author=author, image=author.avatar.url))
             await mail.add_reaction('✅')
@@ -183,7 +196,7 @@ class Verification(Cog):
 
         # Set some stuff up
         table_data = {
-            'proof': None,
+            'image': None,
         }
 
 
@@ -210,16 +223,27 @@ class Verification(Cog):
             return message
 
         try:
-            proof = await get_input(f"**Lying about your age is a bannable offense!\n\nWe take this rule very seriously and once we find out you are child you will be banned and reported to Discord.**\n\nPlease say `I agree` if you are indeed an adult or do `cancel`.")
-            table_data['proof'] = proof.content
+            image = await get_input(f"**Lying about your age is a bannable offense!\n\nWe take this rule very seriously and once we find out you are child you will be banned and reported to Discord.**\n\nPlease send an image of yourself holding your full Discord name & tag on paper with yourself in the picture!")
+            if image.content.lower() == 'none':
+                table_data['image'] = None
+            else:
+                image_url = validate_image(image)
+                while image_url is None:
+                    image = await get_input("I couldn't validate the URL given to me, please try again (or say `none`).", max_length=None)
+                    if image.content.lower() == 'none':
+                        table_data['image'] = None
+                        break
+                    image_url = validate_image(image)
+                if image_url is not None:
+                    table_data['image'] = image_url
 
             tr = utils.Tracking.get(author.id)
             mod = utils.Moderation.get(author.id)
 
-            msg = f"**Marked Child?**: {mod.child}\n**Agreement:** {table_data.get('proof')}"
+            msg = f"**Marked Child?**: {mod.child}"
 
             footer = "Adult"
-            mail = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=tr.color, author=author, image=author.avatar.url))
+            mail = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=tr.color, author=author, image=str(table_data['image'])))
             await mail.add_reaction('✅')
             await mail.add_reaction('🔴')
 
@@ -227,13 +251,13 @@ class Verification(Cog):
             await author.send(embed=embed2)
 
         except DiscordException:
-            await author.send('I\'m unable to DM you?')
+            await author.send('**I\'m unable to DM you?**')
 
         except VerificationCancelled:
-            await author.send('Aborting Adult Verification!')
+            await author.send('**Aborting Adult Verification!**')
 
         except TimeoutError:
-            await author.send('Sorry, but you took too long to respond.  Verification has closed.')
+            await author.send('**Sorry, but you took too long to respond.  Verification has closed.**')
 
 
 

@@ -101,14 +101,17 @@ class Developer(Cog):
 
     @utils.is_dev()
     @command(hidden=True)
-    async def fixmuted(self, ctx):
-        role = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
-        
+    async def fixroles(self, ctx):
+        muted = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
+        everyone = utils.DiscordGet(ctx.guild.roles, id=689534383878701223)
+
         for channel in ctx.guild.text_channels:
-            await channel.set_permissions(role, read_messages=None, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False)
-        
+            await channel.set_permissions(muted, read_messages=None, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False)
+
+
         for channel in ctx.guild.voice_channels:
-            await channel.set_permissions(role, read_messages=None, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False)
+            await channel.set_permissions(muted, read_messages=None, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False, connect=False)
+
 
         await ctx.send('Fixed Muted role!')
 
