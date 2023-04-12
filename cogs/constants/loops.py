@@ -112,10 +112,14 @@ class Loops(Cog):
         msg = await channel.fetch_message(1095552287298027681)
         msg2 = await channel.fetch_message(1095552293379772466)
 
-        #* Set up the embed
+        #* Set up the embeds
         embed = Embed(color=randint(1, 0xffffff))
         embed.set_author(name="Welcome to the Server's Leaderboard")
         embed.set_footer(text="if you ain't on here ya trash, sorry.")
+        embed2 = Embed(color=randint(1, 0xffffff))
+        embed2.set_author(name="Welcome to the Server's Leaderboard")
+        embed2.set_footer(text="if you ain't on here ya trash, sorry.")
+
 
         #* Add in level rankings
         sorted_rank = utils.Levels.sort_levels()
@@ -135,17 +139,21 @@ class Loops(Cog):
         embed2.add_field(name='Level Rank', value='\n'.join(text2), inline=True)
 
         await msg.edit(content=f"**Those with the Highest Levels!**", embed=embed)
-        await msg2.edit(content=f"**Those with the Highest Levels!**", embed=embed)
+        await msg2.edit(content=f"**Those with the Highest Levels!**", embed=embed2)
 
 
         #! Coin Leaderboard
         msg = await channel.fetch_message(1095552313566965760)
         msg = await channel.fetch_message(1095552323557806260)
 
-        # Set up the embed
+        #* Set up the embeds
         embed = Embed(color=randint(1, 0xffffff))
         embed.set_author(name="The Coin Leaderboard")
         embed.set_footer(text="Those with the most coins!")
+        embed2 = Embed(color=randint(1, 0xffffff))
+        embed2.set_author(name="The Coin Leaderboard")
+        embed2.set_footer(text="Those with the most coins!")
+
 
         sorted_rank = utils.Currency.sort_coins()
         ranks = sorted_rank[:10]
@@ -164,8 +172,8 @@ class Loops(Cog):
 
         for index, (user, rank) in enumerate(zip(users, ranks)):
             text2.append(f"#{index+10} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
-        embed.add_field(name='Coin Rank', value='\n'.join(text2), inline=True)
-        await msg2.edit(content=" ", embed=embed)
+        embed2.add_field(name='Coin Rank', value='\n'.join(text2), inline=True)
+        await msg2.edit(content=" ", embed=embed2)
 
 
 
