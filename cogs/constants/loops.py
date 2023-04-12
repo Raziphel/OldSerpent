@@ -123,7 +123,7 @@ class Loops(Cog):
 
         #* Add in level rankings
         sorted_rank = utils.Levels.sort_levels()
-        ranks = sorted_rank[:15]
+        ranks = sorted_rank[:30]
         users = []
         for i in sorted_rank:
             user = self.bot.get_user(i.user_id)
@@ -132,8 +132,10 @@ class Loops(Cog):
         text = []
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
-            text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
-            text2.append(f"#{index+16} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
+            if rank < 16:
+                text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
+            else:
+                text2.append(f"#{index+16} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
 
         embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Level Rank', value='\n'.join(text2), inline=True)
@@ -156,7 +158,7 @@ class Loops(Cog):
 
 
         sorted_rank = utils.Currency.sort_coins()
-        ranks = sorted_rank[:10]
+        ranks = sorted_rank[:20]
         users = []
         for i in ranks:
             user = self.bot.get_user(i.user_id)
@@ -166,8 +168,10 @@ class Loops(Cog):
         text = []
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
-            text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
-            text2.append(f"#{index+11} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
+            if rank < 11:
+                text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
+            else:
+                text2.append(f"#{index+11} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
 
         embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Coin Rank', value='\n'.join(text2), inline=True)
