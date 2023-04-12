@@ -132,10 +132,10 @@ class Loops(Cog):
         text = []
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
-            if rank < 16:
+            if index < 16:
                 text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
             else:
-                text2.append(f"#{index+16} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
+                text2.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
 
         embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Level Rank', value='\n'.join(text2), inline=True)
@@ -168,10 +168,10 @@ class Loops(Cog):
         text = []
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
-            if rank < 11:
+            if index < 11:
                 text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
             else:
-                text2.append(f"#{index+11} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
+                text2.append(f"#{index+1} **{user}** 〰 {math.floor(rank.coins):,} {self.bot.config['emotes']['coin']}")
 
         embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Coin Rank', value='\n'.join(text2), inline=True)
