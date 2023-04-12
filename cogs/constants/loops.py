@@ -114,10 +114,10 @@ class Loops(Cog):
 
         #* Set up the embeds
         embed = Embed(color=randint(1, 0xffffff))
-        embed.set_author(name="Welcome to the Server's Leaderboard")
+        embed.set_author(name="Top 15 highest levels!")
         embed.set_footer(text="if you ain't on here ya trash, sorry.")
         embed2 = Embed(color=randint(1, 0xffffff))
-        embed2.set_author(name="Welcome to the Server's Leaderboard")
+        embed2.set_author(name="Top 30 highest levels!")
         embed2.set_footer(text="if you ain't on here ya trash, sorry.")
 
 
@@ -150,10 +150,10 @@ class Loops(Cog):
 
         #* Set up the embeds
         embed = Embed(color=randint(1, 0xffffff))
-        embed.set_author(name="The Coin Leaderboard")
+        embed.set_author(name="Top 10 highest Coins!")
         embed.set_footer(text="Those with the most coins!")
         embed2 = Embed(color=randint(1, 0xffffff))
-        embed2.set_author(name="The Coin Leaderboard")
+        embed2.set_author(name="Top 20 highest Coins!")
         embed2.set_footer(text="Those with the most coins!")
 
 
