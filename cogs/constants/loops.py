@@ -158,7 +158,7 @@ class Loops(Cog):
 
 
         sorted_rank = utils.Currency.sort_coins()
-        ranks = sorted_rank[:20]
+        ranks = sorted_rank[:22]
         users = []
         for i in ranks:
             user = self.bot.get_user(i.user_id)
