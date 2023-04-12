@@ -59,6 +59,7 @@ class Loops(Cog):
 
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
+        #+ Black & White role swap for the bot.
         serpent = utils.DiscordGet(guild.roles, id=1094787752593195088)
         if self.serpent_color == "white":
             await serpent.edit(color=0x1a1919)
@@ -67,14 +68,23 @@ class Loops(Cog):
             await serpent.edit(color=0xFFFFFF)
             self.serpent_color = "white"
 
+        #+ Wanting Adult Verification!
         wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
         for member in guild.members:
             if wanting_adult in member.roles:
                 try:
                     await self.bot.get_cog('Verification').verify_adult(author=member, guild=guild)
                 except: pass
-                wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
                 await member.remove_roles(wanting_adult, reason="Removed wanting adult role")
+
+        #+ Wanting Cultist Verification!
+        wanting_cultist = utils.DiscordGet(guild.roles, id=1095724950826004480)
+        for member in guild.members:
+            if wanting_cultist in member.roles:
+                try:
+                    await self.bot.get_cog('Verification').verify_cultist(author=member, guild=guild)
+                except: pass
+                await member.remove_roles(wanting_cultist, reason="Removed wanting cultist role")
 
         #* Setting the bot status.
         playing = choice(["Convincing Eve to eat an apple!", "Slitherin' in the Garden...", "Commiting Atrocities.", "Starting Plagues", "Worshipin' The Bearer of light", "Devilish intentions!"])
@@ -265,7 +275,7 @@ class Loops(Cog):
                     description=f"**This channel is only for using bot commands!**\nthe Serpent bot has the `/` prefix for regular commands.\nThe Serpent's Music commands use the prefix `!` and both have a help command!", color=randint(1, 0xffffff))
                 if channel == adult_lounge:
                     embed=Embed(title=f"**[- Adult Lounge Sticky -]**",
-                    description=f"**This channel is only for adults**\n\n**NSFW content is allowed!**\n**Only art/drawn nsfw!  No IRL porn is allowed.**", color=randint(1, 0xffffff))
+                    description=f"**This channel is only for adults**\n\n**NSFW content is NOT allowed!**\n\n*Goto the Adult Section*", color=randint(1, 0xffffff))
                 if channel == adult_memes:
                     embed=Embed(title=f"**[- Adult Memes Sticky -]**",
                     description=f"**This channel is only for adults**\n\n**NSFW content is allowed!**\n**Only art/drawn nsfw!  No IRL porn is allowed.**", color=randint(1, 0xffffff))

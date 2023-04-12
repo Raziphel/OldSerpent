@@ -117,15 +117,15 @@ class Verification(Cog):
 
 
 
-    async def verify_furry(self, author:Member, guild:guild):
-        '''Sends a kingussy verification application!'''
+    async def verify_cultist(self, author:Member, guild:guild):
+        '''Sends a cultist verification'''
 
         # Set some stuff up
         table_data = {
-            'furry': None,
-            'sona': None,
-            'reason': None,
-            'drama': None,
+            'faith': None,
+            'song': None,
+            'friend': None,
+            'why': None,
         }
 
 
@@ -152,21 +152,21 @@ class Verification(Cog):
             return message
 
         try:
-            furry = await get_input(f"Are you a furry?")
-            table_data['furry'] = furry.content
+            faith = await get_input(f"**Wanting to join the cultists?**\n1.) What do you believe?")
+            table_data['faith'] = faith.content
 
-            sona = await get_input(f"Tell me about your sona!")
-            table_data['sona'] = sona.content
+            song = await get_input(f"2.) Paste a link to song...")
+            table_data['song'] = song.content
 
-            reason = await get_input(f"What made you decide to join this server?")
-            table_data['reason'] = reason.content
+            friend = await get_input(f"3.) Do you have any friends with the Serpent?")
+            table_data['friend'] = friend.content
 
-            drama = await get_input(f"Are you a fan of drama?")
-            table_data['drama'] = drama.content
+            why = await get_input(f"4.) Why do you wish to join?")
+            table_data['why'] = why.content
 
-            msg = f"A furry?: **{table_data.get('furry')}**\nSona?: **{table_data.get('sona')}**\nReason?: **{table_data.get('reason')}**\nDrama?: **{table_data.get('drama')}**"
+            msg = f"Faith?: **{table_data.get('faith')}**\song?: **{table_data.get('song')}**\friend?: **{table_data.get('friend')}**\why?: **{table_data.get('why')}**"
 
-            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Furry Application", footer=f"Furry", message=msg, color=tr.color, author=author, image=author.avatar.url))
+            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Cultist Application", footer=f"Cultist", message=msg, color=tr.color, author=author, image=author.avatar.url))
             await msg.add_reaction('✅')
             await msg.add_reaction('🔴')
 
@@ -177,7 +177,7 @@ class Verification(Cog):
             await author.send('I\'m unable to DM you?')
 
         except VerificationCancelled:
-            await author.send('Aborting Furry Verification!')
+            await author.send('Aborting Cultist Verification!')
 
         except TimeoutError:
             await author.send('Sorry, but you took too long to respond.  Verification has closed.')

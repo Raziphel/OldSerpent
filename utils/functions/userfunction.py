@@ -143,11 +143,11 @@ class UserFunction(object):
             await general.send(embed=utils.SpecialEmbed(description=f"New alliance member joined!\nWelcome {user.mention}!", thumbnail=user.avatar.url))
             return
 
-        elif type == "furry":
-            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['furry'])
-            await user.add_roles(verified, reason="Verification")
-            general = cls.bot.get_channel(cls.bot.config['channels']['furry_lounge'])
-            await general.send(embed=utils.SpecialEmbed(description=f"A new furry has joined!\nWelcome {user.mention}!", thumbnail=user.avatar.url))
+        elif type == "cultist":
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['cultist'])
+            await user.add_roles(verified, reason="Cultist Verification")
+            # general = cls.bot.get_channel(cls.bot.config['channels']['furry_lounge'])
+            # await general.send(embed=utils.SpecialEmbed(description=f"A new furry has joined!\nWelcome {user.mention}!", thumbnail=user.avatar.url))
             return
 
         elif type == "adult":
