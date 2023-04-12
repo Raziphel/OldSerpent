@@ -166,9 +166,9 @@ class Verification(Cog):
 
             msg = f"Faith?: **{table_data.get('faith')}**\Song?: **{table_data.get('song')}**\Friend?: **{table_data.get('friend')}**\Why?: **{table_data.get('why')}**"
 
-            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Cultist Application", footer=f"Cultist", message=msg, color=tr.color, author=author, image=author.avatar.url))
-            await msg.add_reaction('✅')
-            await msg.add_reaction('🔴')
+            mail = await self.mailbox.send(embed=utils.MailEmbed(title=f"Cultist Application", footer=f"Cultist", message=msg, color=tr.color, author=author, image=author.avatar.url))
+            await mail.add_reaction('✅')
+            await mail.add_reaction('🔴')
 
             embed2=Embed(description="**Your verification has been sent!**")
             await author.send(embed=embed2)
@@ -228,9 +228,9 @@ class Verification(Cog):
             msg = f"**Marked Child?**: {mod.child}\n**Agreement:** {table_data.get('proof')}"
 
             footer = "Adult"
-            msg = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=tr.color, author=author, image=author.avatar.url))
-            await msg.add_reaction('✅')
-            await msg.add_reaction('🔴')
+            mail = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=tr.color, author=author, image=author.avatar.url))
+            await mail.add_reaction('✅')
+            await mail.add_reaction('🔴')
 
             embed2=Embed(description="**Your Adult verification has been sent!**")
             await author.send(embed=embed2)
