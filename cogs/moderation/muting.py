@@ -164,7 +164,7 @@ class Muting(Cog):
 
 
 
-    @utils.is_admin_staff()
+    @utils.is_mod_staff()
     @command(
         application_command_meta=ApplicationCommandMeta(
             options=[
@@ -201,12 +201,12 @@ class Muting(Cog):
             except DiscordException: pass
 
         #!Save to the DB
-        mod = utils.Moderation.get(i.id)
+        mod = utils.Moderation.get(user.id)
         mod.muted = False
         async with self.bot.database() as db:
             await mod.save(db)
 
-        await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Un-Gagged", desc=f"{i.name} was un-muted!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
+        await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Un-Gagged", desc=f"{user.name} was un-muted!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
 
 
 
