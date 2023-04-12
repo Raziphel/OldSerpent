@@ -144,7 +144,7 @@ class Loops(Cog):
 
         #! Coin Leaderboard
         msg = await channel.fetch_message(1095552313566965760)
-        msg = await channel.fetch_message(1095552323557806260)
+        msg2 = await channel.fetch_message(1095552323557806260)
 
         #* Set up the embeds
         embed = Embed(color=randint(1, 0xffffff))
