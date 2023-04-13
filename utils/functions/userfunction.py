@@ -146,8 +146,8 @@ class UserFunction(object):
         elif type == "cultist":
             verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['cultist'])
             await user.add_roles(verified, reason="Cultist Verification")
-            # general = cls.bot.get_channel(cls.bot.config['channels']['furry_lounge'])
-            # await general.send(embed=utils.SpecialEmbed(description=f"A new furry has joined!\nWelcome {user.mention}!", thumbnail=user.avatar.url))
+            general = cls.bot.get_channel(1095761206486237254)
+            await general.send(embed=utils.SpecialEmbed(description=f"**A new Cultist has joined!**\nWelcome {user.mention}!\n\nThe cult is mostly just a little secret group for people close to Razi!", thumbnail=user.avatar.url))
             return
 
         elif type == "adult":
