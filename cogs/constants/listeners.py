@@ -62,16 +62,10 @@ class Listeners(Cog):
                 await message.channel.send(f"<@&1070576949837180939>")
 
 
-    @Cog.listener('on_raw_reaction_add')
-    async def remove_bad_reactions(self, payload:RawReactionActionEvent):
-        if self.bot.get_user(payload.user_id).bot:
+    @Cog.listener('on_reaction_add')
+    async def remove_bad_reactions(self, reaction, user):
+        if self.bot.get_user(user.id).bot:
             return
-
-        #! See what the emoji is
-        if payload.emoji.is_unicode_emoji():
-            emoji = payload.emoji.name 
-        else:
-            emoji = payload.emoji.id
 
         #* Get the coin emojis
         coin = self.bot.config['emotes']['coin']
