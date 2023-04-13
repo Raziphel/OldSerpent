@@ -168,7 +168,7 @@ class Verification(Cog):
             tr = utils.Tracking.get(author.id)
             mod = utils.Moderation.get(author.id)
 
-            msg = f"**Marked Child?**: {mod.child}\n\n**What is your faith?**: {table_data.get('faith')}"
+            msg = f"**Are they an adult?**: {mod.adult}\n\n**What is their faith?**: {table_data.get('faith')}"
 
             mail = await self.mailbox.send(embed=utils.MailEmbed(title=f"Cultist Application", footer=f"Cultist", message=msg, color=tr.color, author=author, image=author.avatar.url))
             await mail.add_reaction('✅')
@@ -240,7 +240,7 @@ class Verification(Cog):
             tr = utils.Tracking.get(author.id)
             mod = utils.Moderation.get(author.id)
 
-            msg = f"**Are they an adult?**: {mod.adult}"
+            msg = f"**Are they a child?**: {mod.child}"
 
             footer = "Adult"
             mail = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=tr.color, author=author, image=str(table_data['image'])))
