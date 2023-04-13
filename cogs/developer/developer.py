@@ -55,7 +55,11 @@ class Developer(Cog):
         await ctx.send('```py\n' + str(ans) + '```')
 
 
-
+    @utils.is_dev()
+    @command(aliases=['cult'], hidden=True)
+    async def cultist(self, ctx, user:Member):
+        await utils.UserFunction.verify_user(user=user, type="cultist")
+        await ctx.send(embed=utils.DevEmbed(title=f"<:Pentagram:1093983216244891689>"))
 
 
 
