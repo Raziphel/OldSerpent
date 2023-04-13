@@ -15,15 +15,16 @@ class CoinFunctions(object):
         #! Define Varibles
         cp = utils.Currency.get(payer.id)
         cr = utils.Currency.get(receiver.id)
-        amount = await cls.pay_tax(payer=payer, amount=amount)
+        new_amount = await cls.pay_tax(payer=payer, amount=amount)
 
         if cp.coins >= amount: #! Check they have enough coins to pay.
-            cp.coins -= amount
-            cr.coins += amount
+            cp.coins -= new_amount
+            cr.coins += new_amount
 
         async with cls.bot.database() as db:
             await cp.save(db)
             await cr.save(db)
+        return amount-new_amount
 
 
     @classmethod 

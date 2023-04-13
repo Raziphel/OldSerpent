@@ -35,7 +35,7 @@ class Payment(Cog):
         ),
     )
     async def pay(self, ctx, recipient: User = None, amount: int = 0):
-        """Send a payment to another member."""
+        """Send coins to another member (With a tax)."""
         coin_e = self.bot.config['emotes']['coin']
 
         # Check if the recipient is the same as the user.
@@ -50,9 +50,9 @@ class Payment(Cog):
         if amount > c.coins:
             return await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"{recipient.mention} you don't have that many coins."))
 
-        await utils.CoinFunctions.pay_user(payer=ctx.author, receiver=recipient, amount=amount)
+        tax = await utils.CoinFunctions.pay_user(payer=ctx.author, receiver=recipient, amount=amount)
 
-        await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"**{ctx.author} sent {amount:,}x {coin_e} to {recipient}!**"))
+        await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"**{ctx.author} sent {amount:,}x {coin_e} to {recipient}!**\n*Taxed at: {tax:,}*"))
 
         await self.coin_logs.send(f"**{ctx.author}** payed **{amount} {coin_e}** to **{recipient}**!")
 
