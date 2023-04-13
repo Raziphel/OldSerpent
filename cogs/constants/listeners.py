@@ -73,7 +73,7 @@ class Listeners(Cog):
 
         disallowed_emotes = [coin, bunny]
 
-        if reaction.emoji in disallowed_emotes:
+        if str(reaction.emoji) in disallowed_emotes:
             #+ Remove the reaction
             await reaction.remove(user)
 
