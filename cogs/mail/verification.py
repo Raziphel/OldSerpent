@@ -240,7 +240,7 @@ class Verification(Cog):
             tr = utils.Tracking.get(author.id)
             mod = utils.Moderation.get(author.id)
 
-            msg = f"**Marked Child?**: {mod.child}"
+            msg = f"**Are they an adult?**: {mod.adult}"
 
             footer = "Adult"
             mail = await self.mailbox.send(embed=utils.MailEmbed(title=f"Adult Application", footer=footer, message=msg, color=tr.color, author=author, image=str(table_data['image'])))
