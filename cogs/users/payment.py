@@ -4,6 +4,7 @@ from discord.ext.commands import command, cooldown, BucketType, Cog, Application
 
 # Utils
 import utils
+from math import floor
 
 
 class Payment(Cog):
@@ -52,7 +53,7 @@ class Payment(Cog):
 
         tax = await utils.CoinFunctions.pay_user(payer=ctx.author, receiver=recipient, amount=amount)
 
-        await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"**{ctx.author} sent {amount:,}x {coin_e} to {recipient}!**\n*Taxed at: {tax:,}*"))
+        await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"**{ctx.author} sent {floor(amount-tax):,}x {coin_e} to {recipient}!**\n*Taxed for: {floor(tax):,}*"))
 
         await self.coin_logs.send(f"**{ctx.author}** payed **{amount} {coin_e}** to **{recipient}**!")
 
