@@ -67,44 +67,6 @@ class Muting(Cog):
 
 
 
-    @utils.is_admin_staff()
-    @command(
-        application_command_meta=ApplicationCommandMeta(
-            options=[
-                ApplicationCommandOption(
-                    name="user",
-                    description="The user to be banned from the server!",
-                    type=ApplicationCommandOptionType.user,
-                    required=True,
-                ),
-                ApplicationCommandOption(
-                    name="reason",
-                    description="The reason for being banned!",
-                    type=ApplicationCommandOptionType.string,
-                    required=True,
-                ),
-            ],
-        ),
-    )
-    async def ban(self, ctx, user:Member, *, reason:Optional[str]="[No Reason Given]"):
-        '''Bans any given amount of members given!'''
-
-        if not user:
-            return await ctx.interaction.response.send_message('Please specify a valid user.', delete_after=15)
-
-        #+ Ban that loser!
-        if user:
-            #! Ban hammer message
-            try:
-                await user.send(F"**Sorry, you were banned from {ctx.guild} for: {reason}**\n\n**Honestly man thats a rip...\nI doubt you will be missed tho! c:**")
-            except: pass
-            await ctx.guild.ban(user, delete_message_days=0, reason=f'{reason} :: banned by {ctx.author!s}')
-
-        #! Report who has been banned!
-        await ctx.interaction.response.send_message(embed=utils.WarningEmbed(title=f"Banned `{user}`."))
-        await self.server_logs.send(embed=utils.LogEmbed(type="negative", author=f"User Banned", desc=f"{user.name} was banned!\n**By: {ctx.author}\nReason :: {reason}**"))
-
-
 
 
     @utils.is_admin_staff()
