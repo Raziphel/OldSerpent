@@ -41,7 +41,7 @@ class Message_Rewards(Cog):
             if chance <= 5:
                 for x in range(5):
                     message = choice(messages)
-                    await message.add_reaction(self.bot.config['emotes']['bunny'])
+                    reaction = await message.add_reaction(self.bot.config['emotes']['bunny'])
                     self.bunny_messages.append(message.id)
             elif chance <= 40:
                 message = choice(messages)
@@ -49,6 +49,12 @@ class Message_Rewards(Cog):
                 self.coin_messages.append(message.id)
         except Exception as e:
             print(f'A reward failed to spawn :: {e}')
+
+        await sleep(10)
+
+        try:
+            await reaction.remove(self.bot.user)
+        except: pass
 
 
 
