@@ -25,16 +25,14 @@ class Listeners(Cog):
 
     @Cog.listener('on_message')
     async def image_handler_listener(self, message):
-        '''
-        Looks for attachments on messages sent in general
-        '''
+        '''Looks for attachments on messages sent in general'''
 
         # Check for general
         if message.channel.id != 807828084937850921:
             return
         
         # Staff bypass
-        if [i for i in message.author.roles if i.name in ["Game Staff", "Discord Staff"]]:
+        if [i for i in message.author.roles if i.name == ["Discord Staff"]]:
             return
 
         # Check for attachments
@@ -45,7 +43,7 @@ class Listeners(Cog):
         if dt.utcnow() - timedelta(minutes=5) < self.last_image:
             await message.delete()
             m = await message.channel.send(embed=utils.DefaultEmbed(title="An image can only be sent to the main lounge every 5 minutes!"))
-            await sleep(6)
+            await sleep(3)
             await m.delete()
         else:
             self.last_image = dt.utcnow()
@@ -54,9 +52,7 @@ class Listeners(Cog):
 
     @Cog.listener('on_message')
     async def stream_ping(self, message):
-        '''
-        Ping when a streamer pings!
-        '''
+        '''Ping when a streamer pings!'''
         if message.channel.id == 1051323487287005264:
             if message.author.id != 550474149332516881:
                 await message.channel.send(f"<@&1070576949837180939>")
@@ -81,9 +77,7 @@ class Listeners(Cog):
 
     @Cog.listener('on_message')
     async def vote_channels(self, message):
-        '''
-        Adds votes reactions!
-        '''
+        '''Adds votes reactions!'''
 
         tr = utils.Tracking.get(message.author.id)
         tr.messages += 1

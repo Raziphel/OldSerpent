@@ -50,8 +50,10 @@ class Currency_Gen(Cog):
                 unique_words += 5
 
             #! Unique Word Nerfer
-            if unique_words > 6:
-                unique_words = 6
+            if unique_words > 8:
+                unique_words = 8
+            elif unique_words < 2:
+                return
 
             rng = choice([0.5, 0.75, 1.0, 1.25, 1.50, 2])
             exp += (1+lvl.level/3)*rng
