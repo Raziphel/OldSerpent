@@ -162,7 +162,7 @@ class Verification(Cog):
             return message
 
         try:
-            faith = await get_input(f"**Wanting to join the cultists?**\n*You have 60 seconds to respond!*\n\nWhat do you believe?")
+            faith = await get_input(f"**Wanting to join the cultists?**\n*You have 60 seconds to respond!*\n\nWhat makes you think your worthy?")
             table_data['faith'] = faith.content
 
             tr = utils.Tracking.get(author.id)
