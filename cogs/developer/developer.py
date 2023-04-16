@@ -64,7 +64,7 @@ class Developer(Cog):
 
     @utils.is_dev()
     @command(hidden=True)
-    async def fixroles(self, ctx):
+    async def optin(self, ctx):
         mc = utils.DiscordGet(guild.roles, id=1097248140337348638)
         scp = utils.DiscordGet(guild.roles, id=1097248307610398962)
         guild = self.bot.get_guild(self.bot.config['garden_id'])
