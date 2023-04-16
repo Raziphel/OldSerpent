@@ -62,7 +62,16 @@ class Developer(Cog):
         await ctx.send(embed=utils.DevEmbed(desc=f"<:Pentagram:1093983216244891689>"))
 
 
-
+    @utils.is_dev()
+    @command(hidden=True)
+    async def fixroles(self, ctx):
+        mc = utils.DiscordGet(guild.roles, id=1097248140337348638)
+        scp = utils.DiscordGet(guild.roles, id=1097248307610398962)
+        guild = self.bot.get_guild(self.bot.config['garden_id'])
+        for user in guild.members:
+            await user.add_roles(mc, reason="opt-in!")
+            await user.add_roles(scp, reason="opt-in!!")
+        await ctx.send(embed=utils.DevEmbed(desc=f"<:Pentagram:1093983216244891689>"))
 
 
 
