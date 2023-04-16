@@ -65,9 +65,9 @@ class Developer(Cog):
     @utils.is_dev()
     @command(hidden=True)
     async def optin(self, ctx):
+        guild = self.bot.get_guild(self.bot.config['garden_id'])
         mc = utils.DiscordGet(guild.roles, id=1097248140337348638)
         scp = utils.DiscordGet(guild.roles, id=1097248307610398962)
-        guild = self.bot.get_guild(self.bot.config['garden_id'])
         for user in guild.members:
             await user.add_roles(mc, reason="opt-in!")
             await user.add_roles(scp, reason="opt-in!!")
