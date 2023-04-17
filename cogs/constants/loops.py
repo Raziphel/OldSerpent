@@ -211,10 +211,11 @@ class Loops(Cog):
         supporter_lounge = guild.get_channel(1056775863842111488) #? supporter lounge Channel
         bot_usage = guild.get_channel(1028771493179560066) #? bot_usage Channel
         issues = guild.get_channel(1056747603829731338) #? issues Channel
+        art = guild.get_channel(1088530067862327376) #? Art Channel
         supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
         suggestions = guild.get_channel(1093622505236865045) #? suggestions Channel
         scp_suggestions = guild.get_channel(1056747785749278761) #? SCP suggestions Channel
-        channels = [adult_lounge, bot_usage, issues, supporter, adult_memes]
+        channels = [adult_lounge, bot_usage, issues, supporter]
         suggestions = [suggestions, scp_suggestions]
         last_message = None
         for channel in channels:
@@ -276,9 +277,9 @@ class Loops(Cog):
                 if channel == adult_lounge:
                     embed=Embed(title=f"**[- Adult Lounge Sticky -]**",
                     description=f"**This channel is only for adults**\n\n**NSFW content is NOT allowed!**\n*Goto the NSFW Category*", color=randint(1, 0xffffff))
-                if channel == adult_memes:
-                    embed=Embed(title=f"**[- Adult Memes Sticky -]**",
-                    description=f"**This channel is only for adults**\n\n**NSFW content is allowed!**\n**Only art/drawn nsfw!  No IRL porn is allowed.**", color=randint(1, 0xffffff))
+                if channel == art:
+                    embed=Embed(title=f"**[- Art Sticky -]**",
+                    description=f"**This channel is for posting art created by the community!**\n__No AI art, Memes or anything you didn't create out of here however__\n\n*Please keep furry art in the furry channels however!*", color=randint(1, 0xffffff))
                 if channel == issues:
                     embed=Embed(title=f"**[- Issues Sticky -]**",
                     description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@Game Staff** - Ping for anything SCP Server related.\n**@Discord Staff** - Ping for anything Discord related.", color=randint(1, 0xffffff))
