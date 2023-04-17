@@ -205,17 +205,13 @@ class Loops(Cog):
 
 
         #! THE STICKY CODE BLOCK >:O
-        lounge = guild.get_channel(807828084937850921) #? General Channel
         adult_lounge = guild.get_channel(1022373213520547912) #? adult lounge Channel
-        furry_lounge = guild.get_channel(1028881630363926568) #? furry lounge Channel
-        supporter_lounge = guild.get_channel(1056775863842111488) #? supporter lounge Channel
         bot_usage = guild.get_channel(1028771493179560066) #? bot_usage Channel
         issues = guild.get_channel(1056747603829731338) #? issues Channel
         art = guild.get_channel(1088530067862327376) #? Art Channel
-        supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
         suggestions = guild.get_channel(1093622505236865045) #? suggestions Channel
         scp_suggestions = guild.get_channel(1056747785749278761) #? SCP suggestions Channel
-        channels = [adult_lounge, bot_usage, issues, supporter]
+        channels = [adult_lounge, bot_usage, issues, scp_suggestions, art, suggestions]
         suggestions = [suggestions, scp_suggestions]
         last_message = None
         for channel in channels:

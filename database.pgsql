@@ -28,7 +28,7 @@ CREATE TABLE tracking (
 CREATE TABLE sticky (
     channel_id BIGINT NOT NULL,
     message_id BIGINT,
-    PRIMARY KEY (guild_id)
+    PRIMARY KEY (channel_id)
 );
 
 CREATE TABLE staff_track (
