@@ -276,7 +276,7 @@ class Loops(Cog):
                     description=f"**This channel is only for adults**\n\n**NSFW content is NOT allowed!**\n*Goto the NSFW Category*", color=randint(1, 0xffffff))
                 if channel == art:
                     embed=Embed(title=f"**[- Art Sticky -]**",
-                    description=f"**This channel is for posting art created by the community!**\n__No AI art, Memes or anything you didn't create out of here however__\n\n*Please keep furry art in the furry channels however!*", color=randint(1, 0xffffff))
+                    description=f"**This channel is for posting art created by the community!**\n__No AI art, Memes or anything you didn't create is allowed__\n\n*Please keep furry art in the furry channels however!*", color=randint(1, 0xffffff))
                 if channel == issues:
                     embed=Embed(title=f"**[- Issues Sticky -]**",
                     description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@Game Staff** - Ping for anything SCP Server related.\n**@Discord Staff** - Ping for anything Discord related.", color=randint(1, 0xffffff))
