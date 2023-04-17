@@ -282,7 +282,7 @@ class Loops(Cog):
                     description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**@05 Council** - Ping for Major bugs or anything if you think its important enough.\n**@Game Staff** - Ping for anything SCP Server related.\n**@Discord Staff** - Ping for anything Discord related.", color=randint(1, 0xffffff))
                 if channel in suggestions:
                     embed=Embed(title=f"**[- Suggestion Stickys! -]**",
-                    description=f"**Please do not just hold conversations or make replies here!**\n\nYou can create a thread to reply suggestions!", color=randint(1, 0xffffff))
+                    description=f"**Please do not just hold conversations or make replies here!**\n\nYou can create a thread to reply to suggestions!", color=randint(1, 0xffffff))
                 try:
                     await msg.edit(content=f" ", embed=embed)
                 except: 
