@@ -158,7 +158,8 @@ class Sonas(Cog):
 
             #! Get the sona's color
             file = File('config/lists/colors.py', filename='config/lists/colors.py')
-            color = await get_input("What is your sona's favorite color?\n\n**Heres a list of colors you can use!**", file=file)
+            color = await get_input("What is your sona's favorite color?\n\n**Heres a list of colors you can use!**")
+            await author.send(file=file)
             if color.content.lower() != "none":
                 color = utils.Colors.get(color.content.lower()) 
             else:
