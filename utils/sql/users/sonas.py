@@ -23,7 +23,7 @@ class Sonas(object):
     all_sonas = {}
     empty = EmptySonas()
 
-    def __init__(self, user_id:int, verified:bool, name:str, age:int, gender:str, sexuality:str, bio:str, image:str, species:str, color:str, likes:str):
+    def __init__(self, user_id:int, verified:bool, name:str, age:int, gender:str, sexuality:str, bio:str, image:str, species:str, color:int, likes:str):
         self.user_id = user_id
         self.verified = verified
         self.name = name
