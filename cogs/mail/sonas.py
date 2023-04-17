@@ -176,7 +176,7 @@ class Sonas(Cog):
                 table_data['likes'] = "Nothing..."
 
             #! Get the sona's bio
-            bio = await get_input("What is your fursona's bio, if you have one (otherwise say `none`)?\nYou have 20 minutes to write this before it times out automatically.\n**This causes the most issues...  Very simple name color please...**", timeout=1200.0, max_length=1024)
+            bio = await get_input("What is your fursona's bio, if you have one (otherwise say `none`)?\nYou have 20 minutes to write this before it times out automatically.", timeout=1200.0, max_length=1024)
             table_data['bio'] = bio.content.strip()
             if bio.content.lower() == 'none':
                 table_data['bio'] = None
