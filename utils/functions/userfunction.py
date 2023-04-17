@@ -115,8 +115,11 @@ class UserFunction(object):
             await user.remove_roles(*role_to_delete, reason="Removing Level Role.")
 
         if role_to_add:
-            role = utils.DiscordGet(guild.roles, name=role_to_add)
-            await user.add_roles(role, reason="Adding Level Role.")
+            try:
+                role = utils.DiscordGet(guild.roles, name=role_to_add)
+                await user.add_roles(role, reason="Adding Level Role.")
+            except: 
+                print(f'Failed to apply level role: {user.name} getting role: {role_to_add.name}')
 
 
 
