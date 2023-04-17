@@ -13,7 +13,7 @@ from asyncio import TimeoutError
 from re import compile
 from typing import Optional
 
-from discord import Embed, DiscordException
+from discord import Embed, DiscordException, File
 from discord.ext.commands import command, Cog
 
 import utils
@@ -157,7 +157,7 @@ class Sonas(Cog):
                 return
 
             #! Get the sona's color
-            file = discord.File('config/lists/colors.py', filename='config/lists/colors.py')
+            file = File('config/lists/colors.py', filename='config/lists/colors.py')
             color = await get_input("What is your sona's favorite color?\n\n**Heres a list of colors you can use!**", file=file)
             if color.content.lower() != "none":
                 color = utils.Colors.get(color.content.lower()) 
