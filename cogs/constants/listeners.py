@@ -76,23 +76,30 @@ class Listeners(Cog):
 
 
     @Cog.listener('on_message')
-    async def vote_channels(self, message):
+    async def on_messages(self, message):
         '''Adds votes reactions!'''
 
+        #+ Keep track of peoples message count!
         tr = utils.Tracking.get(message.author.id)
         tr.messages += 1
         async with self.bot.database() as db:
             await tr.save(db)
 
-        # Check for general
-        if message.channel.id in [1047026469068623902, 1056747785749278761, 1056776991770161162, 1093622505236865045]: #? Suggestions
+        #! Stop bots at this point...
+        if message.author.bot: 
+            return
+
+
+
+        #+ Check for Suggestion channels
+        if message.channel.id in [1093622505236865045, 1056747785749278761]: #? Suggestions
             await message.add_reaction("<:UpVote:1041606985080119377>")
             await message.add_reaction("<:DownVote:1041606970492342282>")
-        if message.channel.id in [1051033412456165396]: #? 1 word only
-            total_words = len(message.content.split())
-            if total_words > 1 or list(message.content) in ["=", "-", "_", "~", "`", "."]:
-                await message.delete()
-                await message.channel.send(embed=utils.DefaultEmbed(title="1 Word Only!", desc="If it wasn't obvious you can only send 1 word."), delete_after=5)
+        # if message.channel.id in [1051033412456165396]: #? 1 word only
+        #     total_words = len(message.content.split())
+        #     if total_words > 1 or list(message.content) in ["=", "-", "_", "~", "`", "."]:
+        #         await message.delete()
+        #         await message.channel.send(embed=utils.DefaultEmbed(title="1 Word Only!", desc="If it wasn't obvious you can only send 1 word."), delete_after=5)
 
 
 
