@@ -7,13 +7,13 @@ class EmptySonas():
         self.user_id = None
         self.verified = False
         self.name = "No name given"
-        self.age = "No age given"
+        self.age = 16
         self.gender = "No gender given"
         self.sexuality = "No sexuality given"
         self.bio = "No bio given"
         self.image = None
         self.species = "No species given"
-        self.color = "No color given"
+        self.color = 0
         self.likes = "No likes given"
 
 
@@ -71,13 +71,13 @@ class Sonas(object):
                 user_id = user_id,
                 verified = False,
                 name = "No name given",
-                age = "No age given",
+                age = 16,
                 gender = "No gender given",
                 sexuality = "No sexuality given",
                 bio = "No bio given",
                 image = None,
                 species = "No species given",
-                color = "No color given",
+                color = 0,
                 likes = "No likes given",
             )
         return sona
