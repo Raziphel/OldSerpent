@@ -72,19 +72,10 @@ class Loops(Cog):
         wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
         for member in guild.members:
             if wanting_adult in member.roles:
+                await member.remove_roles(wanting_adult, reason="Removed wanting adult role")
                 try:
                     await self.bot.get_cog('Verification').verify_adult(author=member, guild=guild)
                 except: pass
-                await member.remove_roles(wanting_adult, reason="Removed wanting adult role")
-
-        #+ Wanting Cultist Verification!
-        wanting_cultist = utils.DiscordGet(guild.roles, id=1095724950826004480)
-        for member in guild.members:
-            if wanting_cultist in member.roles:
-                try:
-                    await self.bot.get_cog('Verification').verify_cultist(author=member, guild=guild)
-                except: pass
-                await member.remove_roles(wanting_cultist, reason="Removed wanting cultist role")
 
         #* Setting the bot status.
         playing = choice(["Convincing Eve to eat an apple!", "Slitherin' in the Garden...", "Commiting Atrocities.", "Starting Plagues", "Worshipin' The Bearer of light", "Devilish intentions!"])
