@@ -124,7 +124,7 @@ class Logging(Cog):
         if message.attachments: 
             image = message.attachments[0].url 
         name_list = list(message.channel.name)
-        if ['🍺', '🐁', '🚬']  in name_list:
+        if ['🍺', '🐁', '🚬', '🐇']  in name_list:
             channel = self.adult_log
         elif '✨' in name_list:
             channel = self.staff_log
@@ -136,7 +136,7 @@ class Logging(Cog):
         if before.author.bot: return
         if before.content == after.content: return
         name_list = list(before.channel.name)
-        if ['🍺', '🐁', '🚬'] in name_list:
+        if ['🍺', '🐁', '🚬', '🐇'] in name_list:
             channel = self.adult_log
         elif '✨' in name_list:
             channel = self.staff_log
