@@ -45,7 +45,7 @@ class Supporters(Cog):
 
         #? Fuck em if they ain't a supporter.
         if supporter == False:
-            await ctx.interaction.response.send_message(f"**Only supporters can claim a monthly reward!**", delete_after=6)
+            await ctx.interaction.response.send_message(f"**Only supporters can claim a monthly reward!**")
             return
 
         #! Check if it's first daily
