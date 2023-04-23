@@ -223,7 +223,7 @@ class Verification(Cog):
             return message
 
         try:
-            image = await get_input(f"**Lying about your age is a bannable offense!\n\nWe take this rule very seriously and once we have find out you are child you will be banned and reported to Discord.\n\n1️⃣ A piece of paper with your Discord tag and \"Serpent's Garden\"\n2️⃣You, obviously.\n3️⃣and your Id all in one picture!\n\n**Only members of counil will see this to approve, before its deleted.\n\n**Yes,this is a lot of work, if you'd like you can get verified by a council member in a voice channel as well.**")
+            image = await get_input(f"**Lying about your age is a bannable offense!\n\nWe take this rule very seriously and once we have find out you are child you will be banned and reported to Discord.\n\n1️⃣ A piece of paper with your Discord tag and \"Serpent's Garden\"\n2️⃣You, obviously.\n3️⃣and your Id all in one picture!\n\n**Only members of counil will see this to approve, before its deleted.\n\n**Yes, this is a lot of work, if you'd like you can get verified by a council member in a voice channel as well, by turning on your camera and showing us!**")
             if image.content.lower() == 'none':
                 table_data['image'] = None
             else:
