@@ -1,17 +1,13 @@
 
 #* Discord
 from discord.ext.commands import Cog
-from discord.ext.commands import BadArgument, CommandNotFound, CommandOnCooldown, MissingPermissions
+from discord.ext.commands import BadArgument, CommandNotFound, CommandOnCooldown, MissingPermissions, IsNotSlashCommand
 #* Utils
 import utils
 #* Additions
 from asyncio import sleep
 # * Additions
 from asyncio import sleep
-
-from discord.ext.commands import BadArgument, CommandNotFound, CommandOnCooldown, MissingPermissions
-from discord.ext.commands import Cog
-
 # * Utils
 import utils
 
@@ -40,6 +36,9 @@ class Error_Handler(Cog):
                 pass
 
         elif isinstance(error, CommandNotFound):
+            return
+        elif isinstance(error, IsNotSlashCommand):
+            msg = await ctx.send(embed=utils.ErrorEmbed(error_msg=f"Please use the slash command instead!", guild=ctx.author.guild))
             return
         elif isinstance(error, MissingPermissions):
             msg = await ctx.send(embed=utils.ErrorEmbed(error_msg=f"Ya don't have the right Server Permission!", guild=ctx.author.guild))
