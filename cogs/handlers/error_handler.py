@@ -34,9 +34,6 @@ class Error_Handler(Cog):
 
         elif isinstance(error, CommandNotFound):
             return
-        elif hasattr(ctx, "interaction"):
-            msg = await ctx.send(embed=utils.ErrorEmbed(error_msg=f"Please use the slash command instead!"))
-            return
         elif isinstance(error, MissingPermissions):
             msg = await ctx.send(embed=utils.ErrorEmbed(error_msg=f"Ya don't have the right Server Permission!"))
             pass
