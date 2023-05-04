@@ -164,13 +164,10 @@ class lottery_handler(Cog):
         while not self.bot.is_closed():
             lot = utils.Lottery.get(1)
 
-            lot.coins += 100
-            c = utils.Currency.get(550474149332516881)
-            c.coins -= 100
+            lot.coins += 10
 
             async with self.bot.database() as db:
                 await lot.save(db)
-                await c.save(db)
             await sleep(3600)
 
 
