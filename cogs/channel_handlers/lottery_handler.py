@@ -19,6 +19,14 @@ class lottery_handler(Cog):
         self.bot.loop.create_task(self.lottery())
 
 
+
+    @property  #! The currency logs
+    def coin_logs(self):
+        return self.bot.get_channel(self.bot.config['channels']['coin_logs'])
+
+
+
+
     async def lott_msg(self):
         '''Edits the shops lottery message!'''
         await self.bot.wait_until_ready()
