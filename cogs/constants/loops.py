@@ -30,7 +30,7 @@ class Loops(Cog):
         self.last_members = 0
         self.last_coins = 0
         self.supporters = 0
-        self.serpent_color = "red"
+        self.serpent_color = "black"
 
 
 
@@ -63,8 +63,8 @@ class Loops(Cog):
         serpent = utils.DiscordGet(guild.roles, id=1094787752593195088)
         if self.serpent_color == "white":
             await serpent.edit(color=0x1a1919)
-            self.serpent_color = "red"
-        elif self.serpent_color == "red":
+            self.serpent_color = "black"
+        elif self.serpent_color == "black":
             await serpent.edit(color=0xFF0000)
             self.serpent_color = "white"
 
