@@ -111,6 +111,8 @@ class Message_Rewards(Cog):
                 await utils.CoinFunctions.earn(earner=message.author, amount=coin)
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} found **{coin} {coin_e}x**"))
                 await coin_logs.send(f"**{user}** found **{coin} {coin_e}**")
+                #! Quest 1 Complete
+                await self.bot.get_cog('Quests').get_quest(user=user, quest_no=1, completed=True)
 
         elif str(payload.emoji) == bunny_e:
             if message.id in self.bunny_messages:
@@ -120,6 +122,8 @@ class Message_Rewards(Cog):
                 await utils.CoinFunctions.earn(earner=message.author, amount=coin)
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a bunny!**"))
                 await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a bunny!**")
+                #! Quest 4 Complete
+                await self.bot.get_cog('Quests').get_quest(user=user, quest_no=4, completed=True)
 
         elif str(payload.emoji) == "✨":
             if message.id in self.sparkle_messages:

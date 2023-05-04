@@ -51,6 +51,19 @@ CREATE TABLE tempmute_timeout (
 );
 
 
+
+CREATE TABLE lottery (
+    lottery_id BIGINT NOT NULL,
+    last_winner_id BIGINT,
+    last_amount INT,
+    coins INT,
+    lot_time TIMESTAMP,
+    PRIMARY KEY (lottery_id)
+);
+
+
+
+
 #############################################################################
 ##################### LEVELS / USER RESOURCES / VALUE  ######################
 #############################################################################
@@ -75,7 +88,7 @@ CREATE TABLE daily (
 CREATE TABLE items (
     user_id BIGINT NOT NULL,
     thief_gloves INT,
-    party_popper INT,
+    lot_tickets INT,
     PRIMARY KEY (user_id)
 );
 
@@ -109,22 +122,20 @@ CREATE TABLE sonas (
     PRIMARY KEY (user_id)
 );
 
-CREATE TABLE nsfw_sonas (
+
+CREATE TABLE quests (
     user_id BIGINT NOT NULL,
-    slot INT NOT NULL,
-    verified BOOLEAN DEFAULT false,
-    name VARCHAR(25),
-    age INT,
-    gender VARCHAR(25),
-    sexuality VARCHAR(25),
-    bio VARCHAR(1000),
-    image VARCHAR(1000),
-    species VARCHAR(25),
-    color integer,
-    likes VARCHAR(25),
+    q1 boolean NOT NULL DEFAULT FALSE,
+    q2 boolean NOT NULL DEFAULT FALSE,
+    q3 boolean NOT NULL DEFAULT FALSE,
+    q4 boolean NOT NULL DEFAULT FALSE,
+    q5 boolean NOT NULL DEFAULT FALSE,
+    q6 boolean NOT NULL DEFAULT FALSE,
+    q7 boolean NOT NULL DEFAULT FALSE,
+    q8 boolean NOT NULL DEFAULT FALSE,
+    q9 boolean NOT NULL DEFAULT FALSE,
     PRIMARY KEY (user_id)
 );
-
 
 
 ###########################################################################
