@@ -68,16 +68,16 @@ class lottery_handler(Cog):
             ch = guild.get_channel(self.bot.config['channels']['lottery'])
 
             sorted_rank = utils.Items.sort_tickets()
-            ranks = sorted_rank[:10]
+            ranks = sorted_rank[:20]
             users = []
             for i in sorted_rank:
                 user = self.bot.get_user(i.user_id)
                 if user != None:
                     users.append(user)
-            text = ["**The weekly lottery has:** {t.day} days, {t.hour} hours and {t.minute} minutes remaining!\n\n**Top Ticket Holders:**\n"]
+            text = [f"**The weekly lottery has:** {t.day} days, {t.hour} hours and {t.minute} minutes remaining!\n\n**Top Ticket Holders:**\n"]
             for index, (user, rank) in enumerate(zip(users, ranks)):
                 if index < 10:
-                    text.append(f"#{index+1} **{user}** 〰 {floor(rank.lot_tickets):,} Lottery Tickets")
+                    text.append(f"#{index+1} **{user}** 〰〰〰〰 {floor(rank.lot_tickets):,} Tickets")
 
             embed = Embed(color=randint(1, 0xffffff))
             embed.set_author(name="The lottery timer")
