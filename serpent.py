@@ -27,6 +27,7 @@ class Serpent(commands.AutoShardedBot):
         utils.ErrorEmbed.bot = self
         utils.MailEmbed.bot = self
         utils.WarningEmbed.bot = self
+        utils.QuestEmbed.bot = self
 
         # ! Load Functions
         utils.UserFunction.bot = self

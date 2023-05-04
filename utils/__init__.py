@@ -11,6 +11,7 @@ from utils.embeds.profile import ProfileEmbed
 from utils.embeds.error import ErrorEmbed
 from utils.embeds.mail import MailEmbed
 from utils.embeds.warning import WarningEmbed
+from utils.embeds.quest import QuestEmbed
 
 
 #* --------------------- SQL
