@@ -79,6 +79,9 @@ class lottery_handler(Cog):
                 if index < 10:
                     text.append(f"#{index+1} **{user}** 〰 {floor(rank.lot_tickets):,} Lottery Tickets")
 
+            embed = Embed(color=randint(1, 0xffffff))
+            embed.set_author(name="The lottery timer")
+            embed.set_footer(text=" ")
             embed.add_field(name='Lottery Tickets', value='\n'.join(text), inline=True)
 
             if lot.lot_time == None:
