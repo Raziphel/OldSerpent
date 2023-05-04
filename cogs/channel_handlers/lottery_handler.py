@@ -84,15 +84,15 @@ class lottery_handler(Cog):
                     await lot.save(db)
 
             #! not time for the lottery
-            if (lot.lot_time + timedelta(days=3)) > dt.now():
-                tf = lot.lot_time + timedelta(days=3)
+            if (lot.lot_time + timedelta(hours=72)) > dt.now():
+                tf = lot.lot_time + timedelta(hours=72)
                 t = dt(1,1,1) + (tf - dt.now())
                 msg = await ch.fetch_message(1103507090389078046)
                 await msg.edit(content=f" ", embed=utils.SpecialEmbed(title=f"Lottery Timer", desc=f"**The weekly lottery has:** {t.day} days, {t.hour} hours and {t.minute} minutes remaining!\n\n**Top Ticket Holders:**\n**#1) {user1} 〰️ {floor(rank1.lot_tickets):,} Tickets**\n**#2) {user2} 〰️ {floor(rank2.lot_tickets):,} Tickets**\n**#3) {user3} 〰️ {floor(rank3.lot_tickets):,} Tickets**\n**#4) {user4} 〰️ {floor(rank4.lot_tickets):,} Tickets**\n**#5) {user5} 〰️ {floor(rank5.lot_tickets):,} Tickets**"))
 
 
             #! If it is time to do the lottery
-            if (lot.lot_time + timedelta(days=3)) < dt.now():
+            if (lot.lot_time + timedelta(hours=72)) < dt.now():
                 lot.lot_time = dt.now()
                 print("Ran the lottery")
 
