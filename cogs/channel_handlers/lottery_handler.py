@@ -74,13 +74,10 @@ class lottery_handler(Cog):
                 user = self.bot.get_user(i.user_id)
                 if user != None:
                     users.append(user)
-            text = []
-            text2 = []
+            text = ["**The weekly lottery has:** {t.day} days, {t.hour} hours and {t.minute} minutes remaining!\n\n**Top Ticket Holders:**\n"]
             for index, (user, rank) in enumerate(zip(users, ranks)):
-                if index < 15:
+                if index < 10:
                     text.append(f"#{index+1} **{user}** 〰 {floor(rank.lot_tickets):,} Lottery Tickets")
-                else:
-                    text2.append(f"#{index+1} **{user}** 〰 {floor(rank.lot_tickets):,} Lottery Tickets")
 
             embed.add_field(name='Lottery Tickets', value='\n'.join(text), inline=True)
 
@@ -94,7 +91,7 @@ class lottery_handler(Cog):
                 tf = lot.lot_time + timedelta(hours=72)
                 t = dt(1,1,1) + (tf - dt.now())
                 msg = await ch.fetch_message(1103507090389078046)
-                await msg.edit(content=f"**Those with the most tickets!**", embed=embed)
+                await msg.edit(embed=embed)
 
 
             #! If it is time to do the lottery
