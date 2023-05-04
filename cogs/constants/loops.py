@@ -179,9 +179,9 @@ class Loops(Cog):
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
             if index < 10:
-                text.append(f"#{index+1} **{user}** 〰 {self.bot.config['emotes']['coin']} {math.floor(rank.coins):,}")
+                text.append(f"#{index+1} **{user}** --> {self.bot.config['emotes']['coin']} {math.floor(rank.coins):,}")
             else:
-                text2.append(f"#{index+1} **{user}** 〰 {self.bot.config['emotes']['coin']} {math.floor(rank.coins):,}")
+                text2.append(f"#{index+1} **{user}** --> {self.bot.config['emotes']['coin']} {math.floor(rank.coins):,}")
 
         embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Coin Rank', value='\n'.join(text2), inline=True)
