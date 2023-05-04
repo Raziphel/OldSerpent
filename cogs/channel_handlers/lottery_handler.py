@@ -264,6 +264,7 @@ class lottery_handler(Cog):
             #! Save to databse
             async with self.bot.database() as db:
                 await c.save(db)
+                await i.save(db)
                 await lot.save(db)
 
             #! Check to see total reactions on the message
