@@ -187,6 +187,7 @@ class lottery_handler(Cog):
             else:
                 emoji = payload.emoji.id
 
+            coin = self.bot.config['emotes']['coin']
             guild = self.bot.get_guild(payload.guild_id)
             user = guild.get_member(payload.user_id)
             c = utils.Currency.get(payload.user_id)
