@@ -39,7 +39,7 @@ class Message_Rewards(Cog):
 
         #! Give them some rewards!
         try:
-            chance = randint(1, 10000)
+            chance = randint(1, 8000)
             if chance <= 10:
                 message = choice(messages)
                 await message.add_reaction("✨")
@@ -89,6 +89,7 @@ class Message_Rewards(Cog):
 
         #! Define Varibles
         c = utils.Currency.get(user.id)
+        i = utils.Items.get(message.author.id)
         channel = guild.get_channel(payload.channel_id)
         try:
             message = await channel.fetch_message(payload.message_id)
@@ -134,7 +135,6 @@ class Message_Rewards(Cog):
                 self.ticket_messages.remove(message.id)
                 await message.clear_reactions()
                 tix = choice([1, 2, 3])
-                i = utils.Items.get(message.author.id)
                 i.lot_tickets += tix
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{tix} Lottery Tickets!**"))
                 await coin_logs.send(f"**{user}** got **{tix} Lottery Tickets!!**")
