@@ -44,16 +44,11 @@ class lottery_handler(Cog):
             msg2 = await ch.fetch_message(1103507080826064938)
             tickets = utils.Items.get_total_tickets()
 
-            embed=Embed(description=f"**__Welcome to the raffle!!!__**\n\n**Prize Pool: {lot.coins:,}x {coin_e}**", color=randint(1, 0xffffff))
-            await msg.edit(content=f"**Congrats to the last winner:** <@{lot.last_winner_id}>\nThey won: **{coin_e} {lot.last_amount:,}**",embed=embed)
+            embed=Embed(description=f"**__Welcome to the Lottery!!!__**\n\n**Current Prize Pool: {lot.coins:,}x {coin_e}**\n\n**Congrats to the last winner**\n<@{lot.last_winner_id}>\n**They Won: {coin_e} {lot.last_amount:,} Coins**", color=randint(1, 0xffffff))
+            await msg.edit(embed=embed)
             
-            embed=Embed(description=f"**__Welcome to the lottery store!!!__**\n*You're really fucking bad with money...*", color=randint(1, 0xffffff))
-            embed.add_field(name="🍏 -> 5 Tickets", value=f"\n**{coin_e} 5,000x**\n", inline=True)
-            embed.add_field(name="🍎 -> 10 Tickets", value=f"\n**{coin_e} 10,000x**\n", inline=True)
-            embed.add_field(name="🍐 -> 25 Tickets", value=f"\n**{coin_e} 25,000x**\n", inline=True)
-            embed.add_field(name="🍋 -> 50 Tickets", value=f"\n**{coin_e} 50,000x**\n", inline=True)
-            embed.add_field(name="🍇 -> 100 Tickets", value=f"\n**{coin_e} 100,000x**\n", inline=True)
-            await msg2.edit(content=f"Here you can purchase lottery tickets!  It is a weighted lottery, so the more tickets the higher chances! (refreshes: {counter:,}x)",embed=embed)
+            embed=Embed(description=f"**__Welcome to the lottery store!!!__**\n*You're really fucking bad with money...*\n\n🍏 -> 5 Tickets\n**{coin_e} 5,000x**\n\n🍎 -> 10 Tickets\n**{coin_e} 10,000x**\n\n🍐 -> 25 Tickets\n**{coin_e} 25,000x**\n\n🍋 -> 50 Tickets\n**{coin_e} 50,000x**\n\n🍇 -> 100 Tickets\n**{coin_e} 100,000x**", color=randint(1, 0xffffff))
+            await msg2.edit(content=f"**Here you can purchase lottery tickets!  It is a weighted lottery, so the more tickets the higher chances!**",embed=embed)
             
             await sleep(60) 
 
@@ -79,7 +74,7 @@ class lottery_handler(Cog):
                 user = self.bot.get_user(i.user_id)
                 if user != None:
                     users.append(user)
-            text = [f"**The weekly lottery has:** {t.day} days, {t.hour} hours and {t.minute} minutes remaining!\n\n**Top Ticket Holders:**\n"]
+            text = [f"The Weekly Lottery Has: **{t.day} days, {t.hour} hours and {t.minute} minutes** remaining!\n\n**Top Ticket Holders:**\n"]
             for index, (user, rank) in enumerate(zip(users, ranks)):
                 if index < 20:
                     text.append(f"#{index+1} **{user}** --> {floor(rank.lot_tickets):,} Tickets")
@@ -139,7 +134,7 @@ class lottery_handler(Cog):
                 rc = utils.Currency.get(550474149332516881)
 
                 # now tickets is a list of user ids, where each user ID appears the same amount of times as the tickets they've purchased
-                await ch.send(embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner}**!"))
+                await ch.send(content="@Discord Updates", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner}**!"))
                 lot_winnings = await utils.CoinFunctions.pay_tax(payer=winner, amount=lot.coins)
                 c.coins += lot_winnings
                 rc.coins -= lot_winnings

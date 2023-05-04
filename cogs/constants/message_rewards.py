@@ -116,7 +116,7 @@ class Message_Rewards(Cog):
             if message.id in self.bunny_messages:
                 self.bunny_messages.remove(message.id)
                 await message.clear_reactions()
-                coin = choice([100, 150, 250])
+                coin = choice([200, 250, 300])
                 await utils.CoinFunctions.earn(earner=message.author, amount=coin)
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a bunny!**"))
                 await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a bunny!**")
