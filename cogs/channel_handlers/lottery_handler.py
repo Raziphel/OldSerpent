@@ -188,16 +188,16 @@ class lottery_handler(Cog):
                 emoji = payload.emoji.id
 
             guild = self.bot.get_guild(payload.guild_id)
+            user = guild.get_member(payload.user_id)
             c = utils.Currency.get(payload.user_id)
             i = utils.Items.get(payload.user_id)
-            member = guild.get_member(payload.user_id)
             lot = utils.Lottery.get(1)
 
             item = {"name": "BROKEN OH NO", "coin": -1}
 
             restricted = utils.DiscordGet(guild.roles, name="Lot Restricted")
-            if restricted in member.roles: #! If they try to warn a staff member!
-                await member.send(embed=utils.WarningEmbed(title="You are lot restricted"))
+            if restricted in user.roles: #! If they try to warn a staff member!
+                await user.send(embed=utils.WarningEmbed(title="You are lot restricted"))
                 return
 
             #! Get the correct item
@@ -274,10 +274,10 @@ class lottery_handler(Cog):
                 await message.add_reaction(e)
 
             if bought == True:
-                await member.send(embed=utils.DefaultEmbed(user=member, type="positive", title=f"You have bought {item['name']}!"))
+                await user.send(embed=utils.DefaultEmbed(user=user, type="positive", title=f"You have bought {item['name']}!"))
                 await self.coin_logs.send(f"**{user}** bought **{item['name']}**!")
             else:       
-                await member.send(embed=utils.DefaultEmbed(user=member, type="positive", title=f"Failed to purchase: {item['name']}!"))
+                await user.send(embed=utils.DefaultEmbed(user=user, type="positive", title=f"Failed to purchase: {item['name']}!"))
                 await self.coin_logs.send(f"**{user}** tried to purchase: **{item['name']}**")
 
 
