@@ -143,7 +143,7 @@ class Daily(Cog):
             await lvl.save(db)
 
         #! Quest 1 Complete
-        await self.bot.get_cog('Quests').get_quest(user=user, quest_no=3, completed=True)
+        await self.bot.get_cog('Quests').get_quest(user=ctx.author, quest_no=3, completed=True)
 
 
 def setup(bot):

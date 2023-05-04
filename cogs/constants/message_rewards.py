@@ -95,7 +95,7 @@ class Message_Rewards(Cog):
         msg = None
 
         c = utils.Currency.get(user.id)
-        i = utils.Items.get(message.author.id)
+        i = utils.Items.get(user.id)
         coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs'])
 
         #! Define Emojis
@@ -108,7 +108,7 @@ class Message_Rewards(Cog):
                 self.coin_messages.remove(message.id)
                 await message.clear_reactions()
                 coin = choice([100, 150, 200, 250, 300])
-                await utils.CoinFunctions.earn(earner=message.author, amount=coin)
+                await utils.CoinFunctions.earn(earner=user, amount=coin)
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} found **{coin} {coin_e}x**"))
                 await coin_logs.send(f"**{user}** found **{coin} {coin_e}**")
                 #! Quest 1 Complete
@@ -119,7 +119,7 @@ class Message_Rewards(Cog):
                 self.bunny_messages.remove(message.id)
                 await message.clear_reactions()
                 coin = choice([200, 250, 300])
-                await utils.CoinFunctions.earn(earner=message.author, amount=coin)
+                await utils.CoinFunctions.earn(earner=user, amount=coin)
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a bunny!**"))
                 await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a bunny!**")
                 #! Quest 4 Complete
@@ -130,7 +130,7 @@ class Message_Rewards(Cog):
                 self.sparkle_messages.remove(message.id)
                 await message.clear_reactions()
                 coin = choice([1000, 3000, 5000])
-                await utils.CoinFunctions.earn(earner=message.author, amount=coin)
+                await utils.CoinFunctions.earn(earner=user, amount=coin)
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a sparkle!**"))
                 await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a sparkle!**")
 
