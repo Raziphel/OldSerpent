@@ -34,7 +34,7 @@ class lottery_handler(Cog):
             ch = guild.get_channel(self.bot.config['channels']['lottery'])
             msg = await ch.fetch_message(1103507070210285640)
             msg2 = await ch.fetch_message(1103507080826064938)
-            tickets = utils.Currency.get_total_tickets()
+            tickets = utils.Items.get_total_tickets()
 
             embed=Embed(description=f"**__Welcome to the raffle!!!__**\n\n**Prize Pool: {lot.coins:,}x {coin_e}**", color=randint(1, 0xffffff))
             await msg.edit(content=f"**Congrats to the last winner:** <@{lot.last_winner_id}>\nThey won: **{coin_e} {lot.last_amount:,}**",embed=embed)
