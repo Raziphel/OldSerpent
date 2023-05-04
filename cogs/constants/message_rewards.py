@@ -43,16 +43,16 @@ class Message_Rewards(Cog):
             if chance <= 10:
                 message = choice(messages)
                 await message.add_reaction("✨")
-            elif chance <= 75:
+            elif chance <= 20:
                 for x in range(5):
                     message = choice(messages)
                     reaction = await message.add_reaction(self.bot.config['emotes']['bunny'])
                     self.bunny_messages.append(message.id)
-            elif chance <= 400:
+            elif chance <= 200:
                 message = choice(messages)
                 await message.add_reaction(self.bot.config['emotes']['coin'])
                 self.coin_messages.append(message.id)
-            elif chance <= 600:
+            elif chance <= 400:
                 message = choice(messages)
                 await message.add_reaction("🎟")
                 self.ticket_messages.append(message.id)
