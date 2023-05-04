@@ -45,7 +45,7 @@ class lottery_handler(Cog):
             tickets = utils.Items.get_total_tickets()
 
             embed=Embed(description=f"**__Welcome to the Lottery!!!__**\n\n**Current Prize Pool: {lot.coins:,}x {coin_e}**\n\n**Congrats to the last winner**\n<@{lot.last_winner_id}>\n**They Won: {coin_e} {lot.last_amount:,} Coins**", color=randint(1, 0xffffff))
-            await msg.edit(embed=embed)
+            await msg.edit(content=" ", embed=embed)
             
             embed=Embed(description=f"**__Welcome to the lottery store!!!__**\n*You're really fucking bad with money...*\n\n🍏 -> 5 Tickets\n**{coin_e} 5,000x**\n\n🍎 -> 10 Tickets\n**{coin_e} 10,000x**\n\n🍐 -> 25 Tickets\n**{coin_e} 25,000x**\n\n🍋 -> 50 Tickets\n**{coin_e} 50,000x**\n\n🍇 -> 100 Tickets\n**{coin_e} 100,000x**", color=randint(1, 0xffffff))
             await msg2.edit(content=f"**Here you can purchase lottery tickets!  It is a weighted lottery, so the more tickets the higher chances!**",embed=embed)
@@ -85,7 +85,7 @@ class lottery_handler(Cog):
             embed.set_footer(text=" ")
             embed.add_field(name='Lottery Tickets', value='\n'.join(text), inline=True)
             msg = await ch.fetch_message(1103507090389078046)
-            await msg.edit(embed=embed)
+            await msg.edit(content="Here's the ones with the most tickets!", embed=embed)
 
             if lot.lot_time == None:
                 lot.lot_time = dt.now()
