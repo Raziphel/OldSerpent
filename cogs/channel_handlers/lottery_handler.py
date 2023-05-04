@@ -66,17 +66,23 @@ class lottery_handler(Cog):
             lot = utils.Lottery.get(1)
             guild = self.bot.get_guild(self.bot.config['garden_id'])
             ch = guild.get_channel(self.bot.config['channels']['lottery'])
-            sorted_ticket_rank = utils.Items.sort_tickets()
-            rank1 = sorted_ticket_rank[0]
-            rank2 = sorted_ticket_rank[1]
-            rank3 = sorted_ticket_rank[2]
-            rank4 = sorted_ticket_rank[3]
-            rank5 = sorted_ticket_rank[4]
-            user1 = self.bot.get_user(rank1.user_id)
-            user2 = self.bot.get_user(rank2.user_id)
-            user3 = self.bot.get_user(rank3.user_id)
-            user4 = self.bot.get_user(rank4.user_id)
-            user5 = self.bot.get_user(rank5.user_id)
+
+            sorted_rank = utils.Items.sort_tickets()
+            ranks = sorted_rank[:10]
+            users = []
+            for i in sorted_rank:
+                user = self.bot.get_user(i.user_id)
+                if user != None:
+                    users.append(user)
+            text = []
+            text2 = []
+            for index, (user, rank) in enumerate(zip(users, ranks)):
+                if index < 15:
+                    text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.lot_tickets):,} Lottery Tickets")
+                else:
+                    text2.append(f"#{index+1} **{user}** 〰 {math.floor(rank.lot_tickets):,} Lottery Tickets")
+
+            embed.add_field(name='Lottery Tickets', value='\n'.join(text), inline=True)
 
             if lot.lot_time == None:
                 lot.lot_time = dt.now()
@@ -88,7 +94,7 @@ class lottery_handler(Cog):
                 tf = lot.lot_time + timedelta(hours=72)
                 t = dt(1,1,1) + (tf - dt.now())
                 msg = await ch.fetch_message(1103507090389078046)
-                await msg.edit(content=f" ", embed=utils.SpecialEmbed(title=f"Lottery Timer", desc=f"**The weekly lottery has:** {t.day} days, {t.hour} hours and {t.minute} minutes remaining!\n\n**Top Ticket Holders:**\n**#1) {user1} 〰️ {floor(rank1.lot_tickets):,} Tickets**\n**#2) {user2} 〰️ {floor(rank2.lot_tickets):,} Tickets**\n**#3) {user3} 〰️ {floor(rank3.lot_tickets):,} Tickets**\n**#4) {user4} 〰️ {floor(rank4.lot_tickets):,} Tickets**\n**#5) {user5} 〰️ {floor(rank5.lot_tickets):,} Tickets**"))
+                await msg.edit(content=f"**Those with the most tickets!**", embed=embed)
 
 
             #! If it is time to do the lottery
