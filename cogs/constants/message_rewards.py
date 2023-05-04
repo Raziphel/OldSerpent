@@ -14,6 +14,7 @@ class Message_Rewards(Cog):
         self.bot = bot
         self.bunny_messages = []
         self.coin_messages = []
+        self.sparkle_messages = []
 
 
 
@@ -37,13 +38,16 @@ class Message_Rewards(Cog):
 
         #! Give them some rewards!
         try:
-            chance = randint(1, 2500)
+            chance = randint(1, 10000)
             if chance <= 5:
+                message = choice(messages)
+                await message.add_reaction("✨")
+            elif chance <= 50:
                 for x in range(5):
                     message = choice(messages)
                     reaction = await message.add_reaction(self.bot.config['emotes']['bunny'])
                     self.bunny_messages.append(message.id)
-            elif chance <= 40:
+            elif chance <= 200:
                 message = choice(messages)
                 await message.add_reaction(self.bot.config['emotes']['coin'])
                 self.coin_messages.append(message.id)
@@ -112,7 +116,15 @@ class Message_Rewards(Cog):
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a bunny!**"))
                 await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a bunny!**")
 
-
+        #! Get the correct item
+        elif str(payload.emoji) == "✨":
+            if message.id in self.sparkle_messages:
+                self.sparkle_messages.remove(message.id)
+                await message.clear_reactions()
+                coin = choice([1000, 3000, 5000])
+                await utils.CoinFunctions.earn(earner=message.author, amount=coin)
+                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a sparkle!**"))
+                await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a sparkle!**")
 
         else: 
             return

@@ -5,10 +5,10 @@ import asyncpg
 class Items(object):
     all_items = {}
 
-    def __init__(self, user_id:int, thief_gloves:int=0, party_popper:int=0):
+    def __init__(self, user_id:int, thief_gloves:int=0, lot_tickets:int=0):
         self.user_id = user_id
         self.thief_gloves = thief_gloves
-        self.party_popper = party_popper
+        self.lot_tickets = lot_tickets
 
         self.all_items[self.user_id] = self
 
@@ -20,16 +20,16 @@ class Items(object):
                 VALUES
                 ($1, $2, $3)
                 ''',
-                self.user_id, self.thief_gloves, self.party_popper
+                self.user_id, self.thief_gloves, self.lot_tickets
             )
         except asyncpg.exceptions.UniqueViolationError: 
             await db('''
                 UPDATE items SET
-                thief_gloves=$2, party_popper=$3
+                thief_gloves=$2, lot_tickets=$3
                 WHERE
                 user_id=$1
                 ''',
-                self.user_id, self.thief_gloves, self.party_popper
+                self.user_id, self.thief_gloves, self.lot_tickets
             )
 
     @classmethod
@@ -40,6 +40,21 @@ class Items(object):
             return cls(
                 user_id = user_id,
                 thief_gloves = 0,
-                party_popper = 0,
+                lot_tickets = 0,
             )
         return item
+
+
+    @classmethod
+    def sort_tickets(cls):
+        '''sorts the user's by tickets. getting ranks!'''
+        sorted_tickets = sorted(cls.all_currency.values(), key=lambda u: u.lot_tickets, reverse=True)
+        return sorted_tickets
+
+    @classmethod 
+    def get_total_tickets(cls):
+        '''Gets total tickets'''
+        total = 0
+        for i in cls.all_currency.values():
+            total += i.lot_tickets
+        return total

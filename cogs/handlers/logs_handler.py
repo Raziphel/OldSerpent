@@ -128,7 +128,7 @@ class Logging(Cog):
             channel = self.adult_log
         elif message.channel.is_nsfw():
             channel = self.adult_log
-        elif '✨' in name_list:
+        elif ['🔥', '✨'] in name_list:
             channel = self.staff_log
         else: channel = self.message_log
         await channel.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar.url, image=image))
