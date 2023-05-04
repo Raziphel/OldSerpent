@@ -271,9 +271,9 @@ class lottery_handler(Cog):
                 await message.add_reaction(e)
 
             if bought == True:
-                await member.send(embed=utils.DefualtEmbed(user=member, type="positive", title=f"You have bought {item}!"))
+                await member.send(embed=utils.DefaultEmbed(user=member, type="positive", title=f"You have bought {item}!"))
             else:       
-                await member.send(embed=utils.DefualtEmbed(user=member, type="positive", title=f"Failed to purchase: {item}!"))
+                await member.send(embed=utils.DefaultEmbed(user=member, type="positive", title=f"Failed to purchase: {item}!"))
 
 
 
