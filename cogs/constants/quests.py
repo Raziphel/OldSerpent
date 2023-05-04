@@ -30,7 +30,7 @@ class Quests(Cog):
                     return
                 else:
                     q.q1 = True #! now the quest is done.
-                    await utils.CoinFunctions.earn(earner=message.author, amount=1000)
+                    await utils.CoinFunctions.earn(earner=user, amount=1000)
                     async with self.bot.database() as db:
                         await q.save(db)
                     await user.send(embed=utils.QuestEmbed(complete=True, name="Get some Coins!", reward=f"You gained: **1,000 Coins**"))
@@ -46,7 +46,7 @@ class Quests(Cog):
                     return
                 else:
                     q.q2 = True 
-                    await utils.CoinFunctions.earn(earner=message.author, amount=1000)
+                    await utils.CoinFunctions.earn(earner=user, amount=1000)
                     async with self.bot.database() as db:
                         await q.save(db)
                     await user.send(embed=utils.QuestEmbed(complete=True, name="Check Your Profile!", reward=f"You gained: **1,000 Coins**"))
@@ -76,15 +76,15 @@ class Quests(Cog):
         if quest_no == 4:
             if q.q4 == False: 
                 if completed == False: 
-                    await user.send(embed=utils.QuestEmbed(name="Catch a bunny", desc="Catch a bunny when someone who has bunny luck spawns ones!", tip="There just a rare thing that'll happen."))
+                    await user.send(embed=utils.QuestEmbed(name="Catch a bunny", desc="Catch a bunny!", tip="There just a rare thing that'll happen."))
                     return
                 else:
                     q.q4 = True 
-                    ite.rabbit_luck += 1
+                    await utils.CoinFunctions.earn(earner=user, amount=5000)
                     async with self.bot.database() as db:
                         await q.save(db)
                         await ite.save(db)
-                    await user.send(embed=utils.QuestEmbed(complete=True, name="Catch a bunny", reward=f"Guess what now you have bunny luck and could spawn some. <3"))
+                    await user.send(embed=utils.QuestEmbed(complete=True, name="Catch a bunny", reward=f"You gained: **5,000 Coins**"))
                     return
 
         if quest_no == 5:
