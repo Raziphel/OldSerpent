@@ -40,11 +40,11 @@ class lottery_handler(Cog):
             await msg.edit(content=f"**Congrats to the last winner:** <@{lot.last_winner_id}>\nThey won: **{coin_e} {lot.last_amount:,}**",embed=embed)
             
             embed=Embed(description=f"**__Welcome to the lottery store!!!__**\n*You're really fucking bad with money...*", color=randint(1, 0xffffff))
-            embed.add_field(name="🍏 -> 25 Tickets", value=f"\n**{coin_e} 2,000x**\n", inline=True)
-            embed.add_field(name="🍎 -> 50 Tickets", value=f"\n**{coin_e} 3,500x**\n", inline=True)
-            embed.add_field(name="🍐 -> 100 Tickets", value=f"\n**{coin_e} 6,000x**\n", inline=True)
-            embed.add_field(name="🍋 -> 200 Tickets", value=f"\n**{coin_e} 10,000x**\n", inline=True)
-            embed.add_field(name="🍇 -> 500 Tickets", value=f"\n**{coin_e} 25,000x**\n", inline=True)
+            embed.add_field(name="🍏 -> 5 Tickets", value=f"\n**{coin_e} 5,000x**\n", inline=True)
+            embed.add_field(name="🍎 -> 10 Tickets", value=f"\n**{coin_e} 10,000x**\n", inline=True)
+            embed.add_field(name="🍐 -> 25 Tickets", value=f"\n**{coin_e} 25,000x**\n", inline=True)
+            embed.add_field(name="🍋 -> 50 Tickets", value=f"\n**{coin_e} 50,000x**\n", inline=True)
+            embed.add_field(name="🍇 -> 100 Tickets", value=f"\n**{coin_e} 100,000x**\n", inline=True)
             await msg2.edit(content=f"Here you can purchase lottery tickets!  It is a weighted lottery, so the more tickets the higher chances! (refreshes: {counter:,}x)",embed=embed)
             
             await sleep(60) 
@@ -156,10 +156,13 @@ class lottery_handler(Cog):
         while not self.bot.is_closed():
             lot = utils.Lottery.get(1)
 
-            lot.coins += 50
+            lot.coins += 100
+            c = utils.Currency.get(550474149332516881)
+            c.coins -= 100
 
             async with self.bot.database() as db:
                 await lot.save(db)
+                await c.save(db)
             await sleep(3600)
 
 
@@ -201,49 +204,49 @@ class lottery_handler(Cog):
 
             #! Get the correct item
             if emoji == "🍏":
+                item = "5 Tickets"
+                cost = 5000
+                if c.coins >= cost:
+                    bought = True
+                    c.coins -= cost
+                    i.lot_tickets += 5
+                    lot.coins += cost
+
+            if emoji == "🍎":
+                item = "10 Tickets"
+                cost = 10000
+                if c.coins >= cost:
+                    bought = True
+                    c.coins -= cost
+                    i.lot_tickets += 10
+                    lot.coins += cost
+
+            if emoji == "🍐":
                 item = "25 Tickets"
-                cost = 2000
+                cost = 25000
                 if c.coins >= cost:
                     bought = True
                     c.coins -= cost
                     i.lot_tickets += 25
                     lot.coins += cost
 
-            if emoji == "🍎":
+            if emoji == "🍋":
                 item = "50 Tickets"
-                cost = 3500
+                cost = 50000
                 if c.coins >= cost:
                     bought = True
                     c.coins -= cost
                     i.lot_tickets += 50
                     lot.coins += cost
 
-            if emoji == "🍐":
+            if emoji == "🍇":
                 item = "100 Tickets"
-                cost = 6000
+                cost = 100000
                 if c.coins >= cost:
                     bought = True
                     c.coins -= cost
                     i.lot_tickets += 100
                     lot.coins += cost
-
-            if emoji == "🍋":
-                item = "200 Tickets"
-                cost = 10000
-                if c.coins >= cost:
-                    bought = True
-                    c.coins -= cost
-                    i.lot_tickets += 200
-                    lot.coins += cost
-
-            if emoji == "🍇":
-                item = "500 Tickets"
-                cost = 25000
-                if c.coins >= cost:
-                    bought = True
-                    c.coins -= cost
-                    i.lot_tickets += 500
-                    lot.coins += 25000
 
 
             #! Save to databse
