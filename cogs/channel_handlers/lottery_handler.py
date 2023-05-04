@@ -200,6 +200,7 @@ class lottery_handler(Cog):
             lot = utils.Lottery.get(1)
 
             item = {"name": "BROKEN OH NO", "coin": -1}
+            bought = False
 
             restricted = utils.DiscordGet(guild.roles, name="Lot Restricted")
             if restricted in user.roles: #! If they try to warn a staff member!
