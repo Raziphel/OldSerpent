@@ -143,9 +143,9 @@ class Loops(Cog):
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
             if index < 15:
-                text.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
+                text.append(f"#{index+1} **{user}** --> Lvl.{math.floor(rank.level):,}")
             else:
-                text2.append(f"#{index+1} **{user}** 〰 Lvl.{math.floor(rank.level):,}")
+                text2.append(f"#{index+1} **{user}** --> Lvl.{math.floor(rank.level):,}")
 
         embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Level Rank', value='\n'.join(text2), inline=True)
