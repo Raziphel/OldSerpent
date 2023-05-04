@@ -67,6 +67,11 @@ class lottery_handler(Cog):
             guild = self.bot.get_guild(self.bot.config['garden_id'])
             ch = guild.get_channel(self.bot.config['channels']['lottery'])
 
+            #! not time for the lottery
+            if (lot.lot_time + timedelta(hours=72)) > dt.now():
+                tf = lot.lot_time + timedelta(hours=72)
+                t = dt(1,1,1) + (tf - dt.now())
+
             sorted_rank = utils.Items.sort_tickets()
             ranks = sorted_rank[:20]
             users = []
@@ -79,23 +84,18 @@ class lottery_handler(Cog):
                 if index < 20:
                     text.append(f"#{index+1} **{user}** 〰〰〰〰 {floor(rank.lot_tickets):,} Tickets")
 
+            #! Set up the embed
             embed = Embed(color=randint(1, 0xffffff))
             embed.set_author(name="The lottery timer")
             embed.set_footer(text=" ")
             embed.add_field(name='Lottery Tickets', value='\n'.join(text), inline=True)
+            msg = await ch.fetch_message(1103507090389078046)
+            await msg.edit(embed=embed)
 
             if lot.lot_time == None:
                 lot.lot_time = dt.now()
                 async with self.bot.database() as db:
                     await lot.save(db)
-
-            #! not time for the lottery
-            if (lot.lot_time + timedelta(hours=72)) > dt.now():
-                tf = lot.lot_time + timedelta(hours=72)
-                t = dt(1,1,1) + (tf - dt.now())
-                msg = await ch.fetch_message(1103507090389078046)
-                await msg.edit(embed=embed)
-
 
             #! If it is time to do the lottery
             if (lot.lot_time + timedelta(hours=72)) < dt.now():
