@@ -88,14 +88,14 @@ class Message_Rewards(Cog):
             return
 
         #! Define Varibles
-        c = utils.Currency.get(user.id)
-        i = utils.Items.get(message.author.id)
         channel = guild.get_channel(payload.channel_id)
         try:
             message = await channel.fetch_message(payload.message_id)
         except: return
         msg = None
 
+        c = utils.Currency.get(user.id)
+        i = utils.Items.get(message.author.id)
         coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs'])
 
         #! Define Emojis
