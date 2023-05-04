@@ -24,6 +24,7 @@ from utils.sql.users.nsfw_sonas import Nsfw_sonas
 from utils.sql.users.tracking import Tracking
 from utils.sql.users.daily import Daily
 from utils.sql.users.items import Items
+from utils.sql.users.lottery import Lottery
 
 #? Admin
 from utils.sql.admin.timers import Timers
