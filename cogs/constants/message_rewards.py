@@ -134,7 +134,7 @@ class Message_Rewards(Cog):
                 self.ticket_messages.remove(message.id)
                 await message.clear_reactions()
                 tix = choice([1, 2, 3])
-                i = utils.Items.get(message.author)
+                i = utils.Items.get(message.author.id)
                 i.lot_tickets += tix
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{tix} Lottery Tickets!**"))
                 await coin_logs.send(f"**{user}** got **{tix} Lottery Tickets!!**")
