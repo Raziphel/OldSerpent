@@ -15,6 +15,7 @@ class Message_Rewards(Cog):
         self.bunny_messages = []
         self.coin_messages = []
         self.sparkle_messages = []
+        self.ticket_messages = []
 
 
 
@@ -39,18 +40,22 @@ class Message_Rewards(Cog):
         #! Give them some rewards!
         try:
             chance = randint(1, 10000)
-            if chance <= 5:
+            if chance <= 10:
                 message = choice(messages)
                 await message.add_reaction("✨")
-            elif chance <= 50:
+            elif chance <= 75:
                 for x in range(5):
                     message = choice(messages)
                     reaction = await message.add_reaction(self.bot.config['emotes']['bunny'])
                     self.bunny_messages.append(message.id)
-            elif chance <= 200:
+            elif chance <= 400:
                 message = choice(messages)
                 await message.add_reaction(self.bot.config['emotes']['coin'])
                 self.coin_messages.append(message.id)
+            elif chance <= 600:
+                message = choice(messages)
+                await message.add_reaction("🎟")
+                self.ticket_messages.append(message.id)
         except Exception as e:
             print(f'A reward failed to spawn :: {e}')
 
@@ -106,7 +111,6 @@ class Message_Rewards(Cog):
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} found **{coin} {coin_e}x**"))
                 await coin_logs.send(f"**{user}** found **{coin} {coin_e}**")
 
-        #! Get the correct item
         elif str(payload.emoji) == bunny_e:
             if message.id in self.bunny_messages:
                 self.bunny_messages.remove(message.id)
@@ -116,7 +120,6 @@ class Message_Rewards(Cog):
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a bunny!**"))
                 await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a bunny!**")
 
-        #! Get the correct item
         elif str(payload.emoji) == "✨":
             if message.id in self.sparkle_messages:
                 self.sparkle_messages.remove(message.id)
@@ -126,12 +129,24 @@ class Message_Rewards(Cog):
                 msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a sparkle!**"))
                 await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a sparkle!**")
 
+        elif str(payload.emoji) == "🎟":
+            if message.id in self.ticket_messages:
+                self.ticket_messages.remove(message.id)
+                await message.clear_reactions()
+                tix = choice([1, 2, 3])
+                i = utils.Items.get(message.author)
+                i.lot_tickets += tix
+                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{tix} Lottery Tickets!**"))
+                await coin_logs.send(f"**{user}** got **{tix} Lottery Tickets!!**")
+
+
         else: 
             return
 
         #! Save it to database
         async with self.bot.database() as db:
             await c.save(db)
+            await i.save(db)
 
         if msg != None:
             await sleep(3)
