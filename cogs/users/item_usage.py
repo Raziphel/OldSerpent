@@ -139,8 +139,8 @@ class Items(Cog):
 
         
 
-        #! Quest Complete
-        #await self.bot.get_cog('Quests').get_quest(user=ctx.author, quest_no=5, completed=True)
+        #! Quest 5 Complete
+        await self.bot.get_cog('Quests').get_quest(user=ctx.author, quest_no=5, completed=True)
 
 
         async with self.bot.database() as db:
