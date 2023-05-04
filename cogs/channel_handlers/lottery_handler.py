@@ -193,9 +193,7 @@ class lottery_handler(Cog):
             member = guild.get_member(payload.user_id)
             lot = utils.Lottery.get(1)
 
-            item = None
-            bought = False
-
+            item = {"name": "BROKEN OH NO", "coin": -1}
 
             restricted = utils.DiscordGet(guild.roles, name="Lot Restricted")
             if restricted in member.roles: #! If they try to warn a staff member!
@@ -204,49 +202,54 @@ class lottery_handler(Cog):
 
             #! Get the correct item
             if emoji == "🍏":
-                item = "5 Tickets"
-                cost = 5000
-                if c.coins >= cost:
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 5 lottery tickets!\nCost: {coin} 5,000x", footer=" "))
+                item['name'] = "5 Tickets"
+                item['coin'] = 5000
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
-                    c.coins -= cost
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     i.lot_tickets += 5
-                    lot.coins += cost
+                    lot.coins += item['coin']
 
             if emoji == "🍎":
-                item = "10 Tickets"
-                cost = 10000
-                if c.coins >= cost:
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 10 lottery tickets!\nCost: {coin} 10,000x", footer=" "))
+                item['name'] = "10 Tickets"
+                item['coin'] = 10000
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
-                    c.coins -= cost
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     i.lot_tickets += 10
-                    lot.coins += cost
+                    lot.coins += item['coin']
 
             if emoji == "🍐":
-                item = "25 Tickets"
-                cost = 25000
-                if c.coins >= cost:
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 25 lottery tickets!\nCost: {coin} 5,000x", footer=" "))
+                item['name'] = "25 Tickets"
+                item['coin'] = 25000
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
-                    c.coins -= cost
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     i.lot_tickets += 25
-                    lot.coins += cost
+                    lot.coins += item['coin']
 
             if emoji == "🍋":
-                item = "50 Tickets"
-                cost = 50000
-                if c.coins >= cost:
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 50 lottery tickets!\nCost: {coin} 5,000x", footer=" "))
+                item['name'] = "50 Tickets"
+                item['coin'] = 50000
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
-                    c.coins -= cost
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     i.lot_tickets += 50
-                    lot.coins += cost
+                    lot.coins += item['coin']
 
             if emoji == "🍇":
-                item = "100 Tickets"
-                cost = 100000
-                if c.coins >= cost:
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 100 lottery tickets!\nCost: {coin} 5,000x", footer=" "))
+                item['name'] = "100 Tickets"
+                item['coin'] = 100000
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
-                    c.coins -= cost
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     i.lot_tickets += 100
-                    lot.coins += cost
+                    lot.coins += item['coin']
 
 
             #! Save to databse
@@ -271,9 +274,48 @@ class lottery_handler(Cog):
                 await message.add_reaction(e)
 
             if bought == True:
-                await member.send(embed=utils.DefaultEmbed(user=member, type="positive", title=f"You have bought {item}!"))
+                await member.send(embed=utils.DefaultEmbed(user=member, type="positive", title=f"You have bought {item['name']}!"))
+                await self.coin_logs.send(f"**{user}** bought **{item['name']}**!")
             else:       
-                await member.send(embed=utils.DefaultEmbed(user=member, type="positive", title=f"Failed to purchase: {item}!"))
+                await member.send(embed=utils.DefaultEmbed(user=member, type="positive", title=f"Failed to purchase: {item['name']}!"))
+                await self.coin_logs.send(f"**{user}** tried to purchase: **{item['name']}**")
+
+
+
+
+
+
+    async def purchasing(self, msg, payload, item):
+        '''The system for buying in the shop.'''
+
+        guild = self.bot.get_guild(payload.guild_id)
+        user = guild.get_member(payload.user_id)
+        c = utils.Currency.get(user.id)
+        coin = self.bot.config['emotes']['coin']
+
+
+        await msg.add_reaction("✔")
+        await msg.add_reaction("❌")
+        try:
+            check = lambda x, y: y.id == user.id and x.message.id == msg.id and x.emoji in ["✔", "❌"]
+            r, _ = await self.bot.wait_for('reaction_add', check=check)
+            if r.emoji == "✔":
+                if c.coins < item["coin"]:
+                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"You don't have enough Coins for: `{item['name']}`!\nYou need {item['coin'] - floor(c.coins):,}x {coin}!", footer=" "))
+                    return False
+                else: return True
+
+            if r.emoji == "❌":
+                    await msg.edit(embed=utils.LogEmbed(type="negative", desc=f"Purchase was canceled!", footer=" "))
+                    return False
+
+
+        except TimeoutError:
+            await msg.edit('Sorry, but you took too long to respond.  Transaction Canceled.', embed=None)
+            return False
+
+
+
 
 
 
