@@ -78,9 +78,9 @@ class lottery_handler(Cog):
             text2 = []
             for index, (user, rank) in enumerate(zip(users, ranks)):
                 if index < 15:
-                    text.append(f"#{index+1} **{user}** 〰 {math.floor(rank.lot_tickets):,} Lottery Tickets")
+                    text.append(f"#{index+1} **{user}** 〰 {floor(rank.lot_tickets):,} Lottery Tickets")
                 else:
-                    text2.append(f"#{index+1} **{user}** 〰 {math.floor(rank.lot_tickets):,} Lottery Tickets")
+                    text2.append(f"#{index+1} **{user}** 〰 {floor(rank.lot_tickets):,} Lottery Tickets")
 
             embed.add_field(name='Lottery Tickets', value='\n'.join(text), inline=True)
 
