@@ -52,8 +52,6 @@ class Listeners(Cog):
 
     @Cog.listener('on_message')
     async def Monthly_Reminder(self, message):
-        if self.bot.get_user(message.author.id).bot:
-            return
 
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         day = utils.Daily.get(message.author.id)
