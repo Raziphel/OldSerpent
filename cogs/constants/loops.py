@@ -301,10 +301,6 @@ class Loops(Cog):
         adult_library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_library_pass'])
         #! get the scp roles!
         supporters = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['supporters'])
-        nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
-        t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
-        t2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
-        t3 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
 
         for user in guild.members:
             try: #! Fixing adults roles
@@ -338,35 +334,6 @@ class Loops(Cog):
                         await user.remove_roles(furry, reason="Fixing Adult & furry role.")
 
             except Exception as e: print(f'Error fixing roles :: {e}')
-
-
-
-
-
-
-
-
-
-        # nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
-        # coin = "<:Coin:1026302157521174649>"
-
-        # t = utils.Timers.get(self.bot.config['garden_id'])
-        # if (t.last_nitro_reward + timedelta(days=30)) <= dt.utcnow():
-        #     t.last_nitro_reward = dt.utcnow()
-        #     for user in guild.members:
-        #         if nitro in user.roles:
-        #             c = utils.Currency(user.id)
-        #             try:
-        #                 await user.send(embed=utils.SpecialEmbed(title="- Nitro Booster Coin Reward -", desc=f"A small reward for being a nitro booster!\n\n**{coin} 5,000x**", footer=f"You can expect this reward every 30 days!"))
-        #             except: pass
-        #             c.coins += 5000
-        #             c.xp += 1000
-        #             async with self.bot.database() as db:
-        #                 await t.save(db)
-        #                 await c.save(db)
-        #             print('Handed out Boost rewards')
-
-
 
 
 

@@ -14,6 +14,7 @@ class Listeners(Cog):
     def __init__(self, bot):
         self.bot = bot
         self.last_image = dt(year=2000, month=1, day=1)  # Some time in the definite past 
+        self.reminded = []
 
 
     # @Cog.listener() #! Remove the fucking loosers!
@@ -47,6 +48,26 @@ class Listeners(Cog):
     #         await m.delete()
     #     else:
     #         self.last_image = dt.utcnow()
+
+
+    @Cog.listener('on_message')
+    async def Monthly_Reminder(self, message:Message):
+        if self.bot.get_user(user.id).bot:
+            return
+
+        nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
+        t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
+        t2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
+        t3 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
+        supporterroles = [nitro, t1, t2, t3]
+
+        for role in message.author.roles:
+            if role in supporterroles:
+                if (day.monthly + timedelta(days=29)) <= dt.utcnow():
+                    if message.author.id not in self.reminded:
+                        await message.author.send(embed=utils.DefaultEmbed(title="Monthly Reminder!", desc="You can now claim your monthly reward!", footer=" "))
+                        self.reminded.append(message.author.id)
+
 
 
 
