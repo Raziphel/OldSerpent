@@ -137,10 +137,12 @@ class Logging(Cog):
     async def on_message_edit(self, before, after):
         if before.author.bot: return
         if before.content == after.content: return
-        name_list = list(before.channel.name)
-        if ['🍺', '🐁', '🚬', '🐇'] in name_list:
+        name_list = list(message.channel.name)
+        if any(item in name_list for item in ['🍺', '🐁', '🚬', '🐇']):
             channel = self.adult_log
-        elif '✨' in name_list:
+        elif message.channel.is_nsfw():
+            channel = self.adult_log
+        elif any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
         else: channel = self.message_log
         await channel.send(embed=utils.LogEmbed(type="change", title=f"Message Edited", desc=f"**Author:** {before.author.mention}\n**Channel:** <#{before.channel.id}>\n**Before:**\n{before.content}\n\n**after:**\n{after.content}", thumbnail=before.author.avatar.url))
