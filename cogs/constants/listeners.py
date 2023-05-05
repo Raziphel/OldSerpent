@@ -56,6 +56,7 @@ class Listeners(Cog):
             return
 
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+        day = utils.Daily.get(message.author.id)
 
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
         t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
