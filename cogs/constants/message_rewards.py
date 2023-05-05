@@ -39,7 +39,7 @@ class Message_Rewards(Cog):
 
         #! Give them some rewards!
         try:
-            chance = randint(1, 8000)
+            chance = randint(1, 20000)
             if chance <= 10:
                 message = choice(messages)
                 await message.add_reaction("✨")
