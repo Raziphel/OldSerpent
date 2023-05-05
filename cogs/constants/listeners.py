@@ -55,6 +55,8 @@ class Listeners(Cog):
         if self.bot.get_user(message.author.id).bot:
             return
 
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
         t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
         t2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
