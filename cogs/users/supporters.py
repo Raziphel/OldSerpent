@@ -49,7 +49,7 @@ class Supporters(Cog):
             return
 
         #! Check if it's first daily
-        if not day.monthly:
+        if day.monthly == None:
             day.monthly = (dt.utcnow() - timedelta(days=31))
 
         #! Check if already claimed
