@@ -51,7 +51,7 @@ class Listeners(Cog):
 
 
     @Cog.listener('on_message')
-    async def Monthly_Reminder(self, message:Message):
+    async def Monthly_Reminder(self, message):
         if self.bot.get_user(user.id).bot:
             return
 
