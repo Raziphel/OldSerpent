@@ -17,35 +17,30 @@ class rules_handler(Cog):
     @Cog.listener('on_ready')
     async def rules(self):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['rules']) #? Rules Channel
+        ch = guild.get_channel(self.bot.config['channels']['info']['rules']) #? Rules Channel
 
         rules1 = await ch.fetch_message(956470547426996244) #? 
         rules2 = await ch.fetch_message(956470556415361024) #? 
         rules3 = await ch.fetch_message(956470560097988649) #? 
         rules4 = await ch.fetch_message(956470570340450375) #? 
-        rules5 = await ch.fetch_message(956470575411388436) #? 
 
-        embed1=Embed(title=f"**[- The Server's Rules -]**", 
-        description=f"**These are rules for the entire Discord Server.**\n\n**1.)** Respect Everyone, not a single person doesn't deserve respect, especially the 05 Council.\n\n**2.)** Harrassment, Bully, Attacking of any kind or form of any member on this server isnt allowed. Period.\n\n**3.)** Drama, most people here have already gone through highschool, don't bring it back.\n\n**4.)** This server only allows the use of English.  We can not moderate other languages.\n\n**5.)** Common Sense, Don't be annoying or do anything that would make a 05 Council have to punish. (Should be easy.)\n\n**6.)** Discord TOS, obviously don't do anything discord already doesn't allow, could count as previous rule.\n\n**7.)** Respect The Serpent.", color=0xF54747)
+        embed1=Embed(title=f"**[- Laws of Confuct -]**", 
+        description=f"**This is a list of rules on the conduct of members in this server!  Read the <@{self.bot.config['channels']['info']['handbook']}> for the punishment system!**\n\n**1.) Respect Everyone!**  Every member of Serpent's Garden deserves respect!  Keep your politics & religion at the door, this isn't the place for it!\n\n**2.) Harrassing**, Bullying and Insulting any member of Serpent's Garden isn't allowed.  You will be met with punishment, but the victim is required to notified staff of it, if it's a problem!\n\n**3.) Discord TOS,** all members of Serpent's Garden will comply with [Discord's Terms](https://discordapp.com/terms) along with [Discord's Guidelines](https://discordapp.com/guidelines).\n\n**4.) Age appropriate,** is a requirement in all channels of the Discord Server!  Only if a channel is marked as NSFW is adult content & conversations allowed.\n\n**5.) Exploits,** are not allowed!  Even here on the Discord, finding ways to cheat or exploit using any of the Discord Bot's on our server is never allowed and should alert developers!\n\n**6.) Treason,** isn't allowed.  If you plan to hate and talk negatively about any staff member or Serpent's Garden it self, you will be punished.\n\n**7.) Respect the Garden for it is the Serpent's place...**", color=0xF54747)
 
-        embed2=Embed(title=f"**[- SCP Server Rules -]**", 
-        description=f"**If you are looking for information related SCP servers check #server-info for most things you'd meed!**\n\n**1.** No hate speech, harassment or bigotry.  Anything racist, homophobic, Ect. is not allowed.  \n\n**2.** No mic-spam is allowed at all and soundboards are not allowed in spectator chat or radio.\n\n**3.** This server is intended for mature audiences!  Staff can and will mute for underage voices. \n\n**4.** Staff members reserve the right to punish players just for disrespect.  They deserve at least that. \n\n**5.** Teaming is generally allowed, so long as it doesn’t stall the round.\n\n**6.** Do not grief other players on your team!  Intentionally killing your allies is never allowed.\n\n**7.** Do not abuse any exploits to lag the server or gain some other unfair advantage over others. Glitching into bugged spots on the map is allowed as long as it doesn't pro-long the round! \n\n**8.** No advertisements of any form, including over the intercom or in voice chat.", color=0x47F599)
+        embed2=Embed(title=f"**[- Adult Access Policy -]**", 
+        description=f"**To gain access to the adult or nsfw channels, all members are reuqired to do the following!**\n🔷 First, click on your desired adult role in <id:customize>!\n🔷 You will then be dm'd by the bot a prompt for you to reply an image to!\n🔷 You must send 1 picture with your ID only showing your Date of Birth and face!\n🔷 The words Serpent should also be some where on the screen using paper or writing it on yourself.\n\nYes, these are pretty strict rules!\n**You can also do this easiely by doing a call with a Council Member using your camera and showing ID!**\n`NSFW Channels do not allow pornography, only nsfw digital art.`", color=0x47F599)
 
-        embed3=Embed(title=f"**[- The Staff System -]**", 
-        description=f"**Gardeners**\n\nHolders of this title are typically either developers/contributors or any people that are close and deemed trustworthy by the Council, with [01] \"Razi\" primarily being the one to grant this rank.  They contribute to the server in some sort of way!\n\n**Moderator**\n\nModerators are regular staff. Their responsibilities primarily consist of moderating the SCP:SL servers and making sure it is safe and fun for the playerbase. As such, they are entrusted with most permissions to be\nable to do their duties more independently and effectively. They do not moderate the Discord server and do not have any 'dangerous' permissions on it.\n\n**Administrator**\n\nAdministrators are senior staff members and are considered 'assistants' in a sense to the Council. They hold authority over ranks below them and hold most permissions on the SCP:SL server. The duties of one may\nvary overtime, but they still hold the primary duty of moderating the SCP:SL servers. They are also generally a pool of candidates in the event of an Council seat becoming available due to their seniority. They do not moderate the Discord server and do not have any 'dangerous' permissions on it.\n\n**Council**\n\nThe Council is the managing body of the server. Anything that involves the server is under the consensus of the Council. They have all permissions on the SCP:SL servers. They are also the sole moderators for the\nDiscord server. The duties of an individual council member may vary depending on their specialization. As of writing, there are currently 9 council members.\n\n`Thank you to Kosar for making this comprehensive list`", color=0xF5AE47)
+        embed3=Embed(title=f"**[- Serpent's Common Knowledge -]**", 
+        description=f"**Here is some common things about the Serpent bot that every member should know!**\n\nThe Serpent is always rewarding members coins & XP for every message, voice channel and command they run!\nIf you see the <@1028881308006502400> role on any member they lose permission to see Read Message history and sending messages!\nYou can move between different areas of Serpent's Garden by using `/goto` or using the <@{self.bot.config['channels']['info']['handbook']}>.", color=0xF5AE47)
 
-        embed4=Embed(title=f"**[- Moderation System -]**", 
-        description=f"**By absolutely no means do the 05 Council (Staff) have to be \"Fair\", in any situation or decision. They are put there for a reason and we usually run everything past one another.**\n\nFor most situations a Council member will give a single warning and after that you are completely fair game; from that council member or any other for whatever punishment they believe you deserve.  Lying about your age, breaking Discord TOS, sending spam, hate, phishing links or scamming in anyway, is awlays going to be a ban with no warning.  *It won't be tolerated at all.*\n\n**This server requires a phone number attached to the Discord Account!**\nWe do this to keep every member on the discord hopefully safe from scams and being able to weave out bad apples.", color=0xB6F547)
-
-        embed5=Embed(title=f"**[- NSFW Content -]**", 
-        description=f"**ONLY ART/DRAWINGS ARE ALLOWED IN ADULT CHANNELS!!!**\n\nAdults are not allowed to post any NSFW content that is depicitng real life people or AI Generated people...  Only art and drawings are allowed, this completely avoids the whole can of worms that is showing real pornography.", color=0x89F547)
+        embed4=Embed(title=f"**[- The Handbook -]**", 
+        description=f"**We try hardest to not make things complicated,** but for those who wanna know the details about everything going on in Serpent's Garden, please read the <@{self.bot.config['channels']['info']['handbook']}>!\n\n**Here are some important tihngs to read!**\n1.)\n2.)\n3.)\n4.)", color=0xB6F547)
 
 
         await rules1.edit(content=f" ", embed=embed1)
         await rules2.edit(content=f" ", embed=embed2)
         await rules3.edit(content=f" ", embed=embed3)
         await rules4.edit(content=f" ", embed=embed4)
-        await rules5.edit(content=f" ", embed=embed5)
 
 
 

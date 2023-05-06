@@ -18,7 +18,6 @@ bot_id = 896690181455892481
 
 [channels]
     role_change = 1021288155040714782
-    rules = 856449403173994536
     announcements = 856449637412765707
     welcome = 858574910280171550
     server_info = 1052823837416357999
@@ -48,6 +47,11 @@ bot_id = 896690181455892481
     starboard = 1086042252205375589
     suggestions = 1056747785749278761
     premium_suggestions = 1056776991770161162
+    [main]
+        world_map = 1104254441227550780
+    [info]
+        rules = 856449403173994536
+        handbook = 1104202870204674098
 
 
 [fur-channels]
