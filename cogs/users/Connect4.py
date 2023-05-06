@@ -177,9 +177,10 @@ class ConnectFour(Cog):
                     user_crowns.crowns += game.bet * 2
                     await user_crowns.save(database)
 
-                    await message.channel.send(f'{member.mention} wins and earns {game.bet:,} :crown:!')
+                    coin_e = self.bot.config['emotes']['coin']
+                    await message.channel.send(f'{member.mention} wins and earns {game.bet:,} {coin_e}!')
 
-                    self.logger.debug(f'Gave money to {member} for winning.')
+                    self.logger.debug(f'Gave coins to {member} for winning.')
             else:
                 await message.channel.send(f'{member.mention} wins!')
 
@@ -196,7 +197,7 @@ class ConnectFour(Cog):
                     await user_crowns.save(database)
                     await opponent_crowns.save(database)
 
-                    await message.channel.send("It's a tie! Both players have had their crowns returned to them.")
+                    await message.channel.send("It's a tie! Both players have had their coins returned to them.")
 
                     self.logger.debug(f'Returned money to {member} and their opponent.')
             else:
