@@ -17,10 +17,6 @@ bot_id = 896690181455892481
 
 
 [channels]
-    [main]
-        world_map = 1104254441227550780
-    [info]
-        rules = 856449403173994536
         handbook = 1104202870204674098
     role_change = 1021288155040714782
     announcements = 856449637412765707
@@ -52,6 +48,11 @@ bot_id = 896690181455892481
     starboard = 1086042252205375589
     suggestions = 1056747785749278761
     premium_suggestions = 1056776991770161162
+
+[main_channels]
+    world_map = 1104254441227550780
+[info_channels]
+    rules = 856449403173994536
 
 
 
