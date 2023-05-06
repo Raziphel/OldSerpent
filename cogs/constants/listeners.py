@@ -62,12 +62,14 @@ class Listeners(Cog):
         t3 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
         supporterroles = [nitro, t1, t2, t3]
 
-        for role in message.author.roles:
-            if role in supporterroles:
-                if (day.monthly + timedelta(days=29)) <= dt.utcnow():
-                    if message.author.id not in self.reminded:
-                        await message.author.send(embed=utils.DefaultEmbed(title="Monthly Reminder!", desc="You can now claim your monthly reward!", footer=" "))
-                        self.reminded.append(message.author.id)
+        try:
+            for role in message.author.roles:
+                if role in supporterroles:
+                    if (day.monthly + timedelta(days=29)) <= dt.utcnow():
+                        if message.author.id not in self.reminded:
+                            await message.author.send(embed=utils.DefaultEmbed(title="Monthly Reminder!", desc="You can now claim your monthly reward!", footer=" "))
+                            self.reminded.append(message.author.id)
+        except: pass
 
 
 
