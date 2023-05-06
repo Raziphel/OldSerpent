@@ -209,8 +209,6 @@ class ConnectFour(Cog):
         await message.edit(content=board)
 
     @command(aliases=['connect4', 'c4'])
-    @guild_only()
-    # TODO: Restrict to bot channel.
     async def connectfour(self, ctx: commands.Context, member: discord.Member, amount: typing.Optional[int] = None):
         """Challenge another member to a game of connect four with an optional bet."""
         if ctx.channel.id in (self.bot.config['channels']['general'],
