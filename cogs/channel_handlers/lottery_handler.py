@@ -74,7 +74,7 @@ class lottery_handler(Cog):
                 user = self.bot.get_user(i.user_id)
                 if user != None:
                     users.append(user)
-            text = [f"The Weekly Lottery Has: **{t.day-1} days, {t.hour} hours and {t.minute} minutes** remaining!\n\n**Top Ticket Holders:**\n"]
+            text = [f"The Weekly Lottery Has: **{t.day} days, {t.hour} hours and {t.minute} minutes** remaining!\n\n**Top Ticket Holders:**\n"]
             for index, (user, rank) in enumerate(zip(users, ranks)):
                 if index < 20:
                     text.append(f"#{index+1} **{user}** --> {floor(rank.lot_tickets):,} 🎟")
