@@ -191,6 +191,8 @@ class Loops(Cog):
             sc.coins += (total_coins-self.bot.config['total_coins'])
         elif total_coins > self.bot.config['total_coins']:
             sc.coins -= (total_coins-self.bot.config['total_coins'])
+        async with self.bot.database() as db:
+            await sc.save(db)
         total_tix = utils.Items.get_total_tickets()
         members = len(set(self.bot.get_all_members()))
         supps = 0
