@@ -91,7 +91,7 @@ class Listeners(Cog):
         coin = self.bot.config['emotes']['coin']
         bunny = self.bot.config['emotes']['bunny']
 
-        disallowed_emotes = [coin, bunny, "✨"]
+        disallowed_emotes = [coin, bunny, "✨", "🎟"]
 
         if str(reaction.emoji) in disallowed_emotes:
             #+ Remove the reaction
