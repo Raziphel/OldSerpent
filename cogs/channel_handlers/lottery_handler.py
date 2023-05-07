@@ -156,7 +156,7 @@ class lottery_handler(Cog):
                     await rc.save(db)
 
                 for member in guild.members:
-                    c = utils.Currency.get(member.id)
+                    c = utils.Items.get(member.id)
                     c.lot_tickets = 0
                     async with self.bot.database() as db:
                         await c.save(db)

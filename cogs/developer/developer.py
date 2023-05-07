@@ -302,6 +302,14 @@ class Developer(Cog):
         await ctx.send('Coin Reset Complete.')
 
 
+    @utils.is_dev()
+    @command(hidden=True)
+    async def resettix(self, ctx):
+        for member in guild.members:
+            c = utils.Items.get(member.id)
+            c.lot_tickets = 0
+            async with self.bot.database() as db:
+                await c.save(db)
 
 
 
