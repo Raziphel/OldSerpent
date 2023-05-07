@@ -305,6 +305,7 @@ class Developer(Cog):
     @utils.is_dev()
     @command(hidden=True)
     async def resettix(self, ctx):
+        guild = self.bot.get_guild(self.bot.config['garden_id'])
         for member in guild.members:
             c = utils.Items.get(member.id)
             c.lot_tickets = 0
