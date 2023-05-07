@@ -74,7 +74,8 @@ class CoinFunctions(object):
         cb = utils.Currency.get(550474149332516881)
 
         #! Check if the bank's got coins!
-        if cb.coins <= 100:
+        if cb.coins <= 10000:
+            
             return
 
         #! Just take it away from the bot!

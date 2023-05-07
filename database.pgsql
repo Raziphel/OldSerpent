@@ -68,6 +68,7 @@ CREATE TABLE lottery (
 ##################### LEVELS / USER RESOURCES / VALUE  ######################
 #############################################################################
 
+
 CREATE TABLE levels (
     user_id bigint NOT NULL,
     level integer NOT NULL DEFAULT 0,

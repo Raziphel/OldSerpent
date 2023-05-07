@@ -65,7 +65,7 @@ class lottery_handler(Cog):
             #! not time for the lottery
             if (lot.lot_time + timedelta(hours=72)) > dt.now():
                 tf = lot.lot_time + timedelta(hours=72)
-                t = dt(1,1,1) + (tf - dt.now())
+                t = dt(1, 1, 1) + (tf - dt.now())
 
             sorted_rank = utils.Items.sort_tickets()
             ranks = sorted_rank[:20]
@@ -74,7 +74,7 @@ class lottery_handler(Cog):
                 user = self.bot.get_user(i.user_id)
                 if user != None:
                     users.append(user)
-            text = [f"The Weekly Lottery Has: **{t.day} days, {t.hour} hours and {t.minute} minutes** remaining!\n\n**Top Ticket Holders:**\n"]
+            text = [f"The Weekly Lottery Has: **{t.day-1} days, {t.hour} hours and {t.minute} minutes** remaining!\n\n**Top Ticket Holders:**\n"]
             for index, (user, rank) in enumerate(zip(users, ranks)):
                 if index < 20:
                     text.append(f"#{index+1} **{user}** --> {floor(rank.lot_tickets):,} 🎟")
@@ -147,7 +147,7 @@ class lottery_handler(Cog):
 
                 for member in guild.members:
                     c = utils.Currency.get(member.id)
-                    i.lot_tickets = 0
+                    c.lot_tickets = 0
                     async with self.bot.database() as db:
                         await c.save(db)
 
