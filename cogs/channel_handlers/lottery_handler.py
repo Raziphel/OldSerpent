@@ -29,7 +29,7 @@ class lottery_handler(Cog):
     @utils.is_dev()
     @command(hidden=True)
     async def endlot(self, ctx):
-        self.force_end = true
+        self.force_end = True
 
     async def lott_msg(self):
         '''Edits the shops lottery message!'''
