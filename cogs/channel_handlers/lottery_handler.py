@@ -67,7 +67,7 @@ class lottery_handler(Cog):
                 lot.lot_time = dt.utcnow()
 
             tf = lot.lot_time + timedelta(hours=72)
-            t = dt(1, 1, 1) + (tf - dt.now())
+            t = dt(1, 1, 1) - (tf - dt.now())
 
             sorted_rank = utils.Items.sort_tickets()
             ranks = sorted_rank[:20]
