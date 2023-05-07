@@ -10,6 +10,18 @@ import utils
 
 # * Additions
 
+
+def format_number(num):
+    if num < 1000:
+        return str(num)
+    elif num < 1000000:
+        return f"{num / 1000:.1f}k"
+    elif num < 1000000000:
+        return f"{num / 1000000:.1f}m"
+    else:
+        return f"{num / 1000000000:.1f}b"
+    
+
 class rules_handler(Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -47,15 +59,7 @@ class rules_handler(Cog):
 
 
 
-def format_number(num):
-    if num < 1000:
-        return str(num)
-    elif num < 1000000:
-        return f"{num / 1000:.1f}k"
-    elif num < 1000000000:
-        return f"{num / 1000000:.1f}m"
-    else:
-        return f"{num / 1000000000:.1f}b"
+
 
 
     @Cog.listener('on_ready')
