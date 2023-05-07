@@ -64,6 +64,9 @@ class rules_handler(Cog):
         coin_e = self.bot.config['emotes']['coin']
         supporters = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['supporters'])
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
+        t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
+        t2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
+        t3 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
         sc = utils.Currency.get(550474149332516881)
         total_coins = utils.Currency.get_total_coins()
         total_tix = utils.Items.get_total_tickets()
