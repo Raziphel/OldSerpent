@@ -74,9 +74,27 @@ class rules_handler(Cog):
                 supps += 1
             elif nitro in user.roles:
                 supps += 1
+        profit = 0
+        nitros = 0
+        t1s = 0
+        t2s = 0
+        t3s = 0
+        for user in guild.members:
+            if nitro in user.roles:
+                nitros += 1
+            if t1 in user.roles:
+                profit += 9
+                t1s += 1
+            if t2 in user.roles:
+                profit += 18
+                t2s += 1
+            if t3 in user.roles:
+                profit += 27
+                t3s += 1
+
 
         embed1=Embed(title=f"**[- Discord Statistics! -]**", 
-        description=f"**This show's stats about the Discord Server!**\n\n🎭 Members: **{members:,}**\n💕 Supporters: **{supps:,}**", color=0xFF0000)
+        description=f"**This show's stats about the Discord Server!**\n\n🎭 Members: **{members:,}**\n💕 Supporters: **{supps:,}**\n<:Ascended:1095161421853098108> Ascended: {t3s}\n<:Acolyte:1095161419357499503> Acolyte: {t2s}\n<:Initiate:1095161420297011200> Initiate: {t1s}\n<:Nitro:1095491689029849189>  Boosters: {nitros}", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Economy Statistics! -]**", 
         description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total: **{floor(total_coins):,}** Coins\n🐍 Serpent's: **{floor(sc.coins):,}** Coins\n🎟 Current Tickets: **{floor(total_tix):,}**", color=0xFF0000)
