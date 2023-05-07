@@ -50,7 +50,7 @@ class rules_handler(Cog):
 
 
     @Cog.listener('on_ready')
-    async def server_info(self):
+    async def stats_info(self):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         ch = guild.get_channel(self.bot.config['info_channels']['statistics']) #? role change Channel
 
