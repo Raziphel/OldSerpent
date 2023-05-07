@@ -62,10 +62,8 @@ class lottery_handler(Cog):
             guild = self.bot.get_guild(self.bot.config['garden_id'])
             ch = guild.get_channel(self.bot.config['channels']['lottery'])
 
-            #! not time for the lottery
-            if (lot.lot_time + timedelta(hours=72)) > dt.now():
-                tf = lot.lot_time + timedelta(hours=72)
-                t = dt(1, 1, 1) + (tf - dt.now())
+            tf = lot.lot_time + timedelta(hours=72)
+            t = dt(1, 1, 1) + (tf - dt.now())
 
             sorted_rank = utils.Items.sort_tickets()
             ranks = sorted_rank[:20]
