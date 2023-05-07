@@ -1,4 +1,4 @@
-import math
+from math import floor
 from asyncio import sleep
 from datetime import datetime as dt, timedelta
 from random import randint, choice
@@ -126,9 +126,9 @@ class Loops(Cog):
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
             if index < 15:
-                text.append(f"#{index+1} **{user}** --> Lvl.{math.floor(rank.level):,}")
+                text.append(f"#{index+1} **{user}** --> Lvl.{floor(rank.level):,}")
             else:
-                text2.append(f"#{index+1} **{user}** --> Lvl.{math.floor(rank.level):,}")
+                text2.append(f"#{index+1} **{user}** --> Lvl.{floor(rank.level):,}")
 
         embed.add_field(name='Level Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Level Rank', value='\n'.join(text2), inline=True)
@@ -162,9 +162,9 @@ class Loops(Cog):
         text2 = []
         for index, (user, rank) in enumerate(zip(users, ranks)):
             if index < 10:
-                text.append(f"#{index+1} **{user}** --> {self.bot.config['emotes']['coin']} {math.floor(rank.coins):,}")
+                text.append(f"#{index+1} **{user}** --> {self.bot.config['emotes']['coin']} {floor(rank.coins):,}")
             else:
-                text2.append(f"#{index+1} **{user}** --> {self.bot.config['emotes']['coin']} {math.floor(rank.coins):,}")
+                text2.append(f"#{index+1} **{user}** --> {self.bot.config['emotes']['coin']} {floor(rank.coins):,}")
 
         embed.add_field(name='Coin Rank', value='\n'.join(text), inline=True)
         embed2.add_field(name='Coin Rank', value='\n'.join(text2), inline=True)
