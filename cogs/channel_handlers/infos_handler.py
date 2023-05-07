@@ -72,11 +72,6 @@ class rules_handler(Cog):
         total_tix = utils.Items.get_total_tickets()
         members = len(set(self.bot.get_all_members()))
         supps = 0
-        for user in guild.members:
-            if supporters in user.roles:
-                supps += 1
-            elif nitro in user.roles:
-                supps += 1
         profit = 0
         nitros = 0
         t1s = 0
@@ -85,15 +80,19 @@ class rules_handler(Cog):
         for user in guild.members:
             if nitro in user.roles:
                 nitros += 1
+                supps += 1
             if t1 in user.roles:
                 profit += 9
                 t1s += 1
+                supps += 1
             if t2 in user.roles:
                 profit += 18
                 t2s += 1
+                supps += 1
             if t3 in user.roles:
                 profit += 27
                 t3s += 1
+                supps += 1
 
 
         embed1=Embed(title=f"**[- Discord Statistics! -]**", 
