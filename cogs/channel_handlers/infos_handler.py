@@ -63,6 +63,7 @@ class rules_handler(Cog):
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
         sc = utils.Currency.get(550474149332516881)
         total_coins = format_number(utils.Currency.get_total_coins())
+        total_tix = format_number(utils.Items.get_total_tickets()())
         members = len(set(self.bot.get_all_members()))
         supps = 0
         for user in guild.members:
@@ -75,10 +76,10 @@ class rules_handler(Cog):
         description=f"**This show's stats about the Discord Server!**\n\n🎭 Members: {members:,}\n💕 Supporters: {supps:,}", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Economy Statistics! -]**", 
-        description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total Coins: {floor(total_coins):,}\n🐍 Serpent's: {floor(sc.coins):,}", color=0xFF0000)
+        description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total Coins: {floor(total_coins):,}\n🐍 Serpent's: {floor(sc.coins):,}\n🎟 Current Tickets: {floor(total_tix):,}", color=0xFF0000)
 
         embed3=Embed(title=f"**[- Garden Statustucs! -]**", 
-        description=f"~", color=0xFFFFFF)
+        description=f"Coming Soon!", color=0xFFFFFF)
 
 
         await msg1.edit(content=f" ", embed=embed1)

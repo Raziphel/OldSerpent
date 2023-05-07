@@ -98,23 +98,6 @@ class Loops(Cog):
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
         members = len(set(self.bot.get_all_members()))
         total_coins = format_number(utils.Currency.get_total_coins())
-        total_scps = 0
-        for user in guild.members:
-            if supporters in user.roles:
-                total_scps += 1
-            elif nitro in user.roles:
-                total_scps += 1
-
-
-        if self.last_members != members:
-            await members_channel.edit(name=f"Members: {members:,}")
-            self.last_members = members
-        if self.last_coins != total_coins:
-            await coins_channel.edit(name=f"Coins: {total_coins}")
-            self.last_coins = total_coins
-        if self.supporters != supporters:
-            await supp_channel.edit(name=f"Supporters: {total_scps:,}")
-            self.supporters = supporters
 
 
         #* Levels Leaderboard
