@@ -187,6 +187,10 @@ class Loops(Cog):
         t3 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
         sc = utils.Currency.get(550474149332516881)
         total_coins = utils.Currency.get_total_coins()
+        if total_coins < self.bot.config['total_coins']:
+            sc.coins += (total_coins-self.bot.config['total_coins'])
+        elif total_coins > self.bot.config['total_coins']:
+            sc.coins -= (total_coins-self.bot.config['total_coins'])
         total_tix = utils.Items.get_total_tickets()
         members = len(set(self.bot.get_all_members()))
         supps = 0
