@@ -3,6 +3,8 @@
 from discord import RawReactionActionEvent, Embed
 from discord.ext.commands import Cog
 
+from math import floor
+
 import utils
 
 
@@ -42,6 +44,46 @@ class rules_handler(Cog):
         await rules3.edit(content=f" ", embed=embed3)
         await rules4.edit(content=f" ", embed=embed4)
 
+
+
+
+
+
+    @Cog.listener('on_ready')
+    async def server_info(self):
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+        ch = guild.get_channel(self.bot.config['info_channels']['statistics']) #? role change Channel
+
+        msg1 = await ch.fetch_message(1104655953124655124) #? msg
+        msg2 = await ch.fetch_message(1104655958732439552) #? msg
+        msg3 = await ch.fetch_message(1104655963006435408) #? msg
+
+        coin_e = self.bot.config['emotes']['coin']
+        supporters = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['supporters'])
+        nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
+        sc = utils.Currency.get(550474149332516881)
+        total_coins = format_number(utils.Currency.get_total_coins())
+        members = len(set(self.bot.get_all_members()))
+        supps = 0
+        for user in guild.members:
+            if supporters in user.roles:
+                supps += 1
+            elif nitro in user.roles:
+                supps += 1
+
+        embed1=Embed(title=f"**[- Discord Statistics! -]**", 
+        description=f"**This show's stats about the Discord Server!**\n\n🎭 Members: {members:,}\n💕 Supporters: {supps:,}", color=0xFF0000)
+
+        embed2=Embed(title=f"**[- Economy Statistics! -]**", 
+        description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total Coins: {floor(total_coins):,}\n🐍 Serpent's: {floor(sc.coins):,}", color=0xFF0000)
+
+        embed3=Embed(title=f"**[- Garden Statustucs! -]**", 
+        description=f"~", color=0xFFFFFF)
+
+
+        await msg1.edit(content=f" ", embed=embed1)
+        await msg2.edit(content=f" ", embed=embed2)
+        await msg3.edit(content=f" ", embed=embed3)
 
 
 
