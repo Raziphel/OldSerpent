@@ -153,6 +153,7 @@ class lottery_handler(Cog):
                 async with self.bot.database() as db:
                     await lot.save(db)
                     await c.save(db)
+                    await rc.save(db)
 
                 for member in guild.members:
                     c = utils.Currency.get(member.id)
