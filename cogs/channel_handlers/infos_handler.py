@@ -11,16 +11,6 @@ import utils
 # * Additions
 
 
-def format_number(num):
-    if num < 1000:
-        return str(num)
-    elif num < 1000000:
-        return f"{num / 1000:.1f}k"
-    elif num < 1000000000:
-        return f"{num / 1000000:.1f}m"
-    else:
-        return f"{num / 1000000000:.1f}b"
-    
 
 class rules_handler(Cog):
     def __init__(self, bot):
@@ -75,8 +65,8 @@ class rules_handler(Cog):
         supporters = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['supporters'])
         nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
         sc = utils.Currency.get(550474149332516881)
-        total_coins = format_number(utils.Currency.get_total_coins())
-        total_tix = format_number(utils.Items.get_total_tickets())
+        total_coins = utils.Currency.get_total_coins()
+        total_tix = utils.Items.get_total_tickets()
         members = len(set(self.bot.get_all_members()))
         supps = 0
         for user in guild.members:
