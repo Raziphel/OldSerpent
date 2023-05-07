@@ -138,7 +138,7 @@ class lottery_handler(Cog):
                 lot_winnings = await utils.CoinFunctions.pay_tax(payer=winner, amount=lot.coins)
                 c.coins += lot_winnings
                 rc.coins -= lot_winnings
-                lot.last_winner = winner.id
+                lot.last_winner_id = winner.id
                 lot.last_amount = lot.coins
                 lot.coins = 0
                 async with self.bot.database() as db:
