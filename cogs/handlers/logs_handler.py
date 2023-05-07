@@ -137,7 +137,7 @@ class Logging(Cog):
     async def on_message_edit(self, before, after):
         if before.author.bot: return
         if before.content == after.content: return
-        name_list = list(message.channel.name)
+        name_list = list(before.channel.name)
         if any(item in name_list for item in ['🍺', '🐁', '🚬', '🐇']):
             channel = self.adult_log
         elif message.channel.is_nsfw():
