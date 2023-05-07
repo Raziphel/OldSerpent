@@ -97,7 +97,7 @@ class rules_handler(Cog):
 
 
         embed1=Embed(title=f"**[- Discord Statistics! -]**", 
-        description=f"**This show's stats about the Discord Server!**\n\n🎭 Members: **{members:,}**\n💕 Supporters: **{supps:,}**\n<:Ascended:1095161421853098108> Ascended: {t3s}\n<:Acolyte:1095161419357499503> Acolyte: {t2s}\n<:Initiate:1095161420297011200> Initiate: {t1s}\n<:Nitro:1095491689029849189>  Boosters: {nitros}", color=0xFF0000)
+        description=f"**This show's stats about the Discord Server!**\n\n🎭 Members: **{members:,}**\n💕 Supporters: **{supps:,}**\n<:Ascended:1095161421853098108> Ascended: **{t3s}**\n<:Acolyte:1095161419357499503> Acolyte: **{t2s}**\n<:Initiate:1095161420297011200> Initiate: **{t1s}**\n<:Nitro:1095491689029849189>  Boosters: **{nitros}**", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Economy Statistics! -]**", 
         description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total: **{floor(total_coins):,}** Coins\n🐍 Serpent's: **{floor(sc.coins):,}** Coins\n🎟 Current Tickets: **{floor(total_tix):,}**", color=0xFF0000)
