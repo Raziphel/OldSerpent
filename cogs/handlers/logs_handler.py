@@ -140,7 +140,7 @@ class Logging(Cog):
         name_list = list(before.channel.name)
         if any(item in name_list for item in ['🍺', '🐁', '🚬', '🐇']):
             channel = self.adult_log
-        elif message.channel.is_nsfw():
+        elif before.channel.is_nsfw():
             channel = self.adult_log
         elif any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
