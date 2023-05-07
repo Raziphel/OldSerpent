@@ -190,7 +190,7 @@ class Loops(Cog):
         total_coins = utils.Currency.get_total_coins()
         if total_coins < self.bot.config['total_coins']:
             sc.coins += (total_coins-self.bot.config['total_coins'])
-        elif total_coins > self.bot.config['total_coins']:
+        elif total_coins > self.bot.config['total_coins']: 
             sc.coins -= (total_coins-self.bot.config['total_coins'])
         async with self.bot.database() as db:
             await sc.save(db)
