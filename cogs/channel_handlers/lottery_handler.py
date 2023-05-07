@@ -143,7 +143,7 @@ class lottery_handler(Cog):
                 rc = utils.Currency.get(550474149332516881)
 
                 # now tickets is a list of user ids, where each user ID appears the same amount of times as the tickets they've purchased
-                await ch.send(content="@Discord Updates", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner}**!"))
+                await ch.send(content="<@&1054143874538426368>", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner}**!"))
                 lot_winnings = await utils.CoinFunctions.pay_tax(payer=winner, amount=lot.coins)
                 c.coins += lot_winnings
                 rc.coins -= lot_winnings
