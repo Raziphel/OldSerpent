@@ -79,9 +79,9 @@ class rules_handler(Cog):
         description=f"**This show's stats about the Discord Server!**\n\n🎭 Members: **{members:,}**\n💕 Supporters: **{supps:,}**", color=0xFF0000)
 
         embed2=Embed(title=f"**[- Economy Statistics! -]**", 
-        description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total Coins: **{floor(total_coins):,}**\n🐍 Serpent's: **{floor(sc.coins):,}**\n🎟 Current Tickets: **{floor(total_tix):,}**", color=0xFF0000)
+        description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total: **{floor(total_coins):,}** Coins\n🐍 Serpent's: **{floor(sc.coins):,}** Coins\n🎟 Current Tickets: **{floor(total_tix):,}**", color=0xFF0000)
 
-        embed3=Embed(title=f"**[- Garden Statustucs! -]**", 
+        embed3=Embed(title=f"**[- Garden Statistics! -]**", 
         description=f"Coming Soon!", color=0xFFFFFF)
 
 
