@@ -14,6 +14,7 @@ import utils
 class lottery_handler(Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.force_end = False
         self.bot.loop.create_task(self.lott_msg())
         self.bot.loop.create_task(self.lottery_increaser())
         self.bot.loop.create_task(self.lottery())
@@ -25,7 +26,10 @@ class lottery_handler(Cog):
         return self.bot.get_channel(self.bot.config['channels']['coin_logs'])
 
 
-
+    @utils.is_dev()
+    @command(hidden=True)
+    async def endlot(self, ctx):
+        self.force_end = true
 
     async def lott_msg(self):
         '''Edits the shops lottery message!'''
@@ -51,6 +55,8 @@ class lottery_handler(Cog):
             await msg2.edit(content=f"**Here you can purchase lottery tickets!  It is a weighted lottery, so the more tickets the higher chances!**",embed=embed)
             
             await sleep(60) 
+
+
 
 
 
@@ -95,8 +101,9 @@ class lottery_handler(Cog):
                     await lot.save(db)
 
             #! If it is time to do the lottery
-            if (lot.lot_time + timedelta(hours=72)) < dt.now():
+            if (lot.lot_time + timedelta(hours=72)) < dt.now() or self.force_end == True:
                 lot.lot_time = dt.now()
+                self.force_end = False
                 print("Ran the lottery")
 
                 async with self.bot.database() as db:
