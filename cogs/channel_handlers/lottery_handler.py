@@ -62,6 +62,10 @@ class lottery_handler(Cog):
             guild = self.bot.get_guild(self.bot.config['garden_id'])
             ch = guild.get_channel(self.bot.config['channels']['lottery'])
 
+            #? Check if first lottery
+            if lot.lot_time == None:
+                lot.lot_time = dt.utcnow()
+
             tf = lot.lot_time + timedelta(hours=72)
             t = dt(1, 1, 1) + (tf - dt.now())
 
