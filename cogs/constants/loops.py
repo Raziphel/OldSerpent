@@ -59,15 +59,6 @@ class Loops(Cog):
 
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
-        #+ Black & White role swap for the bot.
-        serpent = utils.DiscordGet(guild.roles, id=1094787752593195088)
-        if self.serpent_color == "white":
-            await serpent.edit(color=0x1a1919)
-            self.serpent_color = "black"
-        elif self.serpent_color == "black":
-            await serpent.edit(color=0xFF0000)
-            self.serpent_color = "white"
-
         #+ Wanting Adult Verification!
         wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
         for member in guild.members:

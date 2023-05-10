@@ -72,33 +72,35 @@ class lottery_handler(Cog):
             if lot.lot_time == None:
                 lot.lot_time = dt.utcnow()
 
-            tf = lot.lot_time + timedelta(hours=72)
-            t = dt(1, 1, 1) + (tf - dt.now())
+            try:
+                tf = lot.lot_time + timedelta(hours=72)
+                t = dt(1, 1, 1) + (tf - dt.now())
 
-            sorted_rank = utils.Items.sort_tickets()
-            ranks = sorted_rank[:20]
-            users = []
-            for i in sorted_rank:
-                user = self.bot.get_user(i.user_id)
-                if user != None:
-                    users.append(user)
-            text = [f"The Weekly Lottery Has: **{t.day-1} days, {t.hour} hours and {t.minute} minutes** remaining!\n\n**Top Ticket Holders:**\n"]
-            for index, (user, rank) in enumerate(zip(users, ranks)):
-                if index < 20:
-                    text.append(f"#{index+1} **{user}** --> {floor(rank.lot_tickets):,} 🎟")
+                sorted_rank = utils.Items.sort_tickets()
+                ranks = sorted_rank[:20]
+                users = []
+                for i in sorted_rank:
+                    user = self.bot.get_user(i.user_id)
+                    if user != None:
+                        users.append(user)
+                text = [f"The Weekly Lottery Has: **{t.day-1} days, {t.hour} hours and {t.minute} minutes** remaining!\n\n**Top Ticket Holders:**\n"]
+                for index, (user, rank) in enumerate(zip(users, ranks)):
+                    if index < 20:
+                        text.append(f"#{index+1} **{user}** --> {floor(rank.lot_tickets):,} 🎟")
 
-            #! Set up the embed
-            embed = Embed(color=randint(1, 0xffffff))
-            embed.set_author(name="The lottery timer")
-            embed.set_footer(text=" ")
-            embed.add_field(name='Lottery Tickets', value='\n'.join(text), inline=True)
-            msg = await ch.fetch_message(1103507090389078046)
-            await msg.edit(content="Here's the ones with the most tickets!", embed=embed)
+                #! Set up the embed
+                embed = Embed(color=randint(1, 0xffffff))
+                embed.set_author(name="The lottery timer")
+                embed.set_footer(text=" ")
+                embed.add_field(name='Lottery Tickets', value='\n'.join(text), inline=True)
+                msg = await ch.fetch_message(1103507090389078046)
+                await msg.edit(content="Here's the ones with the most tickets!", embed=embed)
 
-            if lot.lot_time == None:
-                lot.lot_time = dt.now()
-                async with self.bot.database() as db:
-                    await lot.save(db)
+                if lot.lot_time == None:
+                    lot.lot_time = dt.now()
+                    async with self.bot.database() as db:
+                        await lot.save(db)
+            except: pass #? LOTTERY TIME
 
             #! If it is time to do the lottery
             if (lot.lot_time + timedelta(hours=72)) < dt.now() or self.force_end == True:

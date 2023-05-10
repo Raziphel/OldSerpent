@@ -139,6 +139,44 @@ CREATE TABLE quests (
 );
 
 
+
+###########################################################################
+#########################    SERPENT'S GARDEN      ########################
+###########################################################################
+
+CREATE TABLE role (
+    user_id BIGINT NOT NULL,
+    id VARCHAR(60) NOT NULL DEFAULT "None",
+    q2 boolean NOT NULL DEFAULT FALSE,
+    q3 boolean NOT NULL DEFAULT FALSE,
+    q4 boolean NOT NULL DEFAULT FALSE,
+    q5 boolean NOT NULL DEFAULT FALSE,
+    q6 boolean NOT NULL DEFAULT FALSE,
+    q7 boolean NOT NULL DEFAULT FALSE,
+    q8 boolean NOT NULL DEFAULT FALSE,
+    q9 boolean NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (user_id)
+);
+
+
+CREATE TABLE quests (
+    user_id BIGINT NOT NULL,
+    q1 boolean NOT NULL DEFAULT FALSE,
+    q2 boolean NOT NULL DEFAULT FALSE,
+    q3 boolean NOT NULL DEFAULT FALSE,
+    q4 boolean NOT NULL DEFAULT FALSE,
+    q5 boolean NOT NULL DEFAULT FALSE,
+    q6 boolean NOT NULL DEFAULT FALSE,
+    q7 boolean NOT NULL DEFAULT FALSE,
+    q8 boolean NOT NULL DEFAULT FALSE,
+    q9 boolean NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (user_id)
+);
+
+
+
+
+
 ###########################################################################
 #########################     SERVERS / SPECIAL    ########################
 ###########################################################################
