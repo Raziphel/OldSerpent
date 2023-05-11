@@ -130,6 +130,8 @@ class Logging(Cog):
             channel = self.adult_log
         elif any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
+        elif any(item in name_list for item in ['👑', "🌷"]):
+            return
         else: channel = self.message_log
         await channel.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar.url, image=image))
 
@@ -144,6 +146,8 @@ class Logging(Cog):
             channel = self.adult_log
         elif any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
+        elif any(item in name_list for item in ['👑', "🌷"]):
+            return
         else: channel = self.message_log
         await channel.send(embed=utils.LogEmbed(type="change", title=f"Message Edited", desc=f"**Author:** {before.author.mention}\n**Channel:** <#{before.channel.id}>\n**Before:**\n{before.content}\n\n**after:**\n{after.content}", thumbnail=before.author.avatar.url))
 
