@@ -15,7 +15,6 @@ class Message_Rewards(Cog):
         self.bunny_messages = []
         self.coin_messages = []
         self.sparkle_messages = []
-        self.ticket_messages = []
 
 
 
@@ -39,23 +38,20 @@ class Message_Rewards(Cog):
 
         #! Give them some rewards!
         try:
-            chance = randint(1, 20000)
-            if chance <= 10:
+            chance = randint(1, 25000)
+            if chance <= 25:
                 message = choice(messages)
                 await message.add_reaction("✨")
-            elif chance <= 20:
+                self.sparkle_messages.append(message.id)
+            elif chance <= 100:
                 for x in range(5):
                     message = choice(messages)
                     reaction = await message.add_reaction(self.bot.config['emotes']['bunny'])
                     self.bunny_messages.append(message.id)
-            elif chance <= 200:
+            elif chance <= 500:
                 message = choice(messages)
                 await message.add_reaction(self.bot.config['emotes']['coin'])
                 self.coin_messages.append(message.id)
-            elif chance <= 400:
-                message = choice(messages)
-                await message.add_reaction("🎟")
-                self.ticket_messages.append(message.id)
         except Exception as e:
             print(f'A reward failed to spawn :: {e}')
 

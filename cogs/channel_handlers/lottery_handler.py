@@ -16,7 +16,6 @@ class lottery_handler(Cog):
         self.bot = bot
         self.force_end = False
         self.bot.loop.create_task(self.lott_msg())
-        self.bot.loop.create_task(self.lottery_increaser())
         self.bot.loop.create_task(self.lottery())
 
 
@@ -151,7 +150,7 @@ class lottery_handler(Cog):
                 rc.coins -= lot_winnings
                 lot.last_winner_id = winner.id
                 lot.last_amount = lot.coins
-                lot.coins = 0
+                lot.coins = 25000
                 async with self.bot.database() as db:
                     await lot.save(db)
                     await c.save(db)
@@ -164,25 +163,6 @@ class lottery_handler(Cog):
                         await c.save(db)
 
             await sleep(60)
-
-
-
-
-
-
-
-    async def lottery_increaser(self):
-        await self.bot.wait_until_ready()
-        counter = 0
-        while not self.bot.is_closed():
-            lot = utils.Lottery.get(1)
-
-            lot.coins += 10
-
-            async with self.bot.database() as db:
-                await lot.save(db)
-            await sleep(3600)
-
 
 
 
