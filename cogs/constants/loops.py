@@ -339,28 +339,11 @@ class Loops(Cog):
         supporters = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['supporters'])
 
         for user in guild.members:
-            try: #! Fixing adults roles
-                mod = utils.Moderation.get(user.id)
-                #? Set child & Adults in DB
-                if child in user.roles:
-                    if mod.child == False:
-                        mod.child = True
-                        mod.adult = False
-                if adult in user.roles:
-                    if mod.adult == False:
-                        mod.adult = True
-                        mod.child = False
-                if nsfw_adult in user.roles:
-                    if mod.adult == False:
-                        mod.adult = True
-                        mod.child = False
-                async with self.bot.database() as db:
-                    await mod.save(db)
-
+            try: 
                 #! Fix roles
                 await sleep(0.05) #? Causes a huge sharp in cpu why not spread it out.
                 if adult not in user.roles:
-                        await user.add_roles(child, reason="Fixing adult role.")
+                    await user.add_roles(child, reason="Fixing adult role.")
 
             except Exception as e: print(f'Error fixing roles :: {e}')
 
