@@ -135,7 +135,7 @@ class UserFunction(object):
             await user.add_roles(verified, reason="Verification")
             general = cls.bot.get_channel(cls.bot.config['channels']['general'])
             try:
-                await general.send(content=f"{user.mention}", embed=utils.SpecialEmbed(description=f"Please welcome the new scum!", thumbnail=user.avatar.url, footer=" "))
+                await general.send(content=f"{user.mention}", embed=utils.SpecialEmbed(description=f"Please welcome {user.mention}!\nBe sure to read <#856449403173994536>!\nand check out <#946730953731100682> when you have enough coins!", thumbnail=user.avatar.url, footer=" "))
             except: pass
             return
 

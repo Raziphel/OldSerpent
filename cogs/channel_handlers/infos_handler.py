@@ -37,8 +37,8 @@ class rules_handler(Cog):
         embed3=Embed(title=f"**[- Serpent's Common Knowledge -]**", 
         description=f"**Here is some common things about the Serpent bot that every member should know!**\n\nThe Serpent is always rewarding members Coins & XP for every message, voice channel and command they run!\n\nIf you see any member with the <@&1028881308006502400> role they have lost permission to Read Message History and Sending Messages!", color=0x00FF00)
 
-        embed4=Embed(title=f"**[- Unknown -]**", 
-        description=f"Coming Soon...", color=0x0000FF)
+        embed4=Embed(title=f"**[- Scroll Up! -]**", 
+        description=f"Please scroll up to read the server rules!", color=0x0000FF)
 
 
         await rules1.edit(content=f" ", embed=embed1)
