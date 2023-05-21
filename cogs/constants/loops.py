@@ -359,9 +359,8 @@ class Loops(Cog):
 
                 #! Fix roles
                 await sleep(0.05) #? Causes a huge sharp in cpu why not spread it out.
-                if nsfw_adult in user.roles:
-                        await user.add_roles(adult, reason="Fixing adult role.")
-                        await user.remove_roles(nsfw_adult, reason="Fixing adult role.")
+                if adult not in user.roles:
+                        await user.add_roles(child, reason="Fixing adult role.")
 
             except Exception as e: print(f'Error fixing roles :: {e}')
 
