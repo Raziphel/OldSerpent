@@ -327,30 +327,6 @@ class Loops(Cog):
                     print(f'Couldnt edit sticky for {channel}')
 
 
-        #* AUTO ROLE FIXING
-        child = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['child'])
-        adult_furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_furry'])
-        furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['furry'])
-        nsfw_adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nsfw_adult'])
-        adult = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult'])
-        library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['library_pass'])
-        adult_library_pass = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['adult_library_pass'])
-        #! get the scp roles!
-        supporters = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['supporters'])
-
-        for user in guild.members:
-            try: 
-                #! Fix roles
-                await sleep(0.05) #? Causes a huge sharp in cpu why not spread it out.
-                if adult not in user.roles:
-                    await user.add_roles(child, reason="Fixing adult role.")
-
-            except Exception as e: print(f'Error fixing roles :: {e}')
-
-
-
-
-
 
 
 
