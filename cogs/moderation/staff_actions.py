@@ -13,13 +13,13 @@ class Staff_Actions(Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @property  # ! The message logs
+    def message_log(self):
+        return self.bot.get_channel(self.bot.config['channels']['messages'])
+
     @property  #! The members logs
     def discord_log(self):
-        return self.bot.get_channel(self.bot.config['channels']['logs']['discord']) 
-
-    @property  #! The message logs
-    def message_log(self):
-        return self.bot.get_channel(self.bot.config['channels']['logs']['messages']) 
+        return self.bot.get_channel(self.bot.config['channels']['server']) 
 
 
 

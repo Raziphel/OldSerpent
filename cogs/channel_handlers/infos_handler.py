@@ -21,7 +21,7 @@ class rules_handler(Cog):
     @Cog.listener('on_ready')
     async def rules(self):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['important']['rules']) #? Rules Channel
+        ch = guild.get_channel(self.bot.config['info_channels']['rules']) #? Rules Channel
 
         rules1 = await ch.fetch_message(956470547426996244) #? 
         rules2 = await ch.fetch_message(956470556415361024) #? 
@@ -58,7 +58,7 @@ class rules_handler(Cog):
     @Cog.listener('on_ready')
     async def server_info(self):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['gameservers']['server_info']) #? role change Channel
+        ch = guild.get_channel(self.bot.config['channels']['server_info']) #? role change Channel
 
         msg1 = await ch.fetch_message(1052828325422317578) #? msg
         msg2 = await ch.fetch_message(1052828331197874176) #? msg
@@ -88,7 +88,7 @@ class rules_handler(Cog):
     @Cog.listener('on_ready')
     async def staff_info(self):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['staffarea']['staff_info']) #? role change Channel
+        ch = guild.get_channel(self.bot.config['channels']['staff_info']) #? role change Channel
 
         msg1 = await ch.fetch_message(1064807624316567623) #? msg
         msg2 = await ch.fetch_message(1064807632877142116) #? msg

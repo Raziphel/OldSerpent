@@ -17,13 +17,13 @@ class Shop_Handler(Cog):
 
     @property  #! The currency logs
     def coin_logs(self):
-        return self.bot.get_channel(self.bot.config['channels']['logs']['coins'])
+        return self.bot.get_channel(self.bot.config['channels']['coin_logs'])
 
 
     @Cog.listener('on_ready')
     async def shop_msg(self):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['botusage']['shop']) #? Rules Channel
+        ch = guild.get_channel(self.bot.config['channels']['shop']) #? Rules Channel
 
         msg1 = await ch.fetch_message(959009617155878982) #? Welcome messages
         msg2 = await ch.fetch_message(959009625812901898)
@@ -73,7 +73,7 @@ class Shop_Handler(Cog):
             '''Buys item's from the shop.'''
 
             #! See if I need to deal with it
-            if not payload.channel_id == self.bot.config['channels']['botusage']['shop']:
+            if not payload.channel_id == self.bot.config['channels']['shop']:
                 return
             if self.bot.get_user(payload.user_id).bot:
                 return

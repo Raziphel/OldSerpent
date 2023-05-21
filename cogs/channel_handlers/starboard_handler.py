@@ -45,7 +45,7 @@ class StarboardHandler(commands.Cog):
 
             # Delete message from starboard
             guild = self.bot.get_guild(payload.guild_id)
-            starboard_channel = guild.get_channel(self.bot.config['channels']['bulletin']['starboard'])
+            starboard_channel = guild.get_channel(self.bot.config['channels']['starboard'])
 
             try:
                 starboard_message = await starboard_channel.fetch_message(starred_message.message_id)
@@ -75,19 +75,19 @@ class StarboardHandler(commands.Cog):
             channel = guild.get_channel(payload.channel_id)
 
             if str(payload.emoji) == self.STAR_EMOJI and channel.id in (
-                    self.bot.config['channels']['suggestions']['suggestions'],
-                    self.bot.config['channels']['suggestions']['scp_suggestions']
+                    self.bot.config['channels']['suggestions'],
+                    self.bot.config['channels']['premium_suggestions']
             ):
                 return  # Cannot use star emoji in suggestion channels
 
             if str(payload.emoji) == self.CUSTOM_UPVOTE_EMOJI and channel.id not in (
-                    self.bot.config['channels']['suggestions']['suggestions'],
-                    self.bot.config['channels']['suggestions']['scp_suggestions']
+                    self.bot.config['channels']['suggestions'],
+                    self.bot.config['channels']['premium_suggestions']
             ):
                 return  # Custom upvote emoji can only be used in suggestion channels
 
             message = await channel.fetch_message(payload.message_id)  # The original message
-            starboard_channel = guild.get_channel(self.bot.config['channels']['bulletin']['starboard'])
+            starboard_channel = guild.get_channel(self.bot.config['channels']['starboard'])
 
             # Just in case, I guess?
             if message.id in self.starboards.starred_messages:
@@ -135,14 +135,14 @@ class StarboardHandler(commands.Cog):
             channel = guild.get_channel(payload.channel_id)
 
             if str(payload.emoji) == self.STAR_EMOJI and channel.id in (
-                    self.bot.config['channels']['suggestions']['suggestions'],
-                    self.bot.config['channels']['suggestions']['scp_suggestions']
+                    self.bot.config['channels']['suggestions'],
+                    self.bot.config['channels']['premium_suggestions']
             ):
                 return  # Cannot use star emoji in suggestion channels
 
             if str(payload.emoji) == self.CUSTOM_UPVOTE_EMOJI and channel.id not in (
-                    self.bot.config['channels']['suggestions']['suggestions'],
-                    self.bot.config['channels']['suggestions']['scp_suggestions']
+                    self.bot.config['channels']['suggestions'],
+                    self.bot.config['channels']['premium_suggestions']
             ):
                 return  # Custom upvote emoji can only be used in suggestion channels
 
@@ -161,7 +161,7 @@ class StarboardHandler(commands.Cog):
             if member.bot:
                 return  # Ignore bot messages
 
-            starboard_channel = guild.get_channel(self.bot.config['channels']['bulletin']['starboard'])
+            starboard_channel = guild.get_channel(self.bot.config['channels']['starboard'])
             file_attachment_message = 'Please view the original message to see the attachment.'
 
             if message.id not in self.starboards.starred_messages:
@@ -180,8 +180,8 @@ class StarboardHandler(commands.Cog):
 
             starred_message = await self.starboards.incr(message_id=message.id)
             starboard_threshold = self.REGULAR_STARBOARD_THRESHOLD if channel.id not in (
-                self.bot.config['channels']['suggestions']['suggestions'],
-                self.bot.config['channels']['suggestions']['scp_suggestions']
+                self.bot.config['channels']['suggestions'],
+                self.bot.config['channels']['premium_suggestions']
             ) else self.SUGGESTION_STARBOARD_THRESHOLD
 
             if starred_message.star_count == starboard_threshold:
@@ -282,8 +282,8 @@ class StarboardHandler(commands.Cog):
                     )
 
                 glowing_star_threshold = self.SUGGESTION_GLOWING_STAR_THRESHOLD if channel.id in (
-                    self.bot.config['channels']['suggestions']['suggestions'],
-                    self.bot.config['channels']['suggestions']['scp_suggestions']
+                    self.bot.config['channels']['suggestions'],
+                    self.bot.config['channels']['premium_suggestions']
                 ) else self.REGULAR_GLOWING_STAR_THRESHOLD
 
                 star_emoji = (

@@ -426,6 +426,31 @@ class Profile(Cog):
 
 
 
+    @cooldown(1, 30, BucketType.user)
+    @command(application_command_meta=ApplicationCommandMeta(), aliases=['Sona', 'fursona', 'Fursona'])
+    async def sona(self, ctx, user: Member = None):
+        '''Quick Post Sona'''
+        if not user:
+            user = ctx.author
+        if ctx.channel.id in self.bot.config['fur-channels'].values():
+            m = await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
+            return
+        if ctx.channel.id in self.bot.config['nsfw-fur-channels'].values():
+            m = await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Sfw_Sona", user=user, quick=True))
+            return
+        await ctx.interaction.response.send_message("🐾You can't post that nasty-ness here!")
+
+
+
+    @cooldown(1, 30, BucketType.user)
+    @command(application_command_meta=ApplicationCommandMeta(), aliases=['c', 'C'])
+    async def currency(self, ctx, user: Member = None):
+        '''Quick Check Coins'''
+        if not user:
+            user = ctx.author
+        m = await ctx.interaction.response.send_message(embed=utils.ProfileEmbed(type="Currency", user=user, quick=True))
+
+
 
     @command(application_command_meta=ApplicationCommandMeta(), aliases=['i', 'inv', 'items', 'Inv'])
     async def inventory(self, ctx, user:Member=None):

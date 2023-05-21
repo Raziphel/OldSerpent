@@ -44,7 +44,7 @@ class UserFunction(object):
         if channel:
             msg = await channel.send(embed=utils.LogEmbed(type="positive", title=f"🎉 level up!", desc=f"{user.mention} is now level: **{lvl.level:,}**\nGranting them: **{round(amount):,}x** {coin}"))
 
-        coin_logs = cls.bot.get_channel(cls.bot.config['channels']['logs']['coins'])
+        coin_logs = cls.bot.get_channel(cls.bot.config['channels']['coin_logs'])
         await coin_logs.send(f"**{user.name}** leveled up and is now level **{lvl.level:,}**\nGranting them: **{round(amount):,}x** {coin}")
 
         await sleep(6)
@@ -120,4 +120,51 @@ class UserFunction(object):
                 await user.add_roles(role, reason="Adding Level Role.")
             except: 
                 print(f'Failed to apply level role: {user.name} getting role: {role_to_add}')
+
+
+
+
+
+    @classmethod
+    async def verify_user(cls, user, type):
+        '''Litterally verify someone'''
+        guild = cls.bot.get_guild(cls.bot.config['garden_id'])
+
+        if type == "guild":
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['janitor'])
+            await user.add_roles(verified, reason="Verification")
+            general = cls.bot.get_channel(cls.bot.config['channels']['general'])
+            try:
+                await general.send(content=f"{user.mention}", embed=utils.SpecialEmbed(description=f"Please welcome the new scum!", thumbnail=user.avatar.url, footer=" "))
+            except: pass
+            return
+
+        elif type == "alliance":
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['ussy'])
+            await user.add_roles(verified, reason="Verification")
+            general = cls.bot.get_channel(cls.bot.config['channels']['kingussy'])
+            await general.send(embed=utils.SpecialEmbed(description=f"New alliance member joined!\nWelcome {user.mention}!", thumbnail=user.avatar.url))
+            return
+
+        elif type == "cultist":
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['cultist'])
+            await user.add_roles(verified, reason="Cultist Verification")
+            general = cls.bot.get_channel(1095761206486237254)
+            await general.send(embed=utils.SpecialEmbed(description=f"**A new Cultist has joined!**\nWelcome {user.mention}!\n\nThe cult is mostly just a little secret group for people close to Razi!", thumbnail=user.avatar.url))
+            return
+
+        elif type == "adult":
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['nsfw_adult'])
+            await user.add_roles(verified, reason="Verification")
+            return
+
+        elif type == "kindaadult":
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['adult'])
+            await user.add_roles(verified, reason="Verification")
+            return
+
+        elif type == "notadult":
+            verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['child'])
+            await user.add_roles(verified, reason="Verification")
+            return
 

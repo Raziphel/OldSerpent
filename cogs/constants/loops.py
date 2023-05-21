@@ -59,6 +59,24 @@ class Loops(Cog):
 
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
 
+        #+ Wanting Adult Verification!
+        wanting_adult = utils.DiscordGet(guild.roles, id=1070572419254853694)
+        for member in guild.members:
+            if wanting_adult in member.roles:
+                await member.remove_roles(wanting_adult, reason="Removed wanting adult role")
+                try:
+                    await self.bot.get_cog('Verification').verify_adult(author=member, guild=guild)
+                except: pass
+
+        #+ Wanting Cultist Verification!
+        wanting_cultist = utils.DiscordGet(guild.roles, id=1095724950826004480)
+        for member in guild.members:
+            if wanting_cultist in member.roles:
+                await member.remove_roles(wanting_cultist, reason="Removed wanting cultist role")
+                try:
+                    await self.bot.get_cog('Verification').verify_cultist(author=member, guild=guild)
+                except: pass
+
         #* Setting the bot status.
         playing = choice(["Convincing Eve to eat an apple!", "Slitherin' in the Garden...", "Commiting Atrocities.", "Starting Plagues", "Worshipin' The Bearer of light", "Devilish intentions!"])
         await self.bot.change_presence(activity=Game(name=playing))
@@ -74,7 +92,7 @@ class Loops(Cog):
 
 
         #* Levels Leaderboard
-        channel = self.bot.get_channel(self.bot.config['channels']['botusage']['leaderboard'])
+        channel = self.bot.get_channel(self.bot.config['channels']['leaderboard'])
         msg = await channel.fetch_message(1095552287298027681)
         msg2 = await channel.fetch_message(1095552293379772466)
 
@@ -146,7 +164,7 @@ class Loops(Cog):
         await msg2.edit(content=" ", embed=embed2)
 
         # + This is the Statistics Channels
-        ch = guild.get_channel(self.bot.config['channels']['important']['statistics']) #? Stat Channel
+        ch = guild.get_channel(self.bot.config['info_channels']['statistics']) #? Stat Channel
 
         msg1 = await ch.fetch_message(1104655953124655124) #? msg
         msg2 = await ch.fetch_message(1104655958732439552) #? msg

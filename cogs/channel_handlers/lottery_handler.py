@@ -22,7 +22,7 @@ class lottery_handler(Cog):
 
     @property  #! The currency logs
     def coin_logs(self):
-        return self.bot.get_channel(self.bot.config['channels']['logs']['coins'])
+        return self.bot.get_channel(self.bot.config['channels']['coin_logs'])
 
 
     @utils.is_dev()
@@ -42,7 +42,7 @@ class lottery_handler(Cog):
             counter += 1
             lot = utils.Lottery.get(1)
             guild = self.bot.get_guild(self.bot.config['garden_id'])
-            ch = guild.get_channel(self.bot.config['channels']['botusage']['lottery'])
+            ch = guild.get_channel(self.bot.config['channels']['lottery'])
             msg = await ch.fetch_message(1103507070210285640)
             msg2 = await ch.fetch_message(1103507080826064938)
             tickets = utils.Items.get_total_tickets()
@@ -65,7 +65,7 @@ class lottery_handler(Cog):
         while not self.bot.is_closed():
             lot = utils.Lottery.get(1)
             guild = self.bot.get_guild(self.bot.config['garden_id'])
-            ch = guild.get_channel(self.bot.config['channels']['botusage']['lottery'])
+            ch = guild.get_channel(self.bot.config['channels']['lottery'])
 
             #? Check if first lottery
             if lot.lot_time == None:
@@ -174,7 +174,7 @@ class lottery_handler(Cog):
             '''Buys item's from the lottery.'''
 
             # See if I need to deal with it
-            if not payload.channel_id == self.bot.config['channels']['botusage']['lottery']:
+            if not payload.channel_id == self.bot.config['channels']['lottery']:
                 return
             if self.bot.get_user(payload.user_id).bot:
                 return

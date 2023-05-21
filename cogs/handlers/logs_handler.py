@@ -20,15 +20,23 @@ class Logging(Cog):
 
     @property  #! The Server logs
     def bot_log(self):
-        return self.bot.get_channel(self.bot.config['channels']['logs']['serpent']) 
+        return self.bot.get_channel(self.bot.config['channels']['bot']) 
 
     @property  #! The members logs
     def discord_log(self):
-        return self.bot.get_channel(self.bot.config['channels']['logs']['discord']) 
+        return self.bot.get_channel(self.bot.config['channels']['server']) 
 
     @property  #! The message logs
     def message_log(self):
-        return self.bot.get_channel(self.bot.config['channels']['logs']['messages']) 
+        return self.bot.get_channel(self.bot.config['channels']['messages']) 
+
+    @property  #! The welcome logs
+    def welcome_log(self):
+        return self.bot.get_channel(self.bot.config['channels']['welcome'])
+
+    @property  #! The adult logs
+    def adult_log(self):
+        return self.bot.get_channel(self.bot.config['channels']['adult'])
 
     @property  #! The adult logs
     def staff_log(self):
