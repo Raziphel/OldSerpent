@@ -250,8 +250,8 @@ class Loops(Cog):
         scp_suggestions = guild.get_channel(1056747785749278761) #? SCP suggestions Channel
         emoji_suggestions = guild.get_channel(1109756661331152996) #? Emoji suggestions Channel
         supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
-        channels = [bot_usage, issues, scp_suggestions, art, suggestions]
-        suggestions = [suggestions, scp_suggestions, emoji_suggestions]
+        channels = [bot_usage, issues, scp_suggestions, art, suggestions, emoji_suggestions, scp_suggestions]
+        suggestion_channels = [suggestions, scp_suggestions, emoji_suggestions]
         last_message = None
         for channel in channels:
             message_list = await channel.history(limit=1).flatten()
@@ -315,7 +315,7 @@ class Loops(Cog):
                 if channel == issues:
                     embed=Embed(title=f"**[- Issues Sticky -]**",
                     description=f"**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**<@&891793700932431942>** - Ping for Major bugs or anything if you think its important enough.\n**<@&1068389027222405221>** - Ping for anything SCP Server related.\n**<@&1068389119195107378>** - Ping for anything Discord related.", color=randint(1, 0xffffff))
-                if channel in suggestions:
+                if channel in suggestion_channels:
                     embed=Embed(title=f"**[- Suggestion Stickys! -]**",
                     description=f"**Please do not just hold conversations or make replies here!**\n\nYou can create a thread to reply to suggestions!", color=randint(1, 0xffffff))
                 try:
