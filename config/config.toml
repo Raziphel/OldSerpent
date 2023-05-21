@@ -18,52 +18,37 @@ total_coins = 25000000
 
 
 [channels]
-    role_change = 1021288155040714782
-    announcements = 856449637412765707
-    welcome = 858574910280171550
-    server_info = 1052823837416357999
-    supporters = 1051738903666769950
-    lottery = 1103505826288779325
+    [important]
+        rules = 856449403173994536
+        announcements = 856449637412765707
+        statistics = 1104648924356169858
+        supporters = 1051738903666769950
+    [bulletin]
+        starboard = 1086042252205375589
+    [gameservers]
+        server_info = 1052823837416357999
+    [suggestions]
+        suggestions = 1056747785749278761
+        scp_suggestions = 1056747785749278761
+        emoji_suggestions = 1109756661331152996
+    [staffarea]
+        staff_info = 1057562399454011412
+    [logs]
+        coins = 1046684571728625674
+        serpent = 1020904525013463120
+        discord = 833960569941393438
+        messages = 833960665403883550
+    [botusage]
+        lottery = 1103505826288779325
+        shop = 946730953731100682
+        leaderboard = 929093224545550336
+
     general = 807828084937850921
     members_vc = 856451508865466368
-    shop = 946730953731100682
-    leaderboard = 929093224545550336
-    adult_general = 1022373213520547912
-    facility = 1022373305329647616
-    chill = 1021283424805339157
-    serpent_lair = 1021172170178711563
-    serpent_meeting = 1021174411782529154
-    bot = 1020904525013463120
-    coin_logs = 1046684571728625674
-    server = 833960569941393438
-    mail_box = 860778768921526272
-    archive = 997337911253024878
-    messages = 833960665403883550
-    adult = 1011463877210423316
     memes = 807829051607351296
-    adult_memes = 1020959470249050113
-    sfw_sonas = 1028890632862834768
-    furry_lounge = 1028881630363926568
-    staff_info = 1057562399454011412
-    starboard = 1086042252205375589
-    suggestions = 1056747785749278761
-    premium_suggestions = 1056776991770161162
-
-[info_channels]
-    rules = 856449403173994536
-    handbook = 1104202870204674098
-    statistics = 1104648924356169858
 
 
 
-[fur-channels]
-    general = 1028881630363926568
-    art = 1028886794860757062
-    sona_posts = 1093874390577446985
-
-[nsfw-fur-channels]
-    art = 1093879788885790823
-    sona_posts = 1093878458439970946
 
 
 [roles]

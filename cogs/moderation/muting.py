@@ -19,9 +19,9 @@ class Muting(Cog):
         self.bot.loop.create_task(self.bootstrap())
 
 
-    @property  #! The welcome logs
-    def server_logs(self):
-        return self.bot.get_channel(self.bot.config['channels']['server'])
+    @property  #! The members logs
+    def discord_log(self):
+        return self.bot.get_channel(self.bot.config['channels']['logs']['discord']) 
 
 
     async def bootstrap(self):
@@ -60,7 +60,7 @@ class Muting(Cog):
             prisoner = utils.DiscordGet(guild.roles, id=1028881308006502400)
             await member.add_roles(prisoner)
 
-            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"Prisoner Tried to escape...", desc=f"{member} Was thrown back into the dungeons."))
+            await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"Prisoner Tried to escape...", desc=f"{member} Was thrown back into the dungeons."))
 
 
 
@@ -121,7 +121,7 @@ class Muting(Cog):
         async with self.bot.database() as db:
             await mod.save(db)
 
-        await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Muted", desc=f"{i.name} was muted!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
+        await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"User Muted", desc=f"{i.name} was muted!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
 
 
 
@@ -168,7 +168,7 @@ class Muting(Cog):
         async with self.bot.database() as db:
             await mod.save(db)
 
-        await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Un-Gagged", desc=f"{user.name} was un-muted!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
+        await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"User Un-Gagged", desc=f"{user.name} was un-muted!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
 
 
 
@@ -187,7 +187,7 @@ class Muting(Cog):
             del self.temporary_mutes[member.id]
         except KeyError: pass
 
-        await self.server_logs.send(embed=utils.LogEmbed(type="positive", title=f"User un-muted", desc=f"{member.mention} was ungagged!\n\n**Temp-mute Has Expired!**"))
+        await self.discord_log.send(embed=utils.LogEmbed(type="positive", title=f"User un-muted", desc=f"{member.mention} was ungagged!\n\n**Temp-mute Has Expired!**"))
 
         #! Database Update!
         mod = utils.Moderation.get(member.id)
@@ -264,7 +264,7 @@ class Muting(Cog):
                             'DO UPDATE SET unmute_time = $2', user.id, mute_expiration)
             self.create_temp_gag_task(user, mute_expiration)
 
-            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{user.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**\nDuration :: **{duration}**"))
+            await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{user.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**\nDuration :: **{duration}**"))
 
 
 

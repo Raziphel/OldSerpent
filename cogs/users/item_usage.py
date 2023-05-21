@@ -126,7 +126,7 @@ class Items(Cog):
 
         coin_e = self.bot.config['emotes']['coin']
 
-        coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs'])
+        coin_logs = self.bot.get_channel(self.bot.config['channels']['logs']['coins'])
         if coins_lost != None:
             await ctx.interaction.response.send_message(
                 content=f"{user.mention}", embed=utils.DefaultEmbed(title=f"🧤 Coins Stolen 🧤", desc=f"**{ctx.author}** tried to steal coins from **{user}** but, they lost **{coins_lost:,}** {coin_e} to them instead..."))
