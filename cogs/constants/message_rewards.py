@@ -92,7 +92,7 @@ class Message_Rewards(Cog):
 
         c = utils.Currency.get(user.id)
         i = utils.Items.get(user.id)
-        coin_logs = self.bot.get_channel(self.bot.config['channels']['coin_logs'])
+        coin_logs = self.bot.get_channel(self.bot.config['channels']['logs']['coins'])
 
         #! Define Emojis
         bunny_e = "<a:Bunny:703136644366336000>"

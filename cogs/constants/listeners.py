@@ -116,7 +116,7 @@ class Listeners(Cog):
 
 
         #+ Check for Suggestion channels
-        if message.channel.id in [1093622505236865045, 1056747785749278761]: #? Suggestions
+        if message.channel.id in [self.bot.config['channels']['suggestions']['suggestions'], self.bot.config['channels']['suggestions']['scp_suggestions'], self.bot.config['channels']['suggestions']['emoji_suggestions']]: #? Suggestions
             await message.add_reaction("<:UpVote:1041606985080119377>")
             await message.add_reaction("<:DownVote:1041606970492342282>")
         # if message.channel.id in [1051033412456165396]: #? 1 word only
