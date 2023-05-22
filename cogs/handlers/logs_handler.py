@@ -124,13 +124,10 @@ class Logging(Cog):
         if message.attachments: 
             image = message.attachments[0].url 
         name_list = list(message.channel.name)
-        if any(item in name_list for item in ['🍺', '🐁', '🚬', '🐇']):
-            channel = self.adult_log
-        elif message.channel.is_nsfw():
-            channel = self.adult_log
-        elif any(item in name_list for item in ['🔥', "✨"]):
+
+        if any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
-        elif any(item in name_list for item in ['👑', "🌷"]):
+        elif any(item in name_list for item in ['👑', "🌷", "📯", "📝"]):
             return
         else: channel = self.message_log
         await channel.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar.url, image=image))
@@ -140,13 +137,10 @@ class Logging(Cog):
         if before.author.bot: return
         if before.content == after.content: return
         name_list = list(before.channel.name)
-        if any(item in name_list for item in ['🍺', '🐁', '🚬', '🐇']):
-            channel = self.adult_log
-        elif before.channel.is_nsfw():
-            channel = self.adult_log
-        elif any(item in name_list for item in ['🔥', "✨"]):
+
+        if any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
-        elif any(item in name_list for item in ['👑', "🌷"]):
+        elif any(item in name_list for item in ['👑', "🌷", "📯", "📝"]):
             return
         else: channel = self.message_log
         await channel.send(embed=utils.LogEmbed(type="change", title=f"Message Edited", desc=f"**Author:** {before.author.mention}\n**Channel:** <#{before.channel.id}>\n**Before:**\n{before.content}\n\n**after:**\n{after.content}", thumbnail=before.author.avatar.url))
