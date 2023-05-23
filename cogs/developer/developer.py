@@ -170,6 +170,16 @@ class Developer(Cog):
 
     @utils.is_dev()
     @command(hidden=True)
+    async def setdaily(self, ctx, user:Member, amount:int):
+        if not user:
+            user = ctx.author
+        c = utils.Daily.get(user.id)
+        c.daily = amount
+        async with self.bot.database() as db:
+            await c.save(db)
+
+    @utils.is_dev()
+    @command(hidden=True)
     async def setvc(self, ctx, user:Member, amount:int):
         if not user:
             user = ctx.author
