@@ -186,7 +186,7 @@ class Loops(Cog):
         async with self.bot.database() as db:
             await sc.save(db)
 
-        total_tix = utils.Items.get_total_tickets()
+        total_tix = utils.Currency.get_total_tickets()
         members = len(set(self.bot.get_all_members()))
         supps = 0
         profit = 0

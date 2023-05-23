@@ -75,7 +75,7 @@ class lottery_handler(Cog):
                 tf = lot.lot_time + timedelta(hours=72)
                 t = dt(1, 1, 1) + (tf - dt.now())
 
-                sorted_rank = utils.Items.sort_tickets()
+                sorted_rank = utils.Currency.sort_tickets()
                 ranks = sorted_rank[:20]
                 users = []
                 for i in sorted_rank:
@@ -108,7 +108,7 @@ class lottery_handler(Cog):
                 print("Ran the lottery")
 
                 async with self.bot.database() as db:
-                    v = await db('SELECT user_id, lot_tickets FROM items WHERE lot_tickets > 0;')
+                    v = await db('SELECT user_id, lot_tickets FROM currency WHERE lot_tickets > 0;')
 
                 # make a list to put people in
                 all_tickets = []
@@ -157,7 +157,7 @@ class lottery_handler(Cog):
                     await rc.save(db)
 
                 for member in guild.members:
-                    c = utils.Items.get(member.id)
+                    c = utils.Currency.get(member.id)
                     c.lot_tickets = 0
                     async with self.bot.database() as db:
                         await c.save(db)
@@ -189,7 +189,6 @@ class lottery_handler(Cog):
             guild = self.bot.get_guild(payload.guild_id)
             user = guild.get_member(payload.user_id)
             c = utils.Currency.get(payload.user_id)
-            i = utils.Items.get(payload.user_id)
             lot = utils.Lottery.get(1)
 
             item = {"name": "BROKEN OH NO", "coin": -1}
@@ -208,7 +207,7 @@ class lottery_handler(Cog):
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    i.lot_tickets += 5
+                    c.lot_tickets += 5
                     lot.coins += item['coin']
 
             if emoji == "🍎":
@@ -218,7 +217,7 @@ class lottery_handler(Cog):
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    i.lot_tickets += 10
+                    c.lot_tickets += 10
                     lot.coins += item['coin']
 
             if emoji == "🍐":
@@ -228,7 +227,7 @@ class lottery_handler(Cog):
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    i.lot_tickets += 25
+                    c.lot_tickets += 25
                     lot.coins += item['coin']
 
             if emoji == "🍋":
@@ -238,7 +237,7 @@ class lottery_handler(Cog):
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    i.lot_tickets += 50
+                    c.lot_tickets += 50
                     lot.coins += item['coin']
 
             if emoji == "🍇":
@@ -248,14 +247,13 @@ class lottery_handler(Cog):
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    i.lot_tickets += 100
+                    c.lot_tickets += 100
                     lot.coins += item['coin']
 
 
             #! Save to databse
             async with self.bot.database() as db:
                 await c.save(db)
-                await i.save(db)
                 await lot.save(db)
 
             #! Check to see total reactions on the message

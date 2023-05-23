@@ -54,8 +54,6 @@ class Serpent(commands.AutoShardedBot):
             utils.Moderation.all_moderation.clear()
             utils.Levels.all_levels.clear()
             utils.Currency.all_currency.clear()
-            utils.Sonas.all_sonas.clear()
-            utils.Nsfw_sonas.all_nsfw_sonas.clear()
             utils.Timers.all_timers.clear()
             utils.Tracking.all_tracking.clear()
             utils.Staff_Track.all_staff_track.clear()
@@ -70,8 +68,6 @@ class Serpent(commands.AutoShardedBot):
                 moderation = await db('SELECT * FROM moderation')
                 levels = await db('SELECT * FROM levels')
                 currency = await db('SELECT * FROM currency')
-                sonas = await db('SELECT * FROM sonas')
-                nsfw_sonas = await db('SELECT * FROM nsfw_sonas')
                 timers = await db('SELECT * FROM timers')
                 tracking = await db('SELECT * FROM tracking')
                 staff_track = await db('SELECT * FROM staff_track')
@@ -88,10 +84,6 @@ class Serpent(commands.AutoShardedBot):
                 utils.Levels(**i)
             for i in currency:
                 utils.Currency(**i)
-            for i in sonas:
-                utils.Sonas(**i)
-            for i in nsfw_sonas:
-                utils.Nsfw_sonas(**i)
             for i in timers:
                 utils.Timers(**i)
             for i in tracking:
