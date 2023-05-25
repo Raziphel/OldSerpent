@@ -241,7 +241,7 @@ class lottery_handler(Cog):
                     lot.coins += item['coin']
 
             if emoji == "🍇":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 100 lottery tickets!\nCost: {coin} 5,000x", footer=" "))
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 100 lottery tickets!\nCost: {coin} 100,000x", footer=" "))
                 item['name'] = "100 Tickets"
                 item['coin'] = 100000
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
