@@ -250,7 +250,7 @@ class Loops(Cog):
         scp_suggestions = guild.get_channel(1056747785749278761) #? SCP suggestions Channel
         emoji_suggestions = guild.get_channel(1109756661331152996) #? Emoji suggestions Channel
         supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
-        channels = [bot_usage, issues, scp_suggestions, art, suggestions, emoji_suggestions, scp_suggestions]
+        channels = [supporter, bot_usage, issues, scp_suggestions, art, suggestions, emoji_suggestions, scp_suggestions]
         suggestion_channels = [suggestions, scp_suggestions, emoji_suggestions]
         last_message = None
         for channel in channels:
