@@ -70,7 +70,7 @@ class Daily(Cog):
         await utils.CoinFunctions.earn(earner=ctx.author, amount=coins)
 
         # ! Add xP!
-        xp = round((lvl.level * (2.25+(daily*0.25))) * rng)
+        xp = round((lvl.level * (2.25+(daily*0.15))) * rng)
         lvl.exp += xp
 
         coin_e = self.bot.config['emotes']['coin']

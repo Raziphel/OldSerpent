@@ -80,11 +80,13 @@ class StarboardHandler(commands.Cog):
             ):
                 return  # Cannot use star emoji in suggestion channels
 
-            if str(payload.emoji) == self.CUSTOM_UPVOTE_EMOJI and channel.id not in (
-                    self.bot.config['channels']['suggestions'],
-                    self.bot.config['channels']['premium_suggestions']
-            ):
-                return  # Custom upvote emoji can only be used in suggestion channels
+            try:
+                if str(payload.emoji) == self.CUSTOM_UPVOTE_EMOJI and channel.id not in (
+                        self.bot.config['channels']['suggestions'],
+                        self.bot.config['channels']['premium_suggestions']
+                ):
+                    return  # Custom upvote emoji can only be used in suggestion channels
+            except: pass
 
             message = await channel.fetch_message(payload.message_id)  # The original message
             starboard_channel = guild.get_channel(self.bot.config['channels']['starboard'])
