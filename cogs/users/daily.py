@@ -45,6 +45,7 @@ class Daily(Cog):
         # ! Got daily
         elif (day.last_daily + timedelta(hours=22)) <= dt.utcnow():
             day.daily += 1
+            day.last_daily = dt.utcnow()
 
         rng = choice([1, 1.25, 1.5, 1.75, 2, 3])
         rarity = "Common"
@@ -137,7 +138,6 @@ class Daily(Cog):
             )
 
         # ! Save data changes
-        day.last_daily = dt.utcnow()
         async with self.bot.database() as db:
             await day.save(db)
             await lvl.save(db)
