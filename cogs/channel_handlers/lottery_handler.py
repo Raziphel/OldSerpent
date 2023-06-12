@@ -59,9 +59,10 @@ class lottery_handler(Cog):
 
     async def increaser(self):
         await self.bot.wait_until_ready()
-        lot = utils.Lottery.get(1)
-        lot.coins += 10
-        await sleep(60)
+        while not self.bot.is_closed():
+            lot = utils.Lottery.get(1)
+            lot.coins += 10
+            await sleep(60)
 
 
     async def lottery(self):
