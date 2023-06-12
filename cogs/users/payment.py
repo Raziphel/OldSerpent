@@ -41,10 +41,10 @@ class Payment(Cog):
 
         # Check if the recipient is the same as the user.
         if recipient == ctx.author:
-            return await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"{ctx.author} You can't pay yourself coins! stupid..."))
+            return await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"{ctx.author.name} You can't pay yourself coins! stupid..."))
 
         if amount <= 10:
-            return await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"{ctx.author} Has to be more than 10!"))
+            return await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"{ctx.author.name} Has to be more than 10!"))
 
         # Check if the user has enough coins.
         c = utils.Currency.get(ctx.author.id)
@@ -55,7 +55,7 @@ class Payment(Cog):
 
         await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"**{ctx.author} sent {floor(amount-tax):,}x {coin_e} to {recipient}!**\n*Taxed for: {floor(tax):,}*"))
 
-        await self.coin_logs.send(f"**{ctx.author}** payed **{amount} {coin_e}** to **{recipient}**!")
+        await self.coin_logs.send(f"**{ctx.author.name}** payed **{amount} {coin_e}** to **{recipient.name}**!")
 
 
 def setup(bot):

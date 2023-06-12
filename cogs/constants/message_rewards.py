@@ -105,7 +105,7 @@ class Message_Rewards(Cog):
                 await message.clear_reactions()
                 coin = choice([100, 150, 200, 250, 300])
                 await utils.CoinFunctions.earn(earner=user, amount=coin)
-                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} found **{coin} {coin_e}x**"))
+                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user.name} found **{coin} {coin_e}x**"))
                 await coin_logs.send(f"**{user}** found **{coin} {coin_e}**")
                 #! Quest 1 Complete
                 await self.bot.get_cog('Quests').get_quest(user=user, quest_no=1, completed=True)
@@ -116,7 +116,7 @@ class Message_Rewards(Cog):
                 await message.clear_reactions()
                 coin = choice([200, 250, 300])
                 await utils.CoinFunctions.earn(earner=user, amount=coin)
-                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a bunny!**"))
+                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user.name} got **{coin} {coin_e}x from a bunny!**"))
                 await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a bunny!**")
                 #! Quest 4 Complete
                 await self.bot.get_cog('Quests').get_quest(user=user, quest_no=4, completed=True)
@@ -127,7 +127,7 @@ class Message_Rewards(Cog):
                 await message.clear_reactions()
                 coin = choice([1000, 3000, 5000])
                 await utils.CoinFunctions.earn(earner=user, amount=coin)
-                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{coin} {coin_e}x from a sparkle!**"))
+                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user.name} got **{coin} {coin_e}x from a sparkle!**"))
                 await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a sparkle!**")
 
         elif str(payload.emoji) == "🎟":
@@ -136,7 +136,7 @@ class Message_Rewards(Cog):
                 await message.clear_reactions()
                 tix = choice([1, 2, 3])
                 i.lot_tickets += tix
-                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user} got **{tix} Lottery Tickets!**"))
+                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user.name} got **{tix} Lottery Tickets!**"))
                 await coin_logs.send(f"**{user}** got **{tix} Lottery Tickets!!**")
 
 

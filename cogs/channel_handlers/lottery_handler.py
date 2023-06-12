@@ -17,6 +17,7 @@ class lottery_handler(Cog):
         self.force_end = False
         self.bot.loop.create_task(self.lott_msg())
         self.bot.loop.create_task(self.lottery())
+        self.bot.loop.create_task(self.increaser())
 
 
 
@@ -56,7 +57,11 @@ class lottery_handler(Cog):
             await sleep(60) 
 
 
-
+    async def increaser(self):
+        await self.bot.wait_until_ready()
+        lot = utils.Lottery.get(1)
+        lot.coins += 10
+        await sleep(60)
 
 
     async def lottery(self):
@@ -103,6 +108,10 @@ class lottery_handler(Cog):
 
             #! If it is time to do the lottery
             if (lot.lot_time + timedelta(hours=72)) < dt.now() or self.force_end == True:
+                if lot.coins < 250000: #! Check if it has enough money!
+                    lot.lot_time = dt.now()
+                    await ch.send(embed=utils.SpecialEmbed(desc=f"The lottery must have atleast 250,000 coins for there to be a winner!\nPostponing, lottery!"))
+                    return
                 lot.lot_time = dt.now()
                 self.force_end = False
                 print("Ran the lottery")
@@ -144,7 +153,7 @@ class lottery_handler(Cog):
                 rc = utils.Currency.get(550474149332516881)
 
                 # now tickets is a list of user ids, where each user ID appears the same amount of times as the tickets they've purchased
-                await ch.send(content="<@&1054143874538426368>", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner}**!"))
+                await ch.send(content="<@winner.name>", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner.name}**!"))
                 lot_winnings = await utils.CoinFunctions.pay_tax(payer=winner, amount=lot.coins)
                 c.coins += lot_winnings
                 rc.coins -= lot_winnings
