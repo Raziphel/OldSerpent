@@ -87,6 +87,7 @@ total_coins = 25000000
     adult_library_pass = 1029965238742810665
     server_updates = 1054142893872398346
     discord_updates = 1054143874538426368
+    lot_restricted = 1118999822070992926
 
 
 [emotes]

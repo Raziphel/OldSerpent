@@ -156,6 +156,8 @@ class lottery_handler(Cog):
                 # now tickets is a list of user ids, where each user ID appears the same amount of times as the tickets they've purchased
                 await ch.send(content="<@winner.name>", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner.name}**!"))
                 lot_winnings = await utils.CoinFunctions.pay_tax(payer=winner, amount=lot.coins)
+                role = utils.DiscordGet(guild.roles, name="LotRestricted")
+                await winner.add_roles(role, reason="Won the 24 hour default lottery~")
                 c.coins += lot_winnings
                 rc.coins -= lot_winnings
                 lot.last_winner_id = winner.id
@@ -204,7 +206,7 @@ class lottery_handler(Cog):
             item = {"name": "BROKEN OH NO", "coin": -1}
             bought = False
 
-            restricted = utils.DiscordGet(guild.roles, name="Lot Restricted")
+            restricted = utils.DiscordGet(guild.roles, name="LotRestricted")
             if restricted in user.roles: #! If they try to warn a staff member!
                 await user.send(embed=utils.WarningEmbed(title="You are lot restricted"))
                 return
