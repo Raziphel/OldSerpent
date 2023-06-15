@@ -91,7 +91,7 @@ class lottery_handler(Cog):
                 text = [f"The Weekly Lottery Has: **{t.day-1} days, {t.hour} hours and {t.minute} minutes** remaining!\n\n**Top Ticket Holders:**\n"]
                 for index, (user, rank) in enumerate(zip(users, ranks)):
                     if index < 20:
-                        text.append(f"#{index+1} **{user}** --> {floor(rank.lot_tickets):,} 🎟")
+                        text.append(f"#{index+1} **{user.name}** --> {floor(rank.lot_tickets):,} 🎟")
 
                 #! Set up the embed
                 embed = Embed(color=randint(1, 0xffffff))
