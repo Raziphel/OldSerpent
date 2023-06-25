@@ -184,7 +184,7 @@ class Profile(Cog):
             required_exp = round(levels.level ** 2.75)
 
         avatar = await self.get_user_avatar(member)
-        username = str(member)
+        username = str(member.name)
         title = str(member.top_role)
         current_level = levels.level
         current_experience = floor(levels.exp)
