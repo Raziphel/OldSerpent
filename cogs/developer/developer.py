@@ -339,10 +339,10 @@ class Developer(Cog):
     async def resettix(self, ctx):
         guild = self.bot.get_guild(self.bot.config['garden_id'])
         for user_id, user_currency in utils.Currency.all_currency.items():
+            print('reset tix')
             async with self.bot.database() as db:
                 user_currency.lot_tickets = 0
                 await user_currency.save(db)
-                print('reset tix')
 
 
 
