@@ -9,7 +9,7 @@ class CoinFunctions(object):
     bot = None
 
     @property
-    async def tax_rate(cls):
+    def tax_rate(cls):
         return 0.08 
 
     @classmethod
