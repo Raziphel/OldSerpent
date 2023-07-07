@@ -44,7 +44,6 @@ class Daily(Cog):
         # ! Missed daily
         elif (day.last_daily + timedelta(days=3)) <= dt.utcnow():
             day.daily = 1
-            await ctx.send(embed=utils.DefaultEmbed(title=f"You missed your daily!", desc=f"**Your daily streak has been reset...**"))
 
         # ! Got daily
         elif (day.last_daily + timedelta(hours=22)) <= dt.utcnow():
