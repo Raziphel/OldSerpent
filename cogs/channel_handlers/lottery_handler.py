@@ -174,7 +174,7 @@ class lottery_handler(Cog):
             bought = False
 
             #! Get the correct item
-            if emoji == "🎟":
+            if emoji == ":tickets:":
                 if c.lot_tickets == 1:
                     msg = await user.send(embed=utils.LogEmbed(type="negative", title="Already in the lottery!", desc=f"You already have a ticket to the current lottery!", footer=" "))
                     return
