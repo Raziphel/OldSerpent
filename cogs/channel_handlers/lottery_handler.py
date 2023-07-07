@@ -70,7 +70,7 @@ class lottery_handler(Cog):
 
                 msg = await ch.fetch_message(1103507090389078046)
                 tickets = utils.Items.get_total_tickets()
-                embed=Embed(description=f"The Weekly Lottery Has: **{t.day-1} days, {t.hour} hours and {t.minute} minutes** remaining!\n\n**There is currently {tickets:,}x people in the running for this lottery!**", color=randint(1, 0xffffff))
+                embed=Embed(description=f"The Weekly Lottery Has: **{t.day-1} days, {t.hour} hours and {t.minute} minutes** remaining!\n\nThere is currently **{tickets:,}x participants** in the running for this lottery!", color=randint(1, 0xffffff))
                 await msg.edit(content=" ", embed=embed)
 
                 if lot.lot_time == None:
