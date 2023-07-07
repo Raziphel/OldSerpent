@@ -336,7 +336,7 @@ class Developer(Cog):
     @command()
     async def resettix(self, ctx):
         guild = self.bot.get_guild(self.bot.config['garden_id'])
-        for member in guild.members:
+        for member in utils.Currency.all_currency:
             c = utils.Items.get(member.id)
             c.lot_tickets = 0
             async with self.bot.database() as db:
