@@ -24,7 +24,7 @@ class CoinFunctions(object):
         async with cls.bot.database() as db:
             await cp.save(db)
             await cr.save(db)
-        return amount-new_amount
+        return amount-new_amount #? Returns the amount taxed
 
 
     @classmethod 
