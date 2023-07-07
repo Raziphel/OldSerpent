@@ -13,6 +13,8 @@ import os
 import sys
 import subprocess
 
+from asyncio import iscoroutine, gather
+from traceback import format_exc
 
 def insert_returns(body):
     # insert return stmt if the last expression is a expression statement
@@ -337,7 +339,7 @@ class Developer(Cog):
     async def resettix(self, ctx):
         guild = self.bot.get_guild(self.bot.config['garden_id'])
         for member in utils.Currency.all_currency:
-            c = utils.Items.get(member.id)
+            c = utils.Currency.get(member.id)
             c.lot_tickets = 0
             async with self.bot.database() as db:
                 await c.save(db)
