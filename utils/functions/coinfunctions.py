@@ -8,6 +8,10 @@ import utils
 class CoinFunctions(object):
     bot = None
 
+    @property
+    async def tax_rate():
+        return 0.08 
+
     @classmethod
     async def pay_user(cls, payer:Member, receiver:Member, amount:int):
         '''Use for payment between users (Taxed)'''
@@ -16,10 +20,11 @@ class CoinFunctions(object):
         cp = utils.Currency.get(payer.id)
         cr = utils.Currency.get(receiver.id)
         new_amount = await cls.pay_tax(payer=payer, amount=amount)
+        taxed = amount - new_amount
 
-        if cp.coins >= amount: #! Check they have enough coins to pay.
-            cp.coins -= new_amount
-            cr.coins += new_amount
+        if cp.coins >= amount+taxed: #! Check they have enough coins to pay.
+            cp.coins -= amount+taxed
+            cr.coins += amount
 
         async with cls.bot.database() as db:
             await cp.save(db)
@@ -36,7 +41,7 @@ class CoinFunctions(object):
         cr = utils.Currency.get(550474149332516881)
 
         #! Determine tax amount
-        new_amount = amount*0.92 #? 8% Tax
+        new_amount = amount*(1.00-cls.tax_rate) 
         taxed = amount - new_amount
 
         cp.coins -= taxed

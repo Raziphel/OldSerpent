@@ -128,40 +128,6 @@ CREATE TABLE quests (
 #########################    SERPENT'S GARDEN      ########################
 ###########################################################################
 
-CREATE TABLE factions (
-    faction_id VARCHAR(60) NOT NULL,
-    verified BOOLEAN DEFAULT False,
-    level integer,
-    coins integer,
-    color integer,
-    owner_id bigint,
-    q5 boolean NOT NULL DEFAULT FALSE,
-    q6 boolean NOT NULL DEFAULT FALSE,
-    q7 boolean NOT NULL DEFAULT FALSE,
-    q8 boolean NOT NULL DEFAULT FALSE,
-    q9 boolean NOT NULL DEFAULT FALSE,
-    PRIMARY KEY (faction_id)
-);
-
-
-
-
-CREATE TABLE role (
-    user_id BIGINT NOT NULL,
-    id VARCHAR(60) NOT NULL DEFAULT "None",
-    q2 boolean NOT NULL DEFAULT FALSE,
-    q3 boolean NOT NULL DEFAULT FALSE,
-    q4 boolean NOT NULL DEFAULT FALSE,
-    q5 boolean NOT NULL DEFAULT FALSE,
-    q6 boolean NOT NULL DEFAULT FALSE,
-    q7 boolean NOT NULL DEFAULT FALSE,
-    q8 boolean NOT NULL DEFAULT FALSE,
-    q9 boolean NOT NULL DEFAULT FALSE,
-    PRIMARY KEY (user_id)
-);
-
-
-
 
 
 

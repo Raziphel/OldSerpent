@@ -13,7 +13,7 @@ class Payment(Cog):
 
     @property  # ! The members logs
     def coin_logs(self):
-        return self.bot.get_channel(self.bot.config['channels']['coin_logs'])  # ?Coins log channel
+        return self.bot.get_channel(self.bot.config['channels']['coin_logs']) 
 
     @cooldown(1, 30, BucketType.user)
     @command(
@@ -48,12 +48,12 @@ class Payment(Cog):
 
         # Check if the user has enough coins.
         c = utils.Currency.get(ctx.author.id)
-        if amount > c.coins:
-            return await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"{recipient.mention} you don't have that many coins."))
+        if amount > (c.coins + (amount*utils.CoinFunctions.tax_rate())):
+            return await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"{recipient.mention} you don't have that many coins.  (Could be due to taxes)"))
 
         tax = await utils.CoinFunctions.pay_user(payer=ctx.author, receiver=recipient, amount=amount)
 
-        await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"**{ctx.author} sent {floor(amount):,}x {coin_e} to {recipient}!**\n*Additional Taxes: {floor(tax):,}*"))
+        await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"**{ctx.author} sent {floor(amount-tax):,}x {coin_e} to {recipient}!**\n*Taxes: {floor(tax):,}*"))
 
         await self.coin_logs.send(f"**{ctx.author.name}** payed **{amount} {coin_e}** to **{recipient.name}**!")
 
