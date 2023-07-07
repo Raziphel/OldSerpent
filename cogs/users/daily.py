@@ -14,13 +14,11 @@ class Daily(Cog):
 
     @property  # ! The members logs
     def coin_logs(self):
-        return self.bot.get_channel(self.bot.config['channels']['coin_logs'])  # ?Coins log channel
+        return self.bot.get_channel(self.bot.config['channels']['coin_logs'])
 
 
 
-    @command(
-        application_command_meta=ApplicationCommandMeta(),
-    )
+    @command(application_command_meta=ApplicationCommandMeta())
     async def daily(self, ctx):
         """Claim you daily rewards!"""
         # ! Define variables
@@ -36,31 +34,44 @@ class Daily(Cog):
         if (day.last_daily + timedelta(hours=22)) >= dt.utcnow():
             tf = day.last_daily + timedelta(hours=22)
             t = dt(1, 1, 1) + (tf - dt.utcnow())
-
-            return await ctx.interaction.response.send_message(f"**You can claim your daily rewards in {t.hour} hours and {t.minute} minutes!**")
+            return await ctx.interaction.response.send_message(
+                embed=utils.DefaultEmbed(
+                    title=f"You have already claimed your daily rewards!",
+                    desc=f"⏰**You can claim them again in {t.hour} hours and {t.minute} minutes!**",
+                    footer=footer
+                )
+            )
 
         # ! Missed daily
         elif (day.last_daily + timedelta(days=3)) <= dt.utcnow():
             day.daily = 1
+            await ctx.interaction.response.send_message(
+                embed=utils.DefaultEmbed(
+                    title=f"You missed you daily!",
+                    desc=f"**Your daily streak has been reset...**",
+                    footer=footer
+                )
+            )
+
         # ! Got daily
         elif (day.last_daily + timedelta(hours=22)) <= dt.utcnow():
             day.daily += 1
             day.last_daily = dt.utcnow()
 
         rng = choice([1, 1.25, 1.5, 1.75, 2, 3])
-        rarity = "Common"
+        rarity = "🍋Common"
         if rng == 1:
-            "Common"
+            "🍋Common"
         elif rng == 1.25:
-            rarity = "Uncommon"
+            rarity = "🍇Uncommon"
         elif rng == 1.5:
-            rarity = "Rare"
+            rarity = "🍪Rare"
         elif rng == 1.75:
-            rarity = "Epic"
+            rarity = "🔥Epic"
         elif rng == 2:
-            rarity = "Legendary"
+            rarity = "🌟Legendary"
         elif rng == 3:
-            rarity = "Mythic"
+            rarity = "✨Mythical"
 
         # ! Determine reward variables
         if day.daily >= 365:
