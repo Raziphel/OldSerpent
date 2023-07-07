@@ -41,7 +41,7 @@ class CoinFunctions(object):
         cr = utils.Currency.get(550474149332516881)
 
         #! Determine tax amount
-        new_amount = amount*(1.00-cls.tax_rate()) 
+        new_amount = amount*(1.00-cls.tax_rate) 
         taxed = amount - new_amount
 
         cp.coins -= taxed
