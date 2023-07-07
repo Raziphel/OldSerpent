@@ -338,7 +338,8 @@ class Developer(Cog):
     @command()
     async def resettix(self, ctx):
         async with self.bot.database() as db:
-            await db('UPDATE currency set lot_tickets = 0')
+            await db('UPDATE currency SET lot_tickets = 0')
+            
 
 
 
