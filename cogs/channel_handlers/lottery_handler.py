@@ -17,7 +17,6 @@ class lottery_handler(Cog):
         self.force_end = False
         self.bot.loop.create_task(self.lott_msg())
         self.bot.loop.create_task(self.lottery())
-        self.bot.loop.create_task(self.increaser())
 
 
 
@@ -36,8 +35,8 @@ class lottery_handler(Cog):
         await self.bot.wait_until_ready()
         counter = 0
         while not self.bot.is_closed():
-            #! Define emotes
 
+            #! Define emotes
             coin_e = self.bot.config['emotes']['coin']
 
             counter += 1
@@ -45,24 +44,12 @@ class lottery_handler(Cog):
             guild = self.bot.get_guild(self.bot.config['garden_id'])
             ch = guild.get_channel(self.bot.config['channels']['lottery'])
             msg = await ch.fetch_message(1103507070210285640)
-            msg2 = await ch.fetch_message(1103507080826064938)
             tickets = utils.Items.get_total_tickets()
 
-            embed=Embed(description=f"**__Welcome to the Lottery!!!__**\n\n**Current Prize Pool: {lot.coins:,}x {coin_e}**\n\n**Congrats to the last winner**\n<@{lot.last_winner_id}>\n**They Won: {coin_e} {lot.last_amount:,} Coins**", color=randint(1, 0xffffff))
+            embed=Embed(description=f"**🐍 Welcome to the Serpent's Lottery 🎟**\n\n**Current Pot Toal:** {lot.coins:,}x {coin_e}\n\n**Congrats to the last winner**\n<@{lot.last_winner_id}> - **They Won:** {lot.last_amount:,}x {coin_e}\n\n**To participate in the lottery, you must put 20,000x {coin_e} in to the lottery by clicking the 🎟 reaction!**", color=randint(1, 0xffffff))
             await msg.edit(content=" ", embed=embed)
-            
-            embed=Embed(description=f"**__Welcome to the lottery store!!!__**\n*You're really fucking bad with money...*\n\n🍏 -> 5 Tickets\n**{coin_e} 5,000x**\n\n🍎 -> 10 Tickets\n**{coin_e} 10,000x**\n\n🍐 -> 25 Tickets\n**{coin_e} 25,000x**\n\n🍋 -> 50 Tickets\n**{coin_e} 50,000x**\n\n🍇 -> 100 Tickets\n**{coin_e} 100,000x**", color=randint(1, 0xffffff))
-            await msg2.edit(content=f"**Here you can purchase lottery tickets!  It is a weighted lottery, so the more tickets the higher chances!**",embed=embed)
-            
+
             await sleep(60) 
-
-
-    async def increaser(self):
-        await self.bot.wait_until_ready()
-        while not self.bot.is_closed():
-            lot = utils.Lottery.get(1)
-            lot.coins += 10
-            await sleep(60)
 
 
     async def lottery(self):
@@ -78,26 +65,10 @@ class lottery_handler(Cog):
                 lot.lot_time = dt.utcnow()
 
             try:
-                tf = lot.lot_time + timedelta(hours=72)
+                tf = lot.lot_time + timedelta(days=7)
                 t = dt(1, 1, 1) + (tf - dt.now())
 
-                sorted_rank = utils.Currency.sort_tickets()
-                ranks = sorted_rank[:20]
-                users = []
-                for i in sorted_rank:
-                    user = self.bot.get_user(i.user_id)
-                    if user != None:
-                        users.append(user)
-                text = [f"The Weekly Lottery Has: **{t.day-1} days, {t.hour} hours and {t.minute} minutes** remaining!\n\n**Top Ticket Holders:**\n"]
-                for index, (user, rank) in enumerate(zip(users, ranks)):
-                    if index < 20:
-                        text.append(f"#{index+1} **{user.name}** --> {floor(rank.lot_tickets):,} 🎟")
 
-                #! Set up the embed
-                embed = Embed(color=randint(1, 0xffffff))
-                embed.set_author(name="The lottery timer")
-                embed.set_footer(text=" ")
-                embed.add_field(name='Lottery Tickets', value='\n'.join(text), inline=True)
                 msg = await ch.fetch_message(1103507090389078046)
                 await msg.edit(content="Here's the ones with the most tickets!", embed=embed)
 
@@ -108,11 +79,7 @@ class lottery_handler(Cog):
             except: pass #? LOTTERY TIME
 
             #! If it is time to do the lottery
-            if (lot.lot_time + timedelta(hours=72)) < dt.now() or self.force_end == True:
-                if lot.coins < 250000: #! Check if it has enough money!
-                    lot.lot_time = dt.now()
-                    await ch.send(embed=utils.SpecialEmbed(desc=f"The lottery must have atleast 250,000 coins for there to be a winner!\nPostponing, lottery!"))
-                    return
+            if (lot.lot_time + timedelta(days=7)) < dt.now() or self.force_end == True:
                 lot.lot_time = dt.now()
                 self.force_end = False
                 print("Ran the lottery")
@@ -154,15 +121,14 @@ class lottery_handler(Cog):
                 rc = utils.Currency.get(550474149332516881)
 
                 # now tickets is a list of user ids, where each user ID appears the same amount of times as the tickets they've purchased
-                await ch.send(content="<@winner.name>", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner.name}**!"))
+                coin_e = self.bot.config['emotes']['coin']
+                await ch.send(content="<@winner.name>", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner.name}**!\n**They won:** {lot.coins:,}x {coin_e}"))
                 lot_winnings = await utils.CoinFunctions.pay_tax(payer=winner, amount=lot.coins)
-                role = utils.DiscordGet(guild.roles, name="LotRestricted")
-                await winner.add_roles(role, reason="Won the 24 hour default lottery~")
                 c.coins += lot_winnings
                 rc.coins -= lot_winnings
                 lot.last_winner_id = winner.id
                 lot.last_amount = lot.coins
-                lot.coins = 25000
+                lot.coins = 0
                 async with self.bot.database() as db:
                     await lot.save(db)
                     await c.save(db)
@@ -206,60 +172,18 @@ class lottery_handler(Cog):
             item = {"name": "BROKEN OH NO", "coin": -1}
             bought = False
 
-            restricted = utils.DiscordGet(guild.roles, name="LotRestricted")
-            if restricted in user.roles: #! If they try to warn a staff member!
-                await user.send(embed=utils.WarningEmbed(title="You are lot restricted"))
-                return
-
             #! Get the correct item
-            if emoji == "🍏":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 5 lottery tickets!\nCost: {coin} 5,000x", footer=" "))
-                item['name'] = "5 Tickets"
-                item['coin'] = 5000
+            if emoji == "🎟":
+                if c.lot_tickets == 1:
+                    msg = await user.send(embed=utils.LogEmbed(type="negative", title="Already in the lottery!", desc=f"You already have a ticket to the current lottery!", footer=" "))
+                    return
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a lottery tickets!\nCost: {coin} 20,000x", footer=" "))
+                item['name'] = "Lottery Ticket"
+                item['coin'] = 20000
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    c.lot_tickets += 5
-                    lot.coins += item['coin']
-
-            if emoji == "🍎":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 10 lottery tickets!\nCost: {coin} 10,000x", footer=" "))
-                item['name'] = "10 Tickets"
-                item['coin'] = 10000
-                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
-                    bought = True
-                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    c.lot_tickets += 10
-                    lot.coins += item['coin']
-
-            if emoji == "🍐":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 25 lottery tickets!\nCost: {coin} 5,000x", footer=" "))
-                item['name'] = "25 Tickets"
-                item['coin'] = 25000
-                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
-                    bought = True
-                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    c.lot_tickets += 25
-                    lot.coins += item['coin']
-
-            if emoji == "🍋":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 50 lottery tickets!\nCost: {coin} 5,000x", footer=" "))
-                item['name'] = "50 Tickets"
-                item['coin'] = 50000
-                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
-                    bought = True
-                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    c.lot_tickets += 50
-                    lot.coins += item['coin']
-
-            if emoji == "🍇":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase 100 lottery tickets!\nCost: {coin} 100,000x", footer=" "))
-                item['name'] = "100 Tickets"
-                item['coin'] = 100000
-                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
-                    bought = True
-                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    c.lot_tickets += 100
+                    c.lot_tickets += 1
                     lot.coins += item['coin']
 
 

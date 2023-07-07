@@ -40,7 +40,7 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def ev(self, ctx, *, content:str):
         '''
         Runs code through Python
@@ -56,14 +56,14 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(aliases=['cult'], hidden=True)
+    @command(aliases=['cult'])
     async def cultist(self, ctx, user:Member):
         await utils.UserFunction.verify_user(user=user, type="cultist")
         await ctx.send(embed=utils.DevEmbed(desc=f"<:Pentagram:1093983216244891689>"))
 
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def optin(self, ctx):
         guild = self.bot.get_guild(self.bot.config['garden_id'])
         mc = utils.DiscordGet(guild.roles, id=1054143874538426368)
@@ -76,7 +76,7 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(aliases=['r'], hidden=True)
+    @command(aliases=['r'])
     async def restart(self, ctx):
         '''Restarts the bot'''  
         msg = await ctx.send(embed=utils.DevEmbed(title=f"Restarting...", guild=ctx.guild))
@@ -113,7 +113,7 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def fixroles(self, ctx):
         muted = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
         everyone = utils.DiscordGet(ctx.guild.roles, id=689534383878701223)
@@ -131,7 +131,7 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def setsticky(self, ctx):
         sti = utils.Sticky.get(ctx.channel.id)
         msg = await ctx.send('Making Sticky!')
@@ -142,7 +142,7 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def adults(self, ctx):
         '''Runs code through Python'''
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
@@ -159,7 +159,7 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def setmsgs(self, ctx, user:Member, amount:int):
         if not user:
             user = ctx.author
@@ -169,7 +169,7 @@ class Developer(Cog):
             await c.save(db)
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def setdaily(self, ctx, user:Member, amount:int):
         if not user:
             user = ctx.author
@@ -179,7 +179,7 @@ class Developer(Cog):
             await c.save(db)
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def setvc(self, ctx, user:Member, amount:int):
         if not user:
             user = ctx.author
@@ -189,7 +189,7 @@ class Developer(Cog):
             await c.save(db)
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def setcoins(self, ctx, user:Member, amount:int):
         if not user:
             user = ctx.author
@@ -199,7 +199,7 @@ class Developer(Cog):
             await c.save(db)
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def addcoins(self, ctx, user:Member, amount:int):
         if not user:
             user = ctx.author
@@ -211,7 +211,7 @@ class Developer(Cog):
             await c.save(db)
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def setlevel(self, ctx, user:Member, amount:int):
         if not user:
             user = ctx.author
@@ -222,7 +222,7 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def remove(self, ctx, user):
         utils.Levels.delete(user)
         utils.Currency.delete(user)
@@ -252,7 +252,7 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def randcomizelevels(self, ctx):
         guild = self.bot.get_guild(self.bot.config['garden_id'])
         for user in guild.members:
@@ -268,7 +268,7 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def resetlevels(self, ctx):
         guild = self.bot.get_guild(self.bot.config['garden_id'])
         for user in guild.members:
@@ -301,7 +301,7 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def resetcoins(self, ctx):
         guild = self.bot.get_guild(self.bot.config['garden_id'])
         for user in guild.members:
@@ -333,7 +333,7 @@ class Developer(Cog):
 
 
     @utils.is_dev()
-    @command(hidden=True)
+    @command()
     async def resettix(self, ctx):
         guild = self.bot.get_guild(self.bot.config['garden_id'])
         for member in guild.members:
