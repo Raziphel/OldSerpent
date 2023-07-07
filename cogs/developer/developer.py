@@ -342,6 +342,7 @@ class Developer(Cog):
             async with self.bot.database() as db:
                 user_currency.lot_tickets = 0
                 await user_currency.save(db)
+                print('reset tix')
 
 
 
