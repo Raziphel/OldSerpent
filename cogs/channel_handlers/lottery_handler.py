@@ -44,7 +44,6 @@ class lottery_handler(Cog):
             guild = self.bot.get_guild(self.bot.config['garden_id'])
             ch = guild.get_channel(self.bot.config['channels']['lottery'])
             msg = await ch.fetch_message(1103507070210285640)
-            tickets = utils.Items.get_total_tickets()
 
             embed=Embed(description=f"**🐍 Welcome to the Serpent's Lottery 🎟**\n\n**Current Pot Toal:** {lot.coins:,}x {coin_e}\n\n**Congrats to the last winner**\n<@{lot.last_winner_id}> - **They Won:** {lot.last_amount:,}x {coin_e}\n\n**To participate in the lottery, you must put 20,000x {coin_e} in to the lottery by clicking the 🎟 reaction!**", color=randint(1, 0xffffff))
             await msg.edit(content=" ", embed=embed)
@@ -70,7 +69,9 @@ class lottery_handler(Cog):
 
 
                 msg = await ch.fetch_message(1103507090389078046)
-                await msg.edit(content="Here's the ones with the most tickets!", embed=embed)
+                tickets = utils.Items.get_total_tickets()
+                embed=Embed(description=f"The Weekly Lottery Has: **{t.day-1} days, {t.hour} hours and {t.minute} minutes** remaining!\n\n**There is currently {tickets:,}x people in the running for this lottery!**", color=randint(1, 0xffffff))
+                await msg.edit(content=" ", embed=embed)
 
                 if lot.lot_time == None:
                     lot.lot_time = dt.now()
