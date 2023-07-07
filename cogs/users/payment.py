@@ -48,7 +48,7 @@ class Payment(Cog):
 
         # Check if the user has enough coins.
         c = utils.Currency.get(ctx.author.id)
-        if amount > (c.coins + (amount*utils.CoinFunctions.tax_rate)):
+        if amount > (c.coins + (amount*0.08):
             return await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(description=f"{recipient.mention} you don't have that many coins.  (Could be due to taxes)"))
 
         tax = await utils.CoinFunctions.pay_user(payer=ctx.author, receiver=recipient, amount=amount)
