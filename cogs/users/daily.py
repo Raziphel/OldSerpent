@@ -37,8 +37,7 @@ class Daily(Cog):
             return await ctx.interaction.response.send_message(
                 embed=utils.DefaultEmbed(
                     title=f"You have already claimed your daily rewards!",
-                    desc=f"⏰**You can claim them again in {t.hour} hours and {t.minute} minutes!**",
-                    footer=footer
+                    desc=f"⏰**You can claim them again in {t.hour} hours and {t.minute} minutes!**"
                 )
             )
 
@@ -48,8 +47,7 @@ class Daily(Cog):
             await ctx.interaction.response.send_message(
                 embed=utils.DefaultEmbed(
                     title=f"You missed you daily!",
-                    desc=f"**Your daily streak has been reset...**",
-                    footer=footer
+                    desc=f"**Your daily streak has been reset...**"
                 )
             )
 
