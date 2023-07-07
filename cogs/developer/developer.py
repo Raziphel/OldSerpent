@@ -338,11 +338,16 @@ class Developer(Cog):
     @command()
     async def resettix(self, ctx):
         guild = self.bot.get_guild(self.bot.config['garden_id'])
-        for member in utils.Currency.all_currency:
-            c = utils.Currency.get(member.id)
-            c.lot_tickets = 0
+        for user_id, user_currency in utils.Currency.all_currency.items():
+            member = guild.get_member(user_id)
+            
+            # Might be unnecessary, but you can do whatever you want here
+            if not member:
+                continue  # Skip, user has left the server.
+
             async with self.bot.database() as db:
-                await c.save(db)
+                user_currency.lot_tickets = 0
+                await user_currency.save(db)
 
 
 
