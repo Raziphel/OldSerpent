@@ -8,7 +8,7 @@ import utils
 class CoinFunctions(object):
     bot = None
 
-    @property
+    @classmethod
     async def tax_rate():
         return 0.08 
 
