@@ -9,6 +9,10 @@ from datetime import timedelta
 from math import floor
 from random import choice, randint
 
+import os
+import sys
+import subprocess
+
 import utils
 
 class lottery_handler(Cog):
@@ -137,6 +141,9 @@ class lottery_handler(Cog):
 
                 async with self.bot.database() as db:
                     await db('UPDATE currency SET lot_tickets = 0 WHERE lot_tickets > 0')
+
+                python = sys.executable
+                os.execl(python, python, *sys.argv)
 
             await sleep(60)
 
