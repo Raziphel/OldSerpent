@@ -19,14 +19,14 @@ class CoinFunctions(object):
         new_amount = await cls.pay_tax(payer=payer, amount=amount)
         taxed = amount - new_amount
 
-        if cp.coins >= amount+taxed: #! Check they have enough coins to pay.
-            cp.coins -= amount+taxed
+        if cp.coins >= amount: #! Check they have enough coins to pay.
+            cp.coins -= amount
             cr.coins += amount
 
         async with cls.bot.database() as db:
             await cp.save(db)
             await cr.save(db)
-        return amount-new_amount #? Returns the amount taxed
+        return taxed #? Returns the amount taxed
 
 
     @classmethod 
