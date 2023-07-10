@@ -9,6 +9,10 @@ from datetime import timedelta
 from math import floor
 from random import choice, randint
 
+import os
+import sys
+import subprocess
+
 import utils
 
 class lottery_handler(Cog):
@@ -123,7 +127,7 @@ class lottery_handler(Cog):
 
                 # now tickets is a list of user ids, where each user ID appears the same amount of times as the tickets they've purchased
                 coin_e = self.bot.config['emotes']['coin']
-                await ch.send(content="<@winner.name>", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner.name}**!\n**They won:** {lot.coins:,}x {coin_e}"))
+                await ch.send(content=f"<@winner>", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner.name}**!\n**They won:** {lot.coins:,}x {coin_e}"))
                 lot_winnings = await utils.CoinFunctions.pay_tax(payer=winner, amount=lot.coins)
                 c.coins += lot_winnings
                 rc.coins -= lot_winnings
@@ -135,11 +139,11 @@ class lottery_handler(Cog):
                     await c.save(db)
                     await rc.save(db)
 
-                for member in utils.Currency.all_currency:
-                    c = utils.Currency.get(member.id)
-                    c.lot_tickets = 0
-                    async with self.bot.database() as db:
-                        await c.save(db)
+                async with self.bot.database() as db:
+                    await db('UPDATE currency SET lot_tickets = 0 WHERE lot_tickets > 0')
+
+                python = sys.executable
+                os.execl(python, python, *sys.argv)
 
             await sleep(60)
 
