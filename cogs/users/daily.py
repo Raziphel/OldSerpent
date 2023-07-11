@@ -3,7 +3,7 @@ from datetime import datetime as dt, timedelta
 from random import choice
 
 import discord
-from discord.ext.commands import command, Cog, ApplicationCommandMeta
+from discord.ext.commands import command, Cog, ApplicationCommandMeta, cooldown
 
 import utils
 
