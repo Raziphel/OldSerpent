@@ -95,7 +95,7 @@ def calculate_xy_size(
 
 def format_number(num):
     if num < 1000:
-        return str(num)
+        return str(floor(num))
     elif num < 1000000:
         return f"{num / 1000:.1f}k"
     elif num < 1000000000:
