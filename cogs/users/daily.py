@@ -3,7 +3,7 @@ from datetime import datetime as dt, timedelta
 from random import choice
 
 import discord
-from discord.ext.commands import command, Cog, ApplicationCommandMeta
+from discord.ext.commands import command, Cog, ApplicationCommandMeta, cooldown, BucketType
 
 import utils
 
@@ -17,7 +17,7 @@ class Daily(Cog):
         return self.bot.get_channel(self.bot.config['channels']['coin_logs'])
 
 
-
+    @cooldown(1, 30, BucketType.user)
     @command(application_command_meta=ApplicationCommandMeta())
     async def daily(self, ctx):
         """Claim you daily rewards!"""
