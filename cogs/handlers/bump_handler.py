@@ -20,8 +20,8 @@ class BumpHandler(commands.Cog):
     def __init__(self, bot: commands.Bot):
         super().__init__()
         self.bot = bot
-        self.notify_task: asyncio.Task | None
-        self.notify_task = asyncio.create_task(self.bump_timer())
+        self.notify_task = None
+
 
     async def bump_timer(self):
         """
@@ -34,6 +34,11 @@ class BumpHandler(commands.Cog):
         )
         channel = self.bot.get_partial_messageable(self.BUMP_CHANNEL_ID)
         await channel.send(BUMP_TEXT)
+
+    @Cog.listener()
+    async def on_ready(self):
+        if self.notify_task is not None:
+            self.notify_task = asyncio.create_task(self.bump_timer())
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
