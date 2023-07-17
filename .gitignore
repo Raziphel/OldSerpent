@@ -7,3 +7,4 @@ _*
 .vscode/*
 .ini
 config/config.json
+.venv
