@@ -35,7 +35,7 @@ class BumpHandler(commands.Cog):
         channel = self.bot.get_partial_messageable(self.BUMP_CHANNEL_ID)
         await channel.send(BUMP_TEXT)
 
-    @Cog.listener()
+    @commands.Cog.listener()
     async def on_ready(self):
         if self.notify_task is not None:
             self.notify_task = asyncio.create_task(self.bump_timer())
