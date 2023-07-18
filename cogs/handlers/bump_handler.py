@@ -52,7 +52,6 @@ class BumpHandler(commands.Cog):
             return
         if message.author.id != self.DISBOARD_USER_ID:
             return
-        # TODO: guild check? depends if the bot is elsewhere
 
         # Check the message sent
         if not message.embeds:
