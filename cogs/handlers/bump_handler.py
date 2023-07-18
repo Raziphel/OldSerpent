@@ -5,7 +5,7 @@ from discord.ext import commands
 
 
 BUMP_TEXT = """
-<@&1068389119195107378> Please run `/bump`!  Thank you ~<3  
+<@&1130827884324458607> Please run `/bump`!  Thank you ~<3  
 """
 
 
