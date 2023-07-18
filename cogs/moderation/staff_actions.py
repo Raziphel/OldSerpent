@@ -71,7 +71,7 @@ class Staff_Actions(Cog):
     @utils.is_mod_staff()
     @command(application_command_meta=ApplicationCommandMeta(), aliases=['iban'])
     async def imageban(self, ctx, user:Member):
-        '''Restarts the bot'''  
+        '''Bans a user from posting images in general'''  
         mod = utils.Moderation.get(user.id)
         mod.image_banned = True
         async with self.bot.database() as db:
