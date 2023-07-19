@@ -163,7 +163,7 @@ class Staff_Actions(Cog):
     )
     async def clean(self, ctx):
         """Clears the bot's messages!"""
-        check = lambda m: m.author.id == self.bot.user.id or m.id == ctx.message.id or m.content.startswith(
+        check = lambda m: m.author.id == self.bot.config]['bot_id'] or m.id == ctx.message.id or m.content.startswith(
             self.bot.config['prefix'])
         await ctx.channel.purge(check=check)
 
