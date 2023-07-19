@@ -55,12 +55,7 @@ class BumpHandler(commands.Cog):
             return
 
         # Check the message sent
-        if not message.embeds:
-            return
-        embed = message.embeds[0]
-        if not isinstance(embed.description, str):
-            return
-        if "bump done!" not in embed.description.casefold():
+        if "on Discord Me." not in message.content:
             return
 
         # Alright, reset/start timer
