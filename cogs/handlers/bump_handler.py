@@ -5,17 +5,18 @@ from discord.ext import commands
 
 
 BUMP_TEXT = """
-<@&1130827884324458607> Please run `/bump`!  Thank you ~<3  
+<@&1130827884324458607> Please run `/bump` with the Disboard bot.
+Along with bumping the server on https://Discord.me/Dashboard  
 """
 
 
 class BumpHandler(commands.Cog):
 
     BUMP_CHANNEL_ID = 1020831172181372958  # TODO move to config
-    DISBOARD_USER_ID = 302050872383242240  # TODO move to config
+    DISCORDME_USER_ID = 1020831331736887406  # TODO move to config
 
-    DISBOARD_TIMEOUT = timedelta(hours=6)  # TODO move to config
-    DISBOARD_GRACE_PERIOD = timedelta(minutes=5)  # TODO move to config
+    DISCORDME_TIMEOUT = timedelta(hours=6)  # TODO move to config
+    DISCORDME_GRACE_PERIOD = timedelta(minutes=5)  # TODO move to config
 
     def __init__(self, bot: commands.Bot):
         super().__init__()
@@ -29,7 +30,7 @@ class BumpHandler(commands.Cog):
         """
 
         await asyncio.sleep(
-            (self.DISBOARD_TIMEOUT + self.DISBOARD_GRACE_PERIOD)
+            (self.DISCORDME_TIMEOUT + self.DISCORDME_GRACE_PERIOD)
             .total_seconds()
         )
         channel = self.bot.get_partial_messageable(self.BUMP_CHANNEL_ID)
@@ -50,7 +51,7 @@ class BumpHandler(commands.Cog):
         # Make sure we're in the right place
         if message.guild is None:
             return
-        if message.author.id != self.DISBOARD_USER_ID:
+        if message.author.id != self.DISCORDME_USER_ID:
             return
 
         # Check the message sent
