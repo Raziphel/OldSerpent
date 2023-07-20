@@ -49,7 +49,9 @@ class Logging(Cog):
     async def on_member_join(self, member):
         await utils.UserFunction.verify_user(user=member, type='guild')
         await utils.UserFunction.check_level(user=member)
-        await self.discord_log.send(embed=utils.LogEmbed(type="positive", title=f"{member.name} has entered the Garden.", thumbnail=member.avatar.url))
+        try:
+            await self.discord_log.send(embed=utils.LogEmbed(type="positive", title=f"{member.name} has entered the Garden.", thumbnail=member.avatar.url))
+        except: pass
 
 
     #! Logs
