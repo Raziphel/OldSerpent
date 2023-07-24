@@ -18,7 +18,6 @@ total_coins = 50000000
 
 
 [channels]
-    no_channels = 1133002668189700116
     role_change = 1021288155040714782
     announcements = 856449637412765707
     welcome = 858574910280171550
@@ -54,7 +53,7 @@ total_coins = 50000000
     rules = 856449403173994536
     handbook = 1104202870204674098
     statistics = 1104648924356169858
-
+    no_channels = 1133002668189700116
 
 
 [fur-channels]
