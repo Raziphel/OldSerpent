@@ -18,6 +18,7 @@ total_coins = 50000000
 
 
 [channels]
+    no_channels = 1133002668189700116
     role_change = 1021288155040714782
     announcements = 856449637412765707
     welcome = 858574910280171550

@@ -18,7 +18,7 @@ class rules_handler(Cog):
 
 
 
-    @Cog.listener('on_ready')
+    @Cog.listener('on_ready') #! ---> Server Rules
     async def rules(self):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         ch = guild.get_channel(self.bot.config['info_channels']['rules']) #? Rules Channel
@@ -47,6 +47,24 @@ class rules_handler(Cog):
         await rules3.edit(content=f" ", embed=embed3)
         await rules4.edit(content=f" ", embed=embed4)
 
+
+
+
+
+
+    @Cog.listener('on_ready') #! ---> No Channels
+    async def server_info(self):
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+        ch = guild.get_channel(self.bot.config['channels']['no_channels']) #? No channels Channel
+
+        msg1 = await ch.fetch_message(1133002927678697572) #? msg
+
+        coin = self.bot.config['emotes']['coin']
+
+        embed1=Embed(description=f"```cs\n█Not able to see any channels?█\n```\nAre you not able to see any channels?  Or maybe you're missing some channels!?\n\nYou can get access to multiple different areas in the server using <id:customize>!\n\nSerpent's Garden is a large community with many different areas, that not everyone wants to be able to see!  That's why it is setup this way.", color=0xFFFFFF)
+
+
+        await msg1.edit(content=f" ", embed=embed1)
 
 
 
