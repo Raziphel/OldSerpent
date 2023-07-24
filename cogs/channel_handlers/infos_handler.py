@@ -59,7 +59,7 @@ class rules_handler(Cog):
 
         msg1 = await ch.fetch_message(1133002927678697572) #? msg
 
-        embed1=Embed(title=" ", description=f"```cs\n█Not able to see any channels?█\n```\nAre you not able to see any channels?  Or maybe you're missing some channels!?\n\nYou can get access to multiple different areas in the server using <id:customize>!\n\nSerpent's Garden is a large community with many different areas, that not everyone wants to be able to see!  That's why it is setup this way.", color=0xFFFFFF)
+        embed1=Embed(description=f"```fix\n█ Not able to see any channels? █\n```\nAre you not able to see any channels?  Or maybe you're missing some channels!?\n\nYou can get access to multiple different areas in the server using <id:customize>!\n\nSerpent's Garden is a large community with many different areas, that not everyone wants to be able to see!  That's why it is setup this way.", color=0xFFFFFF)
 
 
         await msg1.edit(content=f" ", embed=embed1)
