@@ -473,14 +473,6 @@ class Profile(Cog):
 
         await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title="Your color setting has been set!", user=ctx.author))
 
-    @command(application_command_meta=ApplicationCommandMeta())
-    async def imafurry(self, ctx):
-        '''Gives you an unfortunate role...'''
-        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        furry = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['furry'])
-        await ctx.author.add_roles(furry, reason="DEGENERATE")
-        await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title="You are now a degenerate!", user=ctx.author))
-
 def setup(bot):
     x = Profile(bot)
     bot.add_cog(x)
