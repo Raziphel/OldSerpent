@@ -60,9 +60,9 @@ class rules_handler(Cog):
         msg1 = await ch.fetch_message(1133002927678697572) #? msg
         msg2 = await ch.fetch_message(1133009889204121701) #? msg
 
-        embed1=Embed(description=f"```fix\n█ Not able to see any channels? █\n```\nAre you not able to see any channels?  Or maybe you're missing some channels!?\n\n**You can get access to multiple different areas in the server using <id:customize>!**\n\nSerpent's Garden is a large community with many different areas, that not everyone wants to be able to see!  That's why it is setup this way.", color=0xFFFFFF)
+        embed1=Embed(description=f"```diff\n█ Not able to see any channels? █\n```\nAre you not able to see any channels?  Or maybe you're missing some channels!?\n\n**You can get access to multiple different areas in the server using <id:customize>!**\n\nSerpent's Garden is a large community with many different areas, that not everyone wants to be able to see!  That's why it is setup this way.", color=0xFFFFFF)
 
-        embed2=Embed(description=f"```fix\n█ Quick Fix! █\n```\nIf you are looking for a quick fix becuase you've just recently lost access to some channels, or some have just disapeared.\n**Consider clicking `Show All Channels` as seen below!", color=0xFFFFFF)
+        embed2=Embed(description=f"```arm\n█ Quick Fix! █\n```\nIf you are looking for a quick fix becuase you've just recently lost access to some channels, or some have just disapeared.\n**Consider clicking `Show All Channels` as seen below!**", color=0xFFFFFF)
         embed2.set_image(url="https://cdn.discordapp.com/attachments/550556052396179458/1133009744609673308/image.png")
 
         await msg1.edit(content=f" ", embed=embed1)
