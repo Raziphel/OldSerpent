@@ -127,7 +127,7 @@ class lottery_handler(Cog):
 
                 # now tickets is a list of user ids, where each user ID appears the same amount of times as the tickets they've purchased
                 coin_e = self.bot.config['emotes']['coin']
-                await ch.send(content=f"<@winner>", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner.name}**!\n**They won:** {lot.coins:,}x {coin_e}"))
+                await ch.send(content=f"<{@winner.id}>", embed=utils.SpecialEmbed(desc=f"The winner of the lottery is: **{winner.name}**!\n**They won:** {lot.coins:,}x {coin_e}"))
                 lot_winnings = await utils.CoinFunctions.pay_tax(payer=winner, amount=lot.coins)
                 c.coins += lot_winnings
                 rc.coins -= lot_winnings
