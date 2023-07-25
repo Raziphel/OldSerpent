@@ -43,7 +43,7 @@ class Message_Rewards(Cog):
                 message = choice(messages)
                 await message.add_reaction("✨")
                 self.sparkle_messages.append(message.id)
-            elif chance <= 100:
+            elif chance <= 75:
                 for x in range(5):
                     message = choice(messages)
                     reaction = await message.add_reaction(self.bot.config['emotes']['bunny'])

@@ -62,7 +62,7 @@ class rules_handler(Cog):
         embed2=Embed(description=f"```fix\n█ Quick Fix! █\n```\nIf you are looking for a quick fix becuase you've just recently lost access to some channels, or some have just disapeared.\n\n**Consider clicking `Show All Channels` as seen below!**", color=0xFFFFFF)
         embed2.set_image(url="https://cdn.discordapp.com/attachments/550556052396179458/1133009744609673308/image.png")
 
-        embed3=Embed(description=f"```fix\n█ The Different Roles! █\n```\n<@&1054143874538426368> gives access to most of the general open channels!\nExamples: art, media, memes.\n\n<@&1107421191586726039> gives access to channels related to the SCP:SL Servers.\nExamples: SL-Info, SL-Plugins, Round Reports\n\n<@&1129464175396143104> gives access to furry related channels!\nExamples: Fur-Den, Furry-Art, Sona-posts.", color=0xFFFFFF)
+        embed3=Embed(description=f"```fix\n█ The Different Roles! █\n```\n<@&1054143874538426368> gives access to most of the general open channels!\Channels: art, media, memes.\n\n<@&1107421191586726039> gives access to channels related to the SCP:SL Servers.\nChannels: SL-Info, SL-Plugins, Round Reports\n\n<@&1129464175396143104> gives access to furry related channels!\nExamples: Fur-Den, Furry-Art, Sona-posts.\n\n<@&1116039697785950318> a private role for friends of Razi.\nChannels: Occult Hall, Occult VC, Edgy Memes.\n\n<@&1113180697511874653> a private role for members of the Poop...\nChannels: Poop Shenanigans", color=0xFFFFFF)
 
 
         await msg1.edit(content=f" ", embed=embed1)
