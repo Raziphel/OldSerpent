@@ -464,7 +464,7 @@ class Profile(Cog):
             try:
                 colour_value = int(colour.strip('#'), 16)
             except ValueError:
-                await ctx.interaction.response.send_message(embed=utils.SpecialEmbed(title="Incorrect colour usage!"), delete_after=5)
+                await ctx.interaction.response.send_message(embed=utils.SpecialEmbed(title="Incorrect colour usage!"))
                 return
 
         tr.color = colour_value
