@@ -132,7 +132,15 @@ class UserFunction(object):
 
         if type == "guild":
             verified = utils.DiscordGet(guild.roles, id=cls.bot.config['roles']['janitor'])
+            s1 = utils.DiscordGet(guild.roles, id=cls.bot.config['seperator_roles']['access'])
+            s2 = utils.DiscordGet(guild.roles, id=cls.bot.config['seperator_roles']['purchases'])
+            s3 = utils.DiscordGet(guild.roles, id=cls.bot.config['seperator_roles']['pings'])
+            s4 = utils.DiscordGet(guild.roles, id=cls.bot.config['seperator_roles']['bio'])
             await user.add_roles(verified, reason="Verification")
+            await user.add_roles(s1, reason="Verification")
+            await user.add_roles(s2, reason="Verification")
+            await user.add_roles(s3, reason="Verification")
+            await user.add_roles(s4, reason="Verification")
             general = cls.bot.get_channel(cls.bot.config['channels']['general'])
             try:
                 await general.send(content=f"{user.mention}", embed=utils.SpecialEmbed(description=f"Please welcome {user.mention}!\nBe sure to read <#856449403173994536>!\nand check out <#946730953731100682> when you have enough coins!", thumbnail=user.avatar.url, footer=" "))

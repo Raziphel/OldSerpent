@@ -89,6 +89,11 @@ total_coins = 50000000
     discord_updates = 1054143874538426368
     lot_restricted = 1118999822070992926
 
+[seperator_roles]
+    access = 1011440483576336394
+    purchases = 1069865335689330769
+    pings = 1028802118188028005
+    bio = 1070968239644999681
 
 [emotes]
     coin = "<:Coin:1026302157521174649>"

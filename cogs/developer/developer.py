@@ -255,6 +255,30 @@ class Developer(Cog):
             await c.save(db)
 
 
+
+    @utils.is_dev()
+    @command()
+    async def fixseperators(self, ctx):
+        '''Gives everyone seperator roles'''
+        guild = self.bot.get_guild(self.bot.config['garden_id'])
+
+        for user in guild.members:
+            try:
+                s1 = utils.DiscordGet(guild.roles, id=cls.bot.config['seperator_roles']['access'])
+                s2 = utils.DiscordGet(guild.roles, id=cls.bot.config['seperator_roles']['purchases'])
+                s3 = utils.DiscordGet(guild.roles, id=cls.bot.config['seperator_roles']['pings'])
+                s4 = utils.DiscordGet(guild.roles, id=cls.bot.config['seperator_roles']['bio'])
+                await user.add_roles(s1, reason="fixed")
+                await user.add_roles(s2, reason="fixed")
+                await user.add_roles(s3, reason="fixed")
+                await user.add_roles(s4, reason="fixed")
+                await sleep(1)
+            except Exception as e:
+                print(e) 
+
+        await ctx.send(f"Fixed all the seperator roles!")
+
+
     @utils.is_dev()
     @command()
     async def randcomizelevels(self, ctx):
