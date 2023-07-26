@@ -283,12 +283,11 @@ class Loops(Cog):
 
 
                 #! BWAHAHAH HOURLY TAXATION!!!
-                guild = self.bot.get_guild(self.bot.config['garden_id'])
                 total = 0
                 for user in guild.members:
                     try:
                         c = utils.Currency.get(user.id)
-                        if c.coins > 0:
+                        if c.coins > 24:
                             c.coins -= 25
                             total += 25
                             async with self.bot.database() as db:
