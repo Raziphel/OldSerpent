@@ -117,12 +117,7 @@ class Message_Rewards(Cog):
                 await message.clear_reactions()
                 coin = choice([200, 250, 300])
                 await utils.CoinFunctions.earn(earner=user, amount=coin)
-                if self.bun_msg == 0:
-                    msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user.name} got **{coin} {coin_e}x from a bunny!**"))
-                    self.bun_msg = msg.id
-                else: 
-                    msg = await ch.fetch_message(self.bun_msg) #? msg
-                    await msg.edit(embed=utils.DefaultEmbed(user=user, desc=f"{user.name} got **{coin} {coin_e}x from a bunny!**"))
+                msg = await channel.send(embed=utils.DefaultEmbed(user=user, desc=f"{user.name} got **{coin} {coin_e}x from a bunny!**"))
                 await coin_logs.send(f"**{user}** got **{coin} {coin_e} from a bunny!**")
                 #! Quest 4 Complete
                 await self.bot.get_cog('Quests').get_quest(user=user, quest_no=4, completed=True)
@@ -157,9 +152,7 @@ class Message_Rewards(Cog):
         if msg != None:
             await sleep(5)
             await msg.delete()
-            self.bun_msg = 0
         else: 
-            self.bun_msg = 0
             return
 
 

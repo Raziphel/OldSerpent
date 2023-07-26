@@ -280,6 +280,24 @@ class Loops(Cog):
                 async with self.bot.database() as db:
                     await sti.save(db)
 
+
+
+                #! BWAHAHAH HOURLY TAXATION!!!
+                guild = self.bot.get_guild(self.bot.config['garden_id'])
+                total = 0
+                for user in guild.members:
+                    try:
+                        c = utils.Currency.get(user.id)
+                        c.coins -= 25
+                        total += 25
+                        async with self.bot.database() as db:
+                            await c.save(db)
+                            print(f"Taxed the server for a total of: {total:,} coins")
+                    except Exception as e:
+                        print(e) 
+
+
+
                 nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
                 t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
                 t2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])

@@ -244,13 +244,12 @@ class Developer(Cog):
                 c = utils.Currency.get(user.id)
                 c.coins += 10000
                 total += 10000
-                print(f'{user.name} got payed!')
+                async with self.bot.database() as db:
+                    await c.save(db)
             except Exception as e:
                 print(e) 
 
         await ctx.send(f"Handed out over **{total:,}x** {coin_e}!  To everyone on the server!")
-        async with self.bot.database() as db:
-            await c.save(db)
 
 
 
