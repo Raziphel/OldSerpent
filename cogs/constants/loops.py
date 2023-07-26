@@ -288,13 +288,14 @@ class Loops(Cog):
                 for user in guild.members:
                     try:
                         c = utils.Currency.get(user.id)
-                        c.coins -= 25
-                        total += 25
-                        async with self.bot.database() as db:
-                            await c.save(db)
-                            print(f"Taxed the server for a total of: {total:,} coins")
+                        if c.coins > 0:
+                            c.coins -= 25
+                            total += 25
+                            async with self.bot.database() as db:
+                                await c.save(db)
                     except Exception as e:
                         print(e) 
+                print(f"Taxed the server for a total of: {total:,} coins")
 
 
 
