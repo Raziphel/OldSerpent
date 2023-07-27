@@ -282,22 +282,6 @@ class Loops(Cog):
 
 
 
-                #! BWAHAHAH HOURLY TAXATION!!!
-                total = 0
-                for user in guild.members:
-                    try:
-                        c = utils.Currency.get(user.id)
-                        if c.coins > 24:
-                            c.coins -= 25
-                            total += 25
-                            async with self.bot.database() as db:
-                                await c.save(db)
-                    except Exception as e:
-                        print(e) 
-                print(f"Taxed the server for a total of: {total:,} coins")
-
-
-
                 nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
                 t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
                 t2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
@@ -340,6 +324,20 @@ class Loops(Cog):
                     await msg.edit(content=f" ", embed=embed)
                 except: 
                     print(f'Couldnt edit sticky for {channel}')
+
+                #! BWAHAHAH HOURLY TAXATION!!!
+                total = 0
+                for user in guild.members:
+                    try:
+                        c = utils.Currency.get(user.id)
+                        if c.coins > 24:
+                            c.coins -= 25
+                            total += 25
+                            async with self.bot.database() as db:
+                                await c.save(db)
+                    except Exception as e:
+                        print(e) 
+                print(f"Taxed the server for a total of: {total:,} coins")
 
 
 
