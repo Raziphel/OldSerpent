@@ -71,10 +71,14 @@ class rules_handler(Cog):
         msg2 = await ch.fetch_message(1133009889204121701) #? msg
         msg3 = await ch.fetch_message(1133086049590059078) #? msg
         msg4 = await ch.fetch_message(1134113997378027582) #? msg
+        msg5 = await ch.fetch_message(1134171819444805662) #? msg
+        msg6 = await ch.fetch_message(1134568608979234846) #? msg
         
         
         
-        lastmsg = await ch.fetch_message(1134171819444805662) #? msg
+        lastmsg = await ch.fetch_message(1134568710112301086) #? msg
+
+        coin = self.bot.config['emotes']['coin']
 
         embed1=Embed(description=f"```fix\n█ Staff Hierarchy █\n```\n*These roles are in descending order.*\n\n***Executive Leading Staff Roles***\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n<@&1104988250478743572>\n```\nObviously this role is for Owners of Serpent's Garden and in general make most of the decisions!\nNot usually an obtainable role.\n```\n<@&1109654196942282793>\n```\nThis role is for community managers.\nThey will manage the staff team / Game Server or Discord Server.\nObtainable after showing leadership as a council member.\n```\n<@&891793700932431942> \n```\nConsidered to be Head-Administrators as well as advisors for the Overseers & Overlord.\nObtainable after long term commitment as an administrator with no set time frame.\n```\n\n***Development Staff Roles***\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n<@&1109655307682070558> \n```\nAchieved after continuously helping with development or providing services.\n```\n<@&1051307966223089755> \n```\nAchieved after providing development for servers on a regular basis.\n```\n<@&1109656536978034718> \n```\nAchieved by providing services or at least helping occasionally in the development process. \n```\n\n***Moderation Staff Roles***\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n<@&1020893519885373450> \n```\nThe highest form of moderation staff!\nObtainable after at least a year of commitment as a Senior Moderator.\n```\n<@&1109664522479878244> \n```\nModerators that have proven they can be dependent and excelling as a moderator. \nObtained after half a year of service as a moderator.\n```\n<@&1055972422429442141> \n```\nOnce proven capable as a Junior Moderator you can be trusted as a regular moderator.\nObtained after at least a month after trial.\n```\n<@&1109665081681248266> \n```\nThis is the trial moderator role after being accepted to the staff team.\nObtained after application.\n```", color=0x47F599)
 
@@ -85,16 +89,18 @@ class rules_handler(Cog):
 
         embed4=Embed(description=f"```fix\n█ The Access Roles! █\n```\n<@&1054143874538426368> gives access to most of the general open channels!\nChannels: art, media, memes.\n\n<@&1107421191586726039> gives access to channels related to the SCP:SL Servers.\nChannels: SL-Info, SL-Plugins, Round Reports\n\n<@&1129464175396143104> gives access to furry related channels!\nExamples: Fur-Den, Furry-Art, Sona-posts.\n\n<@&1116039697785950318> a private role for friends of Razi.\nChannels: Occult Hall, Occult VC, Edgy Memes.\n\n<@&1113180697511874653> a private role for members of the Poop...\nChannels: Poop Shenanigans", color=0x47F599)
 
+        embed5=Embed(description=f"```fix\n█ Serpent's Economy █\n```\nEvery new member joining the server is given 1,000 {coin} to start out with!  You can gain these coins by sending messages in chat every couple of seconds.  Being in a vc for longer than 10 minutes, clicking on random rewards that appear and many other ways!  Usually when you gain coins you also are gaining XP as well!  The coins on the server have a finite amount to be more similar to an actual economy!  The Serpent bot itself gives its coins, when you or anyone else gains coins, along with that all the taxing and purchasing in the <#946730953731100682> goes to the Serpent!  Occasionaly coins are added in to the economy, to keep the Serpent bot from ever reaching 0 coins.", color=0x47F599)
 
+        embed6=Embed(description=f"```fix\n█ Leaving Punishments █\n```\nAny member who decides to leave, is kicked or even banned.  Have all there coins given back to the Serpent!  So keep in mind if you ever decide to leave that you will not only lose all your coins!  But, any purchases you had made with those coins as well.\n\nThis is to keep the economy functioning properly and as another defensive measure against bad actors who get banned.", color=0x47F599)
 
-
-
-        lastembed=Embed(description=f"```fix\n█ Help Guide █\n```\n\n1.) [Staff Hierarchy](https://discord.com/channels/689534383878701223/1133002668189700116/1133002927678697572)\n2.) [Not able to see any Channels?](https://discord.com/channels/689534383878701223/1133002668189700116/1133009889204121701)\n3.) [Channel Quick Fix](https://discord.com/channels/689534383878701223/1133002668189700116/1133086049590059078)\n4.) [The Access Roles](https://discord.com/channels/689534383878701223/1133002668189700116/1134113997378027582)", color=0x47F599)
+        lastembed=Embed(description=f"```fix\n█ Help Guide █\n```\n\n1.) [Staff Hierarchy](https://discord.com/channels/689534383878701223/1133002668189700116/1133002927678697572)\n2.) [Not able to see any Channels?](https://discord.com/channels/689534383878701223/1133002668189700116/1133009889204121701)\n3.) [Channel Quick Fix](https://discord.com/channels/689534383878701223/1133002668189700116/1133086049590059078)\n4.) [The Access Roles](https://discord.com/channels/689534383878701223/1133002668189700116/1134113997378027582)\n5.) [Serpent's Economy](https://discord.com/channels/689534383878701223/1133002668189700116/1134568608979234846)", color=0x47F599)
 
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
         await msg3.edit(content=f" ", embed=embed3)
         await msg4.edit(content=f" ", embed=embed4)
+        await msg5.edit(content=f" ", embed=embed5)
+        await msg6.edit(content=f" ", embed=embed6)
 
         await lastmsg.edit(content=f" ", embed=lastembed)
 
