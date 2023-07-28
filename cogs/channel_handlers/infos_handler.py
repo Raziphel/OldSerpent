@@ -119,7 +119,7 @@ class rules_handler(Cog):
 
         embed1=Embed(description=f"```fix\n█ SCP Server Info █\n```\n**SCP Server connect addresses**\n**Serpent's Garden [Alpha]** `n01.infra.serpents.garden:7777`\n**Serpent's Garden [Epsilon]** `n01.infra.serpents.garden:7778`\n**Serpent's Garden [Kappa]** `n01.infra.serpents.garden:7779`\n**Serpent's Garden [Theta]** `n01.infra.serpents.garden:7782`", color=0xFF0000)
 
-        embed2=Embed(description=f"```fix\n█ Most Common Questions █\n```\n**Q: How can I see a comprehensive list off all the modded features on the servers?**\nA: <#1096531445792657439>\n\n**Q: How can I apply for staff?**\nA: <#1080592426965684255>\n\n**Q: How do I claim my in-game roles?**\nA:  [Click Here to sync your accounts to the servers](https://discord.com/api/oauth2/authorize?response_type=code&client_id=749684016550248490&scope=connections%20identify&redirect_uri=https://accounts.cedmod.nl/Auth/DiscordSSO&state=476547)\n\n**Q: How can I appeal my ban?**\nA: <#1080592426965684255>\n\n**Q: Are the plugins custom made?**\nA: Not all of them are custom made, but the best ones we have made by our dev who makes most of our plugins special & only for Serpent's Garden!\n\n**Q: Where can I see the server's player leaderboard**\nA: <#1052823837416357999>\n\n**Q: Where can I see a full report everytthing in a round?**\nA: <#1065409585764106321>", color=0x0000FF)
+        embed2=Embed(description=f"```fix\n█ Most Common Questions █\n```\n**Q: How can I see a comprehensive list off all the modded features on the servers?**\nA: <#1096531445792657439>\n\n**Q: How can I apply for staff?**\nA: <#1080592426965684255>\n\n**Q: How do I claim my in-game roles?**\nA:  [Click Here to sync your accounts to the servers](https://discord.com/api/oauth2/authorize?response_type=code&client_id=749684016550248490&scope=connections%20identify&redirect_uri=https://accounts.cedmod.nl/Auth/DiscordSSO&state=476547)\n\n**Q: How can I appeal my ban?**\nA: <#1080592426965684255>\n\n**Q: Are the plugins custom made?**\nA: Not all of them are custom made, but the best ones we have made by our dev who makes most of our plugins special & only for Serpent's Garden!\n\n**Q: Where can I see the server's player leaderboard**\nA: <#1052823837416357999>\n\n**Q: Where can I see a full report everything in a round?**\nA: <#1065409585764106321>", color=0x0000FF)
 
         embed3=Embed(title=f"**[- Coming Soon... -]**", 
         description=f"", color=0xFFFFFF)
@@ -128,49 +128,6 @@ class rules_handler(Cog):
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
         await msg3.edit(content=f" ", embed=embed3)
-
-
-
-
-
-
-    @Cog.listener('on_ready')
-    async def staff_info(self):
-        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        ch = guild.get_channel(self.bot.config['channels']['staff_info']) #? role change Channel
-
-        msg1 = await ch.fetch_message(1064807624316567623) #? msg
-        msg2 = await ch.fetch_message(1064807632877142116) #? msg
-        msg3 = await ch.fetch_message(1064807639051145266) #? msg
-        msg4 = await ch.fetch_message(1064807653370494986) #? msg
-        msg5 = await ch.fetch_message(1064807661109002280) #? msg
-
-        coin = self.bot.config['emotes']['coin']
-
-        embed1=Embed(title=f"**[- Staff Info -]**", 
-        description=f"**Gardeners**\n\nHolders of this title are typically either developers/contributors or any people that are close and deemed trustworthy by the Council, with [01] \"Razi\" primarily being the one to grant this rank.  They contribute to the server in some sort of way!\n\n**Moderator**\n\nModerators are regular staff. Their responsibilities primarily consist of moderating the SCP:SL servers and making sure it is safe and fun for the playerbase. As such, they are entrusted with most permissions to be\nable to do their duties more independently and effectively. They do not moderate the Discord server and do not have any 'dangerous' permissions on it.\n\n**Administrator**\n\nAdministrators are senior staff members and are considered 'assistants' in a sense to the Council. They hold authority over ranks below them and hold most permissions on the SCP:SL server. The duties of one may\nvary overtime, but they still hold the primary duty of moderating the SCP:SL servers. They are also generally a pool of candidates in the event of an Council seat becoming available due to their seniority. They do not moderate the Discord server and do not have any 'dangerous' permissions on it.\n\n**Council**\n\nThe Council is the managing body of the server. Anything that involves the server is under the consensus of the Council. They have all permissions on the SCP:SL servers. They are also the sole moderators for the\nDiscord server. The duties of an individual council member may vary depending on their specialization. As of writing, there are currently 9 council members.\n\n`Thank you to Kosar for making this comprehensive list`", color=0xFF0000)
-
-        embed2=Embed(title=f"**[- Discord Moderation -]**", 
-        description=f"`/ban (Multiple Mentions) (Reason)`\n**Only Upper Management can run this command.**\nThis command should be simple, its used to ban multiple people at once!\nIt deletes that members last day of messages.\n\n`/mute (Multiple Mentions) (Reason)`\nThis command gives members a muted role, that is re-applied if they try to leave and rejoin!\n*Use `/unmute` to unmute them obviously.*\n\n`/imageban (Mention)`\n**Only Upper Management can run this command.**\nThis command takes away image permissions in general from a user.", color=0x0000FF)
-
-        embed3=Embed(title=f"**[- SCP:SL Moderation -]**", 
-        description=f"This is atleast for now a rough outline of what to do!  Hopefully this system can be improved, this is the best we got for now, lmfao!\n\n**Mic Spamming / Soundboard in Spectator**\nThey should be banned for 1 month. (730 Hours)\n\n**Saying the N-Word**\nThey should be banned for 6 months. (4,380 Hours)\n\n**Pro-longing the round by Teaming or Glitched Spot**\nThey should be banned for 3 months. (2,190 Hours)\n\n**Harassment / Racism / Homophobia, Ect.**\nThey should be banned for 1 year. (8,760 Hours)\n\n`They can appeal these bans and you should mention that to them if you want.`", color=0x00FF00)
-
-        embed4=Embed(title=f"**[- SCP Staff Rule Book -]**", 
-        description=f"**Yep, even staff have rules that they must follow!**\n\n**1.)** You take responsibility, even if you do something on \"accident\" unfortunately it is still on you!  This is obviously on a per-case basis but, staff must be held to higher a responsibility!\n\n**2.)** Never abuse your powers or so anything that would make it obvious that are staff are present! Do not show off or 'prove' points becuase you are staff.  This counts as staff abuse and will not be tolerated.\n\n**3.) __Golden Rule:__** Serpent's Garden are suppose to be an __Anarchy Server__ in terms of rules!  The only time staff need to step in is to call out stalling, harrassment, abuse and anything ruining the experience for other players!!!\n\n**4.)** Staff Activity is a requirement (Excluding Gardeners) every staff is required to have __atleast 24 hours per-month on the SCP servers!__ (Which is honestly not strict in the slightest)\n\n**5.)** __Staff are expected to accept the staff code.__ All staff must be subject to the same treatment and if your actions require disipline, council will vote on what that will be done.  (This will be public to all other staff)", color=0xFF00FF)
-
-        embed5=Embed(title=f"**[- Coming Soon... -]**", 
-        description=f"", color=0xFFFFFF)
-
-
-        await msg1.edit(content=f" ", embed=embed1)
-        await msg2.edit(content=f" ", embed=embed2)
-        await msg3.edit(content=f" ", embed=embed3)
-        await msg4.edit(content=f" ", embed=embed4)
-        await msg5.edit(content=f" ", embed=embed5)
-
-
-
 
 
 
