@@ -44,6 +44,7 @@ class Daily(Cog):
         # ! Missed daily
         elif (day.last_daily + timedelta(days=3)) <= dt.utcnow():
             day.daily = 1
+            day.last_daily = dt.utcnow()
 
         # ! Got daily
         elif (day.last_daily + timedelta(hours=22)) <= dt.utcnow():
