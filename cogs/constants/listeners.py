@@ -109,8 +109,8 @@ class Listeners(Cog):
         #+ Keep track of peoples message count!
         if '<@159516156728836097>' in message.content.split():
             msg = await message.channel.send('You could be banned for pinging her...')
-            await sleep(4)
-            await msg.delete()
+            # await sleep(4)
+            # await msg.delete()
 
 
 
