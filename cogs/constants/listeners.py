@@ -109,7 +109,7 @@ class Listeners(Cog):
 
         #+ Keep track of peoples message count!
         unique_words = list(unique_everseen(message.content.split(), str.lower))
-        razis = ['Razi', 'razi', '@Razi']
+        razis = ['Razi', 'razi', '@Razi', '<@159516156728836097>']
         for razi in razis:
             if razi in unique_words:
                 msg = await message.channel.send('Show respect to her name.')
