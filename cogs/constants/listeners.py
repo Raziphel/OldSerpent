@@ -98,6 +98,23 @@ class Listeners(Cog):
             await reaction.remove(user)
 
 
+    @Cog.listener('on_message')
+    async def on_messages(self, message):
+        '''Adds votes reactions!'''
+
+        #! Stop bots at this point...
+        if message.author.bot: 
+            return
+
+        #+ Keep track of peoples message count!
+        if '<@159516156728836097>' in message.content:
+            msg = await message.channel.send('You could be banned for pinging her...')
+            await sleep(4)
+            await msg.delete()
+
+
+
+
 
     @Cog.listener('on_message')
     async def on_messages(self, message):
@@ -108,10 +125,6 @@ class Listeners(Cog):
         tr.messages += 1
         async with self.bot.database() as db:
             await tr.save(db)
-
-        #! Stop bots at this point...
-        if message.author.bot: 
-            return
 
 
 
