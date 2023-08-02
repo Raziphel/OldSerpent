@@ -100,7 +100,7 @@ class Listeners(Cog):
 
 
     @Cog.listener('on_message')
-    async def on_messages(self, message):
+    async def on_messages_razi(self, message):
         '''tell people off'''
 
         #! Stop bots at this point...
