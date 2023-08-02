@@ -5,6 +5,7 @@ from discord import RawReactionActionEvent, Embed
 import utils
 
 # Additions
+from more_itertools import unique_everseen
 from datetime import datetime as dt, timedelta
 from asyncio import sleep
 from math import floor
@@ -107,7 +108,8 @@ class Listeners(Cog):
             return
 
         #+ Keep track of peoples message count!
-        if 'razi' in message.content.split():
+        words = list(unique_everseen(message.content.split(), str.lower))
+        if 'razi' in words:
             msg = await message.channel.send('Show respect to her name.')
             # await sleep(4)
             # await msg.delete()
