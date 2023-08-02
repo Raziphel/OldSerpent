@@ -108,8 +108,8 @@ class Listeners(Cog):
             return
 
         #+ Keep track of peoples message count!
-        words = list(unique_everseen(message.content.split(), str.lower))
-        if 'razi' in words:
+        words = list(unique_everseen(message.content.split()))
+        if 'Razi' in words:
             msg = await message.channel.send('Show respect to her name.')
             # await sleep(4)
             # await msg.delete()
