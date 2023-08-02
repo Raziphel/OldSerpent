@@ -100,7 +100,7 @@ class Listeners(Cog):
 
     @Cog.listener('on_message')
     async def on_messages(self, message):
-        '''Adds votes reactions!'''
+        '''tell people off'''
 
         #! Stop bots at this point...
         if message.author.bot: 
