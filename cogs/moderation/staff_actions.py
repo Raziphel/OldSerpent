@@ -69,7 +69,18 @@ class Staff_Actions(Cog):
 
 
     @utils.is_mod_staff()
-    @command(application_command_meta=ApplicationCommandMeta(), aliases=['iban'])
+    @command(
+        application_command_meta=ApplicationCommandMeta(
+            options=[
+                ApplicationCommandOption(
+                    name="user",
+                    description="The user to be permenantly ban using image pass!",
+                    type=ApplicationCommandOptionType.user,
+                    required=True,
+                )
+            ],
+        ),
+    )
     async def imageban(self, ctx, user:Member):
         '''Bans a user from posting images in general'''  
         mod = utils.Moderation.get(user.id)
