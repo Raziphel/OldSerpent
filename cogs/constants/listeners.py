@@ -99,22 +99,22 @@ class Listeners(Cog):
             await reaction.remove(user)
 
 
-    @Cog.listener('on_message')
-    async def on_messages_razi(self, message):
-        '''tell people off'''
+    # @Cog.listener('on_message')
+    # async def on_messages_razi(self, message):
+    #     '''tell people off'''
 
-        #! Stop bots at this point...
-        if message.author.bot: 
-            return
+    #     #! Stop bots at this point...
+    #     if message.author.bot: 
+    #         return
 
-        #+ Keep track of peoples message count!
-        unique_words = list(unique_everseen(message.content.split(), str.lower))
-        razis = ['Razi', 'razi', '@Razi', '<@159516156728836097>', 'razi.', 'Razi.', 'razi!', 'Razi!', 'RAZI']
-        for razi in razis:
-            if razi in unique_words:
-                msg = await message.channel.send('Show respect to her name.')
-                # await sleep(4)
-                # await msg.delete()
+    #     #+ Keep track of peoples message count!
+    #     unique_words = list(unique_everseen(message.content.split(), str.lower))
+    #     razis = ['Razi', 'razi', '@Razi', '<@159516156728836097>', 'razi.', 'Razi.', 'razi!', 'Razi!', 'RAZI']
+    #     for razi in razis:
+    #         if razi in unique_words:
+    #             msg = await message.channel.send('Show respect to her name.')
+    #             # await sleep(4)
+    #             # await msg.delete()
 
 
 
