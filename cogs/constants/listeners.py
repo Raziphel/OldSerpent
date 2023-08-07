@@ -16,6 +16,9 @@ class Listeners(Cog):
         self.bot = bot
         self.last_image = dt(year=2000, month=1, day=1)  # Some time in the definite past 
         self.reminded = []
+        self.spotifyReg = r"/(https?:\/\/open.spotify.com\/(track|user|artist|album)\/[a-zA-Z0-9]+(\/playlist\/[a-zA-Z0-9]+|)|spotify:(track|user|artist|album):[a-zA-Z0-9]+(:playlist:[a-zA-Z0-9]+|))/"
+
+
 
 
     # @Cog.listener() #! Remove the fucking loosers!
@@ -25,30 +28,19 @@ class Listeners(Cog):
 
 
 
-    # @Cog.listener('on_message')
-    # async def image_handler_listener(self, message):
-    #     '''Looks for attachments on messages sent in general'''
+    @Cog.listener('on_message')
+    async def music_handler_listener(self, message):
+        '''Looks for spotify music!'''
 
-    #     # Check for general
-    #     if message.channel.id != 807828084937850921:
-    #         return
-        
-    #     # Staff bypass
-    #     if [i for i in message.author.roles if i.name == ["Discord Staff"]]:
-    #         return
+        guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
+        ch = guild.get_channel(1138195661288914995) #? music Channel
 
-    #     # Check for attachments
-    #     if not message.attachments or "http" in message.content.casefold():
-    #         return
+        #? Check for music channel
+        if message.channel == ch:
+            return
 
-    #     # Check counter
-    #     if dt.utcnow() - timedelta(minutes=5) < self.last_image:
-    #         await message.delete()
-    #         m = await message.channel.send(embed=utils.DefaultEmbed(title="An image can only be sent to the main lounge every 5 minutes!"))
-    #         await sleep(3)
-    #         await m.delete()
-    #     else:
-    #         self.last_image = dt.utcnow()
+        if search(self.spotifyReg, message.content):
+            await ch.send(f"{message.author} Posted: {message.content} in {message.channel}")
 
 
     @Cog.listener('on_message')
