@@ -43,6 +43,7 @@ class Shop_Handler(Cog):
         embed2.add_field(name=f"🎁 ❧ Stat Channels", value=f"**{coin} 5,000x**\n\n**Get permission to the Stats Channels!**", inline=True)
         embed2.add_field(name=f"💀 ❧ Auto-Mod Bypass", value=f"**{coin} 100,000x**\n\n**No longer have to worry about the discord's auto moderation.**", inline=True)
         embed2.add_field(name=f"🔥 ❧ Dungeon Key", value=f"**{coin} 30,000x**\n\n**Get access to hell, where all the muted go!**", inline=True)
+        embed2.add_field(name=f"🔊 ❧ SoundBoard Access", value=f"**{coin} 50,000x**\n\n**Get access to using the soundboard in VC!**", inline=True)
 
         embed3=Embed(title=f"**[- Abilities & Items -]**", description=f"**Use special abilites on a set cooldown! (Some are Permenant.)**", color=0x475FF5)
         embed3.add_field(name=f"💎 ❧ Daily Bonus", value=f"**{coin} 40,000x**\n\n**Get a bonus with every daily!**\n*(Doesn't get better with more dailys)*", inline=True)
@@ -166,6 +167,17 @@ class Shop_Handler(Cog):
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     automod = utils.DiscordGet(guild.roles, id=1095177740451323984)
                     await user.add_roles(automod, reason="Given dungeon key role.")
+
+            if emoji == "🔊":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the Sound Board Access!\nCost: {coin} 50,000x", footer=" "))
+                item['coin'] = 50000
+                item['name'] = "Sound Board Access"
+                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Sound Board Access!", footer=" "))
+                    bought = True
+                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
+                    automod = utils.DiscordGet(guild.roles, id=1137618537020665910)
+                    await user.add_roles(automod, reason="Given SoundBoard key role.")
 
             if emoji == "💎":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Daily Bonus!\nCost: {coin} 40,000x", footer=" "))
