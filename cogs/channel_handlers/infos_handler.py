@@ -105,7 +105,7 @@ class rules_handler(Cog):
         await lastmsg.edit(content=f" ", embed=lastembed)
 
 
-
+# a
 
 
 
