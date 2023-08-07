@@ -34,10 +34,10 @@ class Shop_Handler(Cog):
         #* Get the coin emojis
         coin = self.bot.config['emotes']['coin']
 
-        embed1=Embed(title=f"**[- Serpent's Toys -]**", description=f"**By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.**\n\n**Exclusive Items:**\n*Items that are purposely made very expensive, due to there value!*", color=0x47F5DB)
+        embed1=Embed(description=f"```fix\n█ Serpent's Toys █\n```\n**By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.**\n\n**Exclusive Items:**\n*Items that are purposely made very expensive, due to there value!*", color=0x47F5DB)
         embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n\n**{coin} 1,000,000x**", inline=True)
 
-        embed2=Embed(title=f"**[- Roles & Perms -]**", description=f"**This is a list of discord related items for sale.**", color=0x47B9F5)
+        embed2=Embed(description=f"```fix\n█ Permissions █\n```\n**This is a list of discord related items for sale.**", color=0x47B9F5)
         embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**{coin} 25,000x**\n\n**Get access to all of the server's logs!**\n*(Full Transparency from all users)*", inline=True)
         embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**{coin} 50,000x**\n\n**Get permission for images & embeds in General Chats.**", inline=True)
         embed2.add_field(name=f"🎁 ❧ Stat Channels", value=f"**{coin} 5,000x**\n\n**Get permission to the Stats Channels!**", inline=True)
@@ -45,11 +45,11 @@ class Shop_Handler(Cog):
         embed2.add_field(name=f"🔥 ❧ Dungeon Key", value=f"**{coin} 30,000x**\n\n**Get access to hell, where all the muted go!**", inline=True)
         embed2.add_field(name=f"🔊 ❧ SoundBoard Access", value=f"**{coin} 50,000x**\n\n**Get access to using the soundboard in VC!**", inline=True)
 
-        embed3=Embed(title=f"**[- Abilities & Items -]**", description=f"**Use special abilites on a set cooldown! (Some are Permenant.)**", color=0x475FF5)
+        embed3=Embed(description=f"```fix\n█ Abilities & Items █\n```\n**Use special abilites on a set cooldown! (Some are Permenant.)**", color=0x475FF5)
         embed3.add_field(name=f"💎 ❧ Daily Bonus", value=f"**{coin} 40,000x**\n\n**Get a bonus with every daily!**\n*(Doesn't get better with more dailys)*", inline=True)
         embed3.add_field(name=f"🧤 ❧ Thief Gloves", value=f"**{coin} 20,000x**\n\n**Get 5 thief gloves!**\n*(Let's you steal coins from people!)*", inline=True)
         
-        embed4=Embed(title=f"**[- In-Server Purchases -]**", description=f"**Purchases that are for the SCP servers!**", color=0xB347F5)
+        embed4=Embed(description=f"```fix\n█ In Game Items █\n```\n**Purchases that are for the SCP servers!**", color=0xB347F5)
         embed4.add_field(name=f"🧶 ❧ Coin Lord", value=f"**{coin} 250,000x**\n\n**Get the orange `Coin Lord Badge` on the SCP servers!**", inline=True)
         embed4.add_field(name=f"🎆 ❧ Bottom Dweller", value=f"**{coin} 100,000x**\n\n**Get the pink `Bottom Dweller Badge` on the SCP servers!**", inline=True)
         embed4.add_field(name=f"🧨 ❧ Toxic", value=f"**{coin} 50,000x**\n\n**Get the green `Toxic Badge` on the SCP servers!**", inline=True)
