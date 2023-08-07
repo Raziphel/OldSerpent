@@ -99,10 +99,8 @@ class Loops(Cog):
         #* Set up the embeds
         embed = Embed(color=randint(1, 0xffffff))
         embed2 = Embed(color=randint(1, 0xffffff))
-        embed.set_author(name=" ")
-        embed2.set_author(name=" ")
-        embed.description(f"```fix\n█ Top 15 highest levels! █\n```\n")
-        embed2.description(f"```fix\n█ Top 30 highest levels! █\n```\n")
+        embed.description = "```fix\n█ Top 15 highest levels! █\n```\n"
+        embed2.description = "```fix\n█ Top 30 highest levels! █\n```\n" 
 
 
         #* Add in level rankings
@@ -135,10 +133,8 @@ class Loops(Cog):
         #* Set up the embeds
         embed = Embed(color=randint(1, 0xffffff))
         embed2 = Embed(color=randint(1, 0xffffff))
-        embed.set_author(name=" ")
-        embed2.set_author(name=" ")
-        embed.description(f"```fix\n█ Top 15 highest levels! █\n```\n")
-        embed2.description(f"```fix\n█ Top 30 highest levels! █\n```\n")
+        embed.description = "```fix\n█ Top 15 highest levels! █\n```\n"
+        embed2.description = "```fix\n█ Top 30 highest levels! █\n```\n"
 
 
         sorted_rank = utils.Currency.sort_coins()
