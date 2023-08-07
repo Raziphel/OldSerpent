@@ -37,7 +37,7 @@ class Listeners(Cog):
         ch = guild.get_channel(1138195661288914995) #? music Channel
 
         #? Check for music channel
-        if message.channel == ch:
+        if message.channel.id == ch.id:
             return
 
         if search(self.spotifyReg, message.content):
