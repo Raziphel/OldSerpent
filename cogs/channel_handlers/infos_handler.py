@@ -95,7 +95,7 @@ class rules_handler(Cog):
 
         lastembed=Embed(description=f"```fix\n█ Help Guide █\n```\n\n1.) [Staff Hierarchy](https://discord.com/channels/689534383878701223/1133002668189700116/1133002927678697572)\n2.) [Not able to see any Channels?](https://discord.com/channels/689534383878701223/1133002668189700116/1133009889204121701)\n3.) [Channel Quick Fix](https://discord.com/channels/689534383878701223/1133002668189700116/1133086049590059078)\n4.) [The Access Roles](https://discord.com/channels/689534383878701223/1133002668189700116/1134113997378027582)\n5.) [Serpent's Economy](https://discord.com/channels/689534383878701223/1133002668189700116/1134171819444805662)\n6.) [Leaving Punishments](https://discord.com/channels/689534383878701223/1133002668189700116/1134568608979234846)", color=0x47F599)
 
-        await msg1.edit(content=f" ", embed=embed1)
+        await msg1.edit(content=f"# Staff Hierarchy", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
         await msg3.edit(content=f" ", embed=embed3)
         await msg4.edit(content=f" ", embed=embed4)
