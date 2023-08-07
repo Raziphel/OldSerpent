@@ -81,7 +81,7 @@ class CoinFunctions(object):
             return
 
         #! Just take it away from the bot!
-        cu.coins += amount
+        cu.coins += amount*3
         cb.coins -= amount
 
         async with cls.bot.database() as db:
