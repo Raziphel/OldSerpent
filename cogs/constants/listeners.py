@@ -10,6 +10,7 @@ from datetime import datetime as dt, timedelta
 from asyncio import sleep
 from math import floor
 
+from re import search
 
 class Listeners(Cog):
     def __init__(self, bot):
