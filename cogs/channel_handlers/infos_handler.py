@@ -127,7 +127,7 @@ class rules_handler(Cog):
 
         embed1=Embed(description=f"```fix\n█ Serpent's Garden Servers █\n```\nCurrently Serpent's Garden pays for 1 server capable of hosting, **S3rp3nt Bot, S3rp3nt Music Bot Addon, 3 SCP Servers & Some other private games.**\n\n", color=0xFF0000)
 
-        embed2=Embed(description=f"```fix\n█ Server Connections █\n```\n**Modded Minecraft Server (Coming Soon)\n`mc.serpents.garden`\n\n**SCP Server Addresses**\n\n**Serpent's Garden [Alpha]**\n`connect n01.infra.serpents.garden:7777`\n\n**Serpent's Garden [Epsilon]**\n`connect n01.infra.serpents.garden:7778`\n\n**Serpent's Garden [Kappa]**\n`connect n01.infra.serpents.garden:7779`\n\n**Serpent's Garden [Theta]**\n`connect n01.infra.serpents.garden:7782`\n\n", color=0xFF0000)
+        embed2=Embed(description=f"```fix\n█ Server Connections █\n```\n**Modded Minecraft Server (Coming Soon)**\n`mc.serpents.garden`\n\n**SCP Server Addresses**\n\n**[Alpha]**\n`connect n01.infra.serpents.garden:7777`\n\n**[Epsilon]**\n`connect n01.infra.serpents.garden:7778`\n\n**[Kappa]**\n`connect n01.infra.serpents.garden:7779`\n\n**[Theta]**\n`connect n01.infra.serpents.garden:7782`\n\n", color=0xFF0000)
 
         embed3=Embed(title=f"**[- Coming Soon... -]**", 
         description=f"", color=0xFFFFFF)
