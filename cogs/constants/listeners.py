@@ -36,6 +36,11 @@ class Listeners(Cog):
             await ch.send(f"{message.author} Posted:\n {message.content}")
 
 
+
+
+
+
+
     @Cog.listener('on_message')
     async def Monthly_Reminder(self, message):
 
