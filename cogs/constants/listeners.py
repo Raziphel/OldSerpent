@@ -17,7 +17,7 @@ class Listeners(Cog):
         self.bot = bot
         self.last_image = dt(year=2000, month=1, day=1)  # Some time in the definite past 
         self.reminded = []
-        self.spotifyReg = r"/(https?:\/\/open.spotify.com\/(track|user|artist|album)\/[a-zA-Z0-9]+(\/playlist\/[a-zA-Z0-9]+|)|spotify:(track|user|artist|album):[a-zA-Z0-9]+(:playlist:[a-zA-Z0-9]+|))/"
+        self.spotifyReg = r"/^(?:spotify:|https:\/\/[a-z]+\.spotify\.com\/(track\/|user\/(.*)\/playlist\/))(.*)$"
 
 
 
@@ -25,19 +25,15 @@ class Listeners(Cog):
     async def music_handler_listener(self, message):
         '''Looks for spotify music!'''
 
-        print('1')
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
         ch = guild.get_channel(1138195661288914995) #? music Channel
 
         #? Check for music channel
         if message.channel.id == ch.id:
             return
-        print('2')
 
         if search(self.spotifyReg, message.content):
             await ch.send(f"{message.author} Posted:\n {message.content}")
-        print('3')
-
 
 
 
