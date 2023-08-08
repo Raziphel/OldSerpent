@@ -17,7 +17,7 @@ class Listeners(Cog):
         self.bot = bot
         self.last_image = dt(year=2000, month=1, day=1)  # Some time in the definite past 
         self.reminded = []
-        self.spotifyReg = r"/^(?:spotify:|https:\/\/[a-z]+\.spotify\.com\/(track\/|user\/(.*)\/playlist\/))(.*)$"
+        self.spotifyReg = r"^https:\/\/open\.spotify\.com.*"
 
 
 
