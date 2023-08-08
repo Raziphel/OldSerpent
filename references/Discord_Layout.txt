@@ -1,5 +1,0 @@
-
------> Color Legend
-#+ Category
-#* Channel
-
