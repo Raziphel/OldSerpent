@@ -329,10 +329,12 @@ class Loops(Cog):
                 if c.coins > 24:
                     c.coins -= 25
                     total += 25
+                    async with self.bot.database() as db:
+                        await c.save(db)
                 elif c.coins != 0:
                     c.coins = 0
-                async with self.bot.database() as db:
-                        await c.save(db)
+                    async with self.bot.database() as db:
+                            await c.save(db)
             except Exception as e:
                 print(e) 
         print(f"Taxed the server for a total of: {total:,} coins")
