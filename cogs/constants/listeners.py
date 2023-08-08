@@ -33,7 +33,7 @@ class Listeners(Cog):
             return
 
         if search(self.spotifyReg, message.content):
-            await ch.send(f"{message.author} Posted:\n {message.content}")
+            await ch.send(f"{message.author.name} Posted:\n {message.content}")
 
 
 
