@@ -62,6 +62,8 @@ class rules_handler(Cog):
 
 
 
+
+
     @Cog.listener('on_ready') #! ---> No Channels
     async def no_channels_info(self):
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
@@ -123,9 +125,9 @@ class rules_handler(Cog):
 
         coin = self.bot.config['emotes']['coin']
 
-        embed1=Embed(description=f"```fix\n█ SCP Server Info █\n```\n**SCP Server connect addresses**\n**Serpent's Garden [Alpha]** `n01.infra.serpents.garden:7777`\n**Serpent's Garden [Epsilon]** `n01.infra.serpents.garden:7778`\n**Serpent's Garden [Kappa]** `n01.infra.serpents.garden:7779`\n**Serpent's Garden [Theta]** `n01.infra.serpents.garden:7782`", color=0xFF0000)
+        embed1=Embed(description=f"```fix\n█ Serpent's Garden Servers █\n```\nCurrently Serpent's Garden pays for 1 server capable of hosting, **S3rp3nt Bot, S3rp3nt Music Bot Addon, 3 SCP Servers & Some other private games.**\n\n", color=0xFF0000)
 
-        embed2=Embed(description=f"```fix\n█ Most Common Questions █\n```\n**Q: How can I see a comprehensive list off all the modded features on the servers?**\nA: <#1096531445792657439>\n\n**Q: How can I apply for staff?**\nA: <#1080592426965684255>\n\n**Q: How do I claim my in-game roles?**\nA:  [Click Here to sync your accounts to the servers](https://discord.com/api/oauth2/authorize?response_type=code&client_id=749684016550248490&scope=connections%20identify&redirect_uri=https://accounts.cedmod.nl/Auth/DiscordSSO&state=476547)\n\n**Q: How can I appeal my ban?**\nA: <#1080592426965684255>\n\n**Q: Are the plugins custom made?**\nA: Not all of them are custom made, but the best ones we have made by our dev who makes most of our plugins special & only for Serpent's Garden!\n\n**Q: Where can I see the server's player leaderboard**\nA: <#1052823837416357999>\n\n**Q: Where can I see a full report everything in a round?**\nA: <#1065409585764106321>", color=0x0000FF)
+        embed2=Embed(description=f"```fix\n█ Server Connections █\n```\n**Modded Minecraft Server (Coming Soon)**\n`mc.serpents.garden`\n\n**SCP Server Addresses**\n\n**[Alpha]**\n`connect n01.infra.serpents.garden:7777`\n\n**[Epsilon]**\n`connect n01.infra.serpents.garden:7778`\n\n**[Kappa]**\n`connect n01.infra.serpents.garden:7779`\n\n**[Theta]**\n`connect n01.infra.serpents.garden:7782`\n\n", color=0xFF0000)
 
         embed3=Embed(title=f"**[- Coming Soon... -]**", 
         description=f"", color=0xFFFFFF)
