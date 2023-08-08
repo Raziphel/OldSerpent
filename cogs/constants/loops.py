@@ -329,7 +329,9 @@ class Loops(Cog):
                 if c.coins > 24:
                     c.coins -= 25
                     total += 25
-                    async with self.bot.database() as db:
+                else:
+                    c.coins = 0
+                async with self.bot.database() as db:
                         await c.save(db)
             except Exception as e:
                 print(e) 
