@@ -22,7 +22,7 @@ class BumpHandler(commands.Cog):
 
 
 
-    DISBOARD_USER_ID = 1020831331736887406  # TODO move to config
+    DISBOARD_USER_ID = 302050872383242240  # TODO move to config
 
     DISBOARD_TIMEOUT = timedelta(hours=2)  # TODO move to config
     DISBOARD_GRACE_PERIOD = timedelta(minutes=5)  # TODO move to config
