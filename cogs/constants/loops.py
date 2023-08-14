@@ -78,7 +78,7 @@ class Loops(Cog):
                 except: pass
 
         #* Setting the bot status.
-        playing = choice(["Trans-Rights are Human Rights!", "It's okay to be gay!", "Hate has no place here.", "Chill & Nice is the new cool.", "Why be mad? Be glad."])
+        playing = choice(["Trans-Rights are Human Rights!"])
         await self.bot.change_presence(activity=Game(name=playing))
 
         #* Setting the Channel Stats.
