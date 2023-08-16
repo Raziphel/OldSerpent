@@ -45,7 +45,7 @@ class BumpHandler(commands.Cog):
             .total_seconds()
         )
         channel = self.bot.get_partial_messageable(self.BUMP_CHANNEL_ID)
-        await channel.send(BUMP_TEXT)
+        await channel.send(DISCORDME_BUMP_TEXT)
 
 
     @commands.Cog.listener()
@@ -89,7 +89,7 @@ class BumpHandler(commands.Cog):
             .total_seconds()
         )
         channel = self.bot.get_partial_messageable(self.BUMP_CHANNEL_ID)
-        await channel.send(BUMP_TEXT)
+        await channel.send(DISBOARD_BUMP_TEXT)
 
 
     @commands.Cog.listener()
