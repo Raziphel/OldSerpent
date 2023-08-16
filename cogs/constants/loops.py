@@ -307,7 +307,7 @@ class Loops(Cog):
                 if channel == bot_usage:
                     embed=Embed(description=f"```fix\n█ Bot Usage Sticky █\n```\n**This channel is only for using bot commands!**\nthe Serpent bot has the `/` prefix for regular commands.\nThe Serpent's Music commands use the prefix `!` and both have a help command!", color=randint(1, 0xffffff))
                 if channel == general:
-                    embed=Embed(description=f"```fix\n█ NEW General Sticky █\n```\n**This channel is for posting art created by the community!**\n__No AI art, Memes or anything you didn't create is allowed__", color=randint(1, 0xffffff))
+                    embed=Embed(description=f"```fix\n█ NEW General Sticky █\n```\n**Welcome! To the new better general!**\n\nThis channel used to be the fur-den channel but is now open to both members of the LGBT and Furrys!\n\nThis is considered the more main part of the server now. <3", color=randint(1, 0xffffff))
                 if channel == art:
                     embed=Embed(description=f"```fix\n█ Art Sticky █\n```\n**This channel is for posting art created by the community!**\n__No AI art, Memes or anything you didn't create is allowed__", color=randint(1, 0xffffff))
                 if channel == issues:
