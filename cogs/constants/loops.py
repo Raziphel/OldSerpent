@@ -327,9 +327,9 @@ class Loops(Cog):
         for user in guild.members:
             try:
                 c = utils.Currency.get(user.id)
-                if c.coins > 24:
-                    c.coins -= 25
-                    total += 25
+                if c.coins > 9:
+                    c.coins -= 10
+                    total += 10
                     async with self.bot.database() as db:
                         await c.save(db)
                 elif c.coins != 0:
