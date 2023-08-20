@@ -242,8 +242,10 @@ class Developer(Cog):
         for user in guild.members:
             try:
                 c = utils.Currency.get(user.id)
-                c.coins += 10000
-                total += 10000
+                lvl = utils.Levels.get(user.id)
+                if lvl.level > 5:
+                    c.coins += 25000
+                    total += 25000
                 async with self.bot.database() as db:
                     await c.save(db)
             except Exception as e:
