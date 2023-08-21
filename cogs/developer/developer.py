@@ -242,14 +242,16 @@ class Developer(Cog):
         for user in guild.members:
             try:
                 c = utils.Currency.get(user.id)
-                c.coins += 10000
-                total += 10000
+                lvl = utils.Levels.get(user.id)
+                if lvl.level > 9:
+                    c.coins += 25000
+                    total += 25000
                 async with self.bot.database() as db:
                     await c.save(db)
             except Exception as e:
                 print(e) 
 
-        await ctx.send(f"Handed out over **{total:,}x** {coin_e}!  To everyone on the server!")
+        await ctx.send(f"Handed out over **{total:,}x** {coin_e}!  To everyone level 10 or higher on the server!")
 
 
 

@@ -125,7 +125,7 @@ class Shop_Handler(Cog):
                 if mod.image_banned == True:
                     await user.send(embed=utils.LogEmbed(type="special", title="IMAGE BANNED", desc=f"You have been banned from ever being able to have an image pass! <3", footer=" "))
                     return
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Image Pass!\nCost: {coin} 20,000x", footer=" "))
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Image Pass!\nCost: {coin} 50,000x", footer=" "))
                 item['coin'] = 50000
                 item['name'] = "Image Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
