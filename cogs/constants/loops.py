@@ -248,7 +248,8 @@ class Loops(Cog):
         emoji_suggestions = guild.get_channel(1109756661331152996) #? Emoji suggestions Channel
         supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
         maymays = guild.get_channel(1141277621385170995) #? MayMays Channel
-        channels = [maymays, supporter, bot_usage, issues, scp_suggestions, art, suggestions, emoji_suggestions, scp_suggestions]
+        memes = guild.get_channel(1051041355129958410) #? Memes Channel
+        channels = [maymays, memes, supporter, bot_usage, issues, scp_suggestions, art, suggestions, emoji_suggestions, scp_suggestions]
         suggestion_channels = [suggestions, scp_suggestions, emoji_suggestions]
         last_message = None
         for channel in channels:
@@ -310,7 +311,9 @@ class Loops(Cog):
                 # if channel == general:
                 #     embed=Embed(description=f"```fix\n█ NEW General Sticky █\n```\n**Welcome! To the new better general!**\n\nThis channel used to be the fur-den channel but is now open to both members of the LGBT and Furrys!\n\nThis is considered the more main part of the server now. <3", color=randint(1, 0xffffff))
                 if channel == maymays:
-                    embed=Embed(description=f"```fix\n█ Maymays Sticky █\n```\n**This is a place for media & memes for the LGBT / Furry area!**", color=randint(1, 0xffffff))
+                    embed=Embed(description=f"```fix\n█ Maymays Sticky █\n```\n**This is a place for media & memes for the LGBT / Furry area!**\nIn other words a large amount of degeneracy is allowed here!", color=randint(1, 0xffffff))
+                if channel == memes:
+                    embed=Embed(description=f"```fix\n█ Memes Sticky █\n```\n**This isn't the place for furry or lgbt memes, keep those in Maymays!**\nBut that doesn't mean being phobic is allowed either!", color=randint(1, 0xffffff))
                 if channel == art:
                     embed=Embed(description=f"```fix\n█ Art Sticky █\n```\n**This channel is for posting art created by the community!**\n__No AI art, Memes or anything you didn't create is allowed__", color=randint(1, 0xffffff))
                 if channel == issues:
