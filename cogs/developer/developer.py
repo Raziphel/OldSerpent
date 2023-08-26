@@ -157,6 +157,7 @@ class Developer(Cog):
                 mod.adult = True
                 mod.child = False
                 await user.add_roles(adult2, reason="Reeee")
+                await user.remove_roles(adult, reason="Reeee")
                 async with self.bot.database() as db:
                     await mod.save(db)
                 print(f'fixed {user.name}\'s adult roles!')
