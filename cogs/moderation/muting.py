@@ -168,7 +168,7 @@ class Muting(Cog):
         async with self.bot.database() as db:
             await mod.save(db)
 
-        await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Un-Gagged", desc=f"{user.name} was un-muted!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
+        await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Un-Muted", desc=f"{user.name} was un-muted!\nBy: **{ctx.author}**\nReason :: **{reason}**"))
 
 
 
@@ -264,7 +264,7 @@ class Muting(Cog):
                             'DO UPDATE SET unmute_time = $2', user.id, mute_expiration)
             self.create_temp_gag_task(user, mute_expiration)
 
-            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Gagged", desc=f"{user.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**\nDuration :: **{duration}**"))
+            await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Muted", desc=f"{user.name} was gagged!\nBy: **{ctx.author}**\nReason :: **{reason}**\nDuration :: **{duration}**"))
 
 
 
