@@ -114,7 +114,7 @@ class Daily(Cog):
             components=components
         )
         
-        await self.coin_logs.send(f"**{ctx.author}** was Granted **{coins:,} {coin_e}** for his {day.daily:,} daily!")
+        await self.coin_logs.send(f"**{ctx.author}** was Granted **{coins:,} {coin_e}** for there {day.daily:,} daily!")
 
         if day.premium:
             def check(interaction: discord.Interaction):
