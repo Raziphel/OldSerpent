@@ -22,10 +22,10 @@ SCPSL Overseer -> Developers -> SCPSL Sr. Moderator -> SCPSL Mod -> SCPSL Jr. Mo
 <b><size=45><align="center"><color=#14CD17>Serpent's</color> <color=#14CD69>Garden</color></align></size></b>
  
 <align="center">------------------------------------------------------------------------</align>
-<align="center"><color=#CC3124><b>This server</color> <color=#CC6124>is friendly</color> <color=#D3A712>towards</color> <color=#41D312>anyone</color> <color=#A112D3>and everyone.</color>  <color=#CC3124>Homophobia,</color> <color=#CC6124>Racism or</color> <color=#D3A712>any bigotry</color> <color=#41D312>is a no</color> <color=#A112D3>warning ban.</b></color></align>
+<align="center"><color=#CC3124><b>This server</color> <color=#CC6124>is friendly</color> <color=#D3A712>towards</color> <color=#41D312>anyone</color> <color=#A112D3>and everyone.</color>  <color=#CC3124>Homophobia,</color> <color=#CC6124>Racism or</color> <color=#D3A712>any other kind</color> <color=#41D312>of bigotry is a</color> <color=#A112D3>ban without warning.</b></color></align>
 <align="center">------------------------------------------------------------------------</align>
 <size=20><align="center"><color=#D74438><b>THIS IS AN EXTREMELY MODDED SERVER</b></color></align></size>
-<size=16><align="center"><color=#D7A438>For information on our server's plugins (Join discord)</color></align></size>
+<size=16><align="center"><color=#D7A438>For information on our server's plugins Join the Discord!</color></align></size>
  
 <align="center"><size=20><color=#5865F2><link="https://discord.gg/serpent">Discord (Clickable)</link></color> | <color=#38D7B0><link="https://discord.com/servers/the-serpent-s-garden-689534383878701223">Support (Clickable)</link></color></size=20></align>
  
@@ -38,19 +38,19 @@ SCPSL Overseer -> Developers -> SCPSL Sr. Moderator -> SCPSL Mod -> SCPSL Jr. Mo
  
 <color=#FF0000>2.</color> No mic-spam is allowed ever and soundboards are not allowed in spectator chat. No rule on radios.
  
-<color=#FF0000>3.</color> This server is intended for mature audiences!  You can be banned you for immaturity and being annoying!!! (This server allows being suggestive, crude and use strong language. Rated Teen game rules.)
+<color=#FF0000>3.</color> This server is intended for mature audiences!  You can be banned you for immaturity and being annoying!!! (This server allows being suggestive, crude and using strong language.)
  
 <color=#FF0000>4.</color> Staff members reserve the right to punish players just for disrespect and staff members do not show badges by default.
  
-<color=#FF0000>5.</color> Teaming is generally allowed, so long as it doesn’t stall the round. (If the scp has less then 3 targets and isn't killing, only they can be punished.)
+<color=#FF0000>5.</color> Teaming is generally allowed, so long as it doesn’t stall the round. (If the scp has less then 3 targets and isn't killing, then they will be punished.)
  
 <color=#FF0000>6.</color> Do not grief other players on your team!  Intentionally killing your allies is never allowed.  
  
-<color=#FF0000>7.</color> Do not abuse any exploits to lag the server or gain some other unfair advantage over others. Finding spots where SCPs can't kill, will meet with punishment!
+<color=#FF0000>7.</color> Do not abuse any exploits to lag the server or gain some other unfair advantage over others. Finding spots where SCPs can't kill you, will meet with punishment!
  
 <color=#FF0000>8.</color> No advertisements of any form, including over the intercom or in voice chat.</align></size>
  
 <align="center">------------------------------------------------------------------------</align>
  
  
-<align="center"><size=16><color=#D74438>We believe people can grow with time; Got banned and want to appeal? (Join Discord)</color></size></align>
+<align="center"><size=16><color=#D74438>We believe people can grow with time; Got banned and want to appeal? (Join the Discord)</color></size></align>

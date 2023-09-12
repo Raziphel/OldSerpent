@@ -94,7 +94,7 @@ class rules_handler(Cog):
 
         embed6=Embed(description=f"```fix\n█ Leaving Punishments █\n```\nAny member who decides to leave, is kicked or even banned.  Have all there coins given back to the Serpent!  So keep in mind if you ever decide to leave that you will not only lose all your coins!  But, any purchases you had made with those coins as well.\n\nThis is to keep the economy functioning properly and as another defensive measure against bad actors who get banned.", color=0x47F599)
 
-        lastembed=Embed(description=f"```fix\n█ Help Guide █\n```\n\n1.) [Staff Hierarchy](https://discord.com/channels/689534383878701223/1133002668189700116/1133002927678697572)\n2.) [Not able to see any Channels?](https://discord.com/channels/689534383878701223/1133002668189700116/1133009889204121701)\n3.) [Channel Quick Fix](https://discord.com/channels/689534383878701223/1133002668189700116/1133086049590059078)\n4.) [The Access Roles](https://discord.com/channels/689534383878701223/1133002668189700116/1134113997378027582)\n5.) [Serpent's Economy](https://discord.com/channels/689534383878701223/1133002668189700116/1134171819444805662)\n6.) [Leaving Punishments](https://discord.com/channels/689534383878701223/1133002668189700116/1134568608979234846)", color=0x47F599)
+        lastembed=Embed(description=f"```fix\n█ Table of Content █\n```\n\n1.) [Staff Hierarchy](https://discord.com/channels/689534383878701223/1133002668189700116/1133002927678697572)\n2.) [Not able to see any Channels?](https://discord.com/channels/689534383878701223/1133002668189700116/1133009889204121701)\n3.) [Channel Quick Fix](https://discord.com/channels/689534383878701223/1133002668189700116/1133086049590059078)\n4.) [The Access Roles](https://discord.com/channels/689534383878701223/1133002668189700116/1134113997378027582)\n5.) [Serpent's Economy](https://discord.com/channels/689534383878701223/1133002668189700116/1134171819444805662)\n6.) [Leaving Punishments](https://discord.com/channels/689534383878701223/1133002668189700116/1134568608979234846)", color=0x47F599)
 
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
@@ -124,16 +124,20 @@ class rules_handler(Cog):
 
         coin = self.bot.config['emotes']['coin']
 
-        embed1=Embed(description=f"```fix\n█ Connecting to the Servers █\n```\n**Modded Minecraft Server (Coming Soon)**\n`mc.serpents.garden`\n\n**SCP Server Addresses**\n\n**[Alpha]**\n`connect n01.infra.serpents.garden:7777`\n\n**[Epsilon]**\n`connect n01.infra.serpents.garden:7778`\n\n**[Kappa]**\n`connect n01.infra.serpents.garden:7779`\n\n", color=0xFF0000)
+        embed1=Embed(description=f"```fix\n█ Connecting to the Servers █\n```\nCurrently Serpent's Garden is only hosting our SCP Servers along side a spigot minecraft server!  Below you can find the IP addresses for joining these servers!\n\n**__Spigot Minecraft Server__**\n`mc.serpents.garden`\n\n\n**__SCP Server Addresses__**\n\n**[Alpha]**\n`connect n01.infra.serpents.garden:7777`\n\n**[Epsilon]**\n`connect n01.infra.serpents.garden:7778`\n\n**[Kappa]**\n`connect n01.infra.serpents.garden:7779`\n\n", color=0xFF0000)
 
-        embed2=Embed(description=f"```fix\n█ Coming Soon █\n```\n", color=0xFF0000)
 
-        embed3=Embed(description=f"```fix\n█ Coming Soon █\n```\n", color=0xFFFFFF)
+        embed2=Embed(description=f"```fix\n█ Minecraft FAQ █\n```\n**This is still a work in progress, until the Minecraft Server is open to the public!**", color=0xFF0000)
+
+        embed3=Embed(description=f"```fix\n█ SCP:SL FAQ █\n```\n", color=0xFFFFFF)
 
 
         await msg1.edit(content=f" ", embed=embed1)
         await msg2.edit(content=f" ", embed=embed2)
         await msg3.edit(content=f" ", embed=embed3)
+
+        await lastmsg.edit(content=f" ", embed=lastembed)
+
 
 
 
