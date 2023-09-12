@@ -136,8 +136,6 @@ class rules_handler(Cog):
         await msg2.edit(content=f" ", embed=embed2)
         await msg3.edit(content=f" ", embed=embed3)
 
-        await lastmsg.edit(content=f" ", embed=lastembed)
-
 
 
 
