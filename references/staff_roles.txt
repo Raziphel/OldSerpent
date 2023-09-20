@@ -24,7 +24,7 @@ SCPSL Overseer -> Developers -> SCPSL Sr. Moderator -> SCPSL Mod -> SCPSL Jr. Mo
 <align="center">------------------------------------------------------------------------</align>
 <align="center"><color=#CC3124><b>This server</color> <color=#CC6124>is friendly</color> <color=#D3A712>towards</color> <color=#41D312>anyone</color> <color=#A112D3>and everyone.</color>  <color=#CC3124>Homophobia,</color> <color=#CC6124>Racism or</color> <color=#D3A712>any other kind</color> <color=#41D312>of bigotry is a</color> <color=#A112D3>ban without warning.</b></color></align>
 <align="center">------------------------------------------------------------------------</align>
-<size=20><align="center"><color=#D74438><b>THIS IS AN EXTREMELY MODDED SERVER</b></color></align></size>
+<size=20><align="center"><color=#D74438><b>THIS IS A HEAVILY MODDED SERVER</b></color></align></size>
 <size=16><align="center"><color=#D7A438>For information on our server's plugins Join the Discord!</color></align></size>
  
 <align="center"><size=20><color=#5865F2><link="https://discord.gg/serpent">Discord (Clickable)</link></color> | <color=#38D7B0><link="https://discord.com/servers/the-serpent-s-garden-689534383878701223">Support (Clickable)</link></color></size=20></align>
@@ -33,7 +33,7 @@ SCPSL Overseer -> Developers -> SCPSL Sr. Moderator -> SCPSL Mod -> SCPSL Jr. Mo
 <align="center">------------------------------------------------------------------------</align>
  
  
-<b><u><size=32><align="center"><color=#00FFD4>Serpent's Rules</color></align></size></u></b>
+<b><u><size=32><align="center"><color=#00FFD4>Garden's Rules</color></align></size></u></b>
 <size=15><align="left"><color=#FF0000>1.</color> No hate speech, harassment or bigotry.  Anything racist, homophobic Ect. is not allowed.  
  
 <color=#FF0000>2.</color> No mic-spam is allowed ever and soundboards are not allowed in spectator chat. No rule on radios.
@@ -42,7 +42,7 @@ SCPSL Overseer -> Developers -> SCPSL Sr. Moderator -> SCPSL Mod -> SCPSL Jr. Mo
  
 <color=#FF0000>4.</color> Staff members reserve the right to punish players just for disrespect and staff members do not show badges by default.
  
-<color=#FF0000>5.</color> Teaming is generally allowed, so long as it doesn’t stall the round. (If the scp has less then 3 targets and isn't killing, then they will be punished.)
+<color=#FF0000>5.</color> Teaming is generally allowed, so long as it doesn't stall the round. (If the scp has less then 3 targets and is teaming, then they will be punished.)
  
 <color=#FF0000>6.</color> Do not grief other players on your team!  Intentionally killing your allies is never allowed.  
  
