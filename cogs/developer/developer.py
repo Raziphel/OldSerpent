@@ -122,7 +122,8 @@ class Developer(Cog):
 
         verified = utils.DiscordGet(ctx.guild.roles, id=1154202953247375440)
         for user in ctx.guild.members:
-            await user.add_roles(verified, reason="verified!")
+            if verified not in user.roles:
+                await user.add_roles(verified, reason="verified!")
 
         for channel in ctx.guild.text_channels:
             await channel.set_permissions(muted, read_messages=None, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False)
