@@ -121,7 +121,7 @@ class Developer(Cog):
         trusted = utils.DiscordGet(ctx.guild.roles, id=1154202953247375440)
 
         verified = utils.DiscordGet(guild.roles, id=1154202953247375440)
-        for user in guild.members:
+        for user in ctx.guild.members:
             await user.add_roles(verified, reason="verified!")
 
         for channel in ctx.guild.text_channels:
