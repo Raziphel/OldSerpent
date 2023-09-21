@@ -128,7 +128,7 @@ class Developer(Cog):
         for channel in ctx.guild.text_channels:
             await channel.set_permissions(muted, read_messages=False, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False)
             await channel.set_permissions(bots, read_messages=True, send_messages=True, add_reactions=True, send_messages_in_threads=True, create_public_threads=True, create_private_threads=True)
-            await channel.set_permissions(trusted, read_messages=None, send_messages=True, add_reactions=True, send_messages_in_threads=True, create_public_threads=True, create_private_threads=True)
+            await channel.set_permissions(trusted, read_messages=None, send_messages=None, add_reactions=True, send_messages_in_threads=True, create_public_threads=True, create_private_threads=True)
             # await channel.set_permissions(everyone, read_messages=False, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False)
 
 
