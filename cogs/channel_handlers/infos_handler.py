@@ -127,9 +127,9 @@ class rules_handler(Cog):
         embed1=Embed(description=f"```fix\n█ Connecting to the Servers █\n```\nCurrently Serpent's Garden is only hosting our SCP Servers along side a spigot minecraft server!  Below you can find the IP addresses for joining these servers!\n\n**__Spigot Minecraft Server__**\n`mc.serpents.garden`\n\n\n**__SCP Server Addresses__**\n\n**[Alpha]**\n`connect n01.infra.serpents.garden:7777`\n\n**[Epsilon]**\n`connect n01.infra.serpents.garden:7778`\n\n**[Kappa]**\n`connect n01.infra.serpents.garden:7779`\n\n", color=0xFF0000)
 
 
-        embed2=Embed(description=f"```fix\n█ Minecraft FAQ █\n```\n**This is still a work in progress, until the Minecraft Server is open to the public!**", color=0xFF0000)
+        embed2=Embed(description=f"```fix\n█ SCP:SL FAQ █\n```\n**Heres all of your usual questions all answered!  You're welcome!**\n\n**What plugins does Serpent's Garden use?**\nWe use Universe a private modding API and we created every plugin in house!  A list of all of our plugins can be found in <#1154301198619398194>!\n\n**What are all of these custom roles!?**\nYou always spawn as a custom role no matter the team!  A list of all of our custom roles can be found in <#1151144048015462461>!\n\n**What are all of the custom items added!?**\nJesus dude are you blind? <#1151178974844702782>\n\n**How do I sync my roles from the Discord to the server?**\nThere is currently no way to do so...  Coming soon though... :3\n\n**Why is there LGBT Flags on surface!? >:o**\ngottem, L bozo!", color=0xFF0000)
 
-        embed3=Embed(description=f"```fix\n█ SCP:SL FAQ █\n```\n", color=0xFFFFFF)
+        embed3=Embed(description=f"```fix\n█ Minecraft FAQ █\n```\n", color=0xFFFFFF)
 
 
         await msg1.edit(content=f" ", embed=embed1)
