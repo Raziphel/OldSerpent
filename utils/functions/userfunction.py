@@ -143,7 +143,7 @@ class UserFunction(object):
             await user.add_roles(s4, reason="Verification")
             general = cls.bot.get_channel(cls.bot.config['channels']['general'])
             try:
-                await general.send(content=f"<@&1134574155828838560> {user.mention}", embed=utils.SpecialEmbed(description=f"Please welcome {user.mention} go to <id:customize> and get more roles!\nBe sure to read <#856449403173994536>!\nand check out <#946730953731100682> when you have enough coins!", thumbnail=user.avatar.url, footer=" "))
+                await general.send(content=f"<@&1134574155828838560> {user.mention}", embed=utils.SpecialEmbed(description=f"Please welcome {user.mention} to the garden!\nBe sure to go to <id:customize> as there is still a lot more roles you choose from!\n\nIf you joined from the **SCP Servers** be sure to check <#1052823837416357999>!\nAbsolutely read the <#856449403173994536> and the <#1133002668189700116> as well for information related to our Discord!", thumbnail=user.avatar.url, footer=" "))
             except: pass
             return
 
