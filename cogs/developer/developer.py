@@ -118,7 +118,7 @@ class Developer(Cog):
         muted = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
         bots = utils.DiscordGet(ctx.guild.roles, id=689618590638669845)
         everyone = utils.DiscordGet(ctx.guild.roles, id=689534383878701223)
-        umtrusted = utils.DiscordGet(ctx.guild.roles, id=1154236618606125106)
+        untrusted = utils.DiscordGet(ctx.guild.roles, id=1154236618606125106)
         council = utils.DiscordGet(ctx.guild.roles, id=891793700932431942)
 
         verified = utils.DiscordGet(ctx.guild.roles, id=1154202953247375440)
