@@ -106,7 +106,7 @@ class Message_Rewards(Cog):
                 await message.clear_reactions()
                 coin = choice([100, 150, 200, 250, 300])
                 await utils.CoinFunctions.earn(earner=user, amount=coin)
-                msg = await channel.send(=f"{user.name} found **{coin} {coin_e}x**")
+                msg = await channel.send(f"{user.name} found **{coin} {coin_e}x**")
                 await coin_logs.send(f"**{user}** found **{coin} {coin_e}**")
                 #! Quest 1 Complete
                 await self.bot.get_cog('Quests').get_quest(user=user, quest_no=1, completed=True)
