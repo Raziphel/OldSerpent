@@ -60,7 +60,7 @@ class Staff_Actions(Cog):
 
         #! Report who has been banned!
         await ctx.interaction.response.send_message(embed=utils.WarningEmbed(title=f"Banned `{user}`."))
-        await self.server_logs.send(embed=utils.LogEmbed(type="negative", title=f"User Banned", desc=f"{user.name} was banned!\n**By: {ctx.author}\nReason :: {reason}**"))
+        await self.discord_log.send(embed=utils.LogEmbed(type="negative", title=f"User Banned", desc=f"{user.name} was banned!\n**By: {ctx.author}\nReason :: {reason}**"))
 
 
 
