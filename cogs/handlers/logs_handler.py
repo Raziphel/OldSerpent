@@ -130,7 +130,7 @@ class Logging(Cog):
         elif any(item in name_list for item in ['👑', "🌷", "📯", "📝"]):
             return
         else: channel = self.message_log
-        await channel.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar.url, image=image))
+        await channel.send(embed=utils.LogEmbed(type="negative", title=f"Message Deleted", desc=f"\"{message.content}\"\n**Channel:** <#{message.channel.id}>\n**Author:** {message.author.mention}", thumbnail=message.author.avatar_url, image=image))
 
     @Cog.listener()
     async def on_message_edit(self, before, after):
