@@ -119,7 +119,7 @@ class Developer(Cog):
         bots = utils.DiscordGet(ctx.guild.roles, id=689618590638669845)
         everyone = utils.DiscordGet(ctx.guild.roles, id=689534383878701223)
         trusted = utils.DiscordGet(ctx.guild.roles, id=1154202953247375440)
-        untrusted = utils.DiscordGet(ctx.guild.roles, id=1154236618606125106)
+        council = utils.DiscordGet(ctx.guild.roles, id=891793700932431942)
 
         verified = utils.DiscordGet(ctx.guild.roles, id=1154202953247375440)
         # for user in ctx.guild.members:
@@ -129,7 +129,7 @@ class Developer(Cog):
         for channel in ctx.guild.text_channels:
             await channel.set_permissions(muted, read_messages=False, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False)
             await channel.set_permissions(bots, read_messages=True, send_messages=True, add_reactions=True, send_messages_in_threads=True, create_public_threads=True, create_private_threads=True)
-            await channel.set_permissions(trusted, send_messages=True)
+            await channel.set_permissions(council, manage_channel=True, manage_permissions=True)
             await channel.set_permissions(untrusted, read_messages=False, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False)
 
 
