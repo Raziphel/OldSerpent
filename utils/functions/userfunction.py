@@ -29,10 +29,10 @@ class UserFunction(object):
         #* Emojis
         coin = "<:Coin:1026302157521174649>"
 
-        RNG = choice([1.25, 1.30, 1.35, 1, 0.75, 0.85, 0.9])
+        RNG = choice([1.25, 1.30, 1.35, 1, 0.75, 0.85, 0.9, 2])
 
         lvl.level += 1
-        amount = (lvl.level*500) * RNG
+        amount = (lvl.level*800) * RNG
         await utils.CoinFunctions.earn(earner=user, amount=amount)
 
         lvl.exp = 0

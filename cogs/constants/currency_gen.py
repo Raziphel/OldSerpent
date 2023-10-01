@@ -47,13 +47,13 @@ class Currency_Gen(Cog):
             unique_words = len(list(unique_everseen(message.content.split(), str.lower)))
             requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
             if message.attachments != None:
-                unique_words += 5
+                unique_words += 6
 
             #! Unique Word Nerfer
-            if unique_words > 8:
-                unique_words = 8
+            if unique_words > 12:
+                unique_words = 12
 
-            rng = choice([0.5, 0.75, 1.0, 1.25, 1.50, 2])
+            rng = choice([0.5, 0.75, 1.0, 1.25, 1.50, 1.75, 2])
             exp += 5*rng
             coins = 1+unique_words*rng
 
@@ -111,7 +111,7 @@ class Currency_Gen(Cog):
                     c = utils.Currency.get(member.id)
                     lvl = utils.Levels.get(member.id)
                     lvl.exp += 15+(len(vc.members)/2)
-                    coins = 5 + round(len(vc.members))
+                    coins = 10 + round(len(vc.members))
                     await utils.CoinFunctions.earn(earner=member, amount=coins)
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
