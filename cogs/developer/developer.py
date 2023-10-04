@@ -156,22 +156,14 @@ class Developer(Cog):
 
     @utils.is_dev()
     @command()
-    async def adults(self, ctx):
+    async def bleprole(self, ctx):
         '''Runs code through Python'''
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        adult = utils.DiscordGet(guild.roles, id=1093881864806223932)
-        adult2 = utils.DiscordGet(guild.roles, id=1141807070581112944)
-        quirky = utils.DiscordGet(guild.roles, id=1129464175396143104)
+        role1 = utils.DiscordGet(guild.roles, id=1054142893872398346)
+        role2 = utils.DiscordGet(guild.roles, id=1107421191586726039)
         for user in guild.members:
-            if (adult in user.roles) and (quirky in user.roles):
-                mod = utils.Moderation.get(user.id)
-                mod.adult = True
-                mod.child = False
-                await user.add_roles(adult2, reason="Reeee")
-                await user.remove_roles(adult, reason="Reeee")
-                async with self.bot.database() as db:
-                    await mod.save(db)
-                print(f'fixed {user.name}\'s adult roles!')
+            if role1 in user.roles:
+                await user.add_roles(role2, reason="Reeee")
 
 
     @utils.is_dev()
