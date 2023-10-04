@@ -254,8 +254,8 @@ class Loops(Cog):
         suggestion_channels = [suggestions, scp_suggestions, emoji_suggestions]
         last_message = None
         for channel in channels:
-            message_list = await channel.history(limit=1).flatten()
             try:
+                message_list = await channel.history(limit=1).flatten()
                 last_message = message_list[0] #? get last message
             except IndexError:
                 # no messages in the channel
