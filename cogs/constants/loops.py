@@ -242,7 +242,7 @@ class Loops(Cog):
         bot_usage = guild.get_channel(1028771493179560066) #? bot_usage Channel
         issues = guild.get_channel(1056747603829731338) #? issues Channel
         art = guild.get_channel(1088530067862327376) #? Art Channel
-        suggestions = guild.get_channel(1093622505236865045) #? suggestions Channel
+        suggestions = guild.get_channel(1159044488208056341) #? suggestions Channel
         general = guild.get_channel(1129465114278510675) #? general Channel
         scp_suggestions = guild.get_channel(1056747785749278761) #? SCP suggestions Channel
         emoji_suggestions = guild.get_channel(1109756661331152996) #? Emoji suggestions Channel
