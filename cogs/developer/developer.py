@@ -118,8 +118,8 @@ class Developer(Cog):
         muted = utils.DiscordGet(ctx.guild.roles, id=1028881308006502400)
         bots = utils.DiscordGet(ctx.guild.roles, id=689618590638669845)
         everyone = utils.DiscordGet(ctx.guild.roles, id=689534383878701223)
-        trusted = utils.DiscordGet(ctx.guild.roles, id=1154202953247375440)
         untrusted = utils.DiscordGet(ctx.guild.roles, id=1154236618606125106)
+        council = utils.DiscordGet(ctx.guild.roles, id=891793700932431942)
 
         verified = utils.DiscordGet(ctx.guild.roles, id=1154202953247375440)
         # for user in ctx.guild.members:
@@ -129,7 +129,7 @@ class Developer(Cog):
         for channel in ctx.guild.text_channels:
             await channel.set_permissions(muted, read_messages=False, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False)
             await channel.set_permissions(bots, read_messages=True, send_messages=True, add_reactions=True, send_messages_in_threads=True, create_public_threads=True, create_private_threads=True)
-            await channel.set_permissions(trusted, send_messages=True)
+            await channel.set_permissions(council, manage_channels=True, manage_permissions=True)
             await channel.set_permissions(untrusted, read_messages=False, send_messages=False, add_reactions=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False)
 
 
@@ -156,22 +156,14 @@ class Developer(Cog):
 
     @utils.is_dev()
     @command()
-    async def adults(self, ctx):
+    async def bleprole(self, ctx):
         '''Runs code through Python'''
         guild = self.bot.get_guild(self.bot.config['garden_id']) #? Guild
-        adult = utils.DiscordGet(guild.roles, id=1093881864806223932)
-        adult2 = utils.DiscordGet(guild.roles, id=1141807070581112944)
-        quirky = utils.DiscordGet(guild.roles, id=1129464175396143104)
+        role1 = utils.DiscordGet(guild.roles, id=1054142893872398346)
+        role2 = utils.DiscordGet(guild.roles, id=1107421191586726039)
         for user in guild.members:
-            if (adult in user.roles) and (quirky in user.roles):
-                mod = utils.Moderation.get(user.id)
-                mod.adult = True
-                mod.child = False
-                await user.add_roles(adult2, reason="Reeee")
-                await user.remove_roles(adult, reason="Reeee")
-                async with self.bot.database() as db:
-                    await mod.save(db)
-                print(f'fixed {user.name}\'s adult roles!')
+            if role1 in user.roles:
+                await user.add_roles(role2, reason="Reeee")
 
 
     @utils.is_dev()

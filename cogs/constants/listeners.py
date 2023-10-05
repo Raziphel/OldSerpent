@@ -122,7 +122,7 @@ class Listeners(Cog):
 
 
         #+ Check for Suggestion channels
-        if message.channel.id in [1093622505236865045, 1056747785749278761, 1109756661331152996, 1145590266355535933]: #? Suggestions
+        if message.channel.id in [1093622505236865045, 1056747785749278761, 1109756661331152996, 1159044488208056341]: #? Suggestions
             if message.author.bot:
                 return
             await message.add_reaction("<:UpVote:1041606985080119377>")

@@ -29,10 +29,10 @@ class UserFunction(object):
         #* Emojis
         coin = "<:Coin:1026302157521174649>"
 
-        RNG = choice([1.25, 1.30, 1.35, 1, 0.75, 0.85, 0.9])
+        RNG = choice([1.25, 1.30, 1.35, 1, 0.75, 0.85, 0.9, 2])
 
         lvl.level += 1
-        amount = (lvl.level*500) * RNG
+        amount = (lvl.level*800) * RNG
         await utils.CoinFunctions.earn(earner=user, amount=amount)
 
         lvl.exp = 0
@@ -42,7 +42,7 @@ class UserFunction(object):
         await cls.check_level(user=user)
 
         if channel:
-            msg = await channel.send(embed=utils.LogEmbed(type="positive", title=f"🎉 level up!", desc=f"{user.mention} is now level: **{lvl.level:,}**\nGranting them: **{round(amount):,}x** {coin}"))
+            msg = await channel.send(f"🎉 {user.mention} is now level: **{lvl.level:,}\n**Granting them: **{round(amount):,}x** {coin}")
 
         coin_logs = cls.bot.get_channel(cls.bot.config['channels']['coin_logs'])
         await coin_logs.send(f"**{user.name}** leveled up and is now level **{lvl.level:,}**\nGranting them: **{round(amount):,}x** {coin}")
@@ -141,7 +141,7 @@ class UserFunction(object):
             await user.add_roles(s2, reason="Verification")
             await user.add_roles(s3, reason="Verification")
             await user.add_roles(s4, reason="Verification")
-            general = cls.bot.get_channel(cls.bot.config['channels']['general'])
+            general = cls.bot.get_channel(1158984202646208533)
             try:
                 await general.send(content=f"<@&1134574155828838560> {user.mention}", embed=utils.SpecialEmbed(description=f"Please welcome {user.mention} to the garden!\nBe sure to go to <id:customize> as there is still a lot more roles you choose from!\n\nIf you joined from the **SCP Servers** be sure to check <#1052823837416357999>!\nAbsolutely read the <#856449403173994536> and the <#1133002668189700116> as well for information related to our Discord!", thumbnail=user.avatar.url, footer=" "))
             except: pass

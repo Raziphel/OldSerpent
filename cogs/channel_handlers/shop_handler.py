@@ -41,7 +41,6 @@ class Shop_Handler(Cog):
         embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**{coin} 25,000x**\n\n**Get access to all of the server's logs!**\n*(Full Transparency from all users)*", inline=True)
         embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**{coin} 50,000x**\n\n**Get permission for images & embeds in General Chats.**", inline=True)
         embed2.add_field(name=f"🎁 ❧ Stat Channels", value=f"**{coin} 5,000x**\n\n**Get permission to the Stats Channels!**", inline=True)
-        embed2.add_field(name=f"💀 ❧ Auto-Mod Bypass", value=f"**{coin} 100,000x**\n\n**No longer have to worry about the discord's auto moderation.**", inline=True)
         embed2.add_field(name=f"🔥 ❧ Dungeon Key", value=f"**{coin} 30,000x**\n\n**Get access to hell, where all the muted go!**", inline=True)
         embed2.add_field(name=f"🔊 ❧ SoundBoard Access", value=f"**{coin} 50,000x**\n\n**Get access to using the soundboard in VC!**", inline=True)
 
@@ -145,17 +144,6 @@ class Shop_Handler(Cog):
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
                     special = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['specials'])
                     await user.add_roles(special, reason="Given the Stat Channels role.")
-
-            if emoji == "💀":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the auto-mod bypass!\nCost: {coin} 100,000x", footer=" "))
-                item['coin'] = 100000
-                item['name'] = "Auto-Mod Bypass"
-                if await self.purchasing(msg=msg, payload=payload, item=item) == True:
-                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Auto-mod bypass!", footer=" "))
-                    bought = True
-                    await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    automod = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['automod'])
-                    await user.add_roles(automod, reason="Given Auto-mod bypass role.")
 
             if emoji == "🔥":
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the dungeon key!\nCost: {coin} 100,000x", footer=" "))
