@@ -250,7 +250,7 @@ class Loops(Cog):
         maymays = guild.get_channel(1141277621385170995) #? MayMays Channel
         memes = guild.get_channel(1051041355129958410) #? Memes Channel
         adult_chat = guild.get_channel(1144814522012532786) #? adult chat Channel
-        channels = [adult_chat, maymays, memes, supporter, bot_usage, issues, scp_suggestions, art, suggestions, emoji_suggestions, scp_suggestions]
+        channels = [ maymays, memes, supporter, bot_usage, issues, scp_suggestions, art, suggestions, emoji_suggestions, scp_suggestions]
         suggestion_channels = [suggestions, scp_suggestions, emoji_suggestions]
         last_message = None
         for channel in channels:
