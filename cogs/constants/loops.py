@@ -78,7 +78,7 @@ class Loops(Cog):
                 except: pass
 
         #* Setting the bot status.
-        playing = choice(["Trans-Rights are Human Rights!"])
+        playing = choice(["Trans-Rights are Human Rights!", "If you don't fites 4 trans rites you'll get bites."])
         await self.bot.change_presence(activity=Game(name=playing))
 
         #* Setting the Channel Stats.
@@ -250,8 +250,8 @@ class Loops(Cog):
         maymays = guild.get_channel(1141277621385170995) #? MayMays Channel
         memes = guild.get_channel(1051041355129958410) #? Memes Channel
         adult_chat = guild.get_channel(1144814522012532786) #? adult chat Channel
-        channels = [ maymays, memes, supporter, bot_usage, issues, scp_suggestions, art, suggestions, emoji_suggestions, scp_suggestions]
-        suggestion_channels = [suggestions, scp_suggestions, emoji_suggestions]
+        channels = [maymays, memes, supporter, bot_usage, issues, scp_suggestions, art, suggestions, scp_suggestions]
+        suggestion_channels = [suggestions, scp_suggestions]
         last_message = None
         for channel in channels:
             message_list = await channel.history(limit=1).flatten()
