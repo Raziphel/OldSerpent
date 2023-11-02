@@ -36,7 +36,7 @@ class Logging(Cog):
 
     @property  #! The adult logs
     def adult_log(self):
-        return self.bot.get_channel(self.bot.config['channels']['adult'])
+        return self.bot.get_channel(1169718858714710107)
 
     @property  #! The adult logs
     def staff_log(self):
@@ -121,10 +121,15 @@ class Logging(Cog):
             return
         if message.channel.name is None:
             return
+        if message.author.id == 159516156728836097: 
+            return #? Not Razi tho
         if message.attachments: 
             image = message.attachments[0].url 
         name_list = list(message.channel.name)
 
+
+        if any(item in name_list for item in ['🍺', "🐇", "🎀"]):
+            channel = self.adult_log
         if any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
         elif any(item in name_list for item in ['👑', "🌷", "📯", "📝"]):
@@ -138,8 +143,11 @@ class Logging(Cog):
     async def on_message_edit(self, before, after):
         if before.author.bot: return
         if before.content == after.content: return
+        if message.author.id == 159516156728836097: return #? Not Razi tho
         name_list = list(before.channel.name)
 
+        if any(item in name_list for item in ['🍺', "🐇", "🎀"]):
+            channel = self.adult_log
         if any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
         elif any(item in name_list for item in ['👑', "🌷", "📯", "📝"]):
