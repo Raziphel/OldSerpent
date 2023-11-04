@@ -130,7 +130,7 @@ class Logging(Cog):
 
         if any(item in name_list for item in ['🍺', "🐇", "🎀"]):
             channel = self.adult_log
-        if any(item in name_list for item in ['🔥', "✨"]):
+        elif any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
         elif any(item in name_list for item in ['👑', "🌷", "📯", "📝"]):
             return
@@ -148,7 +148,7 @@ class Logging(Cog):
 
         if any(item in name_list for item in ['🍺', "🐇", "🎀"]):
             channel = self.adult_log
-        if any(item in name_list for item in ['🔥', "✨"]):
+        elif any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
         elif any(item in name_list for item in ['👑', "🌷", "📯", "📝"]):
             return
