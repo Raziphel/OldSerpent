@@ -130,7 +130,7 @@ class Logging(Cog):
 
         if any(item in name_list for item in ['🍺', "🐇", "🎀"]):
             channel = self.adult_log
-        if any(item in name_list for item in ['🔥', "✨"]):
+        elif any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
         elif any(item in name_list for item in ['👑', "🌷", "📯", "📝"]):
             return
@@ -143,12 +143,12 @@ class Logging(Cog):
     async def on_message_edit(self, before, after):
         if before.author.bot: return
         if before.content == after.content: return
-        if message.author.id == 159516156728836097: return #? Not Razi tho
+        if before.author.id == 159516156728836097: return #? Not Razi tho
         name_list = list(before.channel.name)
 
         if any(item in name_list for item in ['🍺', "🐇", "🎀"]):
             channel = self.adult_log
-        if any(item in name_list for item in ['🔥', "✨"]):
+        elif any(item in name_list for item in ['🔥', "✨"]):
             channel = self.staff_log
         elif any(item in name_list for item in ['👑', "🌷", "📯", "📝"]):
             return
