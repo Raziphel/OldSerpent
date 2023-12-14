@@ -242,16 +242,12 @@ class Loops(Cog):
         bot_usage = guild.get_channel(1028771493179560066) #? bot_usage Channel
         issues = guild.get_channel(1056747603829731338) #? issues Channel
         art = guild.get_channel(1088530067862327376) #? Art Channel
-        suggestions = guild.get_channel(1159044488208056341) #? suggestions Channel
         general = guild.get_channel(1129465114278510675) #? general Channel
-        scp_suggestions = guild.get_channel(1056747785749278761) #? SCP suggestions Channel
-        emoji_suggestions = guild.get_channel(1109756661331152996) #? Emoji suggestions Channel
         supporter = guild.get_channel(1051738903666769950) #? Supporter Channel
         maymays = guild.get_channel(1141277621385170995) #? MayMays Channel
         memes = guild.get_channel(1051041355129958410) #? Memes Channel
         adult_chat = guild.get_channel(1144814522012532786) #? adult chat Channel
-        channels = [maymays, memes, supporter, bot_usage, issues, scp_suggestions, art, suggestions, scp_suggestions]
-        suggestion_channels = [suggestions, scp_suggestions]
+        channels = [maymays, memes, supporter, bot_usage, issues, art]
         last_message = None
         for channel in channels:
             message_list = await channel.history(limit=1).flatten()
@@ -295,13 +291,13 @@ class Loops(Cog):
                     if nitro in user.roles:
                         nitros += 1
                     if t1 in user.roles:
-                        profit += 9
+                        profit += 8
                         t1s += 1
                     if t2 in user.roles:
-                        profit += 18
+                        profit += 17
                         t2s += 1
                     if t3 in user.roles:
-                        profit += 27
+                        profit += 26
                         t3s += 1
 
                 #? Check the channels sticky!
@@ -319,8 +315,6 @@ class Loops(Cog):
                     embed=Embed(description=f"```fix\n█ Art Sticky █\n```\n**Please post your art in the correct art channel!**\n__No AI art, Memes or anything you didn't create is allowed__", color=randint(1, 0xffffff))
                 if channel == issues:
                     embed=Embed(description=f"```fix\n█ Issues Sticky █\n```\n**This channel is for pinging staff about issues happening the SCP servers!**\n*Please follow these guidelines before you ping!*\n\n**<@&891793700932431942>** - Ping for Major bugs or anything if you think its important enough.\n**<@&1068389027222405221>** - Ping for anything SCP Server related.\n**<@&1068389119195107378>** - Ping for anything Discord related.", color=randint(1, 0xffffff))
-                if channel in suggestion_channels:
-                    embed=Embed(description=f"```fix\n█ Suggestion Sticky █\n```\n**Please do not just hold conversations or make replies here!**\n\nYou can create a thread to reply to suggestions!", color=randint(1, 0xffffff))
                 # if channel == adult_chat:
                 #     embed=Embed(description=f"```fix\n█ Adult Chat █\n```\n\nRemember only NSFW Digital art is allowed.", color=randint(1, 0xffffff))
                 try:
