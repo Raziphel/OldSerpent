@@ -33,7 +33,7 @@ class Pinging(Cog):
     async def sendping(self, ctx, role):
         """Ping a ping role!"""
 
-        if role == "<1134359929625526353":
+        if role == "1134359929625526353":
             await ctx.interaction.response.send_message(content="<@&1134359929625526353>", embed=utils.DefaultEmbed(title=f"You have all been summoned to SCP!"))
             return
 
