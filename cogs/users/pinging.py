@@ -1,11 +1,14 @@
-# Discord
-from datetime import datetime as dt, timedelta
-from random import choice
+from discord.ext.commands import command, Cog, BucketType, cooldown, group, RoleConverter, ApplicationCommandMeta
+from discord import Member, Message, User, Game, Embed, TextChannel, Role, RawReactionActionEvent, ApplicationCommandOption, ApplicationCommandOptionType
 
-import discord
-from discord.ext.commands import command, Cog, ApplicationCommandMeta, cooldown, BucketType
+#* Additions
+from datetime import datetime as dt, timedelta
+from asyncio import iscoroutine, gather, sleep
+from math import floor 
+from random import choice, randint
 
 import utils
+
 
 
 class Pinging(Cog):
