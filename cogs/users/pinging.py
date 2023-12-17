@@ -33,15 +33,15 @@ class Pinging(Cog):
     async def sendping(self, ctx, role):
         """Ping a ping role!"""
 
-        if role.id == 1134359929625526353:
+        if role == "<@&1134359929625526353>":
             await ctx.interaction.response.send_message(content="<@&1134359929625526353>", embed=utils.DefaultEmbed(title=f"You have all been summoned to SCP!"))
             return
 
-        if role.id == 1134574072051806308:
+        if role == "<@&1134574072051806308>":
             await ctx.interaction.response.send_message(content="<@&1134574072051806308>", embed=utils.DefaultEmbed(title=f"You have all been summoned to join a VC!"))
             return
 
-        if role.id == 1185903654100795413:
+        if role == "<@&1185903654100795413>":
             await ctx.interaction.response.send_message(content="<@&1185903654100795413>", embed=utils.DefaultEmbed(title=f"You have all been summoned to join the Minecraft Server!"))
             return
 
