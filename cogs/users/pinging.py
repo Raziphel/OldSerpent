@@ -30,7 +30,7 @@ class Pinging(Cog):
             ],
         ),
     )
-    async def ping(self, ctx, role):
+    async def sendping(self, ctx, role):
         """Ping a ping role!"""
 
         if role.id == 1134359929625526353:
