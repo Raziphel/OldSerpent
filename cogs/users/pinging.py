@@ -39,7 +39,7 @@ class Pinging(Cog):
 
         
         if role == "1134359929625526353":
-            if (self.scpping + timedelta(hours=2)) >= dt.utcnow():
+            if (self.scpping + timedelta(hours=2)) <= dt.utcnow():
                 await ctx.interaction.response.send_message(content="<@&1134359929625526353>", embed=utils.DefaultEmbed(title=f"You have all been summoned to SCP!"))
                 self.scpping = dt.utcnow()
             else:
@@ -47,7 +47,7 @@ class Pinging(Cog):
             return
 
         if role == "1134574072051806308":
-            if (self.scpping + timedelta(hours=2)) >= dt.utcnow():
+            if (self.scpping + timedelta(hours=2)) <= dt.utcnow():
                 await ctx.interaction.response.send_message(content="<@&1134574072051806308>", embed=utils.DefaultEmbed(title=f"You have all been summoned to join a VC!"))
                 self.vcping = dt.utcnow()
             else:
@@ -55,7 +55,7 @@ class Pinging(Cog):
             return
 
         if role == "1185903654100795413":
-            if (self.scpping + timedelta(hours=2)) >= dt.utcnow():
+            if (self.scpping + timedelta(hours=2)) <= dt.utcnow():
                 await ctx.interaction.response.send_message(content="<@&1185903654100795413>", embed=utils.DefaultEmbed(title=f"You have all been summoned to join the Minecraft Server!"))
                 self.mcping = dt.utcnow()
             else:
@@ -63,7 +63,7 @@ class Pinging(Cog):
             return
 
         if role == "1185903816407785502":
-            if (self.scpping + timedelta(hours=2)) >= dt.utcnow():
+            if (self.scpping + timedelta(hours=2)) <= dt.utcnow():
                 await ctx.interaction.response.send_message(content="<@&1185903816407785502>", embed=utils.DefaultEmbed(title=f"You have all been summoned to play on the Lethal Modpack!"))
                 self.lethalping = dt.utcnow()
             else:
