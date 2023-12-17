@@ -14,10 +14,10 @@ import utils
 class Pinging(Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.scpping = dt.utcnow()
-        self.mcping = dt.utcnow()
-        self.lethalping = dt.utcnow()
-        self.vcping = dt.utcnow()
+        self.scpping = dt(year=2000, month=1, day=1)
+        self.mcping = dt(year=2000, month=1, day=1)
+        self.lethalping = dt(year=2000, month=1, day=1)
+        self.vcping = dt(year=2000, month=1, day=1)
 
 
     @cooldown(1, 3600, BucketType.channel)
@@ -41,6 +41,7 @@ class Pinging(Cog):
         if role == "1134359929625526353":
             if (self.scpping + timedelta(hours=2)) >= dt.utcnow():
                 await ctx.interaction.response.send_message(content="<@&1134359929625526353>", embed=utils.DefaultEmbed(title=f"You have all been summoned to SCP!"))
+                self.scpping = dt.utcnow()
             else:
                 await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title=f"You are pinging again too soon!"))
             return
@@ -48,6 +49,7 @@ class Pinging(Cog):
         if role == "1134574072051806308":
             if (self.scpping + timedelta(hours=2)) >= dt.utcnow():
                 await ctx.interaction.response.send_message(content="<@&1134574072051806308>", embed=utils.DefaultEmbed(title=f"You have all been summoned to join a VC!"))
+                self.vcping = dt.utcnow()
             else:
                 await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title=f"You are pinging again too soon!"))
             return
@@ -55,6 +57,7 @@ class Pinging(Cog):
         if role == "1185903654100795413":
             if (self.scpping + timedelta(hours=2)) >= dt.utcnow():
                 await ctx.interaction.response.send_message(content="<@&1185903654100795413>", embed=utils.DefaultEmbed(title=f"You have all been summoned to join the Minecraft Server!"))
+                self.mcping = dt.utcnow()
             else:
                 await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title=f"You are pinging again too soon!"))
             return
@@ -62,6 +65,7 @@ class Pinging(Cog):
         if role == "1185903816407785502":
             if (self.scpping + timedelta(hours=2)) >= dt.utcnow():
                 await ctx.interaction.response.send_message(content="<@&1185903816407785502>", embed=utils.DefaultEmbed(title=f"You have all been summoned to play on the Lethal Modpack!"))
+                self.lethalping = dt.utcnow()
             else:
                 await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title=f"You are pinging again too soon!"))
             return
