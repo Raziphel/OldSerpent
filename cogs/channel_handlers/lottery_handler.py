@@ -49,7 +49,7 @@ class lottery_handler(Cog):
             ch = guild.get_channel(self.bot.config['channels']['lottery'])
             msg = await ch.fetch_message(1103507070210285640)
 
-            embed=Embed(description=f"**🐍 Welcome to the Serpent's Lottery 💰**\n\nCurrent Pot Total: **{lot.coins:,}x** {coin_e}\n\n**Congrats to the last winner**\n<@{lot.last_winner_id}> - They Won: **{lot.last_amount:,}x** {coin_e}\n\nTo participate in the lottery, you must put **20,000x** {coin_e} in to the lottery by **clicking the 💰 reaction!**", color=randint(1, 0xffffff))
+            embed=Embed(description=f"**🐍 Welcome to the Serpent's Lottery 💰**\n\nCurrent Pot Total: **{lot.coins:,}x** {coin_e}\n\n**Congrats to the last winner**\n<@{lot.last_winner_id}> - They Won: **{lot.last_amount:,}x** {coin_e}\n\nTo participate in the lottery, you must put **25,000x** {coin_e} in to the lottery by **clicking the 💰 reaction!**", color=randint(1, 0xffffff))
             await msg.edit(content=" ", embed=embed)
 
             await sleep(60) 
@@ -184,7 +184,7 @@ class lottery_handler(Cog):
                     return
                 msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a lottery tickets!\nCost: {coin} 20,000x", footer=" "))
                 item['name'] = "Lottery Ticket"
-                item['coin'] = 20000
+                item['coin'] = 25000
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
