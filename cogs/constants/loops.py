@@ -182,6 +182,14 @@ class Loops(Cog):
         async with self.bot.database() as db:
             await sc.save(db)
 
+        total_channels = 0
+        for channel in guild.text_channels:
+            total_channels += 1
+
+        total_roles = 0
+        for role in guild.roles:
+            total_roles += 1
+
         total_tix = utils.Currency.get_total_tickets()
         members = len(set(self.bot.get_all_members()))
         supps = 0
@@ -215,7 +223,7 @@ class Loops(Cog):
         description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total: **{floor(total_coins):,}** Coins\n🐍 Serpent's: **{floor(sc.coins):,}** Coins\n🎟 Current Tickets: **{floor(total_tix):,}**", color=0x00FF00)
 
         embed3=Embed(title=f"**[- Garden Statistics! -]**", 
-        description=f"Coming Soon!", color=0x0000FF)
+        description=f"📚 Channels: {total_channels:,}\n 🎭 Roles {total_roles:,}", color=0x0000FF)
 
 
         await msg1.edit(content=f" ", embed=embed1)
