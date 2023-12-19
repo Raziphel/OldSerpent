@@ -38,22 +38,22 @@ class Shop_Handler(Cog):
         embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n\n**{coin} 1,000,000x**", inline=True)
 
         embed2=Embed(description=f"```fix\n█ Permissions █\n```\n**This is a list of discord related items for sale.**", color=0x47B9F5)
-        embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**{coin} 25,000x**\n\n**Get access to all of the server's logs!**\n*(Full Transparency from all users)*", inline=True)
-        embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**{coin} 50,000x**\n\n**Get permission for images & embeds in General Chats.**", inline=True)
-        embed2.add_field(name=f"🎁 ❧ Stat Channels", value=f"**{coin} 5,000x**\n\n**Get permission to the Stats Channels!**", inline=True)
+        embed2.add_field(name=f"🎁 ❧ Stat Channels", value=f"**{coin} 10,000x**\n\n**Get permission to the Stats Channels!**", inline=True)
+        embed2.add_field(name=f"🎈 ❧ Reaction Perms", value=f"**{coin} 20,000x**\n\n**Get access to using reactions!**", inline=True)
+        embed2.add_field(name=f"🧶 ❧ Thread Perms", value=f"**{coin} 20,000x**\n\n**Get perms to create threads!**", inline=True)
+        embed2.add_field(name=f"🔮 ❧ External Emotes", value=f"**{coin} 30,000x**\n\n**Get access to using your external emotes and stickers!**", inline=True)
         embed2.add_field(name=f"🔥 ❧ Dungeon Key", value=f"**{coin} 30,000x**\n\n**Get access to hell, where all the muted go!**", inline=True)
+        embed2.add_field(name=f"📚 ❧ Library Pass", value=f"**{coin} 40,000x**\n\n**Get access to all of the server's logs!**\n*(Full Transparency from all users)*", inline=True)
+        embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**{coin} 50,000x**\n\n**Get permission for images & embeds in General Chats.**", inline=True)
         embed2.add_field(name=f"🔊 ❧ SoundBoard Access", value=f"**{coin} 50,000x**\n\n**Get access to using the soundboard in VC!**", inline=True)
 
         embed3=Embed(description=f"```fix\n█ Abilities & Items █\n```\n**Use special abilites on a set cooldown! (Some are permenant.)**", color=0x475FF5)
         embed3.add_field(name=f"💎 ❧ Daily Bonus", value=f"**{coin} 40,000x**\n\n**Get a bonus with every daily!**\n*(Doesn't get better with more dailys)*", inline=True)
         embed3.add_field(name=f"🧤 ❧ Thief Gloves", value=f"**{coin} 20,000x**\n\n**Get 5 thief gloves!**\n*(Let's you steal coins from people!)*", inline=True)
         
-        embed4=Embed(description=f"```fix\n█ In Game Items █\n```\n**Purchases that are for the SCP servers!**", color=0xB347F5)
-        embed4.add_field(name=f"🧶 ❧ Coin Lord", value=f"**{coin} 250,000x**\n\n**Get the orange `Coin Lord Badge` on the SCP servers!**", inline=True)
-        embed4.add_field(name=f"🎆 ❧ Bottom Dweller", value=f"**{coin} 100,000x**\n\n**Get the pink `Bottom Dweller Badge` on the SCP servers!**", inline=True)
-        embed4.add_field(name=f"🧨 ❧ Toxic", value=f"**{coin} 50,000x**\n\n**Get the green `Toxic Badge` on the SCP servers!**", inline=True)
+        embed4=Embed(title=f"**█ Coming Soon █**", description=f" ", color=0xF54747)
         
-        embed5=Embed(title=f"**[- Coming Soon -]**", description=f"**Coming Soon!**", color=0xF54747)
+        embed5=Embed(title=f"**█ Coming Soon █**", description=f" ", color=0xF54747)
 
 
         await msg1.edit(content=f" ", embed=embed1)
@@ -110,8 +110,8 @@ class Shop_Handler(Cog):
                     await razi.send(embed=utils.LogEmbed(type="special", title="Discord Nitro Purchase", desc=f"{user} purchased Discord Nitro!!!!", footer=" "))
 
             if emoji == "📚":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Library Pass!\nCost: {coin} 25,000x", footer=" "))
-                item['coin'] = 25000
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Library Pass!\nCost: {coin} 40,000x", footer=" "))
+                item['coin'] = 40000
                 item['name'] = "Library Pass"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased a Library pass!", footer=" "))
@@ -135,9 +135,9 @@ class Shop_Handler(Cog):
                     await user.add_roles(image_pass, reason="Given a Image Pass role.")
 
             if emoji == "🎁":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the Stat Channels!\nCost: {coin} 5,000x", footer=" "))
-                item['coin'] = 5000
-                item['name'] = "Special Channels"
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the Stat Channels!\nCost: {coin} 10,000x", footer=" "))
+                item['coin'] = 10000
+                item['name'] = "Stats Channel"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Stat Channels!", footer=" "))
                     bought = True
@@ -146,7 +146,7 @@ class Shop_Handler(Cog):
                     await user.add_roles(special, reason="Given the Stat Channels role.")
 
             if emoji == "🔥":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the dungeon key!\nCost: {coin} 100,000x", footer=" "))
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the dungeon key!\nCost: {coin} 30,000x", footer=" "))
                 item['coin'] = 30000
                 item['name'] = "dungeon key"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
@@ -188,38 +188,38 @@ class Shop_Handler(Cog):
                     items.thief_gloves += 5
 
             if emoji == "🧶":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the Coin Lord badge.\nCost: {coin} 250,000x", footer=" "))
-                item['coin'] = 250000
-                item['name'] = "Coin Lord Badge"
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the Thread Perms.\nCost: {coin} 20,000x", footer=" "))
+                item['coin'] = 20000
+                item['name'] = "Thread Perms"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
-                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Lord Badge on SCP servers!", footer=" "))
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Thread Perms!", footer=" "))
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    coin_goblin = utils.DiscordGet(guild.roles, id=1069865257931132938)
-                    await user.add_roles(coin_goblin, reason="Given a Coin Lord role.")
+                    thread_perms = utils.DiscordGet(guild.roles, id=1186717217501487225)
+                    await user.add_roles(thread_perms, reason="Given thread perms.")
 
-            if emoji == "🎆":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the Bottom Dweller badge!\nCost: {coin} 100,000x", footer=" "))
-                item['coin'] = 100000
-                item['name'] = "Bottom Dweller Badge"
+            if emoji == "🎈":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase the Reaction Perms!\nCost: {coin} 20,000x", footer=" "))
+                item['coin'] = 20000
+                item['name'] = "Reaction Perms"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
-                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Bottom Dweller Badge on SCP servers!", footer=" "))
+                    await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Reaction Perms!", footer=" "))
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    bottom = utils.DiscordGet(guild.roles, id=1085838138183798906)
-                    await user.add_roles(bottom, reason="Given a Coin Goblin role.")
+                    bottom = utils.DiscordGet(guild.roles, id=1186714161405771838)
+                    await user.add_roles(bottom, reason="Given Reaction Perms.")
 
 
-            if emoji == "🧨":
-                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase a Daily Bonus!\nCost: {coin} 50,000x", footer=" "))
-                item['coin'] = 50000
-                item['name'] = "Toxic Badge"
+            if emoji == "🔮":
+                msg = await user.send(embed=utils.LogEmbed(type="special", title="Purchase Confirmation:", desc=f"Please confirm you would like to purchase External Emotes/Stickers!\nCost: {coin} 30,000x", footer=" "))
+                item['coin'] = 30000
+                item['name'] = "External Emotes/Stickers"
                 if await self.purchasing(msg=msg, payload=payload, item=item) == True:
                     await msg.edit(embed=utils.LogEmbed(type="special", title="Purchase Complete", desc=f"Congrats! Ya purchased the Goblin Badge on SCP servers!", footer=" "))
                     bought = True
                     await utils.CoinFunctions.pay_for(payer=user, amount=item['coin'])
-                    coin_goblin = utils.DiscordGet(guild.roles, id=1085838699469733939)
-                    await user.add_roles(coin_goblin, reason="Given a Toxic role.")
+                    coin_goblin = utils.DiscordGet(guild.roles, id=1186714489022849034)
+                    await user.add_roles(coin_goblin, reason="Given External Emotes/Stickers")
 
 
 
