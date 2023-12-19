@@ -29,7 +29,7 @@ class Items(Cog):
                     name="user",
                     description="The user you would like to steal from!",
                     type=ApplicationCommandOptionType.user,
-                    required=True,
+                    required=False,
                 ),
             ],
         ),
