@@ -42,7 +42,7 @@ class Items(Cog):
         if (self.restart_cooldown + timedelta(minutes=120)) >= dt.utcnow():
             tf = self.restart_cooldown + timedelta(minutes=120)
             t = dt(1, 1, 1) + (tf - dt.utcnow())
-            await ctx.send(embed=utils.DefaultEmbed(title=f"Stealing is on cooldown for another 120 minutes!", description=f"this is due to the bot restarting recently!\n\nYou can steal again in {t.minute} minutes!"), delete_after=5)
+            await ctx.send(embed=utils.DefaultEmbed(title=f"Stealing is on cooldown for another 120 minutes!", description=f"this is due to the bot restarting recently!\n\nYou can steal again in {t.minute} minutes!"))
             return
 
         if not user:
