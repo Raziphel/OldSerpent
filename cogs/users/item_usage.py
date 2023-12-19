@@ -34,7 +34,7 @@ class Items(Cog):
             ],
         ),
     )
-    async def steal(self, ctx, user:Member):
+    async def steal(self, ctx, user:Member=None):
         '''
         Use your gloves to steal from other users!!
         '''
@@ -45,7 +45,7 @@ class Items(Cog):
             await ctx.send(embed=utils.DefaultEmbed(title=f"Stealing is on cooldown for another 120 minutes!", description=f"this is due to the bot restarting recently!\n\nYou can steal again in {t.minute} minutes!"))
             return
 
-        if not user:
+        if user is None:
             await ctx.interaction.response.send_message(embed=utils.DefaultEmbed(title=f"You didn't say who your stealing from?", desc=f"**Stealing Odds:**\nSteal 5,000\nSteal 10,000\nSteal 15,000\nSteal 2%\nSteal 3%\nLose 5,000\nLose 2%"))
             self.steal.reset_cooldown(ctx)
             return
