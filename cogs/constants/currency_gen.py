@@ -110,8 +110,8 @@ class Currency_Gen(Cog):
 
                     c = utils.Currency.get(member.id)
                     lvl = utils.Levels.get(member.id)
-                    lvl.exp += 15+(len(vc.members)/2)
-                    coins = 10 + round(len(vc.members))
+                    lvl.exp += 15 * (len(vc.members)/2)
+                    coins = 25 * round(len(vc.members))
                     await utils.CoinFunctions.earn(earner=member, amount=coins)
 
                     requiredexp = await utils.UserFunction.determine_required_exp(level=lvl.level)
