@@ -225,8 +225,8 @@ class Loops(Cog):
             if her in user.roles:
                 hers += 1
 
-        him_bar = self.generate_bar(hims/members)
-        her_bar = self.generate_bar(hers/members)
+        him_bar = self.generate_bar(percent=hims/members)
+        her_bar = self.generate_bar(percent=hers/members)
 
 
 
@@ -246,7 +246,7 @@ class Loops(Cog):
 
 
 
-    async def generate_bar(percent):
+    async def generate_bar(self, percent):
         if percent < 5:
             return "▒▒▒▒▒▒▒▒▒▒"
         elif percent < 10:
