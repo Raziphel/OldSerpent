@@ -225,8 +225,8 @@ class Loops(Cog):
             if her in user.roles:
                 hers += 1
 
-        him_bar = generate_bar(hims/members)
-        her_bar = generate_bar(hers/members)
+        him_bar = self.generate_bar(hims/members)
+        her_bar = self.generate_bar(hers/members)
 
 
 
