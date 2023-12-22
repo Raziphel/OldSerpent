@@ -196,7 +196,7 @@ class Loops(Cog):
         #? Pronouns
         him = utils.DiscordGet(guild.roles, id=1070968254106972170)
         hethey = utils.DiscordGet(guild.roles, id=1070968254614478849)
-        him = utils.DiscordGet(guild.roles, id=1070968254106972170)
+        her = utils.DiscordGet(guild.roles, id=1070968255432372264)
         shethey = utils.DiscordGet(guild.roles, id=1070968283555184771)
         theys = utils.DiscordGet(guild.roles, id=1070968884183699487)
         anys = utils.DiscordGet(guild.roles, id=1070968884997390356)
