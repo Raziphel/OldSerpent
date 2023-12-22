@@ -213,6 +213,7 @@ class Loops(Cog):
         thems = 0
         changes = 0
         for user in guild.members:
+            #? Generate Donator Stats
             if nitro in user.roles:
                 nitros += 1
                 supps += 1
@@ -228,22 +229,26 @@ class Loops(Cog):
                 profit += 27
                 t3s += 1
                 supps += 1
-            #? Generate Bar stats
+
+            #? Generate Pronoun Stats
             if him in user.roles:
+                hims += 1
+            if hethey in user.roles:
                 hims += 1
             if her in user.roles:
                 hers += 1
-            if hethey in user.roles:
-                hims += 1
             if shethey in user.roles:
                 hers += 1
             if theys in user.roles:
                 thems += 1
             if anys in user.roles:
                 thems += 1
+
+            #? Generate Role Stats
             if changelog in user.roles:
                 changes += 1
 
+        #? Generate the bars
         him_bar = await self.generate_bar(percent=hims/members*100)
         her_bar = await self.generate_bar(percent=hers/members*100)
         thems_bar = await self.generate_bar(percent=thems/members*100)
