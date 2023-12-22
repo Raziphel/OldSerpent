@@ -193,8 +193,15 @@ class Loops(Cog):
         t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
         t2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
         t3 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
+        #? Pronouns
         him = utils.DiscordGet(guild.roles, id=1070968254106972170)
-        her = utils.DiscordGet(guild.roles, id=1070968255432372264)
+        hethey = utils.DiscordGet(guild.roles, id=1070968254614478849)
+        him = utils.DiscordGet(guild.roles, id=1070968254106972170)
+        shethey = utils.DiscordGet(guild.roles, id=1070968283555184771)
+        theys = utils.DiscordGet(guild.roles, id=1070968884183699487)
+        anys = utils.DiscordGet(guild.roles, id=1070968884997390356)
+        changelog = utils.DiscordGet(guild.roles, id=1054142893872398346)
+        
         supps = 0
         profit = 0
         nitros = 0
@@ -203,6 +210,8 @@ class Loops(Cog):
         t3s = 0  
         hims = 0     
         hers = 0 
+        thems = 0
+        changes = 0
         for user in guild.members:
             if nitro in user.roles:
                 nitros += 1
@@ -219,14 +228,26 @@ class Loops(Cog):
                 profit += 27
                 t3s += 1
                 supps += 1
-            #? Generate Pronoun stats
+            #? Generate Bar stats
             if him in user.roles:
                 hims += 1
             if her in user.roles:
                 hers += 1
+            if hethey in user.roles:
+                hims += 1
+            if shethey in user.roles:
+                hers += 1
+            if theys in user.roles:
+                thems += 1
+            if anys in user.roles:
+                thems += 1
+            if changelog in user.roles:
+                changes += 1
 
         him_bar = await self.generate_bar(percent=hims/members*100)
         her_bar = await self.generate_bar(percent=hers/members*100)
+        thems_bar = await self.generate_bar(percent=thems/members*100)
+        changelog_bar = await self.generate_bar(percent=changes/members*100)
 
 
 
@@ -237,7 +258,7 @@ class Loops(Cog):
         description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total: **{floor(total_coins):,}** Coins\n🐍 Serpent's: **{floor(sc.coins):,}** Coins\n🎟 Current Tickets: **{floor(total_tix):,}**", color=0x00FF00)
 
         embed3=Embed(title=f"**[- Garden Statistics! -]**", 
-        description=f"**This show's stats about the Discord Server!**\n\n👥 Members: **{members:,}**\n📚 Channels: **{total_channels:,}**\n 🎭 Roles: **{total_roles:,}**\n🚹% of He/him:\n**{him_bar}**\n🚺% of She/her:\n**{her_bar}**", color=0x0000FF)
+        description=f"**This show's stats about the Discord Server!**\n\n👥 Members: **{members:,}**\n📚 Channels: **{total_channels:,}**\n 🎭 Roles: **{total_roles:,}**\n\n🚹% of He: **{hims/members*100}**\n**{him_bar}**\n🚺% of She: **{hers/members*100}**\n🚾% of They: **{thems/members*100}**\n**{thems_bar}**\n\n📝% Gets Changelogs: **{changes/members*100}**\n**{changelog_bar}**", color=0x0000FF)
 
 
         await msg1.edit(content=f" ", embed=embed1)
