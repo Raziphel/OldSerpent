@@ -237,7 +237,7 @@ class Loops(Cog):
         description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total: **{floor(total_coins):,}** Coins\n🐍 Serpent's: **{floor(sc.coins):,}** Coins\n🎟 Current Tickets: **{floor(total_tix):,}**", color=0x00FF00)
 
         embed3=Embed(title=f"**[- Garden Statistics! -]**", 
-        description=f"**This show's stats about the Discord Server!**\n\n👥 Members: **{members:,}**\n📚 Channels: **{total_channels:,}**\n 🎭 Roles: **{total_roles:,}**\nPercentage of He/him:\n`{him_bar}`\nPercentage of She/her:\n`{her_bar}`", color=0x0000FF)
+        description=f"**This show's stats about the Discord Server!**\n\n👥 Members: **{members:,}**\n📚 Channels: **{total_channels:,}**\n 🎭 Roles: **{total_roles:,}**\n🚹% of He/him:\n**{him_bar}**\n🚺% of She/her:\n**{her_bar}**", color=0x0000FF)
 
 
         await msg1.edit(content=f" ", embed=embed1)
