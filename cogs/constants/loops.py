@@ -167,12 +167,6 @@ class Loops(Cog):
         msg3 = await ch.fetch_message(1104655963006435408) #? msg
 
         coin_e = self.bot.config['emotes']['coin']
-        supporters = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['supporters'])
-        nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
-        t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
-        t2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
-        t3 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
-
         #+ Fix the economy!
         sc = utils.Currency.get(550474149332516881)
         total_coins = utils.Currency.get_total_coins()
@@ -192,12 +186,23 @@ class Loops(Cog):
 
         total_tix = utils.Currency.get_total_tickets()
         members = len(set(self.bot.get_all_members()))
+
+        #! THE FOR USER LOOP
+        supporters = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['supporters'])
+        nitro = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['nitro'])
+        t1 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t1'])
+        t2 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t2'])
+        t3 = utils.DiscordGet(guild.roles, id=self.bot.config['roles']['t3'])
+        him = utils.DiscordGet(guild.roles, id=1070968254106972170)
+        her = utils.DiscordGet(guild.roles, id=1070968255432372264)
         supps = 0
         profit = 0
         nitros = 0
         t1s = 0
         t2s = 0
-        t3s = 0
+        t3s = 0  
+        hims = 0     
+        hers = 0 
         for user in guild.members:
             if nitro in user.roles:
                 nitros += 1
@@ -214,6 +219,15 @@ class Loops(Cog):
                 profit += 27
                 t3s += 1
                 supps += 1
+            #? Generate Pronoun stats
+            if him in user.roles:
+                hims += 1
+            if her in user.roles:
+                hers += 1
+
+        him_bar = generate_bar(hims/members)
+        her_bar = generate_bar(hers/members)
+
 
 
         embed1=Embed(title=f"**[- Supporter Statistics! -]**", 
@@ -223,7 +237,7 @@ class Loops(Cog):
         description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total: **{floor(total_coins):,}** Coins\n🐍 Serpent's: **{floor(sc.coins):,}** Coins\n🎟 Current Tickets: **{floor(total_tix):,}**", color=0x00FF00)
 
         embed3=Embed(title=f"**[- Garden Statistics! -]**", 
-        description=f"**This show's stats about the Discord Server!**\n\n👥 Members: **{members:,}**\n📚 Channels: **{total_channels:,}**\n 🎭 Roles: **{total_roles:,}**", color=0x0000FF)
+        description=f"**This show's stats about the Discord Server!**\n\n👥 Members: **{members:,}**\n📚 Channels: **{total_channels:,}**\n 🎭 Roles: **{total_roles:,}**\n**Percentage of He/him:** {him_bar}\n**Percentage of She/her:** {him_bar}", color=0x0000FF)
 
 
         await msg1.edit(content=f" ", embed=embed1)
@@ -231,6 +245,30 @@ class Loops(Cog):
         await msg3.edit(content=f" ", embed=embed3)
 
 
+
+    async def generate_bar(percent):
+        if percent < 5:
+            return "▒▒▒▒▒▒▒▒▒▒"
+        elif percent < 10:
+            return "▓▒▒▒▒▒▒▒▒▒"
+        elif percent < 20:
+            return "▓▓▒▒▒▒▒▒▒▒"
+        elif percent < 30:
+            return "▓▓▓▒▒▒▒▒▒▒"
+        elif percent < 40:
+            return "▓▓▓▓▒▒▒▒▒▒"
+        elif percent < 50:
+            return "▓▓▓▓▓▒▒▒▒▒"
+        elif percent < 60:
+            return "▓▓▓▓▓▓▒▒▒▒"
+        elif percent < 70:
+            return "▓▓▓▓▓▓▓▒▒▒"
+        elif percent < 80:
+            return "▓▓▓▓▓▓▓▓▒▒"
+        elif percent < 90:
+            return "▓▓▓▓▓▓▓▓▓▒"
+        elif percent > 95:
+            return "▓▓▓▓▓▓▓▓▓▓"
 
 
 
