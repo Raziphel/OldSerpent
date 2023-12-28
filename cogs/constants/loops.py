@@ -219,6 +219,7 @@ class Loops(Cog):
         scpsl_ers = 0
         mc_ers = 0
         closed_garden_ers = 0
+        inactive = 0
 
         for user in guild.members:
             #? Generate Donator Stats
@@ -264,6 +265,10 @@ class Loops(Cog):
             if queer in user.roles:
                 closed_garden_ers += 1
 
+            tr = utils.Tracking.get(user.id)
+            if tr.messages < 3:
+                inactive += 1
+
         #? Generate the bars
         him_bar = await self.generate_bar(percent=hims/members*100)
         her_bar = await self.generate_bar(percent=hers/members*100)
@@ -273,6 +278,8 @@ class Loops(Cog):
         scpsl_bar = await self.generate_bar(percent=scpsl_ers/members*100)
         mc_bar = await self.generate_bar(percent=mc_ers/members*100)
         queer_bar = await self.generate_bar(percent=closed_garden_ers/members*100)
+        
+        inactive_bar = await self.generate_bar(percent=inactive/members*100)
 
 
         #? Emojis
@@ -289,7 +296,7 @@ class Loops(Cog):
         description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total: **{floor(total_coins):,}** Coins\n🐍 Serpent's: **{floor(sc.coins):,}** Coins\n🎟 Current Tickets: **{floor(total_tix):,}**", color=0x00FF00)
 
         embed3=Embed(title=f"**[- Garden Statistics! -]**", 
-        description=f"**This show's stats about the Discord Server!**\n\n👥 Members: **{members:,}**\n📚 Channels: **{total_channels:,}**\n 🎭 Roles: **{total_roles:,}**\n\n🚹 % of He: **{round(hims/members*100)}%**\n**{him_bar}**\n🚺 % of She: **{round(hers/members*100)}%**\n**{her_bar}**\n🚾 % of They: **{round(thems/members*100)}%**\n\n**{thems_bar}**\n📝 % Gets Changelogs: **{round(changes/members*100)}%**\n**{changelog_bar}**\n{scp_e} % SCP:SL: **{round(scpsl_ers/members*100)}%**\n**{scpsl_bar}**\n{mc_e} % Minecraft: **{round(mc_ers/members*100)}%**\n**{mc_bar}**\n🌺 % Queer/Furry: **{round(closed_garden_ers/members*100)}%**\n**{queer_bar}**", color=0x0000FF)
+        description=f"**This show's stats about the Discord Server!**\n\n👥 Members: **{members:,}**\n📚 Channels: **{total_channels:,}**\n 🎭 Roles: **{total_roles:,}**\n\n🚹 % of He: **{round(hims/members*100)}%**\n**{him_bar}**\n🚺 % of She: **{round(hers/members*100)}%**\n**{her_bar}**\n🚾 % of They: **{round(thems/members*100)}%**\n**{thems_bar}**\n\n❌ % Inactive: **{round(inactive/members*100)}%**\n**{inactive_bar}**\n📝 % Gets Changelogs: **{round(changes/members*100)}%**\n**{changelog_bar}**\n{scp_e} % SCP:SL: **{round(scpsl_ers/members*100)}%**\n**{scpsl_bar}**\n{mc_e} % Minecraft: **{round(mc_ers/members*100)}%**\n**{mc_bar}**\n🌺 % Queer/Furry: **{round(closed_garden_ers/members*100)}%**\n**{queer_bar}**", color=0x0000FF)
 
 
         await msg1.edit(content=f" ", embed=embed1)
