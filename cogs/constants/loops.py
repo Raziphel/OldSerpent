@@ -166,7 +166,6 @@ class Loops(Cog):
         msg2 = await ch.fetch_message(1104655958732439552) #? msg
         msg3 = await ch.fetch_message(1104655963006435408) #? msg
 
-        coin_e = self.bot.config['emotes']['coin']
         #+ Fix the economy!
         sc = utils.Currency.get(550474149332516881)
         total_coins = utils.Currency.get_total_coins()
@@ -200,7 +199,12 @@ class Loops(Cog):
         shethey = utils.DiscordGet(guild.roles, id=1070968283555184771)
         theys = utils.DiscordGet(guild.roles, id=1070968884183699487)
         anys = utils.DiscordGet(guild.roles, id=1070968884997390356)
+        #? Statistial
         changelog = utils.DiscordGet(guild.roles, id=1054142893872398346)
+        scpsl = utils.DiscordGet(guild.roles, id=1107421191586726039)
+        minecraft = utils.DiscordGet(guild.roles, id=1180050642098733057)
+        furry = utils.DiscordGet(guild.roles, id=1158940507217608806)
+        queer = utils.DiscordGet(guild.roles, id=1129464175396143104)
         
         supps = 0
         profit = 0
@@ -212,6 +216,10 @@ class Loops(Cog):
         hers = 0 
         thems = 0
         changes = 0
+        scpsl_ers = 0
+        mc_ers = 0
+        closed_garden_ers = 0
+
         for user in guild.members:
             #? Generate Donator Stats
             if nitro in user.roles:
@@ -247,12 +255,30 @@ class Loops(Cog):
             #? Generate Role Stats
             if changelog in user.roles:
                 changes += 1
+            if scpsl in user.roles:
+                scpsl_ers += 1
+            if minecraft in user.roles:
+                mc_ers += 1
+            if furry in user.roles:
+                closed_garden_ers += 1
+            if queer in user.roles:
+                closed_garden_ers += 1
 
         #? Generate the bars
         him_bar = await self.generate_bar(percent=hims/members*100)
         her_bar = await self.generate_bar(percent=hers/members*100)
         thems_bar = await self.generate_bar(percent=thems/members*100)
+        #? Role Stats Bar
         changelog_bar = await self.generate_bar(percent=changes/members*100)
+        scpsl_bar = await self.generate_bar(percent=scpsl_ers/members*100)
+        mc_bar = await self.generate_bar(percent=mc_ers/members*100)
+        queer_bar = await self.generate_bar(percent=closed_garden_ers/members*100)
+
+
+        #? Emojis
+        coin_e = self.bot.config['emotes']['coin']
+        scp_e = "<:SCP:1095154672727248926>"
+        mc_e = "<:minecraft:1095414533041946724>"
 
 
 
@@ -263,7 +289,7 @@ class Loops(Cog):
         description=f"**This show's all the aspects of the Serpent's Economy!**\n\n{coin_e} Total: **{floor(total_coins):,}** Coins\n🐍 Serpent's: **{floor(sc.coins):,}** Coins\n🎟 Current Tickets: **{floor(total_tix):,}**", color=0x00FF00)
 
         embed3=Embed(title=f"**[- Garden Statistics! -]**", 
-        description=f"**This show's stats about the Discord Server!**\n\n👥 Members: **{members:,}**\n📚 Channels: **{total_channels:,}**\n 🎭 Roles: **{total_roles:,}**\n\n🚹% of He: **{round(hims/members*100)}%**\n**{him_bar}**\n\n🚺% of She: **{round(hers/members*100)}%**\n**{her_bar}**\n\n🚾% of They: **{round(thems/members*100)}%**\n**{thems_bar}**\n\n📝% Gets Changelogs: **{round(changes/members*100)}%**\n**{changelog_bar}**", color=0x0000FF)
+        description=f"**This show's stats about the Discord Server!**\n\n👥 Members: **{members:,}**\n📚 Channels: **{total_channels:,}**\n 🎭 Roles: **{total_roles:,}**\n\n🚹 % of He: **{round(hims/members*100)}%**\n**{him_bar}**\n\n🚺 % of She: **{round(hers/members*100)}%**\n**{her_bar}**\n\n🚾 % of They: **{round(thems/members*100)}%**\n**{thems_bar}**\n\n📝 % Gets Changelogs: **{round(changes/members*100)}%**\n**{changelog_bar}**\n\n{scp_e} % SCP:SL: **{round(scpsl_ers/members*100)}%**\n**{scpsl_bar}**\n\n{mc_e} % Minecraft: **{round(mc_ers/members*100)}%**\n**{mc_bar}**\n\n🌺 % Queer/Furry: **{round(closed_garden_ers/members*100)}%**\n**{queer_bar}**", color=0x0000FF)
 
 
         await msg1.edit(content=f" ", embed=embed1)

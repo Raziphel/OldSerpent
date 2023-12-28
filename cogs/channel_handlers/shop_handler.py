@@ -34,10 +34,10 @@ class Shop_Handler(Cog):
         #* Get the coin emojis
         coin = self.bot.config['emotes']['coin']
 
-        embed1=Embed(description=f"```fix\n█ Serpent's Toys █\n```\n**By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.**\n\n**Exclusive Items:**\n*Items that are purposely made very expensive, due to their value!*", color=0x47F5DB)
+        embed1=Embed(description=f"```fix\n█ Serpent's Toys █\n```\n**__By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.__**\n\n**Exclusive Items:**\n*Items that are purposely made very expensive, due to their value!*", color=0x47F5DB)
         embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n\n**{coin} 1,000,000x**", inline=True)
 
-        embed2=Embed(description=f"```fix\n█ Permissions █\n```\n**This is a list of discord related items for sale.**", color=0x47B9F5)
+        embed2=Embed(description=f"```fix\n█ Permissions █\n```\n**__This is a list of discord related items for sale.__**", color=0x47B9F5)
         embed2.add_field(name=f"🎁 ❧ Stat Channels", value=f"**{coin} 10,000x**\n\n```Get permission to the Stats Channels!```", inline=True)
         embed2.add_field(name=f"🎈 ❧ Reaction Perms", value=f"**{coin} 20,000x**\n\n```Get access to using reactions!```", inline=True)
         embed2.add_field(name=f"🧶 ❧ Thread Perms", value=f"**{coin} 20,000x**\n\n```Get perms to create threads!```", inline=True)
@@ -47,7 +47,7 @@ class Shop_Handler(Cog):
         embed2.add_field(name=f"🎫 ❧ Image Pass", value=f"**{coin} 50,000x**\n\n```Get permission for images & embeds in General Chats.```", inline=True)
         embed2.add_field(name=f"🔊 ❧ SoundBoard Access", value=f"**{coin} 50,000x**\n\n```Get access to using the soundboard in VC!```", inline=True)
 
-        embed3=Embed(description=f"```fix\n█ Abilities & Items █\n```\n```Use special abilites on a set cooldown! (Some are permenant.)```", color=0x475FF5)
+        embed3=Embed(description=f"```fix\n█ Abilities & Items █\n```\n**__Use special abilites on a set cooldown! (Some are permenant.)__**", color=0x475FF5)
         embed3.add_field(name=f"💎 ❧ Daily Bonus", value=f"**{coin} 40,000x**\n\n```Get a bonus with every daily!```\n*(Doesn't get better with more dailys)*", inline=True)
         embed3.add_field(name=f"🧤 ❧ Thief Gloves", value=f"**{coin} 20,000x**\n\n```Get 5 thief gloves!```\n*(Let's you steal coins from people!)*", inline=True)
         
