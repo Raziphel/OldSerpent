@@ -70,7 +70,9 @@ class Developer(Cog):
         guild = self.bot.get_guild(self.bot.config['garden_id'])
         mc = utils.DiscordGet(guild.roles, id=1180050642098733057)
         for user in guild.members:
-            await user.add_roles(mc, reason="opt-in!")
+            tr = utils.Tracking.get(user.id)
+            if tr.messages < 3:
+                await user.remove_roles(mc, reason="opt-in!")
         await ctx.send(embed=utils.DevEmbed(desc=f"<:Pentagram:1093983216244891689>"))
 
 
