@@ -69,10 +69,12 @@ class Developer(Cog):
     async def optin(self, ctx):
         guild = self.bot.get_guild(self.bot.config['garden_id'])
         mc = utils.DiscordGet(guild.roles, id=1180050642098733057)
+        scp = utils.DiscordGet(guild.roles, id=1107421191586726039)
         for user in guild.members:
             tr = utils.Tracking.get(user.id)
             if tr.messages < 3:
                 await user.remove_roles(mc, reason="opt-in!")
+                await user.remove_roles(scp, reason="opt-in!")
         await ctx.send(embed=utils.DevEmbed(desc=f"<:Pentagram:1093983216244891689>"))
 
 
