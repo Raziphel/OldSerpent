@@ -266,7 +266,7 @@ class Loops(Cog):
                 closed_garden_ers += 1
 
             tr = utils.Tracking.get(user.id)
-            if tr.messages < 2:
+            if tr.messages < 1:
                 inactive += 1
 
         #? Generate the bars
