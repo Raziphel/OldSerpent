@@ -35,7 +35,7 @@ class Shop_Handler(Cog):
         coin = self.bot.config['emotes']['coin']
 
         embed1=Embed(description=f"```fix\n█ Serpent's Toys █\n```\n**__By clicking the coresponding emoji, you will recieve a dm from the bot where you have to accept the transaction.__**\n\n**Exclusive Items:**\n*Items that are purposely made very expensive, due to their value!*", color=0x47F5DB)
-        embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n\n**{coin} 1,000,000x**", inline=True)
+        embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"**{coin} 1,000,000x**\n\n```Get the 10$ Discord Nitro!```", inline=True)
 
         embed2=Embed(description=f"```fix\n█ Permissions █\n```\n**__This is a list of discord related items for sale.__**", color=0x47B9F5)
         embed2.add_field(name=f"🎁 ❧ Stat Channels", value=f"**{coin} 10,000x**\n\n```Get permission to the Stats Channels!```", inline=True)
