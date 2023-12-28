@@ -38,8 +38,8 @@ class Shop_Handler(Cog):
         embed1.add_field(name=f"✨ ❧ Discord Nitro", value=f"*Get the 10$ Discord Nitro!*\n\n**{coin} 1,000,000x**", inline=True)
 
         embed2=Embed(description=f"```fix\n█ Permissions █\n```\n**This is a list of discord related items for sale.**", color=0x47B9F5)
-        embed2.add_field(name=f"🎁 ❧ Stat Channels", value=f"**{coin} 10,000x**\n\n**Get permission to the Stats Channels!**", inline=True)
-        embed2.add_field(name=f"🎈 ❧ Reaction Perms", value=f"**{coin} 20,000x**\n\n**Get access to using reactions!**", inline=True)
+        embed2.add_field(name=f"🎁 ❧ Stat Channels", value=f"**{coin} 10,000x**\n\n```Get permission to the Stats Channels!```", inline=True)
+        embed2.add_field(name=f"🎈 ❧ Reaction Perms", value=f"**{coin} 20,000x**\n\n```Get access to using reactions!```", inline=True)
         embed2.add_field(name=f"🧶 ❧ Thread Perms", value=f"**{coin} 20,000x**\n\n**Get perms to create threads!**", inline=True)
         embed2.add_field(name=f"🔮 ❧ External Emotes", value=f"**{coin} 30,000x**\n\n**Get access to using your external emotes and stickers!**", inline=True)
         embed2.add_field(name=f"🔥 ❧ Dungeon Key", value=f"**{coin} 30,000x**\n\n**Get access to hell, where all the muted go!**", inline=True)
