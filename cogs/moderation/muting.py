@@ -239,7 +239,7 @@ class Muting(Cog):
         '''Temporarily applies the prisoner role to a user or users'''
 
         if not user:
-            return await ctx.interaction.response.send_message('Please specify a valid user.', delete_after=15)
+            return await ctx.interaction.response.send_message('Please specify a valid user.')
 
         #+ Mute that loser
         if user:
@@ -251,7 +251,7 @@ class Muting(Cog):
                 pass
 
         #! Send message to the channel!
-        await ctx.interaction.response.send_message(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} muted {user.mention} for {duration} seconds!", guild=ctx.guild))
+        await ctx.interaction.response.send_message(embed=utils.WarningEmbed(desc=f"{ctx.author.mention} muted {user.mention} for {duration} seconds!"))
 
         #!Save to the DB
         mod = utils.Moderation.get(user.id)
