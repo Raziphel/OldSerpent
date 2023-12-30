@@ -98,7 +98,6 @@ class Currency_Gen(Cog):
                     checks = [
                         member.voice.deaf, 
                         member.voice.mute, 
-                        member.voice.self_mute, 
                         member.voice.self_deaf, 
                         member.voice.afk,
                         member.bot,
