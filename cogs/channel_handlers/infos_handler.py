@@ -130,7 +130,7 @@ class rules_handler(Cog):
 
         embed2=Embed(description=f"```fix\n█ SCP:SL FAQ █\n```\n**Heres all of your usual questions answered!  You're welcome!**\n\n**What plugins does Serpent's Garden use?**\nWe use Universe, a private modding API and we created every plugin in house!  A list of all of our plugins can be found in <#1154301198619398194>!\n\n**What are all of these custom roles!?**\nYou always spawn as a custom role no matter the team!  A list of all of our custom roles can be found in <#1151144048015462461>!\n\n**What are all of the custom items added!?**\nJesus dude, are you blind? <#1151178974844702782>\n\n**How do I sync my roles from the Discord to the server?**\nThere is currently no way to do so...  Coming soon though... :3\n\n**Why is there LGBT Flags on surface!? >:o**\ngottem, L bozo!", color=0xFF0000)
 
-        embed3=Embed(description=f"```fix\n█ Minecraft FAQ █\n```\n**All your Minin' and Craftin' questions all answered!**\n\n**What plugins does Serpne's Garden use?**\nI'll never tell!\n\n**Why can't I play without having the resource pack?**\nYou will literally die to invisible creepers if you don't...\n\n**Why is the server SO goooooo!**\nBecause it is. Period.", color=0x00FFFF)
+        embed3=Embed(description=f"```fix\n█ Minecraft FAQ █\n```\n**All your Minin' and Craftin' questions all answered!**\n\n**What plugins does Serpne's Garden use?**\nI'll never tell!\n\n**Why can't I play without having the resource pack?**\nYou will literally die to invisible creepers if you don't...\n\n**Why is the server SO gooooood!**\nBecause it is. Period.", color=0x00FFFF)
 
 
         await msg1.edit(content=f" ", embed=embed1)
