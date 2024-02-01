@@ -6,5 +6,5 @@ _*
 *.code*
 .vscode/*
 .ini
-config/config.json
+config/config.toml
 .venv
